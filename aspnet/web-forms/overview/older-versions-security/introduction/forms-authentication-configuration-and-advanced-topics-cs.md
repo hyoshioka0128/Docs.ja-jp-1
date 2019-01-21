@@ -32,7 +32,7 @@ ms.locfileid: "41823819"
 
 ## <a name="step-1-examining-the-ltformsgt-configuration-settings"></a>手順 1: チェック、&lt;フォーム&gt;構成設定
 
-Asp.net フォーム認証システムは、アプリケーションごとにカスタマイズ可能な構成設定のいくつかあります。 などの設定が含まれます。 フォーム認証の有効期間がチケット。チケット; にどのような保護が適用されます。どのような条件クッキーなしの認証チケットが使用されます。ログイン ページへのパスその他の情報。 既定値を変更するには追加、 [&lt;フォーム&gt;要素](https://msdn.microsoft.com/library/1d3t3c61.aspx)の子として、 [&lt;認証&gt;要素](https://msdn.microsoft.com/library/532aee0e.aspx)、これらのプロパティを指定します。値を XML 属性として、カスタマイズするようになります。
+ASP.NET フォーム認証システムは、アプリケーションごとにカスタマイズ可能な構成設定のいくつかあります。 などの設定が含まれます。 フォーム認証の有効期間がチケット。チケット; にどのような保護が適用されます。どのような条件クッキーなしの認証チケットが使用されます。ログイン ページへのパスその他の情報。 既定値を変更するには追加、 [&lt;フォーム&gt;要素](https://msdn.microsoft.com/library/1d3t3c61.aspx)の子として、 [&lt;認証&gt;要素](https://msdn.microsoft.com/library/532aee0e.aspx)、これらのプロパティを指定します。値を XML 属性として、カスタマイズするようになります。
 
 [!code-xml[Main](forms-authentication-configuration-and-advanced-topics-cs/samples/sample1.xml)]
 
