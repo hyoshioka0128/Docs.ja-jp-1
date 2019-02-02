@@ -26,13 +26,13 @@ ms.locfileid: "41828960"
 
 ## <a name="introduction"></a>はじめに
 
-[前のチュートリアル](an-overview-of-forms-authentication-vb.md)Web.config での表示 ページでさまざまなログを作成する構成設定を指定することから、ASP.NET アプリケーションでフォーム認証を実装するために必要な手順を説明しました認証および匿名ユーザーのコンテンツです。 Mode 属性を設定して、フォーム認証を使用する web サイトを構成したことを思い出してください、&lt;認証&gt;フォームへの要素。 &lt;認証&gt;要素には、必要に応じて、&lt;フォーム&gt;子要素で使用されるさまざまなフォーム認証設定を指定できます。
+[前のチュートリアル](an-overview-of-forms-authentication-vb.md)Web.config での表示 ページでさまざまなログを作成する構成設定を指定することから、ASP.NET アプリケーションでフォーム認証を実装するために必要な手順を説明しました認証および匿名ユーザーのコンテンツです。 Mode 属性を設定して、フォーム認証を使用する web サイトを構成したことを思い出してください、<authentication>フォームへの要素。 <authentication>要素には、必要に応じて、&lt;フォーム&gt;子要素で使用されるさまざまなフォーム認証設定を指定できます。
 
 このチュートリアルでは、さまざまなフォーム認証設定を確認するを通じてそれらを変更する方法を参照してください、&lt;フォーム&gt;要素。 (SignIn.aspx Login.aspx ではなく) などのカスタム URL と cookieless フォーム認証チケットでログイン ページを使用して、フォーム認証チケットのタイムアウト値のカスタマイズについて詳しく説明: これはします。 また、フォーム認証チケットの構成をより詳しく調査し、ASP.NET がチケットのデータが検査および改ざんからセキュリティで保護されたことを確認するには、予防策を参照してください。 最後に、フォーム認証チケットに余分なユーザー データを格納する方法とカスタム プリンシパル オブジェクトを使用してこのデータをモデル化する方法を紹介します。
 
 ## <a name="step-1-examining-the-ltformsgt-configuration-settings"></a>手順 1: チェック、&lt;フォーム&gt;構成設定
 
-ASP.NET フォーム認証システムは、アプリケーションごとにカスタマイズ可能な構成設定のいくつかあります。 などの設定が含まれます。 フォーム認証の有効期間がチケット。チケット; にどのような保護が適用されます。どのような条件クッキーなしの認証チケットが使用されます。ログイン ページへのパスその他の情報。 既定値を変更するには追加、 [&lt;フォーム&gt;要素](https://msdn.microsoft.com/library/1d3t3c61.aspx)の子として、 [&lt;認証&gt;要素](https://msdn.microsoft.com/library/532aee0e.aspx)、これらのプロパティを指定します。値を XML 属性として、カスタマイズするようになります。
+ASP.NET フォーム認証システムは、アプリケーションごとにカスタマイズ可能な構成設定のいくつかあります。 などの設定が含まれます。 フォーム認証の有効期間がチケット。チケット; にどのような保護が適用されます。どのような条件クッキーなしの認証チケットが使用されます。ログイン ページへのパスその他の情報。 既定値を変更するには追加、 [&lt;フォーム&gt;要素](https://msdn.microsoft.com/library/1d3t3c61.aspx)の子として、 [<authentication>要素](https://msdn.microsoft.com/library/532aee0e.aspx)、これらのプロパティを指定します。値を XML 属性として、カスタマイズするようになります。
 
 [!code-xml[Main](forms-authentication-configuration-and-advanced-topics-vb/samples/sample1.xml)]
 
@@ -107,7 +107,7 @@ Cookie ベースの認証チケット (既定値) を使用する場合このデ
 
 既に説明したタイムアウトと slidingExpiration の概念には、両方のセッションおよび有効期限ベースの cookie に同じが適用されます。 実行で 1 つだけの小さな違いがある: を true に設定された slidingTimeout cookie の有効期限ベースを使用する場合、cookie の有効期限のみ更新されます以上の指定した時間の半分が経過しました。
 
-チケットのスライド式有効期限を使用して、1 時間 (60 分) 後にタイムアウトを実行するため、web サイトの認証チケットのタイムアウト ポリシーを更新してみましょう。 この変更の影響を与える、Web.config ファイルの更新の追加、&lt;フォーム&gt;要素を&lt;認証&gt;を次のマークアップ要素。
+チケットのスライド式有効期限を使用して、1 時間 (60 分) 後にタイムアウトを実行するため、web サイトの認証チケットのタイムアウト ポリシーを更新してみましょう。 この変更の影響を与える、Web.config ファイルの更新の追加、&lt;フォーム&gt;要素を<authentication>を次のマークアップ要素。
 
 [!code-xml[Main](forms-authentication-configuration-and-advanced-topics-vb/samples/sample2.xml)]
 
@@ -414,8 +414,8 @@ ASP.NET ランタイムは、私たちにとって、これらのプロパティ
 - [方法: ASP.NET 2.0 でフォーム認証を保護します。](https://msdn.microsoft.com/library/ms998310.aspx)
 - [Professional ASP.NET 2.0 のセキュリティ、メンバーシップ、およびロール管理](http://www.wrox.com/WileyCDA/WroxTitle/productCd-0764596985.html)(ISBN: 978-0-7645-9698-8)
 - [ログイン コントロールをセキュリティで保護します。](https://msdn.microsoft.com/library/ms178346.aspx)
-- [&lt;認証&gt;要素](https://msdn.microsoft.com/library/532aee0e.aspx)
-- [&lt;フォーム&gt;要素&lt;認証&gt;](https://msdn.microsoft.com/library/1d3t3c61.aspx)
+- [<authentication>要素](https://msdn.microsoft.com/library/532aee0e.aspx)
+- [&lt;フォーム&gt;要素<authentication>](https://msdn.microsoft.com/library/1d3t3c61.aspx)
 - [&lt;MachineKey&gt;要素](https://msdn.microsoft.com/library/w8h3skw9.aspx)
 - [フォーム認証チケット Cookie を理解します。](https://support.microsoft.com/kb/910443)
 
