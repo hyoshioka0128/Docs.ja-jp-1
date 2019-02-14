@@ -3776,7 +3776,7 @@ items:
     items:
     - name: ASP.NET 4 と Visual Studio 2010 Web 開発の概要
       href: whitepapers/aspnet4/overview.md
-    - name: ASP.NET 4 の破壊的変更
+    - name: ASP.NET 4 の重大な変更
       href: whitepapers/aspnet4/breaking-changes.md
   - name: ASP.NET MVC 1.0 アプリケーションを ASP.NET MVC 2 にアップグレードする
     href: whitepapers/aspnet-mvc2-upgrade-notes.md
