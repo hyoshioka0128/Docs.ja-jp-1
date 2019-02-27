@@ -68,7 +68,7 @@ ms.locfileid: "51021782"
 > 詳細について、HTML でのエンコード[フォームを使用する](https://go.microsoft.com/fwlink/?LinkId=202892)。
 
 
-### <a name="2-you-enclose-code-blocks-in-braces"></a>2.コード ブロックを中かっこで囲むこと
+### <a name="2-you-enclose-code-blocks-in-braces"></a>2. 中カッコでコードブロックを囲む
 
 A*コード ブロック*1 つまたは複数のコード ステートメントを含み、中かっこで囲まれました。
 
