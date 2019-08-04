@@ -296,7 +296,7 @@ Windows Subsystem for Linux (WSL) は、HTTPS の自己署名証明書を生成�
 ## <a name="additional-information"></a>追加情報
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Apache による Linux で ASP.NET Core をホストするには。HTTPS の構成](xref:host-and-deploy/linux-apache#https-configuration)
-* [Nginx による Linux で ASP.NET Core をホストするには。HTTPS の構成](xref:host-and-deploy/linux-nginx#https-configuration)
+* [Apache による Linux で ASP.NET Core をホストする: HTTPS の構成](xref:host-and-deploy/linux-apache#https-configuration)
+* [Nginx による Linux で ASP.NET Core をホストする: HTTPS の構成](xref:host-and-deploy/linux-nginx#https-configuration)
 * [IIS で SSL を設定する方法](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS ブラウザー サポート](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
