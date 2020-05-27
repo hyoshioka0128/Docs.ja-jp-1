@@ -37,8 +37,8 @@ ms.locfileid: "82776553"
 ## <a name="run-the-samples"></a>サンプルを実行する
 
 * [ブランチ](https://github.com/dotnet/AspNetCore)を選択してください。 たとえば、`release/3.1` のように指定します。
-* [ASP.NET Core リポジトリ](https://github.com/dotnet/AspNetCore)を複製またはダウンロードします。
-* ASP.NET Core リポジトリの複製に一致する[.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)バージョンがインストールされていることを確認します。
+* [ASP.NET Core リポジトリ](https://github.com/dotnet/AspNetCore)をクローンまたはダウンロードします。
+* ASP.NET Core リポジトリのクローンに一致する[.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)バージョンがインストールされていることを確認します。
 * *AspNetCore/src/Security/samples*のサンプルに移動し、で`dotnet run`サンプルを実行します。
 
 ::: moniker-end
@@ -58,8 +58,8 @@ ms.locfileid: "82776553"
 ## <a name="run-the-samples"></a>サンプルを実行する
 
 * [ブランチ](https://github.com/dotnet/AspNetCore)を選択してください。 たとえば、`release/2.2` のように指定します。
-* [ASP.NET Core リポジトリ](https://github.com/dotnet/AspNetCore)を複製またはダウンロードします。
-* ASP.NET Core リポジトリの複製に一致する[.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)バージョンがインストールされていることを確認します。
+* [ASP.NET Core リポジトリ](https://github.com/dotnet/AspNetCore)をクローンまたはダウンロードします。
+* ASP.NET Core リポジトリのクローンに一致する[.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core)バージョンがインストールされていることを確認します。
 * *AspNetCore/src/Security/samples*のサンプルに移動し、で`dotnet run`サンプルを実行します。
 
 ::: moniker-end
