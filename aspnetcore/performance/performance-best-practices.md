@@ -126,7 +126,7 @@ ASP.NET Core アプリに対するほとんどの要求は、必要なサービ�
 * [バックグラウンドサービス](xref:fundamentals/host/hosted-services)で長時間実行される要求や、 [Azure 関数](/azure/azure-functions/)を使用したアウトプロセスを処理すること**を検討してください。** 特に、CPU を集中的に使用するタスクには、アウトプロセスの完了が役立ちます。
 * クライアントとの非同期通信には[SignalR](xref:signalr/introduction)、などのリアルタイム通信オプション**を使用し**ます。
 
-## <a name="minify-client-assets"></a>クライアント資産の縮小
+## <a name="minify-client-assets"></a>クライアントアセットの縮小
 
 複雑なフロントエンドを使用する ASP.NET Core アプリは、多くの JavaScript、CSS、またはイメージファイルに頻繁に対応します。 初期読み込み要求のパフォーマンスは、次の方法で改善できます。
 
@@ -135,8 +135,8 @@ ASP.NET Core アプリに対するほとんどの要求は、必要なサービ�
 
 推奨事項:
 
-* クライアント資産のバンドルと縮小には ASP.NET Core の[組み込みサポート](xref:client-side/bundling-and-minification)**を使用し**ます。
-* 複雑なクライアント資産管理には、 [Webpack](https://webpack.js.org/)などの他のサードパーティ製ツールを使用すること**を検討してください。**
+* クライアントアセットのバンドルと縮小には ASP.NET Core の[組み込みサポート](xref:client-side/bundling-and-minification)**を使用し**ます。
+* 複雑なクライアントアセット管理には、 [Webpack](https://webpack.js.org/)などの他のサードパーティ製ツールを使用すること**を検討してください。**
 
 ## <a name="compress-responses"></a>応答を圧縮する
 
