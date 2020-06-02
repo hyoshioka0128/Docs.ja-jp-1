@@ -18,29 +18,29 @@ ms.contentlocale: ja-JP
 ms.lasthandoff: 05/04/2020
 ms.locfileid: "82777008"
 ---
-# <a name="introduction-to-identity-on-aspnet-core"></a>ASP.NET Core での Id の概要
+# <a name="introduction-to-identity-on-aspnet-core"></a>ASP.NET Core での ID の概要
 
 ::: moniker range=">= aspnetcore-3.0"
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Id:
+ASP.NET Core ID:
 
 * は、ユーザーインターフェイス (UI) のログイン機能をサポートする API です。
 * ユーザー、パスワード、プロファイルデータ、ロール、要求、トークン、電子メールの確認などを管理します。
 
-ユーザーは、Id に格納されているログイン情報を持つアカウントを作成することも、外部ログインプロバイダーを使用することもできます。 サポートされている外部ログインプロバイダーには、 [Facebook、Google、Microsoft アカウント、Twitter](xref:security/authentication/social/index)があります。
+ユーザーは、ID に格納されているログイン情報を持つアカウントを作成することも、外部ログインプロバイダーを使用することもできます。 サポートされている外部ログインプロバイダーには、 [Facebook、Google、Microsoft アカウント、Twitter](xref:security/authentication/social/index)があります。
 
-[Id ソースコード](https://github.com/dotnet/AspNetCore/tree/master/src/Identity)は、GitHub で入手できます。 [スキャフォールディング](xref:security/authentication/scaffold-identity)は、id とのテンプレートの対話を確認するために、生成されたファイルを識別して表示します。
+[ID ソースコード](https://github.com/dotnet/AspNetCore/tree/master/src/Identity)は、GitHub で入手できます。 [スキャフォールディング](xref:security/authentication/scaffold-identity)は、id とのテンプレートの対話を確認するために、生成されたファイルを識別して表示します。
 
-Id は、通常、ユーザー名、パスワード、およびプロファイルデータを格納するために SQL Server データベースを使用して構成されます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
+ID は、通常、ユーザー名、パスワード、およびプロファイルデータを格納するために SQL Server データベースを使用して構成されます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
 
-このトピックでは、Identity を使用してユーザーを登録、ログイン、ログアウトする方法について説明します。 注: このテンプレートでは、ユーザー名と電子メールはユーザーに対して同じものとして扱われます。 Id を使用するアプリを作成する方法の詳細については、この記事の最後にある「次のステップ」を参照してください。
+このトピックでは、Identity を使用してユーザーを登録、ログイン、ログアウトする方法について説明します。 注: このテンプレートでは、ユーザー名と電子メールはユーザーに対して同じものとして扱われます。 ID を使用するアプリを作成する方法の詳細については、この記事の最後にある「次のステップ」を参照してください。
 
 [Microsoft id プラットフォーム](/azure/active-directory/develop/)は次のとおりです。
 
 * Azure Active Directory (Azure AD) 開発プラットフォームの進化。
-* ASP.NET Core Id に関連付けられていません。
+* ASP.NET Core ID に関連付けられていません。
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -107,15 +107,15 @@ dotnet ef database update
 
 <a name="pw"></a>
 
-### <a name="configure-identity-services"></a>Id サービスを構成する
+### <a name="configure-identity-services"></a>ID サービスを構成する
 
 サービスはに`ConfigureServices`追加されています。 一般的なパターンは、すべての `Add{Service}` メソッドを呼び出した後、すべての `services.Configure{Service}` メソッドを呼び出すことです。
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=10-99)]
 
-上の強調表示されたコードは、既定のオプション値を使用して Id を構成します。 サービスは、[依存関係の挿入](xref:fundamentals/dependency-injection)によってアプリで使用できるようになります。
+上の強調表示されたコードは、既定のオプション値を使用して ID を構成します。 サービスは、[依存関係の挿入](xref:fundamentals/dependency-injection)によってアプリで使用できるようになります。
 
-Id は、を呼び<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>出すことによって有効になります。 `UseAuthentication`認証[ミドルウェア](xref:fundamentals/middleware/index)を要求パイプラインに追加します。
+ID は、を呼び<xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>出すことによって有効になります。 `UseAuthentication`認証[ミドルウェア](xref:fundamentals/middleware/index)を要求パイプラインに追加します。
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
@@ -140,7 +140,7 @@ dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --fil
 
 PowerShell では、コマンドの区切り記号としてセミコロンを使用します。 PowerShell を使用する場合は、前の例に示したように、ファイルリスト内のセミコロンをエスケープするか、ファイルリストを二重引用符で囲みます。
 
-スキャフォールディング Id の詳細については、「[スキャフォールディング identity to a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization)」を参照してください。
+スキャフォールディング ID の詳細については、「[スキャフォールディング identity to a Razor project with authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-razor-project-with-authorization)」を参照してください。
 
 ---
 
@@ -183,28 +183,28 @@ Post は*Pages/Shared/_LoginPartial*に指定されています。
 
 ## <a name="test-identity"></a>テスト Id
 
-既定の web プロジェクトテンプレートでは、ホームページへの匿名アクセスが許可されます。 Id をテストするに[`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)は、次のように追加します。
+既定の web プロジェクトテンプレートでは、ホームページへの匿名アクセスが許可されます。 ID をテストするに[`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)は、次のように追加します。
 
 [!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
 サインインしている場合は、サインアウトします。アプリを実行し、[**プライバシー** ] リンクを選択します。 ログイン ページにリダイレクトされます。
 
-### <a name="explore-identity"></a>Id の探索
+### <a name="explore-identity"></a>ID の探索
 
-Id の詳細については、以下を参照してください。
+ID の詳細については、以下を参照してください。
 
 * [完全な id UI ソースの作成](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * 各ページのソースを確認し、デバッガーをステップ実行します。
 
-## <a name="identity-components"></a>Id コンポーネント
+## <a name="identity-components"></a>ID コンポーネント
 
-すべての Id に依存する NuGet パッケージは、 [ASP.NET Core 共有フレームワーク](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework)に含まれています。
+すべての ID に依存する NuGet パッケージは、 [ASP.NET Core 共有フレームワーク](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework)に含まれています。
 
-Id のプライマリパッケージは[AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/)です。 このパッケージには ASP.NET Core Id のインターフェイスのコアセットが含まれており`Microsoft.AspNetCore.Identity.EntityFrameworkCore`、によって含まれています。
+ID のプライマリパッケージは[AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/)です。 このパッケージには ASP.NET Core ID のインターフェイスのコアセットが含まれており`Microsoft.AspNetCore.Identity.EntityFrameworkCore`、によって含まれています。
 
-## <a name="migrating-to-aspnet-core-identity"></a>ASP.NET Core Id への移行
+## <a name="migrating-to-aspnet-core-identity"></a>ASP.NET Core ID への移行
 
-既存の Id ストアを移行する方法の詳細とガイダンスについては、「[認証と id の移行](xref:migration/identity)」を参照してください。
+既存の ID ストアを移行する方法の詳細とガイダンスについては、「[認証と id の移行](xref:migration/identity)」を参照してください。
 
 ## <a name="setting-password-strength"></a>パスワードの強度を設定する
 
@@ -220,9 +220,9 @@ Id のプライマリパッケージは[AspNetCore](https://www.nuget.org/packag
 
 詳細については、「 [AddDefaultIdentity source](https://github.com/dotnet/AspNetCore/blob/release/3.0/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) 」を参照してください。
 
-## <a name="prevent-publish-of-static-identity-assets"></a>静的 Id 資産の発行を禁止する
+## <a name="prevent-publish-of-static-identity-assets"></a>静的 ID アセットの発行を禁止する
 
-静的 Id アセット (Id UI 用のスタイルシートおよび JavaScript ファイル) が web ルートに発行されないよう`ResolveStaticWebAssetsInputsDependsOn`にする`RemoveIdentityAssets`には、次のプロパティとターゲットをアプリのプロジェクトファイルに追加します。
+静的 ID アセット (ID UI 用のスタイルシートおよび JavaScript ファイル) が web ルートに発行されないよう`ResolveStaticWebAssetsInputsDependsOn`にする`RemoveIdentityAssets`には、次のプロパティとターゲットをアプリのプロジェクトファイルに追加します。
 
 ```xml
 <PropertyGroup>
@@ -238,7 +238,7 @@ Id のプライマリパッケージは[AspNetCore](https://www.nuget.org/packag
 
 ## <a name="next-steps"></a>次の手順
 
-* SQLite を使用して Id を構成する方法については、 [GitHub の問題](https://github.com/dotnet/AspNetCore.Docs/issues/5131)を参照してください。
+* SQLite を使用して ID を構成する方法については、 [GitHub の問題](https://github.com/dotnet/AspNetCore.Docs/issues/5131)を参照してください。
 * [Identity の構成](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
@@ -254,13 +254,13 @@ Id のプライマリパッケージは[AspNetCore](https://www.nuget.org/packag
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Id は、ASP.NET Core アプリにログイン機能を追加するメンバーシップシステムです。 ユーザーは、Id に格納されているログイン情報を持つアカウントを作成することも、外部ログインプロバイダーを使用することもできます。 サポートされている外部ログインプロバイダーには、 [Facebook、Google、Microsoft アカウント、Twitter](xref:security/authentication/social/index)があります。
+ASP.NET Core ID は、ASP.NET Core アプリにログイン機能を追加するメンバーシップシステムです。 ユーザーは、ID に格納されているログイン情報を持つアカウントを作成することも、外部ログインプロバイダーを使用することもできます。 サポートされている外部ログインプロバイダーには、 [Facebook、Google、Microsoft アカウント、Twitter](xref:security/authentication/social/index)があります。
 
-Id は、SQL Server データベースを使用して、ユーザー名、パスワード、およびプロファイルデータを格納するように構成できます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
+ID は、SQL Server データベースを使用して、ユーザー名、パスワード、およびプロファイルデータを格納するように構成できます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
 
 サンプルコード ([ダウンロード方法)](xref:index#how-to-download-a-sample)を[表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/)します。
 
-このトピックでは、Identity を使用してユーザーを登録、ログイン、ログアウトする方法について説明します。 Id を使用するアプリを作成する方法の詳細については、この記事の最後にある「次のステップ」を参照してください。
+このトピックでは、Identity を使用してユーザーを登録、ログイン、ログアウトする方法について説明します。 ID を使用するアプリを作成する方法の詳細については、この記事の最後にある「次のステップ」を参照してください。
 
 <a name="adi"></a>
 
@@ -327,15 +327,15 @@ dotnet ef database update
 
 <a name="pw"></a>
 
-### <a name="configure-identity-services"></a>Id サービスを構成する
+### <a name="configure-identity-services"></a>ID サービスを構成する
 
 サービスはに`ConfigureServices`追加されています。 一般的なパターンは、すべての `Add{Service}` メソッドを呼び出した後、すべての `services.Configure{Service}` メソッドを呼び出すことです。
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
 
-前のコードでは、既定のオプション値を使用して Id を構成しています。 サービスは、[依存関係の挿入](xref:fundamentals/dependency-injection)によってアプリで使用できるようになります。
+前のコードでは、既定のオプション値を使用して ID を構成しています。 サービスは、[依存関係の挿入](xref:fundamentals/dependency-injection)によってアプリで使用できるようになります。
 
-Id は、 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_)を呼び出すことによって有効になります。 `UseAuthentication`認証[ミドルウェア](xref:fundamentals/middleware/index)を要求パイプラインに追加します。
+ID は、 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_)を呼び出すことによって有効になります。 `UseAuthentication`認証[ミドルウェア](xref:fundamentals/middleware/index)を要求パイプラインに追加します。
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
