@@ -85,7 +85,7 @@ ms.locfileid: "84451941"
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-端末から、次のコマンドを実行します。
+ターミナルから、次のコマンドを実行します。
 
 ```dotnetcli
 dotnet new grpc -o GrpcGreeter
