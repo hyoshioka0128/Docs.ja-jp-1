@@ -66,13 +66,13 @@ Visual Studio によってソリューションが作成されます。
 * **[登録]** を選択して、新しいユーザーを登録します。 架空の電子メール アドレスを使用できます。 送信すると、ページに次のエラーが表示されます。
 
     *A database operation failed while processing the request./(要求の処理中にデータベースの操作に失敗しました。/)Applying existing migrations for Application DB context may resolve this issue. /(アプリケーション DB コンテキストの既存の移行を適用すると問題が解決する場合があります。/)*
-* **[Apply Migrations]/(移行を適用する/)** を選択し、移行が完了したら、ページを更新します。
+* **[Apply Migrations]\(移行を適用する\)** を選択し、移行が完了したら、ページを更新します。
 
 ![要求の処理中にデータベースの操作に失敗しました。 Applying existing migrations for Application DB context may resolve this issue. /(アプリケーション DB コンテキスト用の既存の以降を適用すると問題が解決する場合があります。/)](publish-to-azure-webapp-using-vs/_static/mig.png)
 
 アプリに、新しいユーザーの登録に使用した電子メールと **[ログアウト]** リンクが表示されます。
 
-![Microsoft Edge で開いている Web アプリケーション。 [Register]/(登録/) リンクは Hello user1@example.com! というテキストで置き換えられます。](publish-to-azure-webapp-using-vs/_static/hello.png)
+![Microsoft Edge で開いている Web アプリケーション。 [Register]\(登録\) リンクは Hello user1@example.com! というテキストで置き換えられます。](publish-to-azure-webapp-using-vs/_static/hello.png)
 
 ## <a name="deploy-the-app-to-azure"></a>Azure にアプリを配置する
 
