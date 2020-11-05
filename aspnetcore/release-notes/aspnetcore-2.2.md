@@ -124,7 +124,7 @@ ASP.NET Core 2.2 では、特定のモデル グラフに検証が不要と判�
 
 ASP.NET Core 2.2 では、接続プールのロック競合を減らすことで、`SocketsHttpHandler` のパフォーマンスが向上しました。 一部のマイクロサービス アーキテクチャなど、多くの送信 HTTP 要求を作成するアプリの場合、スループットが向上します。 読み込み時には、`HttpClient` のスループットが Linux では最大 60%、Windows では 20% 向上する可能性があります。
 
-詳細については、[このような改善を実現したプル要求](https://github.com/dotnet/corefx/pull/32568)に関する記事を参照してください。
+詳細については、[このような改善を実現したプルリクエスト](https://github.com/dotnet/corefx/pull/32568)に関する記事を参照してください。
 
 ## <a name="additional-information"></a>追加情報
 
