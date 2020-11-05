@@ -35,7 +35,7 @@ landingContent:
     links:
     - text: ASP.NET Core ドキュメントのリポジトリ
       url: https://github.com/dotnet/AspNetCore.Docs/blob/master/README.md
-    - text: プロジェクト構造と、イシューとプル要求のラベル
+    - text: プロジェクト構造と、イシューとプルリクエストのラベル
       url: https://github.com/dotnet/docs/blob/master/styleguide/labels-projects.md
   - linkListType: concept
     links:
