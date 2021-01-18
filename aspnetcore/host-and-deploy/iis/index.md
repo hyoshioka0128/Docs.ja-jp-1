@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: e4a94ca9e3607868f3eb25d88338e8156f7f5206
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e0354859b08dc5d8a3e1f4b8a8530d61de2e78cf
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061523"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253164"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>IIS を使用した Windows での ASP.NET Core のホスト
 
@@ -69,6 +69,10 @@ Azure App Services での Web サイトのホスティングの概要につい�
 * <xref:host-and-deploy/iis/modules>
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
+
+## <a name="overlapped-recycle"></a>重複したリサイクル
+
+一般に、ダウンタイムをゼロにして展開する場合は、[ブルーグリーンのデプロイ](https://www.martinfowler.com/bliki/BlueGreenDeployment.html)のようなパターンを使用することをお勧めします。 重複したリサイクルのヘルプなどの機能は、ダウンタイムなしの展開を実行できることを保証するものではありません。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/aspnetcore/issues/10117)します。
 
 ## <a name="additional-resources"></a>その他の技術情報
 
@@ -271,7 +275,7 @@ Web SDK ファイルの変換を無効にすると、 `processPath`と`arguments
 
 **Web サーバー (IIS)** サーバーの役割を有効にし、役割のサービスを設定します。
 
-1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、 **サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
+1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、**サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
 
    ![[サーバーの役割の選択] のステップで Web サーバー IIS の役割を選択します。](index/_static/server-roles-ws2016.png)
 
@@ -346,7 +350,7 @@ Web SDK ファイルの変換を無効にすると、 `processPath`と`arguments
    * `OPT_NO_RUNTIME=1`:.NET Core ランタイムのインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_SHAREDFX=1`:ASP.NET Shared Framework (ASP.NET ランタイム) のインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_X86=1`:x86 ランタイムのインストールをスキップします。 32 ビット アプリをホストしない場合は、このパラメーターを使用します。 今後、32 ビットと 64 ビットのアプリ両方をホストする可能性がある場合は、このパラメーターを使用せずに、両方のランタイムをインストールします。
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 (`applicationHost.config`) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 " *ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 (`applicationHost.config`) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 "*ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
 1. システムを再起動するか、コマンドシェルで次のコマンドを実行します。
 
    ```console
@@ -392,11 +396,11 @@ net start w3svc
 
     ASP.NET Core は、別個のプロセスで実行され、ランタイムを管理します。 ASP.NET Core を使用するためにデスクトップ CLR (.NET CLR) を読み込む必要はありません。 .NET Core 用の Core 共通言語ランタイム (CoreCLR) が起動され、ワーカー プロセスでアプリがホストされます。 **[.NET CLR バージョン]** の **[マネージド コードなし]** への設定は省略可能ですが、推奨されます。
 
-1. *ASP.NET Core 2.2 以降* :
+1. *ASP.NET Core 2.2 以降*:
 
-   * [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 32 ビット SDK で公開される 32 ビット (x86) の[自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット用のアプリケーション プールを有効にします。 IIS マネージャーで、 **[接続]** サイドバーの **[アプリケーション プール]** に移動します。 アプリのアプリケーション プールを選択します。 **[操作]** サイドバーで、[ **詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を `True` に設定します。 
+   * [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 32 ビット SDK で公開される 32 ビット (x86) の[自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット用のアプリケーション プールを有効にします。 IIS マネージャーで、 **[接続]** サイドバーの **[アプリケーション プール]** に移動します。 アプリのアプリケーション プールを選択します。 **[操作]** サイドバーで、[**詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を `True` に設定します。 
 
-   * [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の[自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。 IIS マネージャーで、 **[接続]** サイドバーの **[アプリケーション プール]** に移動します。 アプリのアプリケーション プールを選択します。 **[操作]** サイドバーで、[ **詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を `False` に設定します。 
+   * [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の[自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。 IIS マネージャーで、 **[接続]** サイドバーの **[アプリケーション プール]** に移動します。 アプリのアプリケーション プールを選択します。 **[操作]** サイドバーで、[**詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を `False` に設定します。 
 
 1. プロセス モデル ID に適切なアクセス許可があることを確認します。
 
@@ -407,7 +411,7 @@ net start w3svc
 
 ## <a name="deploy-the-app"></a>アプリを配置する
 
-「 [IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの `publish` フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
+「[IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの `publish` フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
 
 ### <a name="web-deploy-with-visual-studio"></a>Visual Studio からのアプリの展開
 
@@ -533,7 +537,7 @@ IIS の構成は ASP.NET Core モジュールを使用した ASP.NET Core アプ
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、 [環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある " *AppCmd.exe コマンド* " のセクションを参照してください。
+分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、[環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある "*AppCmd.exe コマンド*" のセクションを参照してください。
 
 ## <a name="configuration-sections-of-webconfig"></a>web.config の構成のセクション
 
@@ -557,7 +561,7 @@ IIS の **[Web サイトの追加]** ダイアログの既定では、アプリ�
 
 ## <a name="application-pool-no-locidentity"></a>アプリケーション プール Identity
 
-アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、 **ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
+アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、**ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
 
 ![アプリケーション プールの [詳細設定] ダイアログ](index/_static/apppool-identity.png)
 
@@ -611,7 +615,7 @@ HTTP/2 は既定で有効になっています。 HTTP/2 接続が確立され�
 
 ## <a name="cors-preflight-requests"></a>CORS プレフライト要求
 
-" *このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
+"*このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
 
 .NET Framework をターゲットにした ASP.NET Core アプリの場合、IIS では既定で OPTIONS 要求がアプリに渡されません。 OPTIONS 要求を渡すように `web.config` でアプリの IIS のハンドラーを構成する方法については、[ASP.NET Web API 2 でのクロスオリジン要求の有効化:CORS のしくみ](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works)に関する記事をご覧ください。
 
@@ -624,7 +628,7 @@ IIS 内で ASP.NET Core モジュール バージョン 2 によってホスト�
 
 ### <a name="application-initialization-module"></a>Application Initialization モジュール
 
-" *アプリのホストされているインプロセスとアウトプロセスに適用されます。* "
+"*アプリのホストされているインプロセスとアウトプロセスに適用されます。* "
 
 [IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) は、アプリ プールが開始するときまたはリサイクルされるときに、アプリに HTTP 要求を送信する IIS 機能です。 要求によってアプリの起動がトリガーされます。 既定では、IIS ではアプリのルート URL (`/`) に対して要求が発行され、アプリが初期化されます (構成の詳細については[その他の技術情報](#application-initialization-module-and-idle-timeout-additional-resources)を参照)。
 
@@ -668,7 +672,7 @@ Windows Server 2008 R2 以降の場合:
 
 ### <a name="idle-timeout"></a>アイドル タイムアウト
 
-" *アプリのホストされているインプロセスにのみ適用されます。* "
+"*アプリのホストされているインプロセスにのみ適用されます。* "
 
 アプリがアイドル状態にならないようにするには、IIS マネージャーを使ってアプリ プールのアイドル タイムアウトを設定します。
 
@@ -768,7 +772,7 @@ IIS HTTP サーバーによって要求が処理された後、その要求は A
 
 インプロセス ホスティングは既存のアプリではオプトインになっていますが、[dotnet new](/dotnet/core/tools/dotnet-new) テンプレートは既定ではすべての IIS および IIS Express シナリオにおいてインプロセス ホスティング モデルに設定されています。
 
-`CreateDefaultBuilder` では、<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS%2A> メソッドを呼び出し、 [CoreCLR](/dotnet/standard/glossary#coreclr) を起動して IIS ワーカー プロセス ( *w3wp.exe* または *iisexpress.exe* ) 内のアプリをホストすることで、<xref:Microsoft.AspNetCore.Hosting.Server.IServer> インスタンスを追加します。 パフォーマンス テストは、.NET Core アプリのインプロセス ホスティングでは、アプリのアウトプロセス ホスティングや [Kestrel](xref:fundamentals/servers/kestrel) サーバーへのプロキシ要求に比べ、スループットの要求が大幅に高くなることを示しています。
+`CreateDefaultBuilder` では、<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS%2A> メソッドを呼び出し、[CoreCLR](/dotnet/standard/glossary#coreclr) を起動して IIS ワーカー プロセス (*w3wp.exe* または *iisexpress.exe*) 内のアプリをホストすることで、<xref:Microsoft.AspNetCore.Hosting.Server.IServer> インスタンスを追加します。 パフォーマンス テストは、.NET Core アプリのインプロセス ホスティングでは、アプリのアウトプロセス ホスティングや [Kestrel](xref:fundamentals/servers/kestrel) サーバーへのプロキシ要求に比べ、スループットの要求が大幅に高くなることを示しています。
 
 ### <a name="out-of-process-hosting-model"></a>アウト プロセス ホスティング モデル
 
@@ -792,7 +796,7 @@ ASP.NET Core モジュール構成のガイダンスについては、「<xref:h
 
 ### <a name="enable-the-iisintegration-components"></a>IISIntegration コンポーネントを有効にする
 
-`CreateWebHostBuilder` ( *Program.cs* ) でホストを構築する場合は、<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> を呼び出して IIS 統合を有効にします。
+`CreateWebHostBuilder` (*Program.cs*) でホストを構築する場合は、<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> を呼び出して IIS 統合を有効にします。
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -843,13 +847,13 @@ services.Configure<IISOptions>(options =>
 
 ### <a name="webconfig-file"></a>web.config ファイル
 
-*web.config* ファイルでは、 [ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を設定します。 *web.config* ファイルの作成、変換、および公開は、プロジェクトの公開時に、MSBuild ターゲット (`_TransformWebConfig`) によって処理されます。 このターゲットは、Web SDK ターゲット (`Microsoft.NET.Sdk.Web`) に存在します。 SDK は、プロジェクト ファイルの先頭で設定されています。
+*web.config* ファイルでは、[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を設定します。 *web.config* ファイルの作成、変換、および公開は、プロジェクトの公開時に、MSBuild ターゲット (`_TransformWebConfig`) によって処理されます。 このターゲットは、Web SDK ターゲット (`Microsoft.NET.Sdk.Web`) に存在します。 SDK は、プロジェクト ファイルの先頭で設定されています。
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-プロジェクト内に *web.config* ファイルが存在しない場合、そのファイルは ASP.NET Core モジュールを構成するための適切な *processPath* と *arguments* を使用して作成され、 [発行された出力](xref:host-and-deploy/directory-structure)に移行されます。
+プロジェクト内に *web.config* ファイルが存在しない場合、そのファイルは ASP.NET Core モジュールを構成するための適切な *processPath* と *arguments* を使用して作成され、[発行された出力](xref:host-and-deploy/directory-structure)に移行されます。
 
 プロジェクトに *web.config* ファイルが含まれていない場合、そのファイルは ASP.NET Core モジュールを構成するための正しい *processPath* と *arguments* を使用して作成され、発行された出力に移行されます。 変換によりファイル内の IIS 構成の設定が変わることはありません。
 
@@ -867,11 +871,11 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
 
 ### <a name="webconfig-file-location"></a>web.config ファイルの場所
 
-[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を正しく設定するためには、 *web.config* ファイルが、展開されるアプリの [コンテンツ ルート](xref:fundamentals/index#content-root) パス (通常はアプリ ベース パス) に存在する必要があります。 これは、IIS に提供される web サイトの物理パスと同じ場所です。 *Web.config* ファイルは、Web 配置を使用して複数のアプリの発行を有効にするため、アプリのルートで必要です。
+[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を正しく設定するためには、*web.config* ファイルが、展開されるアプリの [コンテンツ ルート](xref:fundamentals/index#content-root) パス (通常はアプリ ベース パス) に存在する必要があります。 これは、IIS に提供される web サイトの物理パスと同じ場所です。 *Web.config* ファイルは、Web 配置を使用して複数のアプリの発行を有効にするため、アプリのルートで必要です。
 
-アプリの物理パスには、 *\<assembly>.runtimeconfig.json* 、 *\<assembly>.xml* (XML ドキュメントのコメント)、 *\<assembly>.deps.json* などの機密性の高いファイルが存在します。 *web.config* ファイルが存在し、サイトは通常どおり起動した場合、IIS は、これらの機密性の高いファイルが要求された場合にファイルを提供しません。 *web.config* ファイルが存在しないか、不適切な名前が付けられているか、または通常の起動用にサイトを構成できない場合、IIS が機密性の高いファイルを公開する可能性があります。
+アプリの物理パスには、 *\<assembly>.runtimeconfig.json*、 *\<assembly>.xml* (XML ドキュメントのコメント)、 *\<assembly>.deps.json* などの機密性の高いファイルが存在します。 *web.config* ファイルが存在し、サイトは通常どおり起動した場合、IIS は、これらの機密性の高いファイルが要求された場合にファイルを提供しません。 *web.config* ファイルが存在しないか、不適切な名前が付けられているか、または通常の起動用にサイトを構成できない場合、IIS が機密性の高いファイルを公開する可能性があります。
 
-***web.config* ファイルは、展開環境に常に存在し、適切な名前が付けられ、通常の起動用にサイトを構成できる必要があります。 *web.config* ファイルを運用環境の展開から削除しないでください。**
+***web.config* ファイルは、展開環境に常に存在し、適切な名前が付けられ、通常の起動用にサイトを構成できる必要があります。*web.config* ファイルを運用環境の展開から削除しないでください。**
 
 ### <a name="transform-webconfig"></a>web.config を変換する
 
@@ -883,7 +887,7 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
 
 **Web サーバー (IIS)** サーバーの役割を有効にし、役割のサービスを設定します。
 
-1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、 **サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
+1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、**サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
 
    ![[サーバーの役割の選択] のステップで Web サーバー IIS の役割を選択します。](index/_static/server-roles-ws2016.png)
 
@@ -950,7 +954,7 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
    * `OPT_NO_RUNTIME=1`:.NET Core ランタイムのインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_SHAREDFX=1`:ASP.NET Shared Framework (ASP.NET ランタイム) のインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_X86=1`:x86 ランタイムのインストールをスキップします。 32 ビット アプリをホストしない場合は、このパラメーターを使用します。 今後、32 ビットと 64 ビットのアプリ両方をホストする可能性がある場合は、このパラメーターを使用せずに、両方のランタイムをインストールします。
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 ( *applicationHost.config* ) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 " *ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 (*applicationHost.config*) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 "*ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
 1. システムを再起動するか、コマンドシェルで次のコマンドを実行します。
 
    ```console
@@ -993,7 +997,7 @@ ASP.NET Core では、共有フレームワーク パッケージの修正プロ
 
     ASP.NET Core は、別個のプロセスで実行され、ランタイムを管理します。 ASP.NET Core はデスクトップ CLR (.NET CLR) の読み込みに依存しません&mdash;.NET Core 用の Core 共通言語ランタイム (CoreCLR) が起動され、ワーカー プロセスでアプリがホストされます。 **[.NET CLR バージョン]** の **[マネージド コードなし]** への設定は省略可能ですが、推奨されます。
 
-1. *ASP.NET Core 2.2 以降* : [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の [自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。
+1. *ASP.NET Core 2.2 以降*:[インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の [自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。
 
    IIS マネージャー > **[アプリケーション プール]** の **[操作]** サイドバーで、 **[アプリケーション プールの既定値の設定]** または **[詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を探し、値を `False` に設定します。 この設定は[アウトプロセス ホスティング](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model)で展開されたアプリには影響しません。
 
@@ -1006,7 +1010,7 @@ ASP.NET Core では、共有フレームワーク パッケージの修正プロ
 
 ## <a name="deploy-the-app"></a>アプリを配置する
 
-「 [IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの *publish* フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
+「[IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの *publish* フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
 
 ### <a name="web-deploy-with-visual-studio"></a>Visual Studio からのアプリの展開
 
@@ -1133,7 +1137,7 @@ IIS の構成は ASP.NET Core モジュールを使用した ASP.NET Core アプ
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、 [環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある " *AppCmd.exe コマンド* " のセクションを参照してください。
+分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、[環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある "*AppCmd.exe コマンド*" のセクションを参照してください。
 
 ## <a name="configuration-sections-of-webconfig"></a>web.config の構成のセクション
 
@@ -1157,7 +1161,7 @@ IIS の **[Web サイトの追加]** ダイアログの既定では、アプリ�
 
 ## <a name="application-pool-no-locidentity"></a>アプリケーション プール Identity
 
-アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、 **ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
+アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、**ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
 
 ![アプリケーション プールの [詳細設定] ダイアログ](index/_static/apppool-identity.png)
 
@@ -1173,7 +1177,7 @@ IIS 管理プロセスは、Windows セキュリティ システムでのアプ�
 
 1. **[場所]** ボタンを選択し、システムが選択されていることを確認します。
 
-1. **[選択するオブジェクト名を入力してください]** 領域に、「 **IIS AppPool\\<app_pool_name>** 」と入力します。 **[名前の確認]** を選択します。 *DefaultAppPool* で、 **IIS AppPool\DefaultAppPool** を使用して名前を確認します。 **[名前の確認]** ボタンが選択されているときには、 **DefaultAppPool** の値が、オブジェクト名領域に表示されます。 オブジェクト名の領域に直接アプリケーション プール名を入力することはできません。 オブジェクト名を確認するときには、 **IIS AppPool\\<app_pool_name>** の形式を使用します。
+1. **[選択するオブジェクト名を入力してください]** 領域に、「**IIS AppPool\\<app_pool_name>** 」と入力します。 **[名前の確認]** を選択します。 *DefaultAppPool* で、**IIS AppPool\DefaultAppPool** を使用して名前を確認します。 **[名前の確認]** ボタンが選択されているときには、**DefaultAppPool** の値が、オブジェクト名領域に表示されます。 オブジェクト名の領域に直接アプリケーション プール名を入力することはできません。 オブジェクト名を確認するときには、**IIS AppPool\\<app_pool_name>** の形式を使用します。
 
    ![アプリ フォルダーのユーザーまたはグループのダイアログを選択します。[名前の確認] を選択する前に、オブジェクト名領域で "DefaultAppPool" のアプリ プール名が "IIS AppPool\" に適用されます。](index/_static/select-users-or-groups-1.png)
 
@@ -1183,7 +1187,7 @@ IIS 管理プロセスは、Windows セキュリティ システムでのアプ�
 
 1. 読み取り &amp; 実行アクセス許可は、既定で付与される必要があります。 必要に応じて、追加のアクセス許可を提供します。
 
-**ICACLS** ツールを使用してコマンド プロンプトでアクセス許可を付与することもできます。 たとえば、 *DefaultAppPool* を使用する場合、次のコマンドを使用します。
+**ICACLS** ツールを使用してコマンド プロンプトでアクセス許可を付与することもできます。 たとえば、*DefaultAppPool* を使用する場合、次のコマンドを使用します。
 
 ```console
 ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
@@ -1211,9 +1215,9 @@ HTTP/2 は既定で有効になっています。 HTTP/2 接続が確立され�
 
 ## <a name="cors-preflight-requests"></a>CORS プレフライト要求
 
-" *このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
+"*このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
 
-.NET Framework をターゲットにした ASP.NET Core アプリの場合、IIS では既定で OPTIONS 要求がアプリに渡されません。 OPTIONS 要求を渡すように *web.config* でアプリの IIS のハンドラーを構成する方法については、 [ASP.NET Web API 2 でのクロスオリジン要求の有効化:CORS のしくみ](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works)に関する記事をご覧ください。
+.NET Framework をターゲットにした ASP.NET Core アプリの場合、IIS では既定で OPTIONS 要求がアプリに渡されません。 OPTIONS 要求を渡すように *web.config* でアプリの IIS のハンドラーを構成する方法については、[ASP.NET Web API 2 でのクロスオリジン要求の有効化:CORS のしくみ](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works)に関する記事をご覧ください。
 
 ## <a name="application-initialization-module-and-idle-timeout"></a>Application Initialization モジュールとアイドル タイムアウト
 
@@ -1224,7 +1228,7 @@ IIS 内で ASP.NET Core モジュール バージョン 2 によってホスト�
 
 ### <a name="application-initialization-module"></a>Application Initialization モジュール
 
-" *アプリのホストされているインプロセスとアウトプロセスに適用されます。* "
+"*アプリのホストされているインプロセスとアウトプロセスに適用されます。* "
 
 [IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) は、アプリ プールが開始するときまたはリサイクルされるときに、アプリに HTTP 要求を送信する IIS 機能です。 要求によってアプリの起動がトリガーされます。 既定では、IIS ではアプリのルート URL (`/`) に対して要求が発行され、アプリが初期化されます (構成の詳細については[その他の技術情報](#application-initialization-module-and-idle-timeout-additional-resources)を参照)。
 
@@ -1268,7 +1272,7 @@ Windows Server 2008 R2 以降の場合:
 
 ### <a name="idle-timeout"></a>アイドル タイムアウト
 
-" *アプリのホストされているインプロセスにのみ適用されます。* "
+"*アプリのホストされているインプロセスにのみ適用されます。* "
 
 アプリがアイドル状態にならないようにするには、IIS マネージャーを使ってアプリ プールのアイドル タイムアウトを設定します。
 
@@ -1341,7 +1345,7 @@ Azure でのホスティングの情報については、「<xref:host-and-deplo
 
 ASP.NET Core には、既定のクロスプラットフォーム HTTP サーバーである [Kestrel サーバー](xref:fundamentals/servers/kestrel)が付属しています。
 
-[IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) または [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) を使用すると、アプリは [Kestrel サーバー](xref:fundamentals/servers/index#kestrel)を使用して IIS ワーカー プロセスとは異なるプロセス内で実行されます (" *プロセス外* ")。
+[IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture) または [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) を使用すると、アプリは [Kestrel サーバー](xref:fundamentals/servers/index#kestrel)を使用して IIS ワーカー プロセスとは異なるプロセス内で実行されます ("*プロセス外*")。
 
 ASP.NET Core アプリは IIS ワーカー プロセスとは独立したプロセスで実行されるため、プロセス管理はモジュールによって処理されます。 モジュールでは、最初の要求が届いたときに ASP.NET Core アプリのプロセスが開始され、プロセスがシャットダウンまたはクラッシュした場合はアプリが再起動されます。 この動作は、インプロセスで実行されるアプリであり、[WAS (Windows プロセス アクティブ化サービス)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was) によって管理されるアプリと基本的に同じです。
 
@@ -1373,7 +1377,7 @@ ASP.NET Core モジュール構成のガイダンスについては、「<xref:h
 
 ### <a name="enable-the-iisintegration-components"></a>IISIntegration コンポーネントを有効にする
 
-`CreateWebHostBuilder` ( *Program.cs* ) でホストを構築する場合は、<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> を呼び出して IIS 統合を有効にします。
+`CreateWebHostBuilder` (*Program.cs*) でホストを構築する場合は、<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> を呼び出して IIS 統合を有効にします。
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -1411,13 +1415,13 @@ services.Configure<IISOptions>(options =>
 
 ### <a name="webconfig-file"></a>web.config ファイル
 
-*web.config* ファイルでは、 [ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を設定します。 *web.config* ファイルの作成、変換、および公開は、プロジェクトの公開時に、MSBuild ターゲット (`_TransformWebConfig`) によって処理されます。 このターゲットは、Web SDK ターゲット (`Microsoft.NET.Sdk.Web`) に存在します。 SDK は、プロジェクト ファイルの先頭で設定されています。
+*web.config* ファイルでは、[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を設定します。 *web.config* ファイルの作成、変換、および公開は、プロジェクトの公開時に、MSBuild ターゲット (`_TransformWebConfig`) によって処理されます。 このターゲットは、Web SDK ターゲット (`Microsoft.NET.Sdk.Web`) に存在します。 SDK は、プロジェクト ファイルの先頭で設定されています。
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-プロジェクト内に *web.config* ファイルが存在しない場合、そのファイルは ASP.NET Core モジュールを構成するための適切な *processPath* と *arguments* を使用して作成され、 [発行された出力](xref:host-and-deploy/directory-structure)に移行されます。
+プロジェクト内に *web.config* ファイルが存在しない場合、そのファイルは ASP.NET Core モジュールを構成するための適切な *processPath* と *arguments* を使用して作成され、[発行された出力](xref:host-and-deploy/directory-structure)に移行されます。
 
 プロジェクトに *web.config* ファイルが含まれていない場合、そのファイルは ASP.NET Core モジュールを構成するための正しい *processPath* と *arguments* を使用して作成され、発行された出力に移行されます。 変換によりファイル内の IIS 構成の設定が変わることはありません。
 
@@ -1435,11 +1439,11 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
 
 ### <a name="webconfig-file-location"></a>web.config ファイルの場所
 
-[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を正しく設定するためには、 *web.config* ファイルが、展開されるアプリの [コンテンツ ルート](xref:fundamentals/index#content-root) パス (通常はアプリ ベース パス) に存在する必要があります。 これは、IIS に提供される web サイトの物理パスと同じ場所です。 *Web.config* ファイルは、Web 配置を使用して複数のアプリの発行を有効にするため、アプリのルートで必要です。
+[ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)を正しく設定するためには、*web.config* ファイルが、展開されるアプリの [コンテンツ ルート](xref:fundamentals/index#content-root) パス (通常はアプリ ベース パス) に存在する必要があります。 これは、IIS に提供される web サイトの物理パスと同じ場所です。 *Web.config* ファイルは、Web 配置を使用して複数のアプリの発行を有効にするため、アプリのルートで必要です。
 
-アプリの物理パスには、 *\<assembly>.runtimeconfig.json* 、 *\<assembly>.xml* (XML ドキュメントのコメント)、 *\<assembly>.deps.json* などの機密性の高いファイルが存在します。 *web.config* ファイルが存在し、サイトは通常どおり起動した場合、IIS は、これらの機密性の高いファイルが要求された場合にファイルを提供しません。 *web.config* ファイルが存在しないか、不適切な名前が付けられているか、または通常の起動用にサイトを構成できない場合、IIS が機密性の高いファイルを公開する可能性があります。
+アプリの物理パスには、 *\<assembly>.runtimeconfig.json*、 *\<assembly>.xml* (XML ドキュメントのコメント)、 *\<assembly>.deps.json* などの機密性の高いファイルが存在します。 *web.config* ファイルが存在し、サイトは通常どおり起動した場合、IIS は、これらの機密性の高いファイルが要求された場合にファイルを提供しません。 *web.config* ファイルが存在しないか、不適切な名前が付けられているか、または通常の起動用にサイトを構成できない場合、IIS が機密性の高いファイルを公開する可能性があります。
 
-***web.config* ファイルは、展開環境に常に存在し、適切な名前が付けられ、通常の起動用にサイトを構成できる必要があります。 *web.config* ファイルを運用環境の展開から削除しないでください。**
+***web.config* ファイルは、展開環境に常に存在し、適切な名前が付けられ、通常の起動用にサイトを構成できる必要があります。*web.config* ファイルを運用環境の展開から削除しないでください。**
 
 ### <a name="transform-webconfig"></a>web.config を変換する
 
@@ -1451,7 +1455,7 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
 
 **Web サーバー (IIS)** サーバーの役割を有効にし、役割のサービスを設定します。
 
-1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、 **サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
+1. **[管理]** メニューから **役割と機能の追加** ウィザードを使用するか、**サーバー マネージャー** にあるリンクを使用します。 **[サーバーの役割]** のステップで、 **[Web サーバー (IIS)]** チェック ボックスをオンにします。
 
    ![[サーバーの役割の選択] のステップで Web サーバー IIS の役割を選択します。](index/_static/server-roles-ws2016.png)
 
@@ -1518,7 +1522,7 @@ Web SDK ファイルの変換を無効にすると、 *processPath* と *引数*
    * `OPT_NO_RUNTIME=1`:.NET Core ランタイムのインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_SHAREDFX=1`:ASP.NET Shared Framework (ASP.NET ランタイム) のインストールをスキップします。 サーバーが[自己完結型の展開 (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) のみをホストする場合に使用します。
    * `OPT_NO_X86=1`:x86 ランタイムのインストールをスキップします。 32 ビット アプリをホストしない場合は、このパラメーターを使用します。 今後、32 ビットと 64 ビットのアプリ両方をホストする可能性がある場合は、このパラメーターを使用せずに、両方のランタイムをインストールします。
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 ( *applicationHost.config* ) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 " *ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`:共有構成 (*applicationHost.config*) が IIS のインストールと同じマシン上にある場合、IIS 共有構成を使用するためのチェックを無効にします。 "*ASP.NET Core 2.2 以降の Hosting Bundler インストーラーに対してのみ使用できます。* " 詳細については、「<xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>」を参照してください。
 1. システムを再起動するか、コマンドシェルで次のコマンドを実行します。
 
    ```console
@@ -1561,7 +1565,7 @@ ASP.NET Core では、共有フレームワーク パッケージの修正プロ
 
     ASP.NET Core は、別個のプロセスで実行され、ランタイムを管理します。 ASP.NET Core はデスクトップ CLR (.NET CLR) の読み込みに依存しません&mdash;.NET Core 用の Core 共通言語ランタイム (CoreCLR) が起動され、ワーカー プロセスでアプリがホストされます。 **[.NET CLR バージョン]** の **[マネージド コードなし]** への設定は省略可能ですが、推奨されます。
 
-1. *ASP.NET Core 2.2 以降* : [インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の [自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。
+1. *ASP.NET Core 2.2 以降*:[インプロセス ホスティング モデル](#in-process-hosting-model)を使用する 64 ビット (x64) の [自己完結型展開](/dotnet/core/deploying/#self-contained-deployments-scd)の場合、32 ビット (x86) プロセス用のアプリケーション プールを無効にします。
 
    IIS マネージャー > **[アプリケーション プール]** の **[操作]** サイドバーで、 **[アプリケーション プールの既定値の設定]** または **[詳細設定]** を選択します。 **[32 ビット アプリケーションの有効化]** を探し、値を `False` に設定します。 この設定は[アウトプロセス ホスティング](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model)で展開されたアプリには影響しません。
 
@@ -1574,7 +1578,7 @@ ASP.NET Core では、共有フレームワーク パッケージの修正プロ
 
 ## <a name="deploy-the-app"></a>アプリを配置する
 
-「 [IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの *publish* フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
+「[IIS サイトを作成する](#create-the-iis-site)」セクションで確立された IIS の **[物理パス]** フォルダーにアプリを配置します。 お勧めの配置方法は [Web 配置](/iis/publish/using-web-deploy/introduction-to-web-deploy)ですが、プロジェクトの *publish* フォルダーからホスティング システムの配置フォルダーにアプリを移動するためのオプションはいくつか存在します。
 
 ### <a name="web-deploy-with-visual-studio"></a>Visual Studio からのアプリの展開
 
@@ -1734,7 +1738,7 @@ IIS の構成は ASP.NET Core モジュールを使用した ASP.NET Core アプ
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/iis/modules>
 
-分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、 [環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある " *AppCmd.exe コマンド* " のセクションを参照してください。
+分離されたアプリ プール (IIS 10.0 以降でサポートされています) で実行する個別アプリに対して環境変数を設定するには、IIS のリファレンス ドキュメントで、[環境変数\<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) のトピックにある "*AppCmd.exe コマンド*" のセクションを参照してください。
 
 ## <a name="configuration-sections-of-webconfig"></a>web.config の構成のセクション
 
@@ -1753,7 +1757,7 @@ ASP.NET Core アプリは、他の構成プロバイダーを使用して構成�
 
 ## <a name="application-pool-no-locidentity"></a>アプリケーション プール Identity
 
-アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、 **ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
+アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールにあるアプリ プールの **[詳細設定]** で、**ApplicationPoolIdentity** が使用されるように **Identity** を確実に設定します。
 
 ![アプリケーション プールの [詳細設定] ダイアログ](index/_static/apppool-identity.png)
 
@@ -1769,7 +1773,7 @@ IIS 管理プロセスは、Windows セキュリティ システムでのアプ�
 
 1. **[場所]** ボタンを選択し、システムが選択されていることを確認します。
 
-1. **[選択するオブジェクト名を入力してください]** 領域に、「 **IIS AppPool\\<app_pool_name>** 」と入力します。 **[名前の確認]** を選択します。 *DefaultAppPool* で、 **IIS AppPool\DefaultAppPool** を使用して名前を確認します。 **[名前の確認]** ボタンが選択されているときには、 **DefaultAppPool** の値が、オブジェクト名領域に表示されます。 オブジェクト名の領域に直接アプリケーション プール名を入力することはできません。 オブジェクト名を確認するときには、 **IIS AppPool\\<app_pool_name>** の形式を使用します。
+1. **[選択するオブジェクト名を入力してください]** 領域に、「**IIS AppPool\\<app_pool_name>** 」と入力します。 **[名前の確認]** を選択します。 *DefaultAppPool* で、**IIS AppPool\DefaultAppPool** を使用して名前を確認します。 **[名前の確認]** ボタンが選択されているときには、**DefaultAppPool** の値が、オブジェクト名領域に表示されます。 オブジェクト名の領域に直接アプリケーション プール名を入力することはできません。 オブジェクト名を確認するときには、**IIS AppPool\\<app_pool_name>** の形式を使用します。
 
    ![アプリ フォルダーのユーザーまたはグループのダイアログを選択します。[名前の確認] を選択する前に、オブジェクト名領域で "DefaultAppPool" のアプリ プール名が "IIS AppPool\" に適用されます。](index/_static/select-users-or-groups-1.png)
 
@@ -1779,7 +1783,7 @@ IIS 管理プロセスは、Windows セキュリティ システムでのアプ�
 
 1. 読み取り &amp; 実行アクセス許可は、既定で付与される必要があります。 必要に応じて、追加のアクセス許可を提供します。
 
-**ICACLS** ツールを使用してコマンド プロンプトでアクセス許可を付与することもできます。 たとえば、 *DefaultAppPool* を使用する場合、次のコマンドを使用します。
+**ICACLS** ツールを使用してコマンド プロンプトでアクセス許可を付与することもできます。 たとえば、*DefaultAppPool* を使用する場合、次のコマンドを使用します。
 
 ```console
 ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
@@ -1802,9 +1806,9 @@ HTTP/2 は既定で有効になっています。 HTTP/2 接続が確立され�
 
 ## <a name="cors-preflight-requests"></a>CORS プレフライト要求
 
-" *このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
+"*このセクションは、.NET Framework をターゲットにした ASP.NET Core アプリにのみ適用されます。* "
 
-.NET Framework をターゲットにした ASP.NET Core アプリの場合、IIS では既定で OPTIONS 要求がアプリに渡されません。 OPTIONS 要求を渡すように *web.config* でアプリの IIS のハンドラーを構成する方法については、 [ASP.NET Web API 2 でのクロスオリジン要求の有効化:CORS のしくみ](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works)に関する記事をご覧ください。
+.NET Framework をターゲットにした ASP.NET Core アプリの場合、IIS では既定で OPTIONS 要求がアプリに渡されません。 OPTIONS 要求を渡すように *web.config* でアプリの IIS のハンドラーを構成する方法については、[ASP.NET Web API 2 でのクロスオリジン要求の有効化:CORS のしくみ](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works)に関する記事をご覧ください。
 
 ## <a name="deployment-resources-for-iis-administrators"></a>IIS 管理者用の展開リソース
 

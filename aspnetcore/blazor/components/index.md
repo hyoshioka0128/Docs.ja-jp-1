@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a2738ab40e2a463a0166ce8916ed6f1b05ea1d08
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 12a1f528bdff0230bbf17075284d27de654a423e
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855379"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252423"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
@@ -40,7 +40,7 @@ Blazor アプリは *コンポーネント* を使用してビルドします。
 
 ### <a name="no-locrazor-syntax"></a>Razor の構文
 
-Blazor アプリの Razor コンポーネントでは、Razor 構文が多用されます。 Razor マークアップ言語に慣れていない場合は、先に進む前に「<xref:mvc/views/razor>」を読むことをお勧めします。
+Blazor アプリの Razor コンポーネントでは、Razor 構文が多用されます。 Razor マークアップ言語に慣れていない場合は、続行する前に、「[ASP.NET Core の Razor 構文のリファレンス](xref:mvc/views/razor)」を読むことをお勧めします。
 
 Razor 構文でコンテンツにアクセスする場合は、次のセクションに特にご注意ください。
 
@@ -81,7 +81,7 @@ Blazor でのルーティングは、アプリ内のアクセス可能な各コ�
 }
 ```
 
-コンポーネントが最初にレンダリングされた後に、コンポーネントがイベントに応答して、レンダリング ツリーを再生成します。 Blazor によって新旧のレンダリング ツリーが比較され、ブラウザーのドキュメント オブジェクト モデル (DOM) に変更が適用されます。
+コンポーネントが最初にレンダリングされた後に、コンポーネントがイベントに応答して、レンダリング ツリーを再生成します。 Blazor によって新旧のレンダリング ツリーが比較され、ブラウザーのドキュメント オブジェクト モデル (DOM) に変更が適用されます。 詳細については、「<xref:blazor/components/rendering>」をご覧ください。
 
 コンポーネントは通常の C# クラスであり、プロジェクト内の任意の場所に配置できます。 Web ページを生成するコンポーネントは、通常、`Pages` フォルダーに存在します。 ページ以外のコンポーネントは、多くの場合、`Shared` フォルダー、またはプロジェクトに追加されたカスタム フォルダーに配置されます。
 
@@ -293,7 +293,7 @@ public string Title { get; set; } = "Panel Title from Child";
 * メソッドの結果: `Title="@{METHOD}"`。プレースホルダー `{METHOD}` は親コンポーネントの C# メソッドです。
 * [暗黙的または明示的な式](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`。プレースホルダー `{EXPRESSION}` は C# 式です。
   
-詳細については、「<xref:mvc/views/razor>」を参照してください。
+詳細については、「[ASP.NET Coreの Razor 構文リファレンス](xref:mvc/views/razor)」を参照してください。
 
 > [!WARNING]
 > 独自の "*コンポーネント パラメーター*" を書き込み先とするコンポーネントを作成する代わりに、プライベート フィールドを使用してください。 詳細については、「[上書きされたパラメーター](#overwritten-parameters)」セクションをご覧ください。
@@ -579,13 +579,13 @@ public class NotifierService
 }
 ```
 
-前の例では、Blazor の同期コンテキスト外で `NotifierService` からコンポーネントの `OnNotify` メソッドが呼び出されます。 `InvokeAsync` を使用して、正しいコンテキストに切り替え、レンダリングをキューに登録します。
+前の例では、Blazor の同期コンテキスト外で `NotifierService` からコンポーネントの `OnNotify` メソッドが呼び出されます。 `InvokeAsync` を使用して、正しいコンテキストに切り替え、レンダリングをキューに登録します。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>\@ キーを使用して要素とコンポーネントの保存を制御する
 
 要素またはコンポーネントのリストをレンダリングし、その後に要素またはコンポーネントが変更された場合、Blazor の比較アルゴリズムでは、前のどの要素やコンポーネントを保持できるか、およびモデル オブジェクトをそれらにどのようにマップするかを決定する必要があります。 通常、このプロセスは自動で、無視できますが、プロセスの制御が必要になる場合があります。
 
-次の例を確認してください。
+次に例を示します。
 
 ```csharp
 @foreach (var person in People)
@@ -801,7 +801,7 @@ HTML 要素属性は、.NET 値に基づいて条件付きでレンダリング�
 <input type="checkbox" />
 ```
 
-詳細については、「<xref:mvc/views/razor>」を参照してください。
+詳細については、「[ASP.NET Coreの Razor 構文リファレンス](xref:mvc/views/razor)」を参照してください。
 
 > [!WARNING]
 > .NET 型が `bool` の場合、[`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons) などの一部の HTML 属性が正しく機能しません。 そのような場合は、`bool` ではなく `string` 型を使用します。
@@ -957,13 +957,13 @@ Blazor では HTML がレンダリングされるため、スケーラブル ベ
 * <xref:blazor/security/server/threat-mitigation>:リソース不足に対処する必要がある Blazor Server アプリの構築に関するガイダンスが含まれています。
 
 <!--Reference links in article-->
-[1]: <xref:mvc/views/razor#code>
-[2]: <xref:mvc/views/razor#using>
-[3]: <xref:mvc/views/razor#attributes>
-[4]: <xref:mvc/views/razor#ref>
-[5]: <xref:mvc/views/razor#key>
-[6]: <xref:mvc/views/razor#inherits>
-[7]: <xref:mvc/views/razor#attribute>
-[8]: <xref:mvc/views/razor#namespace>
-[9]: <xref:mvc/views/razor#page>
-[10]: <xref:mvc/views/razor#bind>
+[1]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#code)
+[2]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#using)
+[3]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attributes)
+[4]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#ref)
+[5]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
+[6]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#inherits)
+[7]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attribute)
+[8]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#namespace)
+[9]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#page)
+[10]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#bind)
