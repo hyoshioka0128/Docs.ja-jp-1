@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 9ad0de9984b42c2b14dfaf48c74660915de93be1
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93053944"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058325"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>チュートリアル: 関連データを更新する - ASP.NET MVC と EF Core
 
@@ -34,7 +34,7 @@ ms.locfileid: "93053944"
 
 ![Course/Edit ページ](update-related-data/_static/course-edit.png)
 
-![Instructor/Edit ページ](update-related-data/_static/instructor-edit-courses.png)
+![Instructor ページを編集する](update-related-data/_static/instructor-edit-courses.png)
 
 このチュートリアルでは、次の作業を行いました。
 
@@ -91,7 +91,7 @@ Course の Details ページと Delete ページのパフォーマンスを最�
 
 *Views/Courses/Create.cshtml* で、 **[Department]\(部門\)** ドロップダウン リストに [Select Department]\(部門を選択\) オプションを追加し、キャプションを **[DepartmentID]** から **[Department]\(部門\)** に変更し、検証メッセージを追加します。
 
-[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
 *Views/Courses/Edit.cshtml* で、*Create.cshtml* で行ったのと同じ変更を [Department]\(部門\) フィールドに加えます。
 

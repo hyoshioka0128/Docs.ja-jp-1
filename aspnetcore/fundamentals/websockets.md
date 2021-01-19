@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/websockets
-ms.openlocfilehash: 83a41d503b2d56bca3f1bac14eeb9d54a8257642
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 6edf2017cc889321cfb484e643b75711fd66004d
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057779"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058351"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>ASP.NET Core での Websocket のサポート
 
@@ -67,7 +67,6 @@ ms.locfileid: "93057779"
 次の設定を構成できます。
 
 * `KeepAliveInterval`: プロキシの接続の維持を保証する、クライアントに "ping" フレームを送信する頻度。 既定値は 2 分です。
-* `ReceiveBufferSize`: データの受信に使用されるバッファーのサイズ。 これは、上級ユーザーが、データのサイズに応じたパフォーマンス調整のために変更する必要がある場合があります。 既定値は 4 KB です。
 
 ::: moniker-end
 
@@ -76,7 +75,6 @@ ms.locfileid: "93057779"
 次の設定を構成できます。
 
 * `KeepAliveInterval`: プロキシの接続の維持を保証する、クライアントに "ping" フレームを送信する頻度。 既定値は 2 分です。
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize>: データの受信に使用されるバッファーのサイズ。 これは、上級ユーザーが、データのサイズに応じたパフォーマンス調整のために変更する必要がある場合があります。 既定値は 4 KB です。
 * `AllowedOrigins` - WebSocket 要求で許可される配信元ヘッダー値の一覧。 既定では、すべての配信元が許可されています。 詳細については、下記の "WebSocket の配信元の制限" を参照してください。
 
 ::: moniker-end
@@ -188,11 +186,10 @@ Windows 8 以降で WebSocket プロトコルのサポートを有効にする�
 
 ## <a name="sample-app"></a>サンプル アプリ
 
-この記事に添えられている[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples)は、エコー アプリです。 これには、WebSocket 接続を作成する Web ページがあり、サーバーが受け取るすべてのメッセージをクライアントに再送信します。 コマンド プロンプトからアプリを実行し (IIS Express を使用した Visual Studio からは実行するように設定されていません)、 http://localhost:5000 に移動します。 Web ページの左上に、接続の状態が示されます。
+この記事に添えられている[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples)は、エコー アプリです。 これには、WebSocket 接続を作成する Web ページがあり、サーバーが受け取るすべてのメッセージをクライアントに再送信します。 このサンプル アプリは、IIS Express を使用して Visual Studio から実行するように構成されていないため、コマンド シェルで [`dotnet run`](/dotnet/core/tools/dotnet-run) を使用してアプリを実行し、ブラウザーで `http://localhost:5000` に移動します。 Web ページに接続状態が表示されます。
 
-![Web ページの初期状態](websockets/_static/start.png)
+![WebSocket 接続前の Web ページの初期状態](websockets/_static/start.png)
 
 **[接続]** を選択し、表示されている URL に WebSocket 要求を送信します。 テスト メッセージを入力し、 **[送信]** を選択します。 完了したら、 **[Close Socket]\(ソケットを閉じる\)** を選択します。 **[Communication Log]\(コミュニケーション ログ\)** セクションに、発生した各オープン、送信、クローズのアクションが表示されます。
 
-![Web ページの初期状態](websockets/_static/end.png)
-
+![WebSocket 接続とテスト メッセージの送受信が行われた後の Web ページの最終的な状態](websockets/_static/end.png)

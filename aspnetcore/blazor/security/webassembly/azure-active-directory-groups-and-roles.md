@@ -19,19 +19,22 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 96a7dde9a5a756e40125ffda4c54fbf24fdc616a
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94981883"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058260"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>Azure Active Directory (AAD) グループ、管理者ロール、およびユーザー定義ロール
 
 作成者: [Luke Latham](https://github.com/guardrex)、[Javier Calvarro Nelson](https://github.com/javiercn)
 
 > [!NOTE]
-> この記事は、Microsoft Identity v1.0 を使用する Blazor ASP.NET Core アプリ バージョン 3.1 に適用され、Identity v2.0 を使用する 5.0 に更新される予定です。 詳細については、「[Blazor WASM with AAD/B2C groups and roles」(AAD/B2C グループとロールを使用する Blazor WASM) (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683) を参照してください。
+> この記事は、Microsoft Identity 1.0 を使用する Blazor ASP.NET Core アプリ バージョン 3.1 に適用され、まもなく Identity 2.0 を使用する 5.0 に更新される予定です。 詳しくは、次の GitHub イシューと pull request をご覧ください。 pull request の **[Files changed]** タブには、記事の更新に関する下書きのテキストと例が含まれています。 レビューと最終更新の後、pull request はライブ ドキュメント セットにマージされます。
+>
+> * 問題:[Blazor AAD グループとロールを使用した WASM (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683)
+> * Pull Request:[Blazor AAD グループとロールのトピック 5.0 (dotnet/AspNetCore #20856)](https://github.com/dotnet/AspNetCore.Docs/pull/20856)
 
 Azure Active Directory (AAD) には、ASP.NET Core Identity と組み合わせることができる承認方法がいくつか用意されています。
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: b01b1c70be010ba0ad9bbd2c1114e5d8341b3261
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e5f9a07db742ce2e26f03c0b6e1caa1904e4e0d9
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506865"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058234"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
 
@@ -53,7 +53,9 @@ Blazor フレームワークには、同期と非同期のライフサイクル 
 
 `Render` のライフサイクル:
 
-1. これがコンポーネントの最初のレンダリングでない場合、または [`ShouldRender`](#suppress-ui-refreshing) が `false` として評価された場合は、コンポーネントに対して他の操作を実行しないでください。
+1. コンポーネントでそれ以上のレンダリング操作を停止します。
+   * 最初のレンダリングの後。
+   * [`ShouldRender`](#suppress-ui-refreshing) が `false` の場合。
 1. レンダリング ツリーの差分を作成し、コンポーネントをレンダリングします。
 1. DOM が更新されるのを待機します。
 1. [`OnAfterRender{Async}`](#after-component-render) を呼び出します。

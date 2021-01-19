@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 610a9e9b0007fb468ea9cdae6fadd2e756de4290
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b1adca435b48db22a176d33a216c07d6647a6695
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054061"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058312"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>チュートリアル: 関連データを読み取る - ASP.NET MVC と EF Core
 
@@ -183,7 +183,17 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 *Views/Instructors/Index.cshtml* で、テンプレート コードを次のコードに置き換えます。 変更が強調表示されています。
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.1"
+
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
 
 既存のコードに次の変更を行いました。
 
@@ -193,7 +203,7 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 * `item.OfficeAssignment` が null ではない場合にのみ `item.OfficeAssignment.Location` を表示する **Office** 列を追加しました。 (これは、一対ゼロまたは一対一のリレーションシップであるため、関連する OfficeAssignment エンティティがない場合があります。)
 
-  ```html
+  ```cshtml
   @if (item.OfficeAssignment != null)
   {
       @item.OfficeAssignment.Location
@@ -202,20 +212,11 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 * インストラクターごとに担当したコースを表示する **Courses** 列を追加しました。 詳細については、Razor 構文記事の「[明示的な行の遷移](xref:mvc/views/razor#explicit-line-transition)」セクションを参照してください。
 
-* 選択したインストラクターの `tr` 要素に `class="success"` を動的に追加するコードを追加しました。 これは、ブートストラップ クラスを使用して、選択した行の背景色を設定します。
-
-  ```html
-  string selectedRow = "";
-  if (item.ID == (int?)ViewData["InstructorID"])
-  {
-      selectedRow = "success";
-  }
-  <tr class="@selectedRow">
-  ```
+* 選択したインストラクターの `tr` 要素にブートストラップ CSS クラスを条件付きで追加するコードを追加しました。 このクラスにより、選択した行の背景色が設定されます。
 
 * `Index` メソッドに送信される選択されたインストラクターの ID を発生させる、各行の他のリンクの直前に **Select** というラベルの新しいハイパーリンクを追加しました。
 
-  ```html
+  ```cshtml
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 

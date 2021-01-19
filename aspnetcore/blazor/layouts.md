@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 3cb7c6184c13a003b4f4294f887d8938caa42f97
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 417f69e797296cdcd01fc4ce326388512a406368
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506904"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058273"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>ASP.NET Core Blazor レイアウト
 
@@ -32,7 +32,7 @@ ms.locfileid: "97506904"
 
 メニュー、著作権メッセージ、会社のロゴなどの一部のアプリ要素は、通常、アプリの全体のレイアウトの一部であり、アプリのすべてのコンポーネントで使用されます。 これらの要素のコードをアプリのすべてのコンポーネントにコピーするのは、効率的な方法ではありません。 要素の 1 つに更新が必要になるたびに、すべてのコンポーネントを更新する必要があります。 このような複製を維持することは困難であり、時間の経過と共にコンテンツの一貫性が失われる可能性があります。 *レイアウト* によって、この問題を解決します。
 
-技術的に、レイアウトはもう 1 つのコンポーネントにすぎません。 レイアウトは Razor テンプレートまたは C# コードで定義され、[データ バインディング](xref:blazor/components/data-binding)、[依存関係の挿入](xref:blazor/fundamentals/dependency-injection)、その他のコンポーネント シナリオを使用できます。
+技術的に、レイアウトはもう 1 つのコンポーネントにすぎません。 レイアウトは Razor テンプレートまたは C# コードで定義され、[データ バインディング](xref:blazor/components/data-binding)、[依存関係の挿入](xref:blazor/fundamentals/dependency-injection)、その他のコンポーネント シナリオを使用できます。 レイアウトは、[`@page`](xref:mvc/views/razor#page) ディレクティブを持つ、ルーティング可能な Razor コンポーネントにのみ適用されます。
 
 コンポーネントをレイアウトに変換するには:
 
@@ -79,7 +79,7 @@ Blazor プロジェクト テンプレートのいずれかに基づくアプリ
 
 ## <a name="specify-a-layout-in-a-component"></a>コンポーネントにレイアウトを指定する
 
-コンポーネントにレイアウトを適用するには、Razor ディレクティブ `@layout` を使用します。 コンパイラでは `@layout` を <xref:Microsoft.AspNetCore.Components.LayoutAttribute> に変換します。これはコンポーネント クラスに適用されます。
+[`@layout`](xref:mvc/views/razor#layout) Razor ディレクティブを使用して、[`@page`](xref:mvc/views/razor#page) ディレクティブも持つ、ルーティング可能な Razor コンポーネントにレイアウトを適用します。 コンパイラでは `@layout` を <xref:Microsoft.AspNetCore.Components.LayoutAttribute> に変換します。これはコンポーネント クラスに適用されます。
 
 次の `MasterList` コンポーネントのコンテンツは、`@Body` の位置にある `MasterLayout` に挿入されます。
 
@@ -105,6 +105,9 @@ Blazor プロジェクト テンプレートのいずれかに基づくアプリ
 
 > [!WARNING]
 > Razor `@layout` ディレクティブをルート `_Imports.razor` ファイルに追加 **しない** でください。アプリでレイアウトが無限ループになります。 既定のアプリ レイアウトを制御するには、`Router` コンポーネントでレイアウトを指定します。 詳細については、「[既定のレイアウト](#default-layout)」セクションを参照してください。
+
+> [!NOTE]
+> [`@layout`](xref:mvc/views/razor#layout) Razor ディレクティブを使用すると、[`@page`](xref:mvc/views/razor#page) ディレクティブを使用して、ルーティング可能な Razor コンポーネントにのみレイアウトが適用されます。
 
 ## <a name="nested-layouts"></a>入れ子になったレイアウト
 
