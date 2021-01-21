@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: afd2da19641b41871f06426934c39348daa54b1f
-ms.sourcegitcommit: 2fea9bfe6127bbbdbb438406c82529b2bc331944
+ms.openlocfilehash: c2b16f4bc8e69265b1d59082c3f029541f277d8b
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/11/2021
-ms.locfileid: "98065533"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252290"
 ---
 # <a name="aspnet-core-no-locblazor-component-virtualization"></a>ASP.NET Core Blazor コンポーネントの仮想化
 
@@ -77,7 +77,7 @@ Blazor フレームワークに組み込まれている仮想化サポートを�
 > 詳細については、次の記事を参照してください。
 >
 > * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> * <xref:mvc/views/razor#key>
+> * [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor#key)
 
 `Virtualize` コンポーネント:
 
@@ -169,4 +169,4 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 
 ## <a name="state-changes"></a>状態変更
 
-`Virtualize` コンポーネントによってレンダリングされる項目を変更する場合は、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出して、強制的にコンポーネントを再評価して再レンダリングします。
+`Virtualize` コンポーネントによってレンダリングされる項目を変更する場合は、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出して、強制的にコンポーネントを再評価して再レンダリングします。 詳細については、「<xref:blazor/components/rendering>」を参照してください。

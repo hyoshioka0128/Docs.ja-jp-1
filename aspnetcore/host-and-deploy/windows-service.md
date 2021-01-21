@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 31a738e7aa8779171dfa09a5678d7240b8f62343
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 63267bf938c6d16b8a1b13940a4b3f8a02d1a1e4
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057233"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252748"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Windows サービスでの ASP.NET Core のホスト
 
@@ -236,7 +236,22 @@ Remove-Service -Name {SERVICE NAME}
 
 追加の URL とポートの構成方法については、関連するサーバーの記事を参照してください。
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+* <xref:fundamentals/servers/kestrel/endpoints>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+
 * <xref:fundamentals/servers/kestrel#endpoint-configuration>
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
 * <xref:fundamentals/servers/httpsys#configure-windows-server>
 
 上記のガイダンスでは、HTTPS エンドポイントのサポートについて説明しています。 たとえば、Windows サービスで認証が使用されている場合は、アプリを HTTPS 用に構成します。
@@ -246,25 +261,25 @@ Remove-Service -Name {SERVICE NAME}
 
 ## <a name="current-directory-and-content-root"></a>現在のディレクトリとコンテンツのルート
 
-Windows サービスに対して <xref:System.IO.Directory.GetCurrentDirectory*> を呼び出して返される現在の作業ディレクトリは *C:\\WINDOWS\\system32* フォルダーです。 *system32* フォルダーは、サービスのファイル (設定ファイルなど) を保存するために適した場所ではありません。 次のいずれかの方法を使用して、サービスのアセットと設定ファイルを管理し、アクセスします。
+Windows サービスに対して <xref:System.IO.Directory.GetCurrentDirectory%2A> を呼び出して返される現在の作業ディレクトリは *C:\\WINDOWS\\system32* フォルダーです。 *system32* フォルダーは、サービスのファイル (設定ファイルなど) を保存するために適した場所ではありません。 次のいずれかの方法を使用して、サービスのアセットと設定ファイルを管理し、アクセスします。
 
 ### <a name="use-contentrootpath-or-contentrootfileprovider"></a>ContentRootPath または ContentRootFileProvider を使用する
 
 [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) または <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> を使用して、アプリのリソースを見つけます。
 
-アプリがサービスとして実行されると、<xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> によって <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> が [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory) に設定されます。
+アプリがサービスとして実行されると、<xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService%2A> によって <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> が [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory) に設定されます。
 
 アプリの既定設定ファイルである *appsettings.json* と *appsettings.{Environment}.json* は、[ホストの構築中に CreateDefaultBuilder](xref:fundamentals/host/generic-host#set-up-a-host) を呼び出すことで、アプリのコンテンツ ルートから読み込まれます。
 
-<xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> の開発者コードによって読み込まれた他の設定ファイルについては、<xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> を呼び出す必要はありません。 次の例では、*custom_settings.json* ファイルはアプリのコンテンツ ルートに存在しており、明示的にベース パスを設定しなくても読み込まれます。
+<xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A> の開発者コードによって読み込まれた他の設定ファイルについては、<xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A> を呼び出す必要はありません。 次の例では、*custom_settings.json* ファイルはアプリのコンテンツ ルートに存在しており、明示的にベース パスを設定しなくても読み込まれます。
 
 [!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
 
-Windows サービス アプリからは *C:\\WINDOWS\\system32* フォルダーが現在のディレクトリとして返されるため、<xref:System.IO.Directory.GetCurrentDirectory*> を使用してリソース パスを取得しないでください。
+Windows サービス アプリからは *C:\\WINDOWS\\system32* フォルダーが現在のディレクトリとして返されるため、<xref:System.IO.Directory.GetCurrentDirectory%2A> を使用してリソース パスを取得しないでください。
 
 ### <a name="store-a-services-files-in-a-suitable-location-on-disk"></a>ディスク上の適切な場所にサービスのファイルを格納する
 
-ファイルを含むフォルダーに対して <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> を使用するときは、<xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> を使用して絶対パスを指定します。
+ファイルを含むフォルダーに対して <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> を使用するときは、<xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A> を使用して絶対パスを指定します。
 
 ## <a name="troubleshoot"></a>トラブルシューティング
 
@@ -345,7 +360,16 @@ Windows サービス アプリのトラブルシューティングについて�
 
 ## <a name="additional-resources"></a>その他の技術情報
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+* [Kestrel エンドポイント構成](xref:fundamentals/servers/kestrel/endpoints) (HTTPS 構成と SNI サポートを含む)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 * [Kestrel エンドポイント構成](xref:fundamentals/servers/kestrel#endpoint-configuration) (HTTPS 構成と SNI サポートを含む)
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 * <xref:fundamentals/host/generic-host>
 * <xref:test/troubleshoot>
 

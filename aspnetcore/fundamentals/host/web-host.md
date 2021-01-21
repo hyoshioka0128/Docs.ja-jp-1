@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 904b57f95cbc48a8177174dc9be770e8a6abf146
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 98be96bf60441cf09a315dbd1c60e109a7a08afe
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96035880"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253112"
 ---
 # <a name="aspnet-core-web-host"></a>ASP.NET Core の Web ホスト
 
@@ -66,7 +66,12 @@ public class Program
 
 `CreateDefaultBuilder` では次のタスクを実行します。
 
+::: moniker range=">= aspnetcore-5.0"
+* アプリのホスティング構成プロバイダーを使用して [Kestrel](xref:fundamentals/servers/kestrel) サーバーを Web サーバーとして構成します。 Kestrel サーバーの既定のオプションについては、<xref:fundamentals/servers/kestrel/options> を参照してください。
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 * アプリのホスティング構成プロバイダーを使用して [Kestrel](xref:fundamentals/servers/kestrel) サーバーを Web サーバーとして構成します。 Kestrel サーバーの既定のオプションについては、<xref:fundamentals/servers/kestrel#kestrel-options> を参照してください。
+::: moniker-end
 * [コンテンツ ルート](xref:fundamentals/index#content-root)を、[Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory) によって返されるパスに設定します。
 * 次から[ ホスト構成](#host-configuration-values)を読み込みます。
   * `ASPNETCORE_` のプレフィックスが付いた環境変数 (たとえば、`ASPNETCORE_ENVIRONMENT`)。
@@ -345,7 +350,12 @@ WebHost.CreateDefaultBuilder(args)
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+Kestrel には独自のエンドポイント構成 API があります。 詳細については、「<xref:fundamentals/servers/kestrel/endpoints>」を参照してください。
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 Kestrel には独自のエンドポイント構成 API があります。 詳細については、「<xref:fundamentals/servers/kestrel#endpoint-configuration>」を参照してください。
+::: moniker-end
 
 ### <a name="shutdown-timeout"></a>シャットダウン タイムアウト
 

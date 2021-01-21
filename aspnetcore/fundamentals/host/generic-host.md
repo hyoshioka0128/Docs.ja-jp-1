@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 263c7713166005dfdec8ede6bfa9b03b730dede7
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b99b0f0ab6e67ac84bf1232ff6681c5edd54ffb9
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96035815"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253177"
 ---
 # <a name="net-generic-host-in-aspnet-core"></a>ASP.NET Core の .NET 汎用ホスト
 
@@ -129,8 +129,8 @@ Entity Framework Core がアプリで使用されている場合は、`CreateHos
 <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> メソッド:
 
 * プレフィックス `ASPNETCORE_` が付いた環境変数からホスト構成を読み込みます。
-* [Kestrel](xref:fundamentals/servers/kestrel) サーバーを Web サーバーとして設定し、アプリのホスティング構成プロバイダーを使用してそれを構成します。 Kestrel サーバーの既定のオプションについては、<xref:fundamentals/servers/kestrel#kestrel-options> を参照してください。
-* [Host Filtering middleware](xref:fundamentals/servers/kestrel#host-filtering) を追加します。
+* [Kestrel](xref:fundamentals/servers/kestrel) サーバーを Web サーバーとして設定し、アプリのホスティング構成プロバイダーを使用してそれを構成します。 Kestrel サーバーの既定のオプションについては、<xref:fundamentals/servers/kestrel/options> を参照してください。
+* [Host Filtering middleware](xref:fundamentals/servers/kestrel/host-filtering) を追加します。
 * `ASPNETCORE_FORWARDEDHEADERS_ENABLED` が `true` の場合、[Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) を追加します。
 * IIS 統合を有効にします。 IIS の既定のオプションについては、<xref:host-and-deploy/iis/index#iis-options> を参照してください。
 
@@ -437,7 +437,7 @@ webBuilder.UseStartup<Startup>();
 webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 ```
 
-Kestrel には独自のエンドポイント構成 API があります。 詳細については、「<xref:fundamentals/servers/kestrel#endpoint-configuration>」を参照してください。
+Kestrel には独自のエンドポイント構成 API があります。 詳細については、「<xref:fundamentals/servers/kestrel/endpoints>」を参照してください。
 
 ### <a name="webroot"></a>WebRoot
 

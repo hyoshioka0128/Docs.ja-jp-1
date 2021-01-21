@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 85b3ded6ec25310a573e99cbedf0df005d92bdbe
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 18afa7faa254f89ef664e0188be357a85c790523
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93234414"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252436"
 ---
 # <a name="call-a-web-api-from-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor から Web API を呼び出す
 
@@ -414,5 +414,10 @@ ASP.NET Core アプリでの CORS に関する一般的な情報については�
 * <xref:blazor/security/webassembly/additional-scenarios>:<xref:System.Net.Http.HttpClient> を使用してセキュリティで保護された Web API 要求を作成する方法について説明します。
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
+::: moniker range=">= aspnetcore-5.0"
+* [Kestrel HTTPS エンドポイントの構成](xref:fundamentals/servers/kestrel/endpoints)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 * [Kestrel HTTPS エンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)
+::: moniker-end
 * [W3C におけるクロスオリジン リソース共有 (CORS)](https://www.w3.org/TR/cors/)

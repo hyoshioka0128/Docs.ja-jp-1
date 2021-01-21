@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/security
-ms.openlocfilehash: a7a595a71f988377bf25c500f04da2add3d85aef
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 45ac0916a368cf68f4d40e14298a7628446989ee
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058832"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252813"
 ---
 # <a name="security-considerations-in-grpc-for-aspnet-core"></a>gRPC での ASP.NET Core のセキュリティに関する考慮事項
 
@@ -39,7 +39,13 @@ gRPC のメッセージは、HTTP/2 を使用して送受信されます。 以�
 * [トランスポート層セキュリティ (TLS)](https://tools.ietf.org/html/rfc5246) を使用して、運用環境にある gRPC アプリ内のメッセージをセキュリティで保護します。
 * gRPC サービスは、セキュリティで保護されたポートでのみリッスンと応答を行う必要があります。
 
+::: moniker range=">= aspnetcore-5.0"
+TLS は Kestrel で構成されます。 Kestrel エンドポイントの構成について詳しくは、[Kestrel のエンドポイント構成](xref:fundamentals/servers/kestrel/endpoints)に関するページを参照してください。
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 TLS は Kestrel で構成されます。 Kestrel エンドポイントの構成について詳しくは、[Kestrel のエンドポイント構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するページを参照してください。
+::: moniker-end
 
 ## <a name="exceptions"></a>例外
 

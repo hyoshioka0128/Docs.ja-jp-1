@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 4813668f5278473fbaae36d572e69700b3fe771a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5901a1cb693dfe8e34e62ce2a28456bcf584221c
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97764238"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252267"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor 用のツール
 
@@ -129,7 +129,7 @@ Linux で証明書を信頼するための一元的な方法はありません�
 
 ## <a name="use-visual-studio-code-for-cross-platform-no-locblazor-development"></a>クロスプラットフォームの Blazor 開発に Visual Studio Code を使用する
 
-[Visual Studio Code](https://code.visualstudio.com/) は、Blazor アプリの開発に使用できるオープン ソースのクロスプラットフォーム統合開発環境 (IDE) です。 .NET CLI を使用して、Visual Studio Code で開発用の新しい Blazor アプリを作成します。 詳細については、[この記事の Linux バージョン](/aspnet/core/blazor/tooling?pivots=linux)を参照してください。
+[Visual Studio Code](https://code.visualstudio.com/) は、Blazor アプリの開発に使用できるオープン ソースのクロスプラットフォーム統合開発環境 (IDE) です。 .NET CLI を使用して、Visual Studio Code で開発用の新しい Blazor アプリを作成します。 詳細については、[この記事の Linux バージョン](?pivots=linux)を参照してください。
 
 ## <a name="no-locblazor-template-options"></a>Blazor テンプレート オプション
 

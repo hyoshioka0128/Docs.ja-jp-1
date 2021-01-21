@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: d7ffcb67637593ab2909885a9e1f6de74a78361b
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5caa412773bf9c8e3bed5ebc529d48b886de6956
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96855496"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253073"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>ASP.NET Core 5.0 の新機能
 
@@ -333,7 +333,7 @@ Server Name Indication (SNI) は、SSL ネゴシエーションの一部とし�
 ### <a name="http2"></a>HTTP/2
 
 * HTTP/2 コード パスでの割り当ての大幅な削減。
-* [Kestrel](xref:fundamentals/servers/kestrel)での HTTP/2 応答ヘッダーの [HPack 動的圧縮](https://tools.ietf.org/html/rfc7541)のサポート。 詳細については、「[ヘッダー テーブルのサイズ](xref:fundamentals/servers/kestrel#header-table-size)」と「[HPACK: HTTP/2 のサイレント機能](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/)」を参照してください。
+* [Kestrel](xref:fundamentals/servers/kestrel)での HTTP/2 応答ヘッダーの [HPack 動的圧縮](https://tools.ietf.org/html/rfc7541)のサポート。 詳細については、「[ヘッダー テーブルのサイズ](xref:fundamentals/servers/kestrel/options#header-table-size)」と「[HPACK: HTTP/2 のサイレント機能](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/)」を参照してください。
 * HTTP/2 PING フレームの送信:HTTP/2 には、アイドル状態の接続がまだ機能していることを確認するために PING フレームを送信するメカニズムがあります。 実行可能な接続であることの確認は、アイドル状態であることが多いが間欠的にアクティビティが発生する、長期間存在するストリームを使用する場合に特に便利です。たとえば、gRPC ストリームなどです。 アプリでは、<xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> に制限を設定することによって、[Kestrel](xref:fundamentals/servers/kestrel) で定期的に PING フレームを送信できます。
 
    ```csharp
