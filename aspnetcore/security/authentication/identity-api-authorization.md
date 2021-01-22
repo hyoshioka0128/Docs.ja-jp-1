@@ -19,30 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5a6c160ebdda3ec600980aa839770f4f22a9c2fc
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051981"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658665"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>SPAs の認証と承認
 
 ASP.NET Core 3.1 以降のテンプレートでは、API 承認のサポートを使用して、シングルページアプリ (spa) で認証を提供します。 ASP.NET Core Identity認証と保存のために、ユーザーを[ Identity サーバー](https://identityserver.io/)と組み合わせて OpenID connect を実装します。
 
-認証パラメーターが、 **Web アプリケーション (モデルビューコントローラー)** (MVC) および **web アプリケーション** (ページ) プロジェクトテンプレートの認証パラメーターに似た **角度** で、 **応答** するプロジェクトテンプレートに追加されました Razor 。 許可されるパラメーター値は、 **None** および **個人** です。 **React.js と Redux** プロジェクトテンプレートでは、現時点では認証パラメーターがサポートされていません。
+認証パラメーターが、 **Web アプリケーション (モデルビューコントローラー)** (MVC) および **web アプリケーション**(ページ) プロジェクトテンプレートの認証パラメーターに似た **角度** で、**応答** するプロジェクトテンプレートに追加されました Razor 。 許可されるパラメーター値は、 **None** および **個人** です。 **React.js と Redux** プロジェクトテンプレートでは、現時点では認証パラメーターがサポートされていません。
 
 ## <a name="create-an-app-with-api-authorization-support"></a>API authorization サポートを使用してアプリを作成する
 
 ユーザーの認証と承認は、両方の角度で使用でき、SPAs として対応します。 コマンドシェルを開き、次のコマンドを実行します。
 
-**角度** :
+**角度**:
 
 ```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**反応** :
+**反応**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -98,6 +98,27 @@ dotnet new react -o <output_directory_name> -au Individual
     app.UseIdentityServer();
     ```
 
+### <a name="azure-app-service-on-linux"></a>Azure App Service on Linux
+
+Linux での Azure App Service デプロイについては、次のように発行者を明示的に指定し `Startup.ConfigureServices` ます。
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
+    options =>
+    {
+        options.Authority = "{AUTHORITY}";
+    });
+```
+
+前のコードでは、 `{AUTHORITY}` <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> OpenID connect 呼び出しを行うときに、プレースホルダーが使用されます。
+
+例:
+
+```csharp
+options.Authority = "https://contoso-service.azurewebsites.net";
+```
+
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
 このヘルパーメソッド Identity は、サポートされている構成を使用するようにサーバーを構成します。 IdentityServer は、アプリのセキュリティの問題を処理するための強力で拡張可能なフレームワークです。 同時に、最も一般的なシナリオでは不必要な複雑さを公開します。 そのため、適切な出発点と見なされる一連の規則と構成オプションが用意されています。 認証を変更する必要がある場合でも、サーバーの能力を最大限に活用して、 Identity 必要に応じて認証をカスタマイズできます。
@@ -151,9 +172,9 @@ dotnet new react -o <output_directory_name> -au Individual
 角度テンプレートでの認証と API 承認のサポートは、独自の角度モジュールの *Clientapp-authorization* ディレクトリに存在します。 モジュールは、次の要素で構成されています。
 
 * 3個のコンポーネント:
-  * *login. component. ts* : アプリのログインフローを処理します。
-  * *logout* : アプリのログアウトフローを処理します。
-  * *login-menu. component. ts* : 次のリンクのセットのいずれかを表示するウィジェット。
+  * *login. component. ts*: アプリのログインフローを処理します。
+  * *logout*: アプリのログアウトフローを処理します。
+  * *login-menu. component. ts*: 次のリンクのセットのいずれかを表示するウィジェット。
     * ユーザーが認証されると、ユーザープロファイルの管理とログアウトのリンクがあります。
     * ユーザーが認証されていない場合の登録とログインリンク。
 * ルートに追加できるルートガード `AuthorizeGuard` 。ルートにアクセスする前にユーザーを認証する必要があります。
@@ -166,12 +187,12 @@ dotnet new react -o <output_directory_name> -au Individual
 応答テンプレートでの認証と API 承認のサポートは、 *ClientApp\src\components\api-authorization* ディレクトリにあります。 これは、次の要素で構成されています。
 
 * 4つのコンポーネント:
-  * *Login.js* : アプリのログインフローを処理します。
-  * *Logout.js* : アプリのログアウトフローを処理します。
-  * *LoginMenu.js* : 次のリンクのセットのいずれかを表示するウィジェット。
+  * *Login.js*: アプリのログインフローを処理します。
+  * *Logout.js*: アプリのログアウトフローを処理します。
+  * *LoginMenu.js*: 次のリンクのセットのいずれかを表示するウィジェット。
     * ユーザーが認証されると、ユーザープロファイルの管理とログアウトのリンクがあります。
     * ユーザーが認証されていない場合の登録とログインリンク。
-  * *AuthorizeRoute.js* : パラメーターに示されているコンポーネントを表示する前に、ユーザーを認証する必要があるルートコンポーネント。 `Component`
+  * *AuthorizeRoute.js*: パラメーターに示されているコンポーネントを表示する前に、ユーザーを認証する必要があるルートコンポーネント。 `Component`
 * `authService` `AuthorizeService` 認証プロセスの下位レベルの詳細を処理し、認証されたユーザーに関する情報をアプリの残りの部分に公開する、クラスのエクスポートされたインスタンス。
 
 これで、ソリューションの主要なコンポーネントを確認できました。次は、アプリの個々のシナリオについて詳しく見ていきましょう。
