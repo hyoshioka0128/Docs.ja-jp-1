@@ -5,7 +5,7 @@ description: ASP.NET Core SignalR でサポートされているプラットフ�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
-ms.date: 01/16/2020
+ms.date: 01/21/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: ee6e263fb5bef7bfb84587c3b0f04175eb8073cd
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0a858de44f4a87b182a43a776154b782c7e96288
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051019"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689228"
 ---
 # <a name="aspnet-core-no-locsignalr-supported-platforms"></a>ASP.NET Core SignalR でサポートされているプラットフォーム
 
@@ -44,6 +44,8 @@ SignalR ASP.NET Core は、ASP.NET Core がサポートするすべてのサー�
 | Mozilla Firefox                  | [現在]&dagger; |
 
 &dagger; *[現在]* は、ブラウザーの最新バージョンを示します。
+
+JavaScript クライアントは、Internet Explorer やその他の古いブラウザーをサポートしていません。 サポートされていないブラウザーでは、クライアントの予期しない動作とエラーが発生する可能性があります。
 
 ## <a name="net-client"></a>.NET クライアント
 

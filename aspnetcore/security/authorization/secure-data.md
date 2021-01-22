@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: dc70cfe7cb0c0f044f5f1e7ee68a293b3ea7507f
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: ebd3c0dc9baa63b30f142773d7a3d621ce4082d9
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854653"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689306"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>認証によって保護されたユーザーデータを使用して ASP.NET Core web アプリを作成する
 
@@ -80,7 +80,7 @@ ms.locfileid: "97854653"
 このチュートリアルは高度です。 次のことを理解している必要があります。
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [認証](xref:security/authentication/identity)
+* [Authentication](xref:security/authentication/identity)
 * [アカウントの確認とパスワードの回復](xref:security/authentication/accconfirm)
 * [承認](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -129,6 +129,8 @@ dotnet ef database update
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
 前の強調表示されたコードは、 [フォールバック認証ポリシー](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)を設定します。 フォールバック認証ポリシーでは、** Razor 認証属性を持つページ、コントローラー、またはアクションメソッドを除き、* すべての _ ユーザーを認証する必要があります。 たとえば、 Razor ページ、コントローラー、アクションメソッド `[AllowAnonymous]` は、 `[Authorize(PolicyName="MyPolicy")]` フォールバック認証ポリシーではなく、適用された認証属性を使用します。
+
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> 現在のインスタンスにを追加し <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> 、現在のユーザーが認証されるようにします。
 
 フォールバック認証ポリシー:
 
@@ -332,7 +334,7 @@ Create page model コンストラクターを更新して、 `DI_BasePageModel` 
 * マネージャーは、連絡先データを承認/拒否することができます。 このビューには、 `Details` [ **承認** ] ボタンと [ **却下** ] ボタンが表示されます。
 * 管理者は、すべてのデータを承認/拒否し、編集/削除することができます。
 
-| ユーザー                | アプリによるシード処理 | オプション                                  |
+| User                | アプリによるシード処理 | オプション                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | いいえ                | 独自のデータを編集または削除します。                |
 | manager@contoso.com | はい               | 自分のデータを承認/拒否し、編集/削除します。 |
@@ -434,7 +436,7 @@ dotnet ef database update
 このチュートリアルは高度です。 次のことを理解している必要があります。
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [認証](xref:security/authentication/identity)
+* [Authentication](xref:security/authentication/identity)
 * [アカウントの確認とパスワードの回復](xref:security/authentication/accconfirm)
 * [承認](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
@@ -659,7 +661,7 @@ Create page model コンストラクターを更新して、 `DI_BasePageModel` 
 * マネージャーは、連絡先データを承認/拒否することができます。 このビューには、 `Details` [ **承認** ] ボタンと [ **却下** ] ボタンが表示されます。
 * 管理者は、すべてのデータを承認/拒否し、編集/削除することができます。
 
-| ユーザー                | アプリによるシード処理 | オプション                                  |
+| User                | アプリによるシード処理 | オプション                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
 | test@example.com    | いいえ                | 独自のデータを編集または削除します。                |
 | manager@contoso.com | はい               | 自分のデータを承認/拒否し、編集/削除します。 |
