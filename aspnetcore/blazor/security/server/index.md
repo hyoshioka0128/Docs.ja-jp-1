@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: aa24def1a003a2c2608691e6168066c740f47205
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 5031273c3395be4365b3a6d239ebce7aaf9b66ac
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024627"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658639"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>ASP.NET Core Blazor Server アプリをセキュリティで保護する
 
@@ -127,7 +127,11 @@ Identity を Blazor Server プロジェクトにスキャフォールディン�
 * [既存の承認がありません](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)。
 * [承認があります](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization)。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Identity Server を使用した Azure App Service on Linux
+
+Identity Server を使用して Azure App Service on Linux にデプロイするときに、発行者を明示的に指定します。 詳細については、「<xref:security/authentication/identity/spa#azure-app-service-on-linux>」を参照してください。
+
+## <a name="additional-resources"></a>その他の技術情報
 
 * [クイック スタート:Microsoft でのサインインを ASP.NET Core Web アプリに追加する](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
 * [クイック スタート:Microsoft ID プラットフォームを使用して ASP.NET Core Web API を保護する](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
