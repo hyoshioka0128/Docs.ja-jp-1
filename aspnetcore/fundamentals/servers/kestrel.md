@@ -19,18 +19,66 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 5c9e1717ad603687343f015826a113e6945e4a41
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: d53cafb605939fd85bdbb71b2fbf13e7bd7a9b7b
+ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97854614"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98570993"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>ASP.NET Core への Kestrel Web サーバーの実装
 
 作成者: [Tom Dykstra](https://github.com/tdykstra)、[Chris Ross](https://github.com/Tratcher)、[Stephen Halter](https://twitter.com/halter73)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
+
+Kestrel は、[ASP.NET Core 向けのクロスプラットフォーム Web サーバー](xref:fundamentals/servers/index)です。 Kestrel は、ASP.NET Core のプロジェクト テンプレートに既定で含まれ、有効になっている Web サーバーです。
+
+Kestrel では、次のシナリオがサポートされます。
+
+* HTTPS
+* [HTTP/2](xref:fundamentals/servers/kestrel/http2) (macOS の場合を除く&dagger;)
+* [Websocket](xref:fundamentals/websockets) を有効にするために使用される非透過的なアップグレード
+* Nginx の背後にある高パフォーマンスの UNIX ソケット
+
+&dagger;将来のリリースでは HTTP/2 が macOS 上でサポートされるようになります。
+
+kestrel は、.NET Core がサポートするすべてのプラットフォームおよびバージョンでサポートされます。
+
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples/5.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+
+## <a name="get-started"></a>はじめに
+
+ASP.NET Core プロジェクト テンプレートは既定では Kestrel を使用します。 *Program.cs* では、<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> メソッドにより <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> が呼び出されます。
+
+[!code-csharp[](kestrel/samples/5.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=8)]
+
+ホストのビルトに関する詳細については、「<xref:fundamentals/host/generic-host#set-up-a-host>」の「*ホストを設定する*」と「*既定の builder 設定*」セクションを参照してください。
+
+## <a name="additional-resources"></a>その他のリソース
+
+<a name="endpoint-configuration"></a>
+* <xref:fundamentals/servers/kestrel/endpoints>
+<a name="kestrel-options"></a>
+* <xref:fundamentals/servers/kestrel/options>
+<a name="http2-support"></a>
+* <xref:fundamentals/servers/kestrel/http2>
+<a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
+* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
+<a name="host-filtering"></a>
+* <xref:fundamentals/servers/kestrel/host-filtering>
+* <xref:test/troubleshoot>
+* <xref:security/enforcing-ssl>
+* <xref:host-and-deploy/proxy-load-balancer>
+* [RFC 7230: メッセージの構文と経路制御 (セクション 5.4: ホスト)](https://tools.ietf.org/html/rfc7230#section-5.4)
+* Linux で UNIX ソケットを使用している場合、アプリのシャットダウン時にソケットは自動的に削除されません。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/aspnetcore/issues/14134)します。
+
+> [!NOTE]
+> ASP.NET Core 5.0 から、Kestrel の libuv トランスポートは廃止されています。 libuv トランスポートには、Windows ARM64 などの新しい OS プラットフォームをサポートする更新プログラムが提供されず、今後のリリースでは削除される予定です。 古い <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A> メソッドの呼び出しをすべて削除し、代わりに Kestrel の既定の Socket トランスポートを使用してください。
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 Kestrel は、[ASP.NET Core 向けのクロスプラットフォーム Web サーバー](xref:fundamentals/servers/index)です。 Kestrel は、ASP.NET Core のプロジェクト テンプレートに既定で含まれる Web サーバーです。
 
@@ -45,7 +93,7 @@ Kestrel では、次のシナリオがサポートされます。
 
 kestrel は、.NET Core がサポートするすべてのプラットフォームおよびバージョンでサポートされます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples/3.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="http2-support"></a>HTTP/2 のサポート
 
@@ -63,7 +111,7 @@ kestrel は、.NET Core がサポートするすべてのプラットフォー�
 
 Http/2 接続が確立されると、[HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) が `HTTP/2` を報告します。
 
-Http/2 は既定では無効になっています。 構成の詳細については、「[Kestrel オプション](#kestrel-options)」セクションと「[ListenOptions.Protocols](#listenoptionsprotocols)」セクションを参照してください。
+.NET Core 3.0 以降では、HTTP/2 は既定で有効になっています。 構成の詳細については、「[Kestrel オプション](#kestrel-options)」セクションと「[ListenOptions.Protocols](#listenoptionsprotocols)」セクションを参照してください。
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Kestrel とリバース プロキシを使用するタイミング
 
@@ -355,34 +403,6 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 既定値は 96 KB (98,304) です。
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-5.0"
-
-### <a name="http2-keep-alive-ping-configuration"></a>HTTP/2 キープ アライブ ping 構成
-
-Kestrel は、接続されているクライアントに HTTP/2 ping を送信するように構成できます。 HTTP/2 ping は複数の目的で機能します。
-
-* アイドル状態の接続を維持します。 一部のクライアントとプロキシ サーバーでは、アイドル状態の接続が閉じられます。 HTTP/2 ping は接続におけるアクティビティと見なされ、接続がアイドル状態として閉じられるのを防ぎます。
-* 異常な接続を閉じます。 構成された時間でキープ アライブ ping にクライアントが応答しない接続はサーバーによって閉じられます。
-
-HTTP/2 キープ アライブ ping に関連する 2 つの構成オプション:
-
-* `Http2.KeepAlivePingInterval` は ping を内部構成する `TimeSpan` です。 この時間内にフレームが受信されない場合、サーバーからクライアントにキープ アライブ ping が送信されます。 このオプションが `TimeSpan.MaxValue` に設定されているとき、キープ アライブ ping は無効になります。 既定値は `TimeSpan.MaxValue` です。
-* `Http2.KeepAlivePingTimeout` は、ping タイムアウトを構成する `TimeSpan` です。 このタイムアウト内でサーバーが応答 ping など、いかなるフレームも受信しない場合、接続は閉じられます。 このオプションが `TimeSpan.MaxValue` に設定されているとき、キープ アライブ タイムアウトは無効になります。 既定値は 20 秒です。
-
-```csharp
-webBuilder.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
-    serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
-});
-```
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
 
 ### <a name="trailers"></a>予告編
 
@@ -986,18 +1006,6 @@ Host Filtering Middleware は既定では無効です。 このミドルウェ�
 >
 > Forwarded Headers Middleware の詳細については、<xref:host-and-deploy/proxy-load-balancer> を参照してください。
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-5.0"
-
-## <a name="libuv-transport-configuration"></a>Libuv トランスポート構成
-
-ASP.NET Core 5.0 から、Kestrel の Libuv トランスポートは廃止されています。 Libuv トランスポートには、Windows ARM64 などの新しい OS プラットフォームをサポートする更新プログラムが提供されず、今後のリリースでは削除される予定です。 古い <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A> メソッドの呼び出しをすべて削除し、代わりに Kestrel の既定の Socket トランスポートを使用してください。
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
-
 ## <a name="libuv-transport-configuration"></a>Libuv トランスポート構成
 
 Libuv (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A>) を使用する必要のあるプロジェクトの場合
@@ -1029,6 +1037,44 @@ Libuv (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv
   }
   ```
 
+## <a name="http11-request-draining"></a>HTTP/1.1 要求のドレイン
+
+HTTP 接続を開くには時間がかかります。 HTTPS の場合も、リソースが大量に消費されます。 そのため、Kestrel は、HTTP/1.1 プロトコルごとに接続を再利用しようとします。 接続を再利用できるようにするには、要求本文を完全に使用する必要があります。 アプリは、サーバーがリダイレクトまたは 404 応答を返す `POST` 要求のように、常に要求本文を使用するわけではありません。 `POST`-リダイレクトの場合:
+
+* クライアントが `POST` データの一部を既に送信している可能性があります。
+* サーバーは 301 応答を書き込みます。
+* 以前の要求本文の `POST` データが完全に読み取られるまで、新しい要求に対して接続を使用することはできません。
+* Kestrel は、要求本文のドレインを試行します。 要求本文のドレインは、データを処理せずに読み取りおよび破棄を行うことを意味します。
+
+ドレイン プロセスでは、接続が再利用できるようになる代わりに、残りのデータをドレインする時間がかかります。
+
+* ドレインのタイムアウトは 5 秒であり、この設定は構成できません。
+* `Content-Length` または `Transfer-Encoding` ヘッダーで指定されたすべてのデータがタイムアウト前に読み取られていない場合、接続は閉じられます。
+
+場合によっては、応答の書き込みの前後に要求をすぐに終了する必要があります。 たとえば、クライアントのデータ キャップが制限されているため、アップロードするデータの制限が優先される場合があります。 このような場合、要求を終了するには、コントローラー、Razor ページ、またはミドルウェアから [HttpContext.Abort](xref:Microsoft.AspNetCore.Http.HttpContext.Abort%2A) を呼び出します。
+
+`Abort` を呼び出す際には、次の点に注意する必要があります。
+
+* 新しい接続の作成には、時間とコストがかかることがあります。
+* 接続が閉じる前にクライアントが応答を読み取ることは保証されません。
+* `Abort` の呼び出しは最小限に抑え、一般的なエラーではなく重大なエラーが発生した場合のために予約する必要があります。
+  * `Abort` は特定の問題を解決する必要がある場合にのみ、呼び出してください。 たとえば、悪意のあるクライアントがデータを `POST` しようとしている場合や、クライアント コードに大量または多数の要求を引き起こすバグがある場合に `Abort` を呼び出します。
+  * HTTP 404 (Not Found) などの一般的なエラー状況では、`Abort` を呼び出さないでください。
+
+`Abort` を呼び出す前に [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) を呼び出すと、サーバーが応答の書き込みを完了したことが保証されます。 ただし、クライアントの動作は予測できないため、接続が中止される前に応答が読み取られない場合があります。
+
+プロトコルでは、接続を閉じずに個々の要求ストリームを中止することがサポートされているため、HTTP/2 では、このプロセスが異なります。 5 秒のドレイン タイムアウトは適用されません。 応答の完了後に未読の要求本文データがある場合、サーバーは HTTP/2 RST フレームを送信します。 追加の要求本文データ フレームは無視されます。
+
+可能なかぎり、クライアントが [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) の要求ヘッダーを利用し、要求本文の送信を開始する前にサーバーの応答を待機することをお勧めします。 これにより、クライアントは、不要なデータを送信する前に、応答を調べて中止することができます。
+
+## <a name="additional-resources"></a>その他の技術情報
+
+* Linux で UNIX ソケットを使用している場合、アプリのシャットダウン時にソケットは自動的に削除されません。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/aspnetcore/issues/14134)します。
+* <xref:test/troubleshoot>
+* <xref:security/enforcing-ssl>
+* <xref:host-and-deploy/proxy-load-balancer>
+* [RFC 7230: メッセージの構文と経路制御 (セクション 5.4: ホスト)](https://tools.ietf.org/html/rfc7230#section-5.4)
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
@@ -1046,7 +1092,7 @@ Kestrel では、次のシナリオがサポートされます。
 
 kestrel は、.NET Core がサポートするすべてのプラットフォームおよびバージョンでサポートされます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples/2.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="http2-support"></a>HTTP/2 のサポート
 
@@ -1980,6 +2026,44 @@ Host Filtering Middleware は既定では無効です。 このミドルウェ�
 >
 > Forwarded Headers Middleware の詳細については、<xref:host-and-deploy/proxy-load-balancer> を参照してください。
 
+## <a name="http11-request-draining"></a>HTTP/1.1 要求のドレイン
+
+HTTP 接続を開くには時間がかかります。 HTTPS の場合も、リソースが大量に消費されます。 そのため、Kestrel は、HTTP/1.1 プロトコルごとに接続を再利用しようとします。 接続を再利用できるようにするには、要求本文を完全に使用する必要があります。 アプリは、サーバーがリダイレクトまたは 404 応答を返す `POST` 要求のように、常に要求本文を使用するわけではありません。 `POST`-リダイレクトの場合:
+
+* クライアントが `POST` データの一部を既に送信している可能性があります。
+* サーバーは 301 応答を書き込みます。
+* 以前の要求本文の `POST` データが完全に読み取られるまで、新しい要求に対して接続を使用することはできません。
+* Kestrel は、要求本文のドレインを試行します。 要求本文のドレインは、データを処理せずに読み取りおよび破棄を行うことを意味します。
+
+ドレイン プロセスでは、接続が再利用できるようになる代わりに、残りのデータをドレインする時間がかかります。
+
+* ドレインのタイムアウトは 5 秒であり、この設定は構成できません。
+* `Content-Length` または `Transfer-Encoding` ヘッダーで指定されたすべてのデータがタイムアウト前に読み取られていない場合、接続は閉じられます。
+
+場合によっては、応答の書き込みの前後に要求をすぐに終了する必要があります。 たとえば、クライアントのデータ キャップが制限されているため、アップロードするデータの制限が優先される場合があります。 このような場合、要求を終了するには、コントローラー、Razor ページ、またはミドルウェアから [HttpContext.Abort](xref:Microsoft.AspNetCore.Http.HttpContext.Abort%2A) を呼び出します。
+
+`Abort` を呼び出す際には、次の点に注意する必要があります。
+
+* 新しい接続の作成には、時間とコストがかかることがあります。
+* 接続が閉じる前にクライアントが応答を読み取ることは保証されません。
+* `Abort` の呼び出しは最小限に抑え、一般的なエラーではなく重大なエラーが発生した場合のために予約する必要があります。
+  * `Abort` は特定の問題を解決する必要がある場合にのみ、呼び出してください。 たとえば、悪意のあるクライアントがデータを `POST` しようとしている場合や、クライアント コードに大量または多数の要求を引き起こすバグがある場合に `Abort` を呼び出します。
+  * HTTP 404 (Not Found) などの一般的なエラー状況では、`Abort` を呼び出さないでください。
+
+`Abort` を呼び出す前に [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) を呼び出すと、サーバーが応答の書き込みを完了したことが保証されます。 ただし、クライアントの動作は予測できないため、接続が中止される前に応答が読み取られない場合があります。
+
+プロトコルでは、接続を閉じずに個々の要求ストリームを中止することがサポートされているため、HTTP/2 では、このプロセスが異なります。 5 秒のドレイン タイムアウトは適用されません。 応答の完了後に未読の要求本文データがある場合、サーバーは HTTP/2 RST フレームを送信します。 追加の要求本文データ フレームは無視されます。
+
+可能なかぎり、クライアントが [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) の要求ヘッダーを利用し、要求本文の送信を開始する前にサーバーの応答を待機することをお勧めします。 これにより、クライアントは、不要なデータを送信する前に、応答を調べて中止することができます。
+
+## <a name="additional-resources"></a>その他の技術情報
+
+* Linux で UNIX ソケットを使用している場合、アプリのシャットダウン時にソケットは自動的に削除されません。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/aspnetcore/issues/14134)します。
+* <xref:test/troubleshoot>
+* <xref:security/enforcing-ssl>
+* <xref:host-and-deploy/proxy-load-balancer>
+* [RFC 7230: メッセージの構文と経路制御 (セクション 5.4: ホスト)](https://tools.ietf.org/html/rfc7230#section-5.4)
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
@@ -1994,7 +2078,7 @@ Kestrel では、次のシナリオがサポートされます。
 
 kestrel は、.NET Core がサポートするすべてのプラットフォームおよびバージョンでサポートされます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples/2.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>Kestrel とリバース プロキシを使用するタイミング
 
@@ -2770,8 +2854,6 @@ Host Filtering Middleware は既定では無効です。 このミドルウェ�
 >
 > Forwarded Headers Middleware の詳細については、<xref:host-and-deploy/proxy-load-balancer> を参照してください。
 
-::: moniker-end
-
 ## <a name="http11-request-draining"></a>HTTP/1.1 要求のドレイン
 
 HTTP 接続を開くには時間がかかります。 HTTPS の場合も、リソースが大量に消費されます。 そのため、Kestrel は、HTTP/1.1 プロトコルごとに接続を再利用しようとします。 接続を再利用できるようにするには、要求本文を完全に使用する必要があります。 アプリは、サーバーがリダイレクトまたは 404 応答を返す `POST` 要求のように、常に要求本文を使用するわけではありません。 `POST`-リダイレクトの場合:
@@ -2809,3 +2891,5 @@ HTTP 接続を開くには時間がかかります。 HTTPS の場合も、リ�
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 7230: メッセージの構文と経路制御 (セクション 5.4: ホスト)](https://tools.ietf.org/html/rfc7230#section-5.4)
+
+::: moniker-end

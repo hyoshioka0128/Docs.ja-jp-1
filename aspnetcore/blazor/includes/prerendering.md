@@ -37,7 +37,7 @@ Blazor サーバー アプリをプリレンダリングしている間、ブラ
 
 <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> が呼び出されるとき、`ElementRef` は、以前のライフサイクル メソッドではなく <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> でのみ使用されます。コンポーネントがレンダリングされるまで JavaScript 要素が存在しないためです。
 
-[StateHasChanged](xref:blazor/components/lifecycle#state-changes) は、JavaScript の相互運用呼び出しから取得された新しい状態でコンポーネントを再度レンダリングするために呼び出されます。 `StateHasChanged` は `infoFromJs`が `null` である場合にのみ呼び出されるため、このコードで無限ループが作成されることはありません。
+[StateHasChanged](xref:blazor/components/lifecycle#state-changes) は、JavaScript の相互運用呼び出しから取得された新しい状態でコンポーネントを再度レンダリングするために呼び出されます (詳細については、「<xref:blazor/components/rendering>」を参照してください)。 `StateHasChanged` は `infoFromJs`が `null` である場合にのみ呼び出されるため、このコードで無限ループが作成されることはありません。
 
 ```cshtml
 @page "/prerendered-interop"

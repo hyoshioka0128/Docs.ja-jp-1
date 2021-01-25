@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: c1a97919cb41f42a93f28d9b5f1ecf6bd3e64da0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5a00bfb87b8cfe0fb3e2a832a553b8a4cd45ee6d
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97592857"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252501"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor で JavaScript 関数から .NET メソッドを呼び出す
 
@@ -456,6 +456,60 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 
 * [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525) (循環参照はサポートされていません、テイク 2 (dotnet/aspnetcore #20525))
 * [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820) (提案: シリアル化するときに循環参照を処理するメカニズムを追加する (dotnet/runtime #30820))
+
+## <a name="size-limits-on-js-interop-calls"></a>JS 相互運用呼び出しのサイズ制限
+
+Blazor WebAssembly では、フレームワークによって JS 相互運用の入力と出力のサイズが制限されることはありません。
+
+Blazor Server では、ハブ メソッドで許可される SignalR 受信メッセージの最大サイズによって、JS 相互運用呼び出しのサイズが制限されます。これは、<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> によって適用されます (既定値: 32 KB)。 JS から .NET への SignalR メッセージが <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> より大きい場合は、エラーがスローされます。 このフレームワークでは、ハブからクライアントへの SignalR メッセージのサイズが制限されることはありません。
+
+SignalR のログが[Debug](xref:Microsoft.Extensions.Logging.LogLevel) または [Trace](xref:Microsoft.Extensions.Logging.LogLevel) に設定されていない場合、メッセージ サイズのエラーはブラウザーの開発者ツール コンソールにのみ表示されます。
+
+> エラー :次のエラーで接続が切断されました。"エラー: サーバーが終了時にエラーを返しました:接続はエラーで終了しました。"
+
+[SignalR サーバー側のログ ](xref:signalr/diagnostics#server-side-logging) が [Debug](xref:Microsoft.Extensions.Logging.LogLevel) または [Trace](xref:Microsoft.Extensions.Logging.LogLevel) に設定されている場合、サーバー側のログには、メッセージ サイズ エラーの <xref:System.IO.InvalidDataException> が表示されます。
+
+`appsettings.Development.json`:
+
+```json
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.AspNetCore.SignalR": "Debug"
+    }
+  }
+}
+```
+
+> System.IO.InvalidDataException:メッセージの最大サイズ 32,768 B を超えました。 メッセージのサイズは、AddHubOptions で構成できます。
+
+制限値を増やすには、`Startup.ConfigureServices` で <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> を設定します。 次の例では、受信メッセージの最大サイズを 64 KB (64 * 1024) に設定します。
+
+```csharp
+services.AddServerSideBlazor()
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+```
+
+SignalR 受信メッセージ サイズの制限値を増やすと、より多くのサーバー リソースが必要になり、悪意のあるユーザーからのより大きなリスクにサーバーがさらされます。 また、大量のコンテンツを文字列またはバイト配列としてメモリに読み取ると、ガベージ コレクターがうまく機能しない割り当てが発生する可能性もあり、その結果、パフォーマンスがさらに低下します。
+
+大きなペイロードを読み取るための 1 つの選択肢は、小さいチャンクでコンテンツを送信し、ペイロードを <xref:System.IO.Stream> として処理することです。 これは、大量の JSON ペイロードを読み取る場合、またはデータを JavaScript で生バイトとして利用できる場合に使用できます。 Blazor Server で大規模なバイナリ ペイロードを送信する、`InputFile` コンポーネントに似た手法を使用する方法の例については、[Binary Submit サンプル アプリ](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit)を参照してください。
+
+JavaScript と Blazor の間で大量のデータを転送するコードを開発するときは、次のガイダンスを考慮してください。
+
+* データをより小さな部分にスライスし、すべてのデータがサーバーによって受信されるまでデータ セグメントを順番に送信します。
+* JavaScript および C# コードで大きなオブジェクトを割り当てないでください。
+* データを送受信するときに、メイン UI スレッドを長時間ブロックしないでください。
+* プロセスの完了時またはキャンセル時に、消費していたメモリを解放します。
+* セキュリティ上の理由から、次の追加要件を適用します。
+  * 渡すことのできるファイルまたはデータの最大サイズを宣言します。
+  * クライアントからサーバーへの最小アップロード レートを宣言します。
+* データがサーバーによって受信されたら、データは:
+  * すべてのセグメントが収集されるまで、一時的にメモリ バッファーに格納できます。
+  * 直ちに消費できます。 たとえば、データは、データベースに直ちに格納することも、セグメントを受信するたびにディスクに書き込むこともできます。
 
 ## <a name="js-modules"></a>JS モジュール
 

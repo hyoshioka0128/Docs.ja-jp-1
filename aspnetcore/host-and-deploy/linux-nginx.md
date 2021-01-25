@@ -1,7 +1,7 @@
 ---
 title: Nginx 搭載の Linux で ASP.NET Core をホストする
 author: rick-anderson
-description: Ubuntu 16.04 でリバース プロキシとして Nginx をセットアップし、Kestrel で実行している ASP.NET Core Web アプリに HTTP トラフィックを転送する方法について説明します。
+description: Ubuntu 16.04 でリバース プロキシとして Nginx を設定し、Kestrel で実行している ASP.NET Core Web アプリに HTTP トラフィックを転送する方法について学習します。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: c4e0d70b41221f272bb4b1fe82cfa531ec6fcf15
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 6a8fd8e3498dda9b7c10834791e64df6276e2823
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94431067"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253021"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Nginx 搭載の Linux で ASP.NET Core をホストする
 
@@ -97,7 +97,7 @@ Kestrel は、ASP.NET Core から動的なコンテンツを提供するのに�
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-他のミドルウェアを呼び出す前に、`Startup.Configure` の一番上にある <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> メソッドを呼び出します。 ミドルウェアを構成して、`X-Forwarded-For` および `X-Forwarded-Proto` ヘッダーを転送します。
+他のミドルウェアを呼び出す前に、`Startup.Configure` の一番上にある <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> メソッドを呼び出します。 ミドルウェアを構成して、`X-Forwarded-For` および `X-Forwarded-Proto` ヘッダーを転送します。
 
 ```csharp
 using Microsoft.AspNetCore.HttpOverrides;
@@ -114,7 +114,7 @@ app.UseAuthentication();
 
 ミドルウェアに対して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> が指定されていない場合、転送される既定のヘッダーは `None` です。
 
-標準 localhost アドレス (`127.0.0.1`) を含むループバック アドレス (`127.0.0.0/8`、`[::1]`) 上で実行されるプロキシは、既定で信頼されます。 組織内のその他の信頼されているプロキシまたはネットワークによってインターネットと Web サーバーの間の要求が処理される場合は、それらを、<xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> を使用して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> または <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> のリストに追加します。 次の例では、IP アドレス 10.0.0.100 にある信頼されているプロキシ サーバーが `Startup.ConfigureServices` 内の Forwarded Headers Middleware `KnownProxies` に追加されます。
+標準 localhost アドレス (`127.0.0.1`) を含むループバック アドレス (`127.0.0.0/8`、`[::1]`) 上で実行されるプロキシは、既定で信頼されます。 組織内のその他の信頼されているプロキシまたはネットワークによってインターネットと Web サーバーの間の要求が処理される場合は、それらを、<xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> を使用して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> または <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> のリストに追加します。 次の例では、IP アドレス 10.0.0.100 にある信頼されているプロキシ サーバーが `Startup.ConfigureServices` 内の Forwarded Headers Middleware `KnownProxies` に追加されます。
 
 ```csharp
 using System.Net;
@@ -146,7 +146,7 @@ sudo service nginx start
 
 ### <a name="configure-nginx"></a>Nginx を構成する
 
-Nginx をリバース プロキシとして構成し、ASP.NET Core アプリに HTTP 要求を転送するには、`/etc/nginx/sites-available/default` を変更します。 テキスト エディターで開き、中身を次のものに変更します。
+Nginx をリバース プロキシとして構成し、ASP.NET Core アプリに HTTP 要求を転送するには、`/etc/nginx/sites-available/default` を変更します。 テキスト エディターでそれを開き、内容を次のスニペットに置き換えます。
 
 ```nginx
 server {
@@ -167,7 +167,7 @@ server {
 
 アプリが SignalR または Blazor Server アプリの場合、詳細については <xref:signalr/scale#linux-with-nginx> と <xref:blazor/host-and-deploy/server#linux-with-nginx> をそれぞれ参照してください。
 
-`server_name` が一致しない場合、Nginx では既定のサーバーが使用されます。 既定のサーバーが定義されていない場合、構成ファイルの最初のサーバーが既定のサーバーとなります。 ベスト プラクティスとして、構成ファイルで 444 の状態コードを返す既定のサーバーを具体的に追加します。 既定のサーバーの構成例は次のとおりです。
+`server_name` が一致しない場合、Nginx では既定のサーバーが使用されます。 既定のサーバーが定義されていない場合、構成ファイルの最初のサーバーが既定のサーバーとなります。 ベスト プラクティスとして、自分の構成ファイルで 444 の状態コードを返す既定のサーバーを具体的に追加します。 既定のサーバーの構成例は次のとおりです。
 
 ```nginx
 server {
@@ -177,10 +177,20 @@ server {
 }
 ```
 
-上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://localhost:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx が要求を処理する方法) をご覧ください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
+::: moniker range=">= aspnetcore-5.0"
+
+上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://localhost:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel/endpoints)に関するセクションを参照してください。
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://localhost:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
+
+::: moniker-end
 
 > [!WARNING]
-> 適切な [server_name directive](https://nginx.org/docs/http/server_names.html) を指定しないと、アプリにセキュリティ上の脆弱性が生じます。 親ドメイン全体を制御する場合、サブドメイン ワイルドカード バインド (たとえば、`*.example.com`) にこのセキュリティ リスクはありません (脆弱である `*.com` とは対照的)。 詳細については、[rfc7230 セクション-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) を参照してください。
+> 適切な [server_name directive](https://nginx.org/docs/http/server_names.html) を指定しないと、アプリにセキュリティ上の脆弱性が生じます。 親ドメイン全体を制御する場合、サブドメイン ワイルドカード バインド (たとえば、`*.example.com`) にこのセキュリティ リスクはありません (脆弱である `*.com` とは対照的)。 詳細については、[RFC 7230 セクション 5.4](https://tools.ietf.org/html/rfc7230#section-5.4) を参照してください。
 
 Nginx の構成を確立したら、`sudo nginx -t` を実行して構成ファイルの構文を確認します。 構成ファイルがテストに合格したら、`sudo nginx -s reload` を実行することで、強制的に Nginx に変更を反映させます。
 
@@ -189,13 +199,13 @@ Nginx の構成を確立したら、`sudo nginx -t` を実行して構成ファ�
 1. アプリのディレクトリに移動します。
 1. アプリを実行する:`dotnet <app_assembly.dll>`。ここで、`app_assembly.dll` はアプリのアセンブリ ファイル名です。
 
-アプリがサーバーで実行されているにも関わらず、インターネット上で応答がない場合、サーバーのファイアウォールを確認し、ポート 80 が開かれていることを確認します。 Azure Ubuntu VM を使用している場合、受信ポート 80 のトラフィックを有効にするネットワーク セキュリティ グループ (NSG) 規則を追加します。 送信トラフィックは、受信規則が有効になると自動的に生成されるので、送信ポート 80 規則を有効にする必要はありません。
+アプリがサーバーで実行されているにも関わらず、インターネット経由で応答がない場合、サーバーのファイアウォールを確認し、ポート 80 が開いていることを確認します。 Azure Ubuntu VM を使用している場合、受信ポート 80 のトラフィックを有効にするネットワーク セキュリティ グループ (NSG) 規則を追加します。 送信トラフィックは、受信規則が有効になると自動的に生成されるので、送信ポート 80 規則を有効にする必要はありません。
 
-アプリのテストが終了したら、コマンド プロンプトで `Ctrl+C` を使用してアプリをシャットダウンします。
+アプリのテストが終了したら、コマンド プロンプトで <kbd>Ctrl</kbd>  +  <kbd>C</kbd> キーを使用してアプリをシャットダウンします。
 
 ## <a name="monitor-the-app"></a>アプリを監視する
 
-サーバーは、`http://<serveraddress>:80` に対する要求を Kestrel で実行されている ASP.NET Core アプリ (`http://127.0.0.1:5000`) に転送するようにセットアップされました。 ただし、Nginx は Kestrel プロセスを管理するようには設定されていません。 `systemd` を使用してサービス ファイルを作成し、基になる Web アプリを起動して監視できます。 `systemd` は init システムであり、プロセスを起動、停止、管理するためのさまざまな高性能機能を提供します。 
+サーバーは、`http://<serveraddress>:80` に対する要求を Kestrel で実行されている ASP.NET Core アプリ (`http://127.0.0.1:5000`) に転送するように設定されています。 ただし、Nginx は Kestrel プロセスを管理するようには設定されていません。 `systemd` を使用してサービス ファイルを作成し、基になる Web アプリを起動して監視できます。 `systemd` は init システムであり、プロセスを起動、停止、管理するためのさまざまな高性能機能を提供します。 
 
 ### <a name="create-the-service-file"></a>サービス ファイルを作成する
 
@@ -205,7 +215,7 @@ Nginx の構成を確立したら、`sudo nginx -t` を実行して構成ファ�
 sudo nano /etc/systemd/system/kestrel-helloapp.service
 ```
 
-アプリのサービス ファイルの例を次に示します。
+アプリ用のサービス ファイルの例を次に示します。
 
 ```ini
 [Unit]
@@ -298,7 +308,7 @@ Kestrel を利用する Web アプリは `systemd` を使用して管理され�
 sudo journalctl -fu kestrel-helloapp.service
 ```
 
-さらに絞り込むには、時間オプションとして `--since today`、`--until 1 hour ago`、あるいはこの 2 つの組み合わせを利用すれば、返されるエントリの数を減らすことができます。
+さらに絞り込むには、`--since today`、`--until 1 hour ago` などの時間オプション、あるいはこれらの組み合わせを使用することで、返されるエントリ数を減らすことができます。
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-10-18 04:00"
@@ -335,7 +345,7 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ### <a name="enable-apparmor"></a>AppArmor を有効にする
 
-Linux Security Modules (LSM) は、Linux 2.6 以降の Linux カーネルに含まれるフレームワークです。 LSM は、セキュリティ モジュールのさまざまな実装に対応しています。 [AppArmor](https://wiki.ubuntu.com/AppArmor) は Mandatory Access Control システムを実装する LSM です。このシステムは、プログラムのリソース範囲を限定できます。 AppArmor が有効であり、正しく構成されていることを確認します。
+Linux Security Modules (LSM) は、Linux 2.6 以降の Linux カーネルに含まれるフレームワークです。 LSM は、セキュリティ モジュールのさまざまな実装に対応しています。 [AppArmor](https://wiki.ubuntu.com/AppArmor) は Mandatory Access Control システムを実装する LSM です。これにより、プログラムのリソース範囲を限定できます。 AppArmor が有効であり、正しく構成されていることを確認します。
 
 ### <a name="configure-the-firewall"></a>ファイアウォールを構成する
 
@@ -375,18 +385,29 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 **セキュリティで保護された (HTTPS) ローカル接続用にアプリを構成する**
 
-[dotnet run](/dotnet/core/tools/dotnet-run) コマンドでは、アプリの `Properties/launchSettings.json` ファイルが使用されます。このファイルでは、`applicationUrl` プロパティによって提供される URL でリッスンするように、アプリが構成されます (例: `https://localhost:5001;http://localhost:5000`)。
+[dotnet run](/dotnet/core/tools/dotnet-run) コマンドからアプリの *Properties/launchSettings.json* ファイルが使用されます。これにより、`applicationUrl` プロパティによって提供される URL でリッスンするように、アプリが構成されます。 たとえば、「 `https://localhost:5001;http://localhost:5000` 」のように入力します。
 
 次のいずれかの方法を使用して、`dotnet run` コマンドまたは開発環境 (<kbd>F5</kbd>、Visual Studio Code では <kbd>Ctrl</kbd>+<kbd>F5</kbd>) の開発で、証明書を使用するようにアプリを構成します。
+
+::: moniker range=">= aspnetcore-5.0"
+
+* [構成から既定の証明書を置き換える](xref:fundamentals/servers/kestrel/endpoints#configuration) (*推奨*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 * [構成から既定の証明書を置き換える](xref:fundamentals/servers/kestrel#configuration) (*推奨*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
+::: moniker-end
+
 **セキュリティで保護された (HTTPS) クライアント接続用にリバース プロキシを構成する**
 
-* 信頼できる証明機関 (CA) が発行した、有効な証明書を指定することで、ポート `443` で HTTPS トラフィックを待ち受けるようにサーバーを構成します。
+* 信頼された証明機関 (CA) が発行した、有効な証明書を指定することで、ポート 443 で HTTPS トラフィックをリッスンするようにサーバーを構成します。
 
-* 次の `/etc/nginx/nginx.conf` ファイルで示されているプラクティスの一部を採用することで、セキュリティを強化します。 たとえば、強力な暗号を選択したり、HTTP 経由のすべてのトラフィックを HTTPS にリダイレクトしたりします。
+* 次の */etc/nginx/nginx.conf* ファイルで示されているプラクティスの一部を採用することで、セキュリティを強化します。 たとえば、強力な暗号を選択したり、HTTP 経由のすべてのトラフィックを HTTPS にリダイレクトしたりします。
 
   > [!NOTE]
   > 開発環境では、永続的なリダイレクト (301) ではなく、一時的なリダイレクト (302) を使用することをお勧めします。 リンク キャッシュを使用すると、開発環境で不安定な動作が発生する可能性があります。
@@ -400,11 +421,11 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
   * HSTS ヘッダーを追加しない
   * 短い `max-age` 値を選択する
 
-`/etc/nginx/proxy.conf` 構成ファイルを追加します。
+*/etc/nginx/proxy.conf* 構成ファイルを追加します。
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
-`/etc/nginx/nginx.conf` 構成ファイルの内容を、次のファイルに **置き換え** ます。 この例では、1 つの構成ファイルに `http` セクションと `server` セクションの両方が含まれています。
+*/etc/nginx/nginx.conf* 構成ファイルの内容を次のファイルに **置き換えます**。 この例では、1 つの構成ファイルに `http` セクションと `server` セクションの両方が含まれています。
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
@@ -417,7 +438,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 クリックジャッキング攻撃を軽減するには、次の手順に従います。
 
-1. `nginx.conf` ファイルを編集します。
+1. *nginx.conf* ファイルを編集します。
 
    ```bash
    sudo nano /etc/nginx/nginx.conf
@@ -432,7 +453,7 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 このヘッダーは応答コンテンツの種類をオーバーライドしないようにブラウザーに指示するので、ほとんどのブラウザーで MIME スニッフィングが阻止されます。 `nosniff` オプションを指定すると、サーバーでのコンテンツが `text/html` の場合、ブラウザーでは `text/html` と表示されます。
 
-1. `nginx.conf` ファイルを編集します。
+1. *nginx.conf* ファイルを編集します。
 
    ```bash
    sudo nano /etc/nginx/nginx.conf

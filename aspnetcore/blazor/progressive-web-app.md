@@ -5,7 +5,7 @@ description: 最新のブラウザー機能を使用してデスクトップ ア
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 01/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: f400319ef81b3d7768bdbdab84f46d3f9c50bb46
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 196e19528341e98ac06cefb08ba92f9e47d265ea
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96855444"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252475"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly を使用してプログレッシブ Web アプリケーションをビルドする
 
@@ -59,15 +59,109 @@ ms.locfileid: "96855444"
 
 # <a name="visual-studio-code--net-core-cli"></a>[Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-`--pwa` スイッチを使用して、コマンド シェルで PWA プロジェクトを作成します。
+次のコマンドを使用し、コマンド シェルで `--pwa` スイッチを使用して PWA プロジェクトを作成します。
 
 ```dotnetcli
-dotnet new blazorwasm -o MyNewProject --pwa
+dotnet new blazorwasm -o MyBlazorPwa --pwa
 ```
+
+上記のコマンドでは、`-o|--output` オプションによって `MyBlazorPwa` という名前のアプリ用の新しいフォルダーが作成されます。
 
 ---
 
 必要に応じて、ASP.NET Core でホストされるテンプレートから作成されたアプリに対して PWA を構成できます。 PWA シナリオは、ホスティング モデルに依存しません。
+
+## <a name="convert-an-existing-no-locblazor-webassembly-app-into-a-pwa"></a>既存の Blazor WebAssembly アプリを PWA に変換する
+
+このセクションのガイダンスに従って、既存の Blazor WebAssembly アプリを PWA に変換します。
+
+アプリのプロジェクト ファイル内で:
+
+* 次の `ServiceWorkerAssetsManifest` プロパティを `PropertyGroup` に追加します。
+
+  ```xml
+    ...
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+   ```
+
+* 次の `ServiceWorker` 項目を `ItemGroup` に追加します。
+
+  ```xml
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" 
+      PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+  ```
+
+静的資産を取得するには、次の **いずれか** の方法を使用します。
+
+::: moniker range=">= aspnetcore-5.0"
+
+* コマンド シェルで [`dotnet new`](/dotnet/core/tools/dotnet-new) コマンドを使用して、新しい PWA プロジェクトを個別に作成します。
+
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa
+  ```
+  
+  上記のコマンドでは、`-o|--output` オプションによって `MyBlazorPwa` という名前のアプリ用の新しいフォルダーが作成されます。
+  
+  アプリを最新リリース用に変換しない場合は、`-f|--framework` オプションを渡します。 次の例は、ASP.NET Core バージョン 3.1 用のアプリを作成します。
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+
+* 次の URL の ASP.NET Core GitHub リポジトリに移動します。これは、5.0 リリースの参照ソースと資産にリンクしています。 5\.0 リリースのアプリを変換しない場合は、アプリに適用する **[Switch branches or tags]\(分岐またはタグの切り替え\)** ドロップダウン リストから、使用しているリリースを選択します。
+
+  [dotnet/aspnetcore (リリース 5.0) Blazor WebAssembly プロジェクト テンプレート `wwwroot` フォルダー](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* コマンド シェルで [`dotnet new`](/dotnet/core/tools/dotnet-new) コマンドを使用して、新しい PWA プロジェクトを個別に作成します。 `-f|--framework` オプションを渡してバージョンを選択します。 次の例は、ASP.NET Core バージョン 3.1 用のアプリを作成します。
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+  
+  上記のコマンドでは、`-o|--output` オプションによって `MyBlazorPwa` という名前のアプリ用の新しいフォルダーが作成されます。
+
+* 次の URL の ASP.NET Core GitHub リポジトリに移動します。これは、3.1 リリースの参照ソースと資産にリンクしています。
+
+  [dotnet/aspnetcore (リリース 3.1) Blazor WebAssembly プロジェクト テンプレート `wwwroot` フォルダー](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  > [!NOTE]
+  > Blazor WebAssembly プロジェクト テンプレートの URL は、ASP.NET Core 3.1 のリリース後に変更されました。 5\.0 以降の参照資産は、次の URL から入手できます。
+  >
+  > [dotnet/aspnetcore (リリース 5.0) Blazor WebAssembly プロジェクト テンプレート `wwwroot` フォルダー](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+::: moniker-end
+
+作成したアプリのソース `wwwroot` フォルダーから、または `dotnet/aspnetcore` GitHub リポジトリの参照資産から、次のファイルをアプリの `wwwroot` フォルダーにコピーします。
+
+* `icon-512.png`
+* `manifest.json`
+* `service-worker.js`
+* `service-worker.published.js`
+
+アプリの `wwwroot/index.html` ファイルで、次のことを行います。
+
+* マニフェストとアプリのアイコンに `<link>` 要素を追加します。
+
+  ```html
+  <link href="manifest.json" rel="manifest" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+  ```
+
+* `blazor.webassembly.js` スクリプト タグの直後に、次の `<script>` タグを終了タグ `</body>` の内側に追加します。
+
+  ```html
+      ...
+      <script>navigator.serviceWorker.register('service-worker.js');</script>
+  </body>
+  ```
 
 ## <a name="installation-and-app-manifest"></a>インストールとアプリ マニフェスト
 

@@ -5,7 +5,7 @@ description: 外部コンポーネント ライブラリから、コンポーネ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/27/2020
+ms.date: 01/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 24a5b93a18cfe36c50d9739ba56d12aca41615c0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 14370f9bbf45079fd3654d3e55af4178691cf4f5
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94570160"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252553"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>ASP.NET Core Razor コンポーネント クラス ライブラリ
 
@@ -50,7 +50,7 @@ ms.locfileid: "94570160"
    1. ソリューションを右クリックします。 **[追加]**  >  **[既存のプロジェクト]** を選択します。
    1. RCL のプロジェクト ファイルに移動します。
    1. RCL のプロジェクト ファイル (`.csproj`) を選択します。
-1. アプリから RCL の参照を追加します。
+1. アプリから RCL への参照を追加します。
    1. アプリ プロジェクトを右クリックします。 **[追加]**  >  **[参照]** の順に選択します。
    1. RCL プロジェクトを選択します。 **[OK]** を選択します。
 
@@ -121,11 +121,13 @@ Welcome to your new app.
 
 必要に応じて、最上位の `_Import.razor` ファイルに `@using ComponentLibrary` ディレクティブを含めて、プロジェクト全体でライブラリのコンポーネントを使用できるようにします。 ディレクティブを任意のレベルの `_Import.razor` ファイルに追加して、名前空間をフォルダー内の 1 つのコンポーネントまたは複数のコンポーネントに適用します。
 
-<!-- HOLD for reactivation at 5.x
-
 ::: moniker range=">= aspnetcore-5.0"
 
-To provide `Component1`'s `my-component` CSS class to the component, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
+[CSS の分離](xref:blazor/components/css-isolation)を使用するライブラリ コンポーネントの場合、ライブラリを使用するアプリでライブラリの個々のコンポーネント スタイルシートを明示的にリンクする必要はありません。 コンポーネント スタイルは、使用アプリで自動的に利用できるようになります。
+
+<!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
+
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -137,25 +139,31 @@ To provide `Component1`'s `my-component` CSS class to the component, link to the
 </div>
 ```
 
-To provide the stylesheet across the app, you can alternatively link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+NEXT PARAGRAPH: RECAST TO 'CAN ALSO ADOPT ...'
+
+-->
+
+ライブラリの `wwwroot` フォルダーのスタイルシートから追加のライブラリ コンポーネント スタイルを提供するには、使用アプリの `wwwroot/index.html` ファイル (Blazor WebAssembly) または `Pages/_Host.cshtml` ファイル (Blazor Server) のスタイルシートをリンクします。
 
 ```html
 <head>
     ...
-    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+    <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 </head>
 ```
+
+<!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
 
 When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
 * Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
+-->
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
-
--->
 
 `Component1` の `my-component`CSS クラスを提供するには、アプリの `wwwroot/index.html` ファイル (Blazor WebAssembly) または `Pages/_Host.cshtml` ファイル (Blazor Server) 内でライブラリのスタイルシートにリンクします。
 
@@ -166,11 +174,7 @@ When the `Link` component is used in a child component, the linked asset is also
 </head>
 ```
 
-<!-- HOLD for reactivation at 5.x
-
 ::: moniker-end
-
--->
 
 ## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>静的アセットを含む Razor コンポーネント クラス ライブラリを作成する
 

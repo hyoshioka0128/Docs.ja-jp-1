@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 0bae3f888a1b7a3c2860b85754779189c636d86f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e81ad43e1c3b86900848671d9da377a5c04a2a82
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057701"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253008"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Apache 搭載の Linux で ASP.NET Core をホストする
 
@@ -70,7 +70,7 @@ dotnet publish --configuration Release
 
 リバース プロキシは、動的 Web アプリを提供するための一般的な仕組みです。 リバース プロキシは HTTP 要求を終了させ、ASP.NET アプリに転送します。
 
-プロキシ サーバーは、クライアント要求を処理せずに他のサーバーに転送するサーバーです。 リバース プロキシは、一般的に任意のクライアントに代わって固定の送信先に転送します。 このガイドでは、Kestrel が ASP.NET Core アプリを提供しているものと同じサーバー上で実行されるリバース プロキシとして Apache を構成します。
+プロキシ サーバーでは、要求自体を実行せずに、別のサーバーにクライアント要求が転送されます。 リバース プロキシは、一般的に任意のクライアントに代わって固定の送信先に転送します。 このガイドでは、Kestrel が ASP.NET Core アプリを提供しているものと同じサーバー上で実行されるリバース プロキシとして Apache を構成します。
 
 要求はリバース プロキシによって転送されます。そのため、[Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) パッケージの [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) を使用します。 リダイレクト URI とその他のセキュリティ ポリシーを正しく機能させるために、このミドルウェアは、`X-Forwarded-Proto` ヘッダーを利用して、`Request.Scheme` を更新します。
 
@@ -78,7 +78,7 @@ dotnet publish --configuration Release
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-他のミドルウェアを呼び出す前に、`Startup.Configure` の一番上にある <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> メソッドを呼び出します。 ミドルウェアを構成して、`X-Forwarded-For` および `X-Forwarded-Proto` ヘッダーを転送します。
+他のミドルウェアを呼び出す前に、`Startup.Configure` の一番上にある <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> メソッドを呼び出します。 ミドルウェアを構成して、`X-Forwarded-For` および `X-Forwarded-Proto` ヘッダーを転送します。
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -93,7 +93,7 @@ app.UseAuthentication();
 
 ミドルウェアに対して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> が指定されていない場合、転送される既定のヘッダーは `None` です。
 
-標準 localhost アドレス (127.0.0.1) など、ループバック アドレス (127.0.0.0/8、[::1]) 上で実行するプロキシは、既定で信頼されます。 組織内のその他の信頼されているプロキシまたはネットワークによってインターネットと Web サーバーの間の要求が処理される場合は、それらを、<xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> を使用して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> または <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> のリストに追加します。 次の例では、IP アドレス 10.0.0.100 にある信頼されているプロキシ サーバーが `Startup.ConfigureServices` 内の Forwarded Headers Middleware `KnownProxies` に追加されます。
+標準 localhost アドレス (127.0.0.1) を含むループバック アドレス (`127.0.0.0/8, [::1]`) 上で実行されるプロキシは、既定で信頼されます。 組織内のその他の信頼されているプロキシまたはネットワークによってインターネットと Web サーバーの間の要求が処理される場合は、それらを、<xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> を使用して <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> または <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> のリストに追加します。 次の例では、IP アドレス 10.0.0.100 にある信頼されているプロキシ サーバーが `Startup.ConfigureServices` 内の Forwarded Headers Middleware `KnownProxies` に追加されます。
 
 ```csharp
 // using System.Net;
@@ -163,10 +163,20 @@ Apache の構成ファイルは、`/etc/httpd/conf.d/` ディレクトリ内に�
 </VirtualHost>
 ```
 
-`VirtualHost` ブロックは、サーバー上の 1 つまたは複数のファイルに複数回出現することができます。 上記の構成ファイルでは、Apache はポート 80 でパブリック トラフィックを受け入れます。 ドメイン `www.example.com` が提供されており、別名 `*.example.com` は同じ Web サイトに解決されます。 詳しくは、「[名前ベースのバーチャル ホスト](https://httpd.apache.org/docs/current/vhosts/name-based.html)」をご覧ください。 要求は、ルートにおいて、127.0.0.1 にあるサーバーのポート 5000 にプロキシされます。 双方向通信の場合は、`ProxyPass` と `ProxyPassReverse` が必要です。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
+::: moniker range=">= aspnetcore-5.0"
+
+`VirtualHost` ブロックは、サーバー上の 1 つまたは複数のファイルに複数回出現することができます。 上記の構成ファイルでは、Apache はポート 80 でパブリック トラフィックを受け入れます。 ドメイン `www.example.com` が提供されており、別名 `*.example.com` は同じ Web サイトに解決されます。 詳細については、[名前ベースのバーチャル ホストのサポート](https://httpd.apache.org/docs/current/vhosts/name-based.html)に関するページを参照してください。 要求は、ルートにおいて、127.0.0.1 にあるサーバーのポート 5000 にプロキシされます。 双方向通信の場合は、`ProxyPass` と `ProxyPassReverse` が必要です。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel/endpoints)に関するセクションを参照してください。
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`VirtualHost` ブロックは、サーバー上の 1 つまたは複数のファイルに複数回出現することができます。 上記の構成ファイルでは、Apache はポート 80 でパブリック トラフィックを受け入れます。 ドメイン `www.example.com` が提供されており、別名 `*.example.com` は同じ Web サイトに解決されます。 詳細については、[名前ベースのバーチャル ホストのサポート](https://httpd.apache.org/docs/current/vhosts/name-based.html)に関するページを参照してください。 要求は、ルートにおいて、127.0.0.1 にあるサーバーのポート 5000 にプロキシされます。 双方向通信の場合は、`ProxyPass` と `ProxyPassReverse` が必要です。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
+
+::: moniker-end
 
 > [!WARNING]
-> **VirtualHost** ブロックで適切な [ServerName ディレクティブ](https://httpd.apache.org/docs/current/mod/core.html#servername)を指定しないと、アプリにセキュリティ上の脆弱性が生じます。 親ドメイン全体を制御する場合、サブドメイン ワイルドカード バインド (たとえば、`*.example.com`) にこのセキュリティ リスクはありません (脆弱である `*.com` とは対照的)。 詳細については、[rfc7230 セクション-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) を参照してください。
+> **VirtualHost** ブロックで適切な [ServerName ディレクティブ](https://httpd.apache.org/docs/current/mod/core.html#servername)を指定しないと、アプリにセキュリティ上の脆弱性が生じます。 親ドメイン全体を制御する場合、サブドメイン ワイルドカード バインド (たとえば、`*.example.com`) にこのセキュリティ リスクはありません (脆弱である `*.com` とは対照的)。 詳細については、[RFC 7230 セクション 5.4](https://tools.ietf.org/html/rfc7230#section-5.4) を参照してください。
 
 `ErrorLog` および `CustomLog` ディレクティブを使って、`VirtualHost` ごとにログを構成できます。 `ErrorLog` は、サーバーがエラーをログに記録する場所です。`CustomLog` には、ログ ファイルのファイル名と形式を設定します。 この例では、要求の情報がログに記録される場所です。 1 つの要求につき 1 行が記録されます。
 
@@ -236,6 +246,7 @@ systemd-escape "<value-to-escape>"
 コロン (`:`) 区切り記号は、環境変数の名前ではサポートされていません。 コロンの代わりに 2 つのアンダースコア (`__`) を使用します。 環境変数が構成に読み取られるときに、[環境変数構成プロバイダー](xref:fundamentals/configuration/index#environment-variables-configuration-provider)によって 2 つのアンダースコアがコロンに変換されます。 次の例では、接続文字列キー `ConnectionStrings:DefaultConnection` はサービス定義ファイルでは `ConnectionStrings__DefaultConnection` と設定されています。
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 コロン (`:`) 区切り記号は、環境変数の名前ではサポートされていません。 コロンの代わりに 2 つのアンダースコア (`__`) を使用します。 環境変数が構成に読み取られるときに、[環境変数構成プロバイダー](xref:fundamentals/configuration/index#environment-variables)によって 2 つのアンダースコアがコロンに変換されます。 次の例では、接続文字列キー `ConnectionStrings:DefaultConnection` はサービス定義ファイルでは `ConnectionStrings__DefaultConnection` と設定されています。
@@ -350,8 +361,19 @@ rich rules:
 
 次のいずれかの方法を使用して、`dotnet run` コマンド用の開発または開発環境 (Visual Studio Code の F5 または Ctrl + F5 キー) で証明書を使用するように、アプリを構成します。
 
+::: moniker range=">= aspnetcore-5.0"
+
+* [構成から既定の証明書を置き換える](xref:fundamentals/servers/kestrel/endpoints#configuration) (*推奨*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * [構成から既定の証明書を置き換える](xref:fundamentals/servers/kestrel#configuration) (*推奨*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
 
 **セキュリティで保護された (HTTPS) クライアント接続用にリバース プロキシを構成する**
 
@@ -417,7 +439,7 @@ sudo systemctl restart httpd
 
 ### <a name="additional-headers"></a>その他のヘッダー
 
-悪意のある攻撃から防御するために、変更または追加する必要があるヘッダーがいくつかあります。 必ず `mod_headers` モジュールをインストールします。
+悪意のある攻撃からセキュリティで保護するために、変更または追加する必要があるヘッダーがいくつかあります。 必ず `mod_headers` モジュールをインストールします。
 
 ```bash
 sudo yum install mod_headers
@@ -453,7 +475,7 @@ sudo nano /etc/httpd/conf/httpd.conf
 
 ### <a name="load-balancing"></a>負荷分散
 
-この例では、同じインスタンス コンピューターに CentOS 7 と Kestrel をインストールし、Apache をセットアップおよび構成する方法を示します。 単一障害点を持たないように、*mod_proxy_balancer* を使い、**VirtualHost** を変更することで、Apache プロキシ サーバーの背後で複数インスタンスの Web アプを管理できるようにします。
+この例では、同じインスタンス コンピューターに CentOS 7 と Kestrel をインストールし、Apache をセットアップおよび構成する方法を示します。 単一障害点を持たないように、*mod_proxy_balancer* を使い、**VirtualHost** を変更することで、Apache プロキシ サーバーの背後で Web アプリの複数インスタンスを管理できるようにします。
 
 ```bash
 sudo yum install mod_proxy_balancer

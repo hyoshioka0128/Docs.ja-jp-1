@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: e5f9a07db742ce2e26f03c0b6e1caa1904e4e0d9
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: acaa276efda9fb4d09a5c1b1ca59c6abde1b64ec
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058234"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252392"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
 
@@ -53,7 +53,7 @@ Blazor フレームワークには、同期と非同期のライフサイクル 
 
 `Render` のライフサイクル:
 
-1. コンポーネントでそれ以上のレンダリング操作を停止します。
+1. コンポーネントでそれ以上のレンダリング操作を行わないようにします。
    * 最初のレンダリングの後。
    * [`ShouldRender`](#suppress-ui-refreshing) が `false` の場合。
 1. レンダリング ツリーの差分を作成し、コンポーネントをレンダリングします。
@@ -62,7 +62,7 @@ Blazor フレームワークには、同期と非同期のライフサイクル 
 
 ![Render ライフサイクル](lifecycle/_static/lifecycle3.png)
 
-Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行われると、結果としてレンダリングが実行されます。
+Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行われると、結果としてレンダリングが実行されます。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
 
 ## <a name="lifecycle-methods"></a>ライフサイクル メソッド
 
@@ -215,6 +215,8 @@ protected override bool ShouldRender()
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、状態が変更されたことをコンポーネントに通知します。 必要に応じて、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出すと、コンポーネントが再レンダリングされます。
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、<xref:Microsoft.AspNetCore.Components.EventCallback> メソッドに対して自動的に呼び出されます。 詳細については、「<xref:blazor/components/event-handling#eventcallback>」を参照してください。
+
+詳細については、「<xref:blazor/components/rendering>」を参照してください。
 
 ## <a name="handle-incomplete-async-actions-at-render"></a>レンダリング時の不完全な非同期アクションを処理する
 

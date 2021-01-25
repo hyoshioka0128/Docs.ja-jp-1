@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: a4f3234aa4b4b02244d17615a9033db3094d3580
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 3da9ea045de996602ead052f6f13ffc999273a50
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024783"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252488"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>認証ライブラリを使用して、ASP.NET Core Blazor WebAssembly スタンドアロン アプリをセキュリティで保護する
 
@@ -33,6 +33,9 @@ ms.locfileid: "98024783"
 *Azure Active Directory (AAD) および Azure Active Directory B2C (AAD B2C) については、このトピックのガイダンスに従わず、この目次ノードの AAD および AAD B2C のトピックを参照してください。*
 
 [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) ライブラリを使用する [スタンドアロン Blazor WebAssembly アプリ](xref:blazor/hosting-models#blazor-webassembly)を作成するには、選択したツールのガイダンスに従ってください。
+
+> [!NOTE]
+> Identity プロバイダー (IP) では [OpenID Connect (OIDC)](https://openid.net/connect/) を使用する必要があります。 たとえば、Facebook の IP は OIDC に準拠しているプロバイダーではないため、このトピックのガイダンスは Facebook IP では機能しません。 詳細については、「<xref:blazor/security/webassembly/index#authentication-library>」を参照してください。
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -99,12 +102,28 @@ builder.Services.AddOidcAuthentication(options =>
 
 ```json
 {
-    "Local": {
-        "Authority": "{AUTHORITY}",
-        "ClientId": "{CLIENT ID}"
-    }
+  "Local": {
+    "Authority": "{AUTHORITY}",
+    "ClientId": "{CLIENT ID}"
+  }
 }
 ```
+
+Google OAuth 2.0 OIDC の例:
+
+```json
+{
+  "Local": {
+    "Authority": "https://accounts.google.com/",
+    "ClientId": "2.......7-e.....................q.apps.googleusercontent.com",
+    "PostLogoutRedirectUri": "https://localhost:5001/authentication/logout-callback",
+    "RedirectUri": "https://localhost:5001/authentication/login-callback",
+    "ResponseType": "id_token"
+  }
+}
+```
+
+リダイレクト URI (`https://localhost:5001/authentication/login-callback`) は、[Google APIs コンソール](https://console.developers.google.com/apis/dashboard)で **[Credentials]\(認証情報\)**  >  **[`{NAME}`]**  >  **[Authorized redirect URIs]\(承認されたリダイレクト URI\)** を使用して登録します。ここで、`{NAME}` は、Google APIs Console の **OAuth 2.0 クライアント ID** アプリの一覧にあるアプリのクライアント名です。
 
 スタンドアロン アプリの認証サポートは、OpenID Connect (OIDC) を使用して提供されます。 <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> メソッドでは、OIDC を使用してアプリを認証するために必要なパラメーターを構成するためのコールバックを受け入れます。 アプリの構成に必要な値は、OIDC に準拠する IP から取得できます。 アプリを登録するときに値を取得します。これは通常、オンライン ポータルで実行されます。
 

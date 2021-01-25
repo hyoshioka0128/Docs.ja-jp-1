@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 990882c03ddc14c664aa8da0518fb36087199aca
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5bdfcc5660b4c897d3552d4cf25e43dade71541c
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94550518"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252514"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をデバッグする
 
@@ -50,6 +50,7 @@ Blazor WebAssembly アプリは、Chromium ベースのブラウザー (Edge/Chr
 * 未処理の例外の発生時に中断する。
 * デバッグ プロキシが実行される前に、アプリの起動中にブレークポイントにヒットします。 これには、`Program.Main` (`Program.cs`) のブレークポイントと、アプリから要求された最初のページによって読み込まれるコンポーネントの [`OnInitialized{Async}` メソッド](xref:blazor/components/lifecycle#component-initialization-methods)のブレークポイントが含まれます。
 * ローカル以外のシナリオ (たとえば、[Linux 用 Windows サブシステム (WSL)](/windows/wsl/) や [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)) でデバッグします。
+* [`dotnet watch run`](xref:tutorials/dotnet-watch) を使用してアプリを実行するなどして、デバッグ中にホステッド Blazor ソリューションのバックエンド `*Server*` アプリを自動的に再構築します。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 

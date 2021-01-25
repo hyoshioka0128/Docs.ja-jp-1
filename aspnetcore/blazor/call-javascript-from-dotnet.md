@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 11312a34dc62dd3bace791819f62379bffbb1c49
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 2502f43f4eaf245996827f704462ec340bbb8e07
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97592838"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252540"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor で .NET メソッドから JavaScript 関数を呼び出す
 
@@ -527,7 +527,7 @@ var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-前の例の `import` 識別子は、JavaScript モジュールをインポートするために特別に使用される特殊な識別子です。 安定した静的な Web アセット パスを使用してモジュールを指定します: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`。 プレースホルダー `{LIBRARY NAME}` は、ライブラリの名前です。 プレースホルダー `{PATH UNDER WWWROOT}` は、`wwwroot` の下にあるスクリプトへのパスです。
+前の例の `import` 識別子は、JavaScript モジュールをインポートするために特別に使用される特殊な識別子です。 安定した静的な Web アセット パスを使用してモジュールを指定します: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`。 JavaScript ファイルへの正しい静的アセット パスを作成するためには、現在のディレクトリ (`./`) に対するパス セグメントが必要です。 プレースホルダー `{LIBRARY NAME}` は、ライブラリの名前です。 プレースホルダー `{PATH UNDER WWWROOT}` は、`wwwroot` の下にあるスクリプトへのパスです。
 
 <xref:Microsoft.JSInterop.IJSRuntime> により、モジュールが `IJSObjectReference` としてインポートされます。これは、.NET コードから JavaScript オブジェクトへの参照を表します。 モジュールからエクスポートされた JavaScript 関数を呼び出すには、`IJSObjectReference` を使用します。
 
@@ -655,29 +655,9 @@ export function setMapCenter(map, latitude, longitude) {
 
 ## <a name="size-limits-on-js-interop-calls"></a>JS 相互運用呼び出しのサイズ制限
 
-Blazor WebAssembly では、フレームワークによって JS 相互運用呼び出しの入力と出力のサイズが制限されることはありません。
+Blazor WebAssembly では、フレームワークによって JS 相互運用の入力と出力のサイズが制限されることはありません。
 
-Blazor Server では、JS 相互運用呼び出しの結果が、SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>) によって適用されるペイロードの最大サイズで制限されます。既定値は 32 KB です。 アプリケーションで <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> よりもペイロードが大きい JS 相互運用呼び出しに応答しようとすると、エラーがスローされます。 <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> を変更することで、制限をより大きく構成できます。 次の例では、受信メッセージの最大サイズを 64 KB (64 * 1024 * 1024) に設定します。
-
-```csharp
-services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
-```
-
-SignalR の制限を増やすと、より多くのサーバー リソースを使用する必要が発生し、悪意のあるユーザーからのより大きなリスクにサーバーがさらされます。 また、大量のコンテンツを文字列またはバイト配列としてメモリに読み取ると、ガベージ コレクターがうまく機能しない割り当てが発生する可能性もあり、その結果、パフォーマンスがさらに低下します。 大きなペイロードを読み取るための 1 つの選択肢は、小さいチャンクでコンテンツを送信し、ペイロードを <xref:System.IO.Stream> として処理することを検討することです。 これは、大量の JSON ペイロードを読み取る場合、またはデータを JavaScript で生バイトとして利用できる場合に使用できます。 Blazor Server で大規模なバイナリ ペイロードを送信する、`InputFile` コンポーネントに似た手法を使用する方法の例については、[Binary Submit サンプル アプリ](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit)を参照してください。
-
-JavaScript と Blazor の間で大量のデータを転送するコードを開発するときは、次のガイダンスを考慮してください。
-
-* データをより小さな部分にスライスし、すべてのデータがサーバーによって受信されるまでデータ セグメントを順番に送信します。
-* JavaScript および C# コードで大きなオブジェクトを割り当てないでください。
-* データを送受信するときに、メイン UI スレッドを長時間ブロックしないでください。
-* プロセスの完了時またはキャンセル時に、消費していたメモリを解放します。
-* セキュリティ上の理由から、次の追加要件を適用します。
-  * 渡すことのできるファイルまたはデータの最大サイズを宣言します。
-  * クライアントからサーバーへの最小アップロード レートを宣言します。
-* データがサーバーによって受信されたら、データは:
-  * すべてのセグメントが収集されるまで、一時的にメモリ バッファーに格納できます。
-  * 直ちに消費できます。 たとえば、データは、データベースに直ちに格納することも、セグメントを受信するたびにディスクに書き込むこともできます。
+Blazor Server では、ハブ メソッドで許可される SignalR 受信メッセージの最大サイズによって、JS 相互運用呼び出しのサイズが制限されます。これは、<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> によって適用されます (既定値: 32 KB)。 JS から .NET への SignalR メッセージが <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> より大きい場合は、エラーがスローされます。 このフレームワークでは、ハブからクライアントへの SignalR メッセージのサイズが制限されることはありません。 詳細については、「<xref:blazor/call-dotnet-from-javascript#size-limits-on-js-interop-calls>」を参照してください。
   
 ## <a name="js-modules"></a>JS モジュール
 

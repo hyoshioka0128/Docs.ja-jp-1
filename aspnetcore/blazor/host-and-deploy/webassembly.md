@@ -5,7 +5,7 @@ description: ASP.NET Core、Content Delivery Networks (CDN)、ファイル サ�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/09/2020
+ms.date: 01/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 55289dd7048c08ac61432c7cc062e74d2e69ee24
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 2b464c2b6ca434ce4c3b559480da69945266ff69
+ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97753128"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98570974"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly のホストと展開
 
@@ -52,15 +52,12 @@ Blazor は、適切な圧縮ファイルにサービスを提供するため、�
 * IIS の `web.config` の圧縮構成については、[IIS の「Brotli と Gzip の圧縮」](#brotli-and-gzip-compression)セクションを参照してください。 
 * GitHub ページなど、静的に圧縮されたファイル コンテント ネゴシエーションをサポートしない静的ホスティング ソリューションでホストするとき、Brotli 圧縮ファイルをフェッチし、デコードするようにアプリを構成することを検討してください。
 
-  * [google/brotli GitHub リポジトリ](https://github.com/google/brotli)から、JavaScript Brotli デコーダーを入手します。 2020 年 9 月の時点で、デコーダー ファイルは `decode.js` という名前で、リポジトリの [`js` フォルダー](https://github.com/google/brotli/tree/master/js)にあります。
-  
-    > [!NOTE]
-    > 以前のバージョンは [google/brotli GitHub リポジトリ](https://github.com/google/brotli)の `decode.js` スクリプト (`decode.min.js`) の縮小バージョンにあります。 [Window.BrotliDecode が decode.min.js (google/brotli #844) で設定されない](https://github.com/google/brotli/issues/844)問題が解決されるまで、自分でスクリプトを縮小するか、[npm package](https://www.npmjs.com/package/brotli) を使用してください。 このセクションのサンプル コードでは、スクリプトの **未縮小** バージョンを使用しています。
+  * [google/brotli GitHub リポジトリ](https://github.com/google/brotli)から、JavaScript Brotli デコーダーを入手します。 デコーダー ファイルは、`decode.min.js` という名前で、リポジトリの [`js` フォルダー](https://github.com/google/brotli/tree/master/js)にあります。
 
   * そのデコーダーを使用するようにアプリを更新します。 `wwwroot/index.html` の終了タグ `<body>` に含まれるマークアップを次のように変更します。
   
     ```html
-    <script src="decode.js"></script>
+    <script src="decode.min.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -620,18 +617,6 @@ http {
 
 運用環境での Nginx Web サーバーの構成に関する詳細については、「[Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/)」 (NGINX Plus と NGINX 構成ファイルの作成) を参照してください。
 
-### <a name="nginx-in-docker"></a>Docker での Nginx
-
-Nginx を使用して Docker で Blazor をホストするには、Alpine ベースの Nginx イメージを使用するように Dockerfile をセットアップします。 `nginx.config` ファイルをコンテナーにコピーするように、Dockerfile を更新します。
-
-次の例に示すように、1 つの行を Dockerfile に追加します。
-
-```dockerfile
-FROM nginx:alpine
-COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/nginx.conf
-```
-
 ### <a name="apache"></a>Apache
 
 Blazor WebAssembly アプリを CentOS 7 以降にデプロイするには:
@@ -874,7 +859,7 @@ dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" 
 Linux または macOS の場合:
 
 ```console
-for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
 ```
 
