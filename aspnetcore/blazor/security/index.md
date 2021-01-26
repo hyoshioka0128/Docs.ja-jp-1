@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: f8b31c617ef71003042d31690de49d48946ac3d5
-ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
+ms.openlocfilehash: 35620299b1138ca45a6ebf1d789a9f4aa9b29518
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/22/2021
-ms.locfileid: "98710647"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751606"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>ASP.NET Core Blazor の認証と承認
 
@@ -299,7 +299,7 @@ UI オプションまたはアクセスを制御するロールやポリシー�
 * 承認済みの認証された (サインインした) ユーザー。
 * 未承認の認証されていない (サインアウトした) ユーザー。
 
-<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> コンポーネントは、`NavMenu` コンポーネント (`Shared/NavMenu.razor`) で使用して [`NavLink` コンポーネント](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) のリスト項目 (`<li>...</li>`) を表示できますが、この方法では、表示された出力からリスト項目が削除されるだけであることに注意してください。 ユーザーがコンポーネントに移動するのを防ぐことはできません。
+<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> コンポーネントは、`NavMenu` コンポーネント (`Shared/NavMenu.razor`) で使用して [`NavLink` コンポーネント](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) のリスト項目 (`<li>...</li>`) を表示できますが、この方法では、表示された出力からリスト項目が削除されるだけであることに注意してください。 ユーザーがコンポーネントに移動するのを防ぐことはできません。
 
 ### <a name="role-based-and-policy-based-authorization"></a>ロールベースとリソースベースの承認
 
