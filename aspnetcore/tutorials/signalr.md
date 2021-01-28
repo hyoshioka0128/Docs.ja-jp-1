@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: 1dad2264250bf43ec6c1df679b8754a82a5addfd
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1c77648f809562389667da452bdbf3f25f67c558
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "95417670"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689319"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a>チュートリアル: ASP.NET Core SignalR の概要
 
@@ -62,23 +62,18 @@ ms.locfileid: "95417670"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
-* メニューから、 **[ファイル]、[新規プロジェクト]** の順に選択します。
-
-* **[新しいプロジェクト]** ダイアログで、 **[ASP.NET Core Web アプリケーション]** 、 **[次へ]** の順に選択します。
-
-* **[新しいプロジェクトの構成]** ダイアログで、プロジェクトに *SignalRChat* という名前を付けて、 **[作成]** を選択します。
-
-* **[新しい ASP.NET Core Web アプリケーションを作成する]** ダイアログで、 **[.NET Core]** と **[ASP.NET Core 3.1]** を選択します。 
-
-* Razor Pages を使用するプロジェクトを作成するには **[Web アプリケーション]** を選択し、次に **[作成]** を選択します。
+  * メニューから、 **[ファイル]、[新規プロジェクト]** の順に選択します。
+  * **[新しいプロジェクト]** ダイアログで、 **[ASP.NET Core Web アプリケーション]** 、 **[次へ]** の順に選択します。
+  * **[新しいプロジェクトの構成]** ダイアログで、プロジェクトに *SignalRChat* という名前を付けて、 **[作成]** を選択します。
+  * **[新しい ASP.NET Core Web アプリケーションを作成する]** ダイアログで、 **[.NET Core]** と **[ASP.NET Core 3.1]** を選択します。
+  * Razor Pages を使用するプロジェクトを作成するには **[Web アプリケーション]** を選択し、次に **[作成]** を選択します。
 
   ![Visual Studio の [新しいプロジェクト] ダイアログ ボックス](signalr/_static/3.x/signalr-new-project-dialog.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
-* 新しいプロジェクト フォルダーを作成するフォルダーで[統合ターミナル](https://code.visualstudio.com/docs/editor/integrated-terminal)を開きます。
-
-* 次のコマンドを実行します。
+  * 新しいプロジェクト フォルダーを作成するフォルダーで[統合ターミナル](https://code.visualstudio.com/docs/editor/integrated-terminal)を開きます。
+  * 次のコマンドを実行します。
 
    ```dotnetcli
    dotnet new webapp -o SignalRChat
@@ -88,13 +83,10 @@ ms.locfileid: "95417670"
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-* メニューから、 **[ファイル]、[新しいソリューション]** の順に選択します。
-
-* **[.NET Core] > [アプリ] > [Web アプリケーション]** の順に選択し ( **[Web アプリケーション (Model-View-Controller)]** は選択しないでください)、 **[次へ]** を選択します。
-
-* **[ターゲット フレームワーク]** が **.NET Core 3.1** に設定されていることを確認してから、 **[次へ]** を選択します。
-
-* プロジェクトに *SignalRChat* という名前を付けて、 **[作成]** を選択します。
+  * メニューから、 **[ファイル]、[新しいソリューション]** の順に選択します。
+  * **[.NET Core] > [アプリ] > [Web アプリケーション]** の順に選択し ( **[Web アプリケーション (Model-View-Controller)]** は選択しないでください)、 **[次へ]** を選択します。
+  * **[ターゲット フレームワーク]** が **.NET Core 3.1** に設定されていることを確認してから、 **[次へ]** を選択します。
+  * プロジェクトに *SignalRChat* という名前を付けて、 **[作成]** を選択します。
 
 ---
 
@@ -104,15 +96,11 @@ SignalR サーバー ライブラリは、ASP.NET Core 3.1 共有フレームワ
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
-* **ソリューション エクスプローラー** で、プロジェクトを右クリックし、 **[追加]** > **[クライアント側のライブラリ]** を選択します。
-
-* **[Add Client-Side Library]\(クライアント側のライブラリの追加\)** ダイアログで、 **[プロバイダー]** に対して **[unpkg]** を選択します。
-
-* **[ライブラリ]** に、「`@microsoft/signalr@latest`」と入力します。
-
-* **[Choose specific files]\(特定のファイルの選択\)** を選択して *dist/browser* フォルダーを展開し、*signalr.js* と *signalr.min.js* を選択します。
-
-* **[ターゲットの場所]** を *wwwroot/js/signalr/* に設定して、 **[インストール]** を選択します。
+  * **ソリューション エクスプローラー** で、プロジェクトを右クリックし、 **[追加]** > **[クライアント側のライブラリ]** を選択します。
+  * **[Add Client-Side Library]\(クライアント側のライブラリの追加\)** ダイアログで、 **[プロバイダー]** に対して **[unpkg]** を選択します。
+  * **[ライブラリ]** に、「`@microsoft/signalr@latest`」と入力します。
+  * **[Choose specific files]\(特定のファイルの選択\)** を選択して *dist/browser* フォルダーを展開し、*signalr.js* と *signalr.min.js* を選択します。
+  * **[ターゲットの場所]** を *wwwroot/js/signalr/* に設定して、 **[インストール]** を選択します。
 
   ![クライアント側のライブラリの追加ダイアログ - ライブラリの選択](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
@@ -120,13 +108,13 @@ SignalR サーバー ライブラリは、ASP.NET Core 3.1 共有フレームワ
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code/)
 
-* 統合ターミナルで、次のコマンドを実行して LibMan をインストールします。
+  * 統合ターミナルで、次のコマンドを実行して LibMan をインストールします。
 
   ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-* 次のコマンドを実行して、LibMan を使用して SignalR クライアント ライブラリを取得します。 出力が表示されるまでに数秒待機する必要がある場合があります。
+  * 次のコマンドを実行して、LibMan を使用して SignalR クライアント ライブラリを取得します。 出力が表示されるまでに数秒待機する必要がある場合があります。
 
   ```console
   libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
@@ -147,15 +135,15 @@ SignalR サーバー ライブラリは、ASP.NET Core 3.1 共有フレームワ
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-* **[端末]** で、次のコマンドを実行して LibMan をインストールします。
+  * **[端末]** で、次のコマンドを実行して LibMan をインストールします。
 
   ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-* プロジェクト フォルダー (ファイル *SignalRChat.csproj* を含んでいるフォルダー) に移動します。
+  * プロジェクト フォルダー (ファイル *SignalRChat.csproj* を含んでいるフォルダー) に移動します。
 
-* 次のコマンドを実行して、LibMan を使用して SignalR クライアント ライブラリを取得します。
+  * 次のコマンドを実行して、LibMan を使用して SignalR クライアント ライブラリを取得します。
 
   ```console
   libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
@@ -180,9 +168,8 @@ SignalR サーバー ライブラリは、ASP.NET Core 3.1 共有フレームワ
 
 *ハブ* はクライアント サーバー通信を処理するハイレベル パイプラインとして機能するクラスです。
 
-* SignalRChat プロジェクト フォルダー内で、*Hubs* フォルダーを作成します。
-
-* *Hubs* フォルダー内で、次のコードを使用して *ChatHub.cs* ファイルを作成します。
+  * SignalRChat プロジェクト フォルダー内で、*Hubs* フォルダーを作成します。
+  * *Hubs* フォルダー内で、次のコードを使用して *ChatHub.cs* ファイルを作成します。
 
   [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
@@ -238,14 +225,12 @@ SignalR 要求が SignalR に渡されるように SignalR サーバーを構成
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-* メニューから、 **[実行]、[デバッグなしで開始]** の順に選択します。
+  * メニューから、 **[実行]、[デバッグなしで開始]** の順に選択します。
 
 ---
 
-* アドレス バーから URL をコピーし、別のブラウザー インスタンスまたはタブを開き、アドレス バーに URL を貼り付けます。
-
-* いずれかのブラウザーを選択し、名前とメッセージを入力し、 **[Send Message]\(メッセージの送信\)** ボタンを選択します。
-
+  * アドレス バーから URL をコピーし、別のブラウザー インスタンスまたはタブを開き、アドレス バーに URL を貼り付けます。
+  * いずれかのブラウザーを選択し、名前とメッセージを入力し、 **[Send Message]\(メッセージの送信\)** ボタンを選択します。
   次の瞬間、両方のページに名前とメッセージが表示されます。
 
   ![SignalR サンプル アプリ](signalr/_static/3.x/signalr-get-started-finished.png)

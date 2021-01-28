@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: f9c0ecd32f0e5c05782c2db76eff92bb64845db7
-ms.sourcegitcommit: 53e01d6e9b70a18a05618f0011cf115a16633c21
+ms.openlocfilehash: 175614c426c564ce91068e18035ce05311432698
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/05/2021
-ms.locfileid: "97878400"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689241"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>ASP.NET Core で Portable Object のローカライズを構成する
 
@@ -81,7 +81,7 @@ PO ファイルの仕様については、[こちら](https://www.gnu.org/savann
 
 ### <a name="referencing-the-package"></a>パッケージの参照
 
-`OrchardCore.Localization.Core` NuGet パッケージの参照を追加します。 [MyGet](https://www.myget.org/) のパッケージ ソース https://www.myget.org/F/orchardcore-preview/api/v3/index.json で入手できます。
+`OrchardCore.Localization.Core` NuGet パッケージの参照を追加します。
 
 *.csproj* ファイルに次のような行が追加されました (バージョン番号は異なる可能性があります)。
 
@@ -296,7 +296,7 @@ PO ファイルの仕様については、[こちら](https://www.gnu.org/savann
 
 ### <a name="referencing-the-package"></a>パッケージの参照
 
-`OrchardCore.Localization.Core` NuGet パッケージの参照を追加します。 [MyGet](https://www.myget.org/) のパッケージ ソース https://www.myget.org/F/orchardcore-preview/api/v3/index.json で入手できます。
+`OrchardCore.Localization.Core` NuGet パッケージの参照を追加します。
 
 *.csproj* ファイルに次のような行が追加されました (バージョン番号は異なる可能性があります)。
 
