@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 1c90a786efe8c3c205a729a2da9d3a99d0222012
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a7a0c0ff44de5b04d7fa9a8f2f16f7c9f786f64b
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053086"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057071"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>ASP.NET Core でクロスサイトスクリプティング (XSS) を防止する
 
@@ -164,7 +164,7 @@ JavaScript に値を挿入して、ビューで処理することが必要にな
 >[!WARNING]
 > DOM 要素を作成したり、動的に生成されたコンテンツを使用したりするために、JavaScript で信頼 **されていない** 入力を連結しないように `document.write()` します。
 >
-> 次のいずれかの方法を使用して、コードが DOM ベースの XSS: _ に公開されないように `createElement()` し、適切なメソッドまたはノードなどのプロパティを使用してプロパティ値を割り当て `node.textContent=` ます。InnerText = '。
+> 次のいずれかの方法を使用して、コードが DOM ベースの XSS: _ に公開されないように `createElement()` し、適切なメソッドまたはプロパティ (やなど) を使用してプロパティ値を割り当て `node.textContent=` `node.InnerText=` ます。
 > * `document.CreateTextNode()` 適切な DOM の場所に追加します。
 > * `element.SetAttribute()`
 > * `element[attribute]=`
@@ -173,7 +173,7 @@ JavaScript に値を挿入して、ビューで処理することが必要にな
 
 HTML、JavaScript、および URL エンコーダーは、次の2つの方法でコードで使用できます。 [依存関係の挿入](xref:fundamentals/dependency-injection) を使用して挿入することも、名前空間に含まれる既定のエンコーダーを使用することもでき `System.Text.Encodings.Web` ます。 既定のエンコーダーを使用する場合、安全として扱う文字範囲に適用したものは有効になりません。既定のエンコーダーでは、可能な限り安全なエンコーディング規則が使用されます。
 
-DI を使用して構成可能なエンコーダーを使用するには、コンストラクターが *htmlencoder* 、 *JavaScriptEncoder* 、および *urlencoder* パラメーターを必要に応じて受け取る必要があります。 次に例を示します。
+DI を使用して構成可能なエンコーダーを使用するには、コンストラクターが *htmlencoder*、 *JavaScriptEncoder* 、および *urlencoder* パラメーターを必要に応じて受け取る必要があります。 次に例を示します。
 
 ```csharp
 public class HomeController : Controller
