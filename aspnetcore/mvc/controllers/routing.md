@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 44c507fb5e0ff4477a84bfc1e4d0c62180c8dd37
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 04ece9628265135efd0dd92d29c8b14fc897329e
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252839"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057357"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>ASP.NET Core でのコントローラー アクションへのルーティング
 
@@ -120,7 +120,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-これは、"*規則ルーティング*" の例です。 これは、URL パスの *規則* を確立するため、*従来のルーティング* と呼ばれます。
+前のは、 *従来のルート* の例です。 これは、URL パスの *規則* を確立するため、*従来のルーティング* と呼ばれます。
 
 * 最初のパスセグメントは、 `{controller=Home}` コントローラー名にマップされます。
 * 2番目のセグメントは、 `{action=Index}` [アクション](#action) 名にマップされます。
@@ -351,7 +351,7 @@ ASP.NET Core には、次のルートテンプレートがあります。
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
-上記のコードにより、次のことが行われます。
+上のコードでは以下の操作が行われます。
 
 * 各アクションには属性が含まれてい `[HttpGet]` ます。これにより、一致する HTTP GET 要求のみが制限されます。
 * アクションには `GetProduct` テンプレートが含まれ `"{id}"` ているため、 `id` コントローラーのテンプレートに追加され `"api/[controller]"` ます。 メソッドテンプレートは `"api/[controller]/"{id}""` です。 したがって、このアクションは、フォーム、、などの GET 要求のみと一致 `/api/test2/xyz` `/api/test2/123` `/api/test2/{any string}` します。
@@ -489,7 +489,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
-上記のコードにより、次のことが行われます。
+上のコードでは以下の操作が行われます。
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
@@ -628,7 +628,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
 
-上記のコードにより、次のことが行われます。
+上のコードでは以下の操作が行われます。
 
 * ベース `namespace` が `My.Application` です。
 * 前のコントローラーの完全な名前は `My.Application.Admin.Controllers.UsersController` です。
@@ -720,7 +720,7 @@ result: /UrlGeneration/Destination
 
 既定のルートでは、この問題が発生する可能性があり `{controller}/{action}/{id?}` ます。 この問題は、常にとの値が明示的に指定されているため、実際にはめったにあり `Url.Action` `controller` `action` ません。
 
-[Url](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*)のいくつかのオーバーロードでは、ルート値オブジェクトを使用し `controller` て、および以外のルートパラメーターの値を指定します。 `action` ルート値オブジェクトは、と共によく使用され `id` ます。 例: `Url.Action("Buy", "Products", new { id = 17 })`。 ルート値オブジェクト:
+[Url](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*)のいくつかのオーバーロードでは、ルート値オブジェクトを使用し `controller` て、および以外のルートパラメーターの値を指定します。 `action` ルート値オブジェクトは、と共によく使用され `id` ます。 たとえば、「 `Url.Action("Buy", "Products", new { id = 17 })` 」のように入力します。 ルート値オブジェクト:
 
 * 慣例により、通常は匿名型のオブジェクトです。
 * には、 `IDictionary<>` または [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)を指定できます。
@@ -791,7 +791,7 @@ TagHelper は、`form` TagHelper と `<a>` TagHelper を使って URL を生成�
 
 <a name="routing-areas-ref-label"></a>
 
-## <a name="areas"></a>区分
+## <a name="areas"></a>Areas
 
 [区分](xref:mvc/controllers/areas) は、関連する機能を別のグループとしてグループにまとめるために使用される MVC 機能です。
 
@@ -1522,7 +1522,7 @@ app.UseMvc(routes =>
 
 <a name="routing-areas-ref-label"></a>
 
-## <a name="areas"></a>区分
+## <a name="areas"></a>Areas
 
 [区分](areas.md)は MVC の機能であり、関連する機能を独立したルーティング名前空間 (コントローラー アクションの場合) およびフォルダー構造 (ビューの場合) としてグループ化するために使われます。 区分を使うと、アプリケーションは同じ名前の複数のコントローラーを持つことができます (ただし、"*区分*" が異なる場合)。 区分を使い、別のルート パラメーター `area` を `controller` および `action` に追加することで、ルーティングのための階層を作成します。 このセクションでは、ルーティングと区分がどのように相互作用するのかについて説明します。ビューでの区分の使い方について詳しくは、「[区分](areas.md)」をご覧ください。
 

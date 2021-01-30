@@ -1,10 +1,10 @@
 ---
 title: ASP.NET Core Web API の応答データの書式設定
-author: ardalis
+author: rick-anderson
 description: ASP.NET Core Web API で応答データを書式設定する方法について説明します。
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 04/17/2020
+ms.date: 1/28/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 89e3e51373db5f7cff974b7a8c69d06bedf856ca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5d228af00ee34e7f8ca60a5085872fdb93842367
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052514"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057500"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>ASP.NET Core Web API の応答データの書式設定
 
@@ -81,14 +81,14 @@ ASP.NET Core では、規定で `application/json`、`text/json`、`text/plain` 
 
 ### <a name="the-accept-header"></a>Accept ヘッダー
 
-コンテンツ " *ネゴシエーション* " は、`Accept` ヘッダーが要求に含まれるときに発生します。 要求に Accept ヘッダーが含まれるとき、ASP.NET Core は次のように処理します。
+コンテンツ "*ネゴシエーション*" は、`Accept` ヘッダーが要求に含まれるときに発生します。 要求に Accept ヘッダーが含まれるとき、ASP.NET Core は次のように処理します。
 
 * Accept ヘッダーのメディアの種類を優先順で列挙します。
 * 指定された形式のいずれかで応答を生成できるフォーマッタを見つけようとします。
 
 クライアントの要求を満たすことができるフォーマッタが見つからない場合は、ASP.NET Core は次のようにします。
 
-* <xref:Microsoft.AspNetCore.Mvc.MvcOptions> が設定されていた場合は、`406 Not Acceptable` を返します。それ以外の場合は次のようにします。
+* `406 Not Acceptable` <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable?displayProperty=nameWithType> がに設定されている場合 `true` はを返します。
 * 応答を生成できる最初のフォーマッタを見つけようとします。
 
 要求された形式に対応するフォーマッタが構成されていない場合、オブジェクトを書式設定できる最初のフォーマッタが使用されます。 要求に `Accept` ヘッダーが表示されない場合は、次のようになります。
@@ -132,9 +132,22 @@ Accept ヘッダーに `*/*` が含まれる場合、`RespectBrowserAcceptHeader
 
 前のコードを使用する場合、コントローラー メソッドは要求の `Accept` ヘッダーに基づいて適切な形式を返します。
 
-### <a name="configure-systemtextjson-based-formatters"></a>System.Text.Json ベースのフォーマッタを構成する
+### <a name="configure-systemtextjson-based-formatters"></a>ベースのフォーマッタで System.Text.Jsを構成する
 
-`System.Text.Json` ベースのフォーマッタの機能は、`Microsoft.AspNetCore.Mvc.JsonOptions.SerializerOptions` を使用して構成することができます。
+ベースのフォーマッタの機能は、 `System.Text.Json` を使用して構成でき <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName> ます。 既定の書式設定はキャメルケースです。 次の強調表示されたコードは、文字セットの書式を設定します。
+
+[!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4-5)]
+
+次のアクションメソッドは、コントローラーを呼び出して、応答を作成します[。](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>
+
+[!code-csharp[](formatting/5.0samples/WebAPI5PascalCase/Controllers/WeatherForecastController.cs?name=snippet&highlight=4)]
+
+上記のコードを次に示します。
+
+  * `https://localhost:5001/WeatherForecast/temperature` 文字を返します。
+  * `https://localhost:5001/WeatherForecast/error` キャメルケースを返します。 エラー応答は、アプリが形式をキャメルケースに設定している場合でも、常に "常に" になります。 `ProblemDetails`[RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A)に従い、小文字を指定します。
+
+次のコードでは、パスワードの大文字と小文字の区別を設定し、カスタムコンバーターを追加しています。
 
 ```csharp
 services.AddControllers().AddJsonOptions(options =>
@@ -239,7 +252,7 @@ XML の書式設定には、[Microsoft.AspNetCore.Mvc.Formatters.Xml](https://ww
 
 ### <a name="special-case-formatters"></a>特殊なケースのフォーマッタ
 
-一部の特殊なケースが組み込みのフォーマッタで実装されます。 既定では、戻り値の型 `string` は *text/plain* として書式設定されます (`Accept` ヘッダー経由で要求された場合は *text/html* )。 この動作は <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter> を削除することで削除できます。 フォーマッタは `ConfigureServices` メソッドで削除します。 戻り値の型としてモデル オブジェクトをともなうアクションは、`null` を返すとき、`204 No Content` を返します。 この動作は <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter> を削除することで削除できます。 次のコードでは、`StringOutputFormatter` と `HttpNoContentOutputFormatter` が削除されます。
+一部の特殊なケースが組み込みのフォーマッタで実装されます。 既定では、戻り値の型 `string` は *text/plain* として書式設定されます (`Accept` ヘッダー経由で要求された場合は *text/html*)。 この動作は <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter> を削除することで削除できます。 フォーマッタは `ConfigureServices` メソッドで削除します。 戻り値の型としてモデル オブジェクトをともなうアクションは、`null` を返すとき、`204 No Content` を返します。 この動作は <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter> を削除することで削除できます。 次のコードでは、`StringOutputFormatter` と `HttpNoContentOutputFormatter` が削除されます。
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]

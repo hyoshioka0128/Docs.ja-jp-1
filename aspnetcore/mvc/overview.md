@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 4f0e98057c03769a672ef350cc3ec724a4f7e721
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 642a7b26a3ba0a79a35437a5c19ee0be63a367af
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431061"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057318"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>ASP.NET Core MVC の概要
 
@@ -67,12 +67,12 @@ ASP.NET Core MVC フレームワークは、ASP.NET Core と共に使用する�
 
 ASP.NET Core MVC では、明確な関心の分離を可能にする動的な Web サイトをビルドするためのパターン ベースの方法を提供します。 ここでは、マークアップのフル コントロールが提供され、TDD 向けの開発をサポートし、最新の Web 標準を使用することができます。
 
-## <a name="features"></a>機能
+## <a name="features"></a>特徴
 
 ASP.NET Core MVC には、以下が含まれます。
 
 * [ルーティング](#routing)
-* [モデルバインド](#model-binding)
+* [モデル バインド](#model-binding)
 * [モデルの検証](#model-validation)
 * [依存関係の挿入](../fundamentals/dependency-injection.md)
 * [フィルター](#filters)
@@ -88,7 +88,7 @@ ASP.NET Core MVC には、以下が含まれます。
 
 ASP.NET Core MVC は、[ASP.NET Core のルーティング](../fundamentals/routing.md)の上にビルドされます。このルーティングは強力な URL マッピング コンポーネントで、わかりやすく検索可能な URL のアプリケーションをビルドできます。 これにより、Web サーバー上のファイルを整理する方法に関係なく、検索エンジンの最適化 (SEO) およびリンクの作成に適しているアプリケーションの URL の名前付けパターンを定義できます。 ルート値制約、既定値、省略可能な値をサポートする、便利なルート テンプレートの構文を使用して、ルートを定義できます。
 
-*規約に基づくルーティング* では、アプリケーションが受け入れる URL 形式、およびそれらの各形式を指定したコントローラー上の特定のアクション メソッドにマップする方法をグローバルに定義することができます。 受信要求を受け取ると、ルーティング エンジンは URL を解析し、定義された URL 形式のいずれかに合わせて、関連するコントローラーのアクション メソッドを呼び出します。
+*規約ベースのルーティング* を使用すると、アプリケーションで受け入れられる URL 形式と、各形式を特定のコントローラー上の特定のアクションメソッドにマップする方法をグローバルに定義できます。 受信要求を受け取ると、ルーティング エンジンは URL を解析し、定義された URL 形式のいずれかに合わせて、関連するコントローラーのアクション メソッドを呼び出します。
 
 ```csharp
 routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");
@@ -173,7 +173,7 @@ ASP.NET Core には、[依存関係の挿入 (DI)](../fundamentals/dependency-in
 </html>
 ```
 
-### <a name="filters"></a>フィルター
+### <a name="filters"></a>フィルタ
 
 [フィルター](controllers/filters.md)は、開発者が例外処理や承認など、横断的関心事をカプセル化するのに役立ちます。 フィルターでは、アクション メソッドの前処理と後処理ロジックを実行できるようにします。また、指定した要求の実行パイプライン内のある時点で実行するように構成することもできます。 フィルターは、属性としてコントローラーまたはアクションに適用できます (または、グローバルに実行できます)。 いくつかのフィルター (`Authorize` など) は、フレームワークに含まれます。 `[Authorize]` は MVC 承認フィルターの作成のために使用される属性です.
 
@@ -182,7 +182,7 @@ ASP.NET Core には、[依存関係の挿入 (DI)](../fundamentals/dependency-in
 public class AccountController : Controller
 ```
 
-### <a name="areas"></a>区分
+### <a name="areas"></a>Areas
 
 [区分](controllers/areas.md) を使用すると、大規模な ASP.NET Core MVC Web アプリをより小さな機能グループに分割することができます。 区分は、アプリケーション内の MVC 構造体となります。 MVC プロジェクトでは、モデル、コント ローラー、ビューなどの論理コンポーネントが異なるフォルダーに保持され、MVC では名前付け規則を使用して、これらのコンポーネントの関係を作成します。 大きなアプリでは、アプリを機能の個別の高レベル区分に分割すると便利な場合があります。 たとえば、チェックアウト、請求、検索などの複数のビジネスユニットを含む e コマースアプリです。これらの各ユニットには、それぞれ独自の論理コンポーネントビュー、コントローラー、およびモデルがあります。
 
@@ -269,5 +269,5 @@ Razor MVC のビューは、モデルに基づいて厳密に型指定できま�
 
 ## <a name="additional-resources"></a>その他の技術情報
 
-* [ASP.NET CORE mvc 用の AspNetCore-Fluent テストライブラリ](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): 厳密に型指定された単体テストライブラリ。 mvc および web API アプリをテストするための fluent インターフェイスを提供します。 (" *Microsoft では保守管理もサポートも行っていません。* ")
+* [ASP.NET CORE mvc 用の AspNetCore-Fluent テストライブラリ](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): 厳密に型指定された単体テストライブラリ。 mvc および web API アプリをテストするための fluent インターフェイスを提供します。 ("*Microsoft では保守管理もサポートも行っていません。* ")
 * <xref:blazor/components/prerendering-and-integration>

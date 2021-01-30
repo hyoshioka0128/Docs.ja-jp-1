@@ -18,14 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: a5f2dff7b0e0d4f209ba445b2efb6fb261cbaab1
-ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
+ms.openlocfilehash: c4cbec1b829fb8fd47f7b6924b6870bd5dd7097d
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94464017"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057305"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>ASP.NET Core で特定のスキームを使用して承認する
+
+ASP.NET Core での認証スキームの概要については、「 [認証スキーム](xref:security/authentication/index#authentication-scheme)」を参照してください。
 
 シングルページアプリケーション (spa) などの一部のシナリオでは、複数の認証方法を使用するのが一般的です。 たとえば、アプリはベース cookie 認証を使用して、JavaScript 要求のログインと JWT ベアラー認証を使用する場合があります。 場合によっては、アプリに認証ハンドラーのインスタンスが複数存在することがあります。 たとえば、1つのに基本 id が格納されている2つの cookie ハンドラーと、multi-factor authentication (MFA) がトリガーされたときに作成されるハンドラーがあります。 ユーザーが追加のセキュリティを必要とする操作を要求したため、MFA がトリガーされる可能性があります。 ユーザーが MFA を必要とするリソースを要求したときに MFA を適用する方法の詳細については、「MFA を使用した GitHub の問題の [保護」セクション](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)を参照してください。
 

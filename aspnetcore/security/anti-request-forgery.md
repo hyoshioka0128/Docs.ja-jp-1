@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 197954965ee57b2a44ad0217d79ba142114e7df6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 3bb3c059eafa8e948fe2e719207927c009902e59
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060847"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057448"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>ASP.NET Core でのクロスサイト要求偽造 (XSRF/CSRF) 攻撃を防ぐ
 
@@ -222,7 +222,7 @@ services.AddAntiforgery(options =>
 
 &dagger;`Cookie` [ Cookie ビルダー](/dotnet/api/microsoft.aspnetcore.http.cookiebuilder)クラスのプロパティを使用して、アンチ偽造プロパティを設定します。
 
-| オプション | [説明] |
+| オプション | 説明 |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | アンチ偽造を作成するために使用する設定を決定し cookie ます。 |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | アンチ偽造システムがビューで偽造防止トークンをレンダリングするために使用する非表示フォームフィールドの名前。 |
@@ -246,12 +246,12 @@ services.AddAntiforgery(options =>
 });
 ```
 
-| オプション | [説明] |
+| オプション | 説明 |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | アンチ偽造を作成するために使用する設定を決定し cookie ます。 |
 | [CookieDomain](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | のドメイン cookie 。 既定値は `null` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。領域. |
-| [CookieName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie の名前。 設定しない場合、システムは [既定の Cookie プレフィックス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ("を使用して、一意の名前を生成します。AspNetCore。 ")。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。指定. |
-| [Cookie道](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | に設定されたパス cookie 。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。道. |
+| [Cookie名前](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie の名前。 設定しない場合、システムは [既定の Cookie プレフィックス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ("を使用して、一意の名前を生成します。AspNetCore。 ")。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。指定. |
+| [Cookieパス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | に設定されたパス cookie 。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。道. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | アンチ偽造システムがビューで偽造防止トークンをレンダリングするために使用する非表示フォームフィールドの名前。 |
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | アンチ偽造システムによって使用されるヘッダーの名前。 の場合 `null` 、システムはフォームデータのみを考慮します。 |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | 偽造防止システムによって HTTPS が要求されるかどうかを指定します。 `true`の場合、HTTPS 以外の要求は失敗します。 既定値は `false` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法として、を設定することをお勧めし Cookie ます。SecurePolicy。 |
@@ -488,6 +488,10 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 [サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+
+## <a name="windows-authentication-and-antiforgery-no-loccookies"></a>Windows 認証 cookie と偽造防止
+
+Windows 認証を使用する場合、アプリケーションエンドポイントは、の場合と同じように CSRF 攻撃に対して保護する必要があり cookie ます。  ブラウザーは認証コンテキストをサーバーに暗黙的に送信するため、エンドポイントは CSRF 攻撃に対して保護する必要があります。
 
 ## <a name="extend-antiforgery"></a>アンチ偽造の延長
 
