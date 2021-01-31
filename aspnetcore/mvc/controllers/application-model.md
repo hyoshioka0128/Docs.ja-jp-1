@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/application-model
-ms.openlocfilehash: a7a654eb43c0dbf375af911d8d5353ac4c04a825
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: cf16536284ee9c88913257607df837ad6e50ea2c
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060938"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217376"
 ---
 # <a name="work-with-the-application-model-in-aspnet-core"></a>ASP.NET Core のアプリケーション モデルの使用
 
@@ -32,7 +32,7 @@ ASP.NET Core MVC では、MVC アプリのコンポーネントを表す *アプ
 
 ## <a name="models-and-providers"></a>モデルおよびプロバイダー
 
-ASP.NET Core MVC アプリケーション モデルには、MVC アプリケーションを表現する、抽象インターフェイスと具象実装クラスの両方が含まれています。 このモデルは、既定の規則に従ってアプリのコントローラー、アクション、アクション パラメーター、ルート、およびフィルターを検出する MVC の結果です。 アプリケーション モデルを使用すると、既定の MVC の動作とは異なる規則を使用するようアプリを変更することができます。 パラメーター、名前、ルート、およびフィルターは、すべてアクションおよびコントローラーの構成データとして使用されます。
+ASP.NET Core MVC アプリケーションモデルには、MVC アプリケーションを記述する抽象インターフェイスと具象実装クラスの両方が含まれています。 このモデルは、既定の規則に従ってアプリのコントローラー、アクション、アクション パラメーター、ルート、およびフィルターを検出する MVC の結果です。 アプリケーション モデルを使用すると、既定の MVC の動作とは異なる規則を使用するようアプリを変更することができます。 パラメーター、名前、ルート、およびフィルターは、すべてアクションおよびコントローラーの構成データとして使用されます。
 
 ASP.NET Core MVC アプリケーション モデルの構造は、次のとおりです。
 
@@ -81,7 +81,7 @@ ASP.NET Core MVC は、[IApplicationModelProvider](/dotnet/api/microsoft.aspnetc
 
 `CorsApplicationModelProvider` は、`IEnableCorsAttribute` および `IDisableCorsAttribute` および `DisableCorsAuthorizationFilter` に関連付けられた動作を実装します。 [CORS の詳細については、こちらを参照してください](xref:security/cors).
 
-## <a name="conventions"></a>規約
+## <a name="conventions"></a>規則
 
 このアプリケーション モデルでは、モデルまたはプロバイダー全体をオーバーライドするよりも簡単に、モデルの動作をカスタマイズできる、規則の抽象化を定義できます。 これらの抽象化は、アプリの動作の変更に推奨されます。 規則では、動的にカスタマイズすることが可能なコードを記述することができます。 [フィルター](xref:mvc/controllers/filters)では、フレームワークの動作を変更できるのに対して、カスタマイズではアプリ全体がどのように連携するかを制御できます。
 

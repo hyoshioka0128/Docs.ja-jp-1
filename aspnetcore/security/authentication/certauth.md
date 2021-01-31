@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 71f05163c075a2ef88d5c606814925cdcef879d2
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: c862bc8bff6c4cc80696d92067e814889d6e7782
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253047"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217532"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>ASP.NET Core で証明書認証を構成する
 
@@ -40,7 +40,7 @@ ms.locfileid: "98253047"
 
 プロキシとロードバランサーを使用する環境での証明書認証の代わりに、OpenID Connect (OIDC) を使用したフェデレーションサービス (ADFS) Active Directory ます。
 
-## <a name="get-started"></a>作業開始
+## <a name="get-started"></a>開始
 
 HTTPS 証明書を取得して適用し、証明書を要求するように [サーバーを構成](#configure-your-server-to-require-certificates) します。
 
@@ -48,7 +48,7 @@ Web アプリで、 [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNet
 
 認証が失敗した場合、このハンドラーは、 `403 (Forbidden)` 予期したとおりに応答を返し `401 (Unauthorized)` ます。 これは、最初の TLS 接続中に認証が行われるということです。 ハンドラーに到達するまでには遅すぎます。 匿名接続から証明書を使用して接続をアップグレードする方法はありません。
 
-また `app.UseAuthentication();` 、メソッドにを追加 `Startup.Configure` します。 それ以外の場合、は `HttpContext.User` `ClaimsPrincipal` 証明書から作成されるように設定されません。 次に例を示します。
+また `app.UseAuthentication();` 、メソッドにを追加 `Startup.Configure` します。 それ以外の場合、は `HttpContext.User` `ClaimsPrincipal` 証明書から作成されるように設定されません。 例:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -618,7 +618,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-既定のキャッシュ実装は、結果をメモリに格納します。 独自のキャッシュを提供するには、を実装 `ICertificateValidationCache` し、依存関係の挿入に登録します。 例: `services.AddSingleton<ICertificateValidationCache, YourCache>()`。
+既定のキャッシュ実装は、結果をメモリに格納します。 独自のキャッシュを提供するには、を実装 `ICertificateValidationCache` し、依存関係の挿入に登録します。 たとえば、「 `services.AddSingleton<ICertificateValidationCache, YourCache>()` 」のように入力します。
 
 ::: moniker-end
 
@@ -642,7 +642,7 @@ ASP.NET Core 5 preview 7 以降では、オプションのクライアント証�
 
 * ドメインとサブドメインのバインドを設定します。
   * たとえば、とでバインドを設定 `contoso.com` し `myClient.contoso.com` ます。 `contoso.com`ホストはクライアント証明書を必要としませんが、そう `myClient.contoso.com` です。
-  * 詳細については次を参照してください:
+  * 詳細については、次を参照してください。
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
@@ -650,7 +650,7 @@ ASP.NET Core 5 preview 7 以降では、オプションのクライアント証�
     * IIS
       * [IIS のホスト](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [IIS でのセキュリティの構成](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
-    * Http.Sys: [Windows Server の構成](xref:fundamentals/servers/httpsys#configure-windows-server)
+    * HTTP.sys: [Windows Server の構成](xref:fundamentals/servers/httpsys#configure-windows-server)
 
 ::: moniker-end
 
@@ -658,7 +658,7 @@ ASP.NET Core 5 preview 7 以降では、オプションのクライアント証�
 
 * ドメインとサブドメインのバインドを設定します。
   * たとえば、とでバインドを設定 `contoso.com` し `myClient.contoso.com` ます。 `contoso.com`ホストはクライアント証明書を必要としませんが、そう `myClient.contoso.com` です。
-  * 詳細については次を参照してください:
+  * 詳細については、次を参照してください。
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
@@ -666,7 +666,7 @@ ASP.NET Core 5 preview 7 以降では、オプションのクライアント証�
     * IIS
       * [IIS のホスト](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [IIS でのセキュリティの構成](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
-    * Http.Sys: [Windows Server の構成](xref:fundamentals/servers/httpsys#configure-windows-server)
+    * HTTP.sys: [Windows Server の構成](xref:fundamentals/servers/httpsys#configure-windows-server)
 
 ::: moniker-end
 
