@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 72ee8f5dfdf8ffd6cfcb74b13fa0738893d8e214
-ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
+ms.openlocfilehash: ee30ef89c5d7aeae83f23a81eb02235397c89ac2
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97486136"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238317"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core フィルター
 
@@ -194,8 +194,8 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 |:--------:|:------------:|:-------------:|
 | 1 | グローバル | `OnActionExecuting` |
 | 2 | コントローラーまたは Razor ページ| `OnActionExecuting` |
-| 3 | Method | `OnActionExecuting` |
-| 4 | Method | `OnActionExecuted` |
+| 3 | メソッド | `OnActionExecuting` |
+| 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラーまたは Razor ページ | `OnActionExecuted` |
 | 6 | グローバル | `OnActionExecuted` |
 
@@ -443,7 +443,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 `IAsyncActionFilter` の場合、<xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> の呼び出しによって:
 
 * 後続のすべてのアクション フィルターとアクション メソッドが実行されます。
-* `ActionExecutedContext` が返されます。
+* `ActionExecutedContext` を返します。
 
 ショートサーキットするには、<xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> を結果インスタンスに割り当てます。`next` (`ActionExecutionDelegate`) は呼び出さないでください。
 
@@ -565,7 +565,8 @@ ASP.NET Core ランタイムで保証されないこと:
 _ フィルターの1つのインスタンスが作成されることを指定します。
 * フィルターが後の時点で、DI コンテナーから再要求されることはありません。
 
-[!WARNING]`IFilterFactory.IsReusable` `true` フィルターのソースが明確で、フィルターがステートレスで、複数の HTTP 要求で安全に使用できる場合にのみ、を返すようにを構成します。 たとえば、がを返した場合、スコープまたは遷移として登録されている DI からフィルターを返すことはできません。 `IFilterFactory.IsReusable``true`
+> [!WARNING] 
+> <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.IsReusable?displayProperty=nameWithType> `true` フィルターのソースが明確で、フィルターがステートレスで、フィルターが複数の HTTP 要求で安全に使用できる場合にのみを返すようにを構成します。 たとえば、がを返す場合、スコープまたは遷移として登録されている DI からフィルターを返しません `IFilterFactory.IsReusable` `true` 。
 
 フィルターを作成するための別の方法として、カスタムの属性の実装で `IFilterFactory` を実装できます。
 
@@ -752,8 +753,8 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 |:--------:|:------------:|:-------------:|
 | 1 | グローバル | `OnActionExecuting` |
 | 2 | コントローラー | `OnActionExecuting` |
-| 3 | Method | `OnActionExecuting` |
-| 4 | Method | `OnActionExecuted` |
+| 3 | メソッド | `OnActionExecuting` |
+| 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラー | `OnActionExecuted` |
 | 6 | グローバル | `OnActionExecuted` |
 
@@ -810,12 +811,12 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 
 | Sequence | フィルターのスコープ | `Order` プロパティ | フィルター メソッド |
 |:--------:|:------------:|:-----------------:|:-------------:|
-| 1 | Method | 0 | `OnActionExecuting` |
+| 1 | メソッド | 0 | `OnActionExecuting` |
 | 2 | コントローラー | 1  | `OnActionExecuting` |
 | 3 | グローバル | 2  | `OnActionExecuting` |
 | 4 | グローバル | 2  | `OnActionExecuted` |
 | 5 | コントローラー | 1  | `OnActionExecuted` |
-| 6 | Method | 0  | `OnActionExecuted` |
+| 6 | メソッド | 0  | `OnActionExecuted` |
 
 フィルターの実行順序を決定するときに、`Order` プロパティによりスコープがオーバーライドされます。 最初に順序でフィルターが並べ替えられ、次に同じ順位の優先度を決めるためにスコープが使用されます。 組み込みのフィルターはすべて `IOrderedFilter` を実装し、既定の `Order` 値を 0 に設定します。 組み込みのフィルターの場合、`Order` をゼロ以外の値に設定しない限り、スコープによって順序が決定されます。
 
@@ -989,7 +990,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 `IAsyncActionFilter` の場合、<xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> の呼び出しによって:
 
 * 後続のすべてのアクション フィルターとアクション メソッドが実行されます。
-* `ActionExecutedContext` が返されます。
+* `ActionExecutedContext` を返します。
 
 ショートサーキットするには、<xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> を結果インスタンスに割り当てます。`next` (`ActionExecutionDelegate`) は呼び出さないでください。
 
