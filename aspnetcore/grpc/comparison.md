@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 0fb50f07153f5f9953b667fe32062ad24b2bd66d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1ec553d54a9cad170cb322bc186bb67ac8bbded4
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059950"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658730"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>HTTP API を使用した gRPC サービスの比較
 
@@ -61,7 +61,7 @@ HTTP/2 は gRPC に限定されません。 JSON を使用する HTTP API など
 
 ### <a name="code-generation"></a>コード生成
 
-すべての gRPC フレームワークで、コード生成は最高レベルでサポートされています。 gRPC 開発の中核となるファイルは [.proto ファイル](https://developers.google.com/protocol-buffers/docs/proto3)であり、そこで gRPC のサービスとメッセージのコントラクトが定義されます。 このファイルから、gRPC フレームワークによって、サービス基本クラス、メッセージ、および完全なクライアントがコード生成されます。
+すべての gRPC フレームワークで、コード生成は最高レベルでサポートされています。 gRPC 開発の中核となるファイルは [`.proto` ファイル](https://developers.google.com/protocol-buffers/docs/proto3)であり、そこで gRPC のサービスとメッセージのコントラクトが定義されます。 このファイルから、gRPC フレームワークによって、サービス基本クラス、メッセージ、および完全なクライアントが生成されます。
 
 サーバーとクライアントの間で *.proto* ファイルを共有すれば、端から端までメッセージとクライアント コードを生成できます。 クライアントのコード生成によって、クライアントとサーバー上でメッセージが重複しなくなり、厳密に型指定されたクライアントが自動的に作成されます。 クライアントを記述する必要がないので、多くのサービスを持つアプリケーションの開発時間が大幅に節約されます。
 

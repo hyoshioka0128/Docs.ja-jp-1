@@ -3,7 +3,7 @@ title: ASP.NET Core MVC の概要
 author: rick-anderson
 description: ASP.NET Core MVC の概要について説明します。
 ms.author: riande
-ms.date: 11/16/2020
+ms.date: 01/20/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,12 +17,13 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: c96e7107c85bf36f55f6571c71c20d09bc94ddb3
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.custom: contperf-fy21q3
+ms.openlocfilehash: aaf930eee351ed757be60f648bce88b182d52799
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94688529"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710799"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>ASP.NET Core MVC の概要
 
@@ -32,9 +33,9 @@ ms.locfileid: "94688529"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-このチュートリアルでは、ASP.NET Core の MVC Web アプリの構築の基礎について説明します。
+これは、コントローラーとビューを使用した ASP.NET Core MVC Web 開発について説明するシリーズの最初のチュートリアルです。
 
-このアプリでは、映画タイトルのデータベースを管理します。 以下の方法について説明します。
+シリーズの最後には、映画のデータを管理および表示できるアプリができあがります。 以下の方法について説明します。
 
 > [!div class="checklist"]
 > * Web アプリを作成する。
@@ -42,9 +43,7 @@ ms.locfileid: "94688529"
 > * データベースを使用する。
 > * 検索と検証を追加する。
 
-最後には、映画データを管理および表示できるアプリが完成します。
-
-[!INCLUDE[](~/includes/mvc-intro/download.md)]
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mvc-app/start-mvc/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -66,27 +65,30 @@ ms.locfileid: "94688529"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Visual Studio を開始し、 **[新しいプロジェクトの作成]** を選択します。
-1. **[新しいプロジェクトの作成]** ダイアログで、 **[ASP.NET Core Web アプリケーション]** > **[次へ]** の順に選択します。
-1. **[新しいプロジェクトの構成]** ダイアログで、 **[プロジェクト名]** に「`MvcMovie`」と入力します。 コードをコピーするときに各`namespace`が一致するように、この正確な名前 (大文字と小文字を含む) を使用することが重要です。
-1. **［作成］** を選択します
-1. **[新しい ASP.NET Core Web アプリケーションの作成]** ダイアログで、次のものを選択します。
-    1. ドロップダウンで **[.NET Core]** と **[ASP.NET Core 5.0]**
-    1. **ASP.NET Core Web アプリ (Model-View-Controller)**
-    1. **作成**
+* Visual Studio を開始し、 **[新しいプロジェクトの作成]** を選択します。
+* **[新しいプロジェクトの作成]** ダイアログで、 **[ASP.NET Core Web アプリケーション]** > **[次へ]** の順に選択します。
+* **[新しいプロジェクトの構成]** ダイアログで、 **[プロジェクト名]** に「`MvcMovie`」と入力します。 プロジェクトに *MvcMovie* という名前を付けることが重要です。 コードをコピーする際に、大文字と小文字の区別が各 `namespace` と一致する必要があります。
+* **［作成］** を選択します
+* **[新しい ASP.NET Core Web アプリケーションの作成]** ダイアログで、次のものを選択します。
+  * ドロップダウンで **[.NET Core]** と **[ASP.NET Core 5.0]**
+  * **ASP.NET Core Web アプリ (Model-View-Controller)**
+  * **Create**。
 
 ![新しい ASP.NET Core Web アプリケーションを作成する ](start-mvc/_static/mvcVS19v16.9.png)
 
 プロジェクトを作成する別の方法については、「[Visual Studio で新しいプロジェクトを作成する](/visualstudio/ide/create-new-project)」をご覧ください。
 
-Visual Studio では、作成した MVC プロジェクトに既定のテンプレートが使用されました。 プロジェクト名を入力し、いくつかのオプションを選択すると、すぐに作業アプリができあがります。 これは基本的なスターター プロジェクトです。
+Visual Studio により、作成した MVC プロジェクトに既定のプロジェクト テンプレートが使用されました。 作成したプロジェクトは:
+
+* 動作するアプリです。
+* 基本的なスターター プロジェクトです。
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-このチュートリアルは VS Code の知識があることを前提としています。 詳細については、[VS Code の概要](https://code.visualstudio.com/docs)、および [Visual Studio Code のヘルプ](#visual-studio-code-help)に関するページを参照してください。
+このチュートリアルは VS Code の知識があることを前提としています。 詳細については、[VS Code の概要](https://code.visualstudio.com/docs)に関するページと「[Visual Studio Code ヘルプ](#visual-studio-code-help)」を参照してください。
 
 * [統合ターミナル](https://code.visualstudio.com/docs/editor/integrated-terminal)を開きます。
-* ディレクトリ (`cd`) を、プロジェクトを格納するフォルダーに変更します。
+* プロジェクトを格納するディレクトリに移動します (`cd`)。
 * 次のコマンドを実行します。
 
    ```dotnetcli
@@ -94,7 +96,7 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
    code -r MvcMovie
    ```
 
-  * "**ビルドとデバッグに必要な資産が 'MvcMovie' にありません。追加しますか?** " という内容のダイアログ ボックスが表示されたら、  **[はい]** を選択します
+  * "**ビルドとデバッグに必要な資産が 'MvcMovie' にありません。追加しますか?** " というダイアログ ボックスが表示されたら、 **[はい]** を選択します
 
   * `dotnet new mvc -o MvcMovie`: *MvcMovie* フォルダー内に新しい ASP.NET Core MVC プロジェクトを作成します。
   * `code -r MvcMovie`:Visual Studio Code で *MvcMovie.csproj* プロジェクト ファイルを読み込みます。
@@ -112,9 +114,8 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
 * **[Configure your new Web Application]\(新しい Web アプリケーションを構成する\)** ダイアログで、次の操作を行います。
 
   * **[認証]** に **[認証なし]** が設定されていることを確認します。
-  * **[ターゲット フレームワーク]** を選択するオプションが表示された場合は、最新の 5.x バージョンを選択します。
-
-  **[次へ]** を選択します。
+  * **[ターゲット フレームワーク]** を選択するオプションが表示されている場合は、最新の 5.x バージョンを選択します。
+  * **[次へ]** を選択します。
 
 * プロジェクトに **MvcMovie** という名前を付けて、 **[作成]** を選択します。
 
@@ -126,48 +127,76 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-**Ctrl + F5** キーを押して、デバッグ以外のモードでアプリを実行します。
+* Ctrl + F5 キーを選択して、デバッガーなしでアプリを実行します。
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
+  [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio で [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) が開始され、アプリが実行されます。 アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。
-* Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、すばやくアプリを起動し、変更を確認できる非デバッグ モードの使用を好みます。
-* **[デバッグ]** メニュー項目から、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+  Visual Studio:
 
-  ![[デバッグ] メニュー](start-mvc/_static/debug_menu.png)
+  * [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) を起動します。
+  * アプリを実行します。
 
-* **[IIS Express]** ボタンを選択することで、アプリをデバッグできます。
+  アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 Visual Studio で Web プロジェクトが作成されるとき、Web サーバーにはランダムなポートが使用されます。
 
-  ![IIS Express](start-mvc/_static/iis_express.png)
+Ctrl + F5 キーを選択してデバッグなしでアプリを起動すると、次の操作を行えます。
 
-  次の図はアプリを示しています。
+* コードを変更します。
+* ファイルを保存します。
+* ブラウザーをすぐに更新して、コードの変更を確認します。
 
-  ![ホームまたはインデックス ページ](start-mvc/_static/home50-vs.png)
+**[デバッグ]** メニュー項目から、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+
+![[デバッグ] メニュー](start-mvc/_static/debug_menu50.png)
+
+**[IIS Express]** ボタンを選択することで、アプリをデバッグできます。
+
+![IIS Express](start-mvc/_static/iis_express50.png)
+
+次の図はアプリを示しています。
+
+![ホームまたはインデックス ページ](start-mvc/_static/home50-vs.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Ctrl + F5 キーを押して、デバッガーなしで実行します。
+* Ctrl + F5 キーを選択して、デバッガーなしで実行します。
 
-[!INCLUDE[](~/includes/trustCertVSC.md)]
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  Visual Studio Code で [Kestrel](xref:fundamentals/servers/kestrel) が開始され、ブラウザーが起動して、`https://localhost:5001` に移動します。 アドレス バーには、`example.com` などではなく、`localhost:port:5001` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 localhost では、ローカル コンピューターからの Web 要求のみが処理されます。
+  Visual Studio Code:
 
-  Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、ページを更新して変更を確認できる非デバッグ モードの使用を好みます。
+  * [Kestrel](xref:fundamentals/servers/kestrel) を起動します
+  * ブラウザーを起動します。
+  * `https://localhost:5001` に移動します。
+
+  アドレス バーには、`example.com` などではなく、`localhost:port:5001` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 localhost では、ローカル コンピューターからの Web 要求のみが処理されます。
+
+Ctrl + F5 キーを選択してデバッグなしでアプリを起動すると、次の操作を行えます。
+
+* コードを変更します。
+* ファイルを保存します。
+* ブラウザーをすぐに更新して、コードの変更を確認します。
 
   ![ホームまたはインデックス ページ](start-mvc/_static/home50-port5001.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-**[実行]**  >  **[デバッグなしで開始]** の順に選択してアプリを起動します。 Visual Studio for Mac によって [Kestrel](xref:fundamentals/servers/index#kestrel) サーバーが開始され、ブラウザーが起動して `http://localhost:port` にアクセスします。*port* はランダムに選択されたポート番号になります。
+* **[実行]** > **[デバッグなしで開始]** の順に選択してアプリを起動します。
 
-[!INCLUDE[](~/includes/trustCertMac.md)]
+  Visual Studio for Mac:
 
-* アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。 アプリを実行する際には、別のポート番号が表示されます。
-* **[実行]** メニューから、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+  * [Kestrel](xref:fundamentals/servers/index#kestrel) サーバーを起動します。
+  * ブラウザーを起動します。
+  * `http://localhost:port` に移動します。*port* はランダムに選択されるポート番号です。
 
-  次の図はアプリを示しています。
+  [!INCLUDE[](~/includes/trustCertMac.md)]
 
-  ![ホームまたはインデックス ページ](./start-mvc/_static/output_macos.png)
+  アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 Visual Studio で Web プロジェクトが作成されるとき、Web サーバーにはランダムなポートが使用されます。
+
+**[実行]** メニューから、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+
+次の図はアプリを示しています。
+
+![ホームまたはインデックス ページ](./start-mvc/_static/output_macos.png)
 
 ---
 
@@ -176,17 +205,17 @@ Ctrl + F5 キーを押して、デバッガーなしで実行します。
 このチュートリアルの次のパートでは、MVC について説明し、コードの作成を開始します。
 
 > [!div class="step-by-step"]
-> [次へ](adding-controller.md)
+> [次へ: コントローラーの追加](adding-controller.md)
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+::: moniker range="< aspnetcore-5.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-このチュートリアルでは、ASP.NET Core の MVC Web アプリの構築の基礎について説明します。
+これは、コントローラーとビューを使用した ASP.NET Core MVC Web 開発について説明するシリーズの最初のチュートリアルです。
 
-このアプリでは、映画タイトルのデータベースを管理します。 以下の方法について説明します。
+シリーズの最後には、映画のデータを管理および表示できるアプリができあがります。 以下の方法について説明します。
 
 > [!div class="checklist"]
 > * Web アプリを作成する。
@@ -194,9 +223,7 @@ Ctrl + F5 キーを押して、デバッガーなしで実行します。
 > * データベースを使用する。
 > * 検索と検証を追加する。
 
-最後には、映画データを管理および表示できるアプリが完成します。
-
-[!INCLUDE[](~/includes/mvc-intro/download.md)]
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mvc-app/start-mvc/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -222,24 +249,27 @@ Ctrl + F5 キーを押して、デバッガーなしで実行します。
 
 * **[ASP.NET Core Web アプリケーション]** > **[次へ]** の順に選択します。
 
-![新しい ASP.NET Core Web アプリケーション](start-mvc/_static/np_2.1.png)
+  ![新しい ASP.NET Core Web アプリケーション プロジェクトを作成します](start-mvc/_static/np_2.1.png)
 
 * プロジェクトに **MvcMovie** という名前を付けて、 **[作成]** を選択します。 コードをコピーするときに名前空間が一致するように、プロジェクトに **MvcMovie** と名前を付けることが重要です。
 
-  ![新しい ASP.NET Core Web アプリケーション](start-mvc/_static/config.png)
+  ![新しいプロジェクトを構成する](start-mvc/_static/config.png)
 
 * **[Web アプリケーション (モデル ビュー コントローラー)]** を選択します。 ドロップダウン ボックスから **[.NET Core]** と **[ASP.NET Core 3.1]** を選択した後、 **[作成]** を選択します。
 
-![[新しいプロジェクト] ダイアログ、左ウィンドウの .NET Core、ASP.NET Core Web ](start-mvc/_static/new_project30.png)
+  ![[新しいプロジェクト] ダイアログ、左ウィンドウの .NET Core、ASP.NET Core Web ](start-mvc/_static/new_project30.png)
 
-Visual Studio では、作成した MVC プロジェクトに既定のテンプレートが使用されました。 プロジェクト名を入力し、いくつかのオプションを選択すると、すぐに作業アプリができあがります。 これは基本的なスターター プロジェクトです。
+Visual Studio により、作成した MVC プロジェクトに既定のプロジェクト テンプレートが使用されました。 作成したプロジェクトは:
+
+* 動作するアプリです。
+* 基本的なスターター プロジェクトです。
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-このチュートリアルは VS Code の知識があることを前提としています。 詳細については、[VS Code の概要](https://code.visualstudio.com/docs)、および [Visual Studio Code のヘルプ](#visual-studio-code-help)に関するページを参照してください。
+このチュートリアルは VS Code の知識があることを前提としています。 詳細については、[VS Code の概要](https://code.visualstudio.com/docs)に関するページと「[Visual Studio Code ヘルプ](#visual-studio-code-help)」を参照してください。
 
 * [統合ターミナル](https://code.visualstudio.com/docs/editor/integrated-terminal)を開きます。
-* ディレクトリ (`cd`) を、プロジェクトを格納するフォルダーに変更します。
+* ディレクトリを、プロジェクトを格納するフォルダーに変更します (`cd`)。
 * 次のコマンドを実行します。
 
    ```dotnetcli
@@ -247,7 +277,7 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
    code -r MvcMovie
    ```
 
-  * "**ビルドとデバッグに必要な資産が 'MvcMovie' にありません。追加しますか?** " という内容のダイアログ ボックスが表示されたら、  **[はい]** を選択します
+  * "**ビルドとデバッグに必要な資産が 'MvcMovie' にありません。追加しますか?** " というダイアログ ボックスが表示されたら、 **[はい]** を選択します。
 
   * `dotnet new mvc -o MvcMovie`: *MvcMovie* フォルダー内に新しい ASP.NET Core MVC プロジェクトを作成します。
   * `code -r MvcMovie`:Visual Studio Code で *MvcMovie.csproj* プロジェクト ファイルを読み込みます。
@@ -265,9 +295,8 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
 * **[Configure your new Web Application]\(新しい Web アプリケーションを構成する\)** ダイアログで、次の操作を行います。
 
   * **[認証]** に **[認証なし]** が設定されていることを確認します。
-  * **[ターゲット フレームワーク]** を選択するオプションが表示された場合は、最新の 3.x バージョンを選択します。
-
-  **[次へ]** を選択します。
+  * **[ターゲット フレームワーク]** を選択するオプションが表示されている場合は、最新の 3.x バージョンを選択します。
+  * **[次へ]** を選択します。
 
 * プロジェクトに **MvcMovie** という名前を付けて、 **[作成]** を選択します。
 
@@ -279,211 +308,72 @@ Visual Studio では、作成した MVC プロジェクトに既定のテンプ�
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-**Ctrl + F5** キーを押して、デバッグ以外のモードでアプリを実行します。
+* Ctrl + F5 キーを選択して、デバッグなしでアプリを実行します。
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
+  [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio で [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) が開始され、アプリが実行されます。 アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。
-* Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、すばやくアプリを起動し、変更を確認できる非デバッグ モードの使用を好みます。
-* **[デバッグ]** メニュー項目から、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+  Visual Studio:
 
-  ![[デバッグ] メニュー](start-mvc/_static/debug_menu.png)
+  * [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) を起動します。
+  * アプリを実行します。
 
-* **[IIS Express]** ボタンを選択することで、アプリをデバッグできます。
+  アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 Visual Studio で Web プロジェクトが作成されるとき、Web サーバーにはランダムなポートが使用されます。
 
-  ![IIS Express](start-mvc/_static/iis_express.png)
+Ctrl + F5 キーを選択してデバッグなしでアプリを起動すると、次の操作を行えます。
 
-  次の図はアプリを示しています。
+* コードを変更します。
+* ファイルを保存します。
+* ブラウザーをすぐに更新して、コードの変更を確認します。
 
-  ![ホームまたはインデックス ページ](start-mvc/_static/home2.2.png)
+**[デバッグ]** メニュー項目から、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+
+![[デバッグ] メニュー](start-mvc/_static/debug_menu.png)
+
+**[IIS Express]** ボタンを選択することで、アプリをデバッグできます。
+
+![IIS Express](start-mvc/_static/iis_express.png)
+
+次の図はアプリを示しています。
+
+![ホームまたはインデックス ページ](start-mvc/_static/home2.2.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Ctrl + F5 キーを押して、デバッガーなしで実行します。
+* Ctrl + F5 キーを選択して、デバッグなしでアプリを実行します。
 
-[!INCLUDE[](~/includes/trustCertVSC.md)]
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  Visual Studio Code で [Kestrel](xref:fundamentals/servers/kestrel) が開始され、ブラウザーが起動して、`https://localhost:5001` に移動します。 アドレス バーには、`example.com` などではなく、`localhost:port:5001` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 localhost では、ローカル コンピューターからの Web 要求のみが処理されます。
+  Visual Studio Code:
 
-  Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、ページを更新して変更を確認できる非デバッグ モードの使用を好みます。
+  * [Kestrel](xref:fundamentals/servers/kestrel) を起動します
+  * ブラウザーを起動します。
+  * `https://localhost:5001` に移動します。
+
+  アドレス バーには、`example.com` などではなく、`localhost:port:5001` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 localhost では、ローカル コンピューターからの Web 要求のみが処理されます。
+
+Ctrl + F5 キーを選択してデバッグなしでアプリを起動すると、次の操作を行えます。
+
+* コードを変更します。
+* ファイルを保存します。
+* ブラウザーをすぐに更新して、コードの変更を確認します。
 
   ![ホームまたはインデックス ページ](start-mvc/_static/home2.2.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
-**[実行]**  >  **[デバッグなしで開始]** の順に選択してアプリを起動します。 Visual Studio for Mac によって [Kestrel](xref:fundamentals/servers/index#kestrel) サーバーが開始され、ブラウザーが起動して `http://localhost:port` にアクセスします。*port* はランダムに選択されたポート番号になります。
+* **[実行]** > **[デバッグなしで開始]** の順に選択してアプリを起動します。
+
+  Visual Studio for Mac: [Kestrel](xref:fundamentals/servers/index#kestrel) サーバーが開始され、ブラウザーが起動して `http://localhost:port` にアクセスします。*port* はランダムに選択されたポート番号になります。
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。 アプリを実行する際には、別のポート番号が表示されます。
-* **[実行]** メニューから、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
+アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 ローカル コンピューターの標準的なホスト名は `localhost` です。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。 アプリを実行する際には、別のポート番号が表示されます。
 
-  次の図はアプリを示しています。
+**[実行]** メニューから、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
 
-  ![ホームまたはインデックス ページ](./start-mvc/_static/output_macos.png)
+次の図はアプリを示しています。
 
----
-
-[!INCLUDE[](~/includes/vs-vsc-vsmac-help.md)]
-
-このチュートリアルの次のパートでは、MVC について説明し、コードの作成を開始します。
-
-> [!div class="step-by-step"]
-> [次へ](adding-controller.md)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!INCLUDE [consider RP](~/includes/razor.md)]
-
-このチュートリアルでは、ASP.NET Core の MVC Web アプリの構築の基礎について説明します。
-
-このアプリでは、映画タイトルのデータベースを管理します。 以下の方法について説明します。
-
-> [!div class="checklist"]
-> * Web アプリを作成する。
-> * モデルを追加してスキャフォールディングする。
-> * データベースを使用する。
-> * 検索と検証を追加する。
-
-最後には、映画データを管理および表示できるアプリが完成します。
-
-[!INCLUDE[](~/includes/mvc-intro/download.md)]
-
-## <a name="prerequisites"></a>必須コンポーネント
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
-
-# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
-
-# <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
-
----
-## <a name="create-a-web-app"></a>Web アプリの作成
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-* Visual Studio から **[新しいプロジェクトの作成]** を選択します。
-
-* **[ASP.NET Core Web アプリケーション]** を選択し、 **[次へ]** を選択します。
-
-![新しい ASP.NET Core Web アプリケーション](start-mvc/_static/np_2.1.png)
-
-* プロジェクトに **MvcMovie** という名前を付けて、 **[作成]** を選択します。 コードをコピーするときに名前空間が一致するように、プロジェクトに **MvcMovie** と名前を付けることが重要です。
-
-  ![新しい ASP.NET Core Web アプリケーション](start-mvc/_static/config.png)
-
-
-* **[Web Application(Model-View-Controller)]\(Web アプリケーション (Model-View-Controller)\)** を選択し、 **[作成]** を選択します。
-
-![[新しいプロジェクト] ダイアログ、左ウィンドウの .NET Core、ASP.NET Core Web ](start-mvc/_static/new_project22-21.png)
-
-Visual Studio では、作成した MVC プロジェクトに既定のテンプレートが使用されました。 プロジェクト名を入力し、いくつかのオプションを選択すると、すぐに作業アプリができあがります。 これは基本的なスターター プロジェクトなので、ここから始めることをお勧めします。
-
-# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-このチュートリアルは VS Code の知識があることを前提としています。 詳細については、[VS Code の概要](https://code.visualstudio.com/docs)、および [Visual Studio Code のヘルプ](#visual-studio-code-help)に関するページを参照してください。
-
-* [統合ターミナル](https://code.visualstudio.com/docs/editor/integrated-terminal)を開きます。
-* ディレクトリ (`cd`) を、プロジェクトを格納するフォルダーに変更します。
-* 次のコマンドを実行します。
-
-   ```dotnetcli
-   dotnet new mvc -o MvcMovie
-   code -r MvcMovie
-   ```
-
-  * "**ビルドとデバッグに必要な資産が 'MvcMovie' にありません。追加しますか?** " という内容のダイアログ ボックスが表示されたら、  **[はい]** を選択します
-
-  * `dotnet new mvc -o MvcMovie`: *MvcMovie* フォルダー内に新しい ASP.NET Core MVC プロジェクトを作成します。
-  * `code -r MvcMovie`:Visual Studio Code で *MvcMovie.csproj* プロジェクト ファイルを読み込みます。
-
-# <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
-
-* **[ファイル]** > **[新しいソリューション]** の順に選択します。
-
-  ![macOS の新しいソリューション](./start-mvc/_static/new_project_vsmac.png)
-
-* バージョン 8.6 より前の Visual Studio for Mac では、 **[.NET Core]** 、 **[アプリ]** 、 **[Web アプリケーション (Model-View-Controller)]** 、 **[次へ]** の順に選択します。 バージョン 8.6 以降では、 **[Web and Console]\(Web とコンソール\)** 、 **[アプリ]** 、 **[Web アプリケーション (Model-View-Controller)]** 、 **[次へ]** の順に選択します。
-
-* **[Configure your new Web Application]\(新しい Web アプリケーションを構成する\)** ダイアログで、次の操作を行います。
-
-  * **[認証]** に **[認証なし]** が設定されていることを確認します。
-  * **[ターゲット フレームワーク]** を選択するオプションが表示された場合は、最新の 2.x バージョンを選択します。
-
-  **[次へ]** を選択します。
-
-* プロジェクトに **MvcMovie** という名前を付けて、 **[作成]** を選択します。
-
----
-
-### <a name="run-the-app"></a>アプリを実行する
-
-# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
-
-**Ctrl + F5** キーを押して、デバッグ以外のモードでアプリを実行します。
-
-[!INCLUDE[](~/includes/trustCertVS.md)]
-
-* Visual Studio で [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) が開始され、アプリが実行されます。 アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。
-* Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、すばやくアプリを起動し、変更を確認できる非デバッグ モードの使用を好みます。
-* **[デバッグ]** メニュー項目から、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
-
-  ![[デバッグ] メニュー](start-mvc/_static/debug_menu.png)
-
-* **[IIS Express]** ボタンを選択することで、アプリをデバッグできます。
-
-  ![IIS Express](start-mvc/_static/iis_express.png)
-
-* **[同意する]** を選択し、追跡に同意します。 このアプリでは個人情報は追跡されません。 テンプレートで生成されたコードには、[一般的なデータ保護規制 (GDPR)](xref:security/gdpr) を満たす資産が含まれます。
-
-  ![ホームまたはインデックス ページ](start-mvc/_static/privacy.png)
-
-  次の図は、追跡に同意した後のアプリを示しています。
-
-  ![ホームまたはインデックス ページ](start-mvc/_static/home2.2.png)
-
-# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
-
-Ctrl + F5 キーを押して、デバッガーなしで実行します。
-
-[!INCLUDE[](~/includes/trustCertVSC.md)]
-
-  Visual Studio Code で [Kestrel](xref:fundamentals/servers/kestrel) が開始され、ブラウザーが起動して、`https://localhost:5001` に移動します。 アドレス バーには、`example.com` などではなく、`localhost:port:5001` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 localhost では、ローカル コンピューターからの Web 要求のみが処理されます。
-
-  Ctrl + F5 キー (非デバッグ モード) でアプリを起動することで、コードの変更、ファイルの保存、ブラウザーの更新、コード変更の確認を行うことができます。 多くの開発者は、ページを更新して変更を確認できる非デバッグ モードの使用を好みます。
-
-* **[同意する]** を選択し、追跡に同意します。 このアプリでは個人情報は追跡されません。 テンプレートで生成されたコードには、[一般的なデータ保護規制 (GDPR)](xref:security/gdpr) を満たす資産が含まれます。
-
-  ![ホームまたはインデックス ページ](start-mvc/_static/privacy.png)
-
-  次の図は、追跡に同意した後のアプリを示しています。
-
-  ![ホームまたはインデックス ページ](start-mvc/_static/home2.2.png)
-
-# <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
-
-**[実行]**  >  **[デバッグなしで開始]** の順に選択してアプリを起動します。 Visual Studio for Mac によって [Kestrel](xref:fundamentals/servers/index#kestrel) サーバーが開始され、ブラウザーが起動して `http://localhost:port` にアクセスします。*port* はランダムに選択されたポート番号になります。
-
-[!INCLUDE[](~/includes/trustCertMac.md)]
-
-* アドレス バーには、`example.com` などではなく、`localhost:port#` が表示されます。 これは、`localhost` がローカル コンピューターの標準のホスト名であるためです。 Visual Studio が Web プロジェクトを作成する場合は、Web サーバーにランダム ポートが使用されます。 アプリを実行する際には、別のポート番号が表示されます。
-* **[実行]** メニューから、デバッグ モードまたは非デバッグ モードでアプリを起動できます。
-
-* **[同意する]** を選択し、追跡に同意します。 このアプリでは個人情報は追跡されません。 テンプレートで生成されたコードには、[一般的なデータ保護規制 (GDPR)](xref:security/gdpr) を満たす資産が含まれます。
-
-  ![ホームまたはインデックス ページ](./start-mvc/_static/output_privacy_macos.png)
-
-  次の図は、追跡に同意した後のアプリを示しています。
-
-  ![ホームまたはインデックス ページ](./start-mvc/_static/output_macos.png)
+![ホームまたはインデックス ページ](./start-mvc/_static/output_macos.png)
 
 ---
 

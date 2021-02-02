@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: c789928252417ef1cf95c60deb7edef24d58126e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5a255c2d3535311cecd6b7219447e80d1ae78877
+ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93055998"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98758252"
 ---
-# <a name="handle-errors-in-aspnet-core-no-locblazor-apps"></a>ASP.NET Core Blazor アプリのエラーを処理する
+# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>ASP.NET Core Blazor アプリのエラーを処理する
 
 作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -89,7 +89,36 @@ Blazor Server アプリでは、`Pages/_Host.cshtml` ファイルでエクスペ
 }
 ```
 
-## <a name="how-a-no-locblazor-server-app-reacts-to-unhandled-exceptions"></a>ハンドルされない例外に対して Blazor Server アプリがどのように反応するか
+## <a name="blazor-server-detailed-circuit-errors"></a>Blazor Server の詳細な回線エラー
+
+クライアント側のエラーには、呼び出し履歴は含まれず、エラーの原因についての詳細は提供されませんが、サーバー ログにはこのような情報が含まれています。 開発目的で、詳細なエラーを有効にすることによって、機密性の高い回線エラー情報をクライアントが利用できるようにすることができます。
+
+次の方法を使用して Blazor Server の詳細なエラーを有効にします。
+
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
+* `DetailedErrors` 構成キーを `true` に設定します。これはアプリの Development 設定ファイル (`appsettings.Development.json`) で設定できます。 このキーは、値を `true` にした `ASPNETCORE_DETAILEDERRORS` 環境変数を使用することで設定することもできます。
+* [SignalR のサーバー側ログ記録](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) を [Debug](xref:Microsoft.Extensions.Logging.LogLevel) または [Trace](xref:Microsoft.Extensions.Logging.LogLevel) に設定して、SignalR の詳細なログを記録することができます。
+
+`appsettings.Development.json`:
+
+```json
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.AspNetCore.SignalR": "Debug"
+    }
+  }
+}
+```
+
+> [!WARNING]
+> インターネット上でクライアントにエラー情報を公開することは、常に回避すべきセキュリティ リスクです。
+
+## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>ハンドルされない例外に対して Blazor Server アプリがどのように反応するか
 
 Blazor Server はステートフルなフレームワークです。 ユーザーはアプリを操作するときに、*回線* と呼ばれる、サーバーへの接続を維持します。 回線では、アクティブなコンポーネント インスタンスに加えて、次のような状態の他の多くの側面が保持されます。
 
@@ -225,7 +254,7 @@ Blazor によってコンポーネントのインスタンスが作成される�
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="no-locblazor-server-prerendering"></a>Blazor Server のプリレンダリング
+### <a name="blazor-server-prerendering"></a>Blazor Server のプリレンダリング
 
 レンダリングされた HTML マークアップがユーザーの初期 HTTP 要求の一部として返されるように、[コンポーネント タグ ヘルパー](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper)を使用して Blazor コンポーネントを事前レンダリングすることができます。 これは以下によって機能します。
 

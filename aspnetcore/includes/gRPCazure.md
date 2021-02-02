@@ -1,2 +1,2 @@
 > [!WARNING]
-> 現在、[ASP.NET Core gRPC](xref:grpc/index) は Azure App Service または IIS 上でサポートされていません。 Http.Sys の HTTP/2 実装では、gRPC が依存する HTTP 応答の末尾のヘッダーがサポートされていません。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/AspNetCore/issues/9020)します。
+> [ASP.NET Core gRPC](xref:grpc/index) には、Azure App Service または IIS と共に使用するための追加の要件があります。 gRPCを使用できる場所の詳細については、「<xref:grpc/supported-platforms>」を参照してください。

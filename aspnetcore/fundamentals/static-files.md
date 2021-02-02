@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 2e25af03a8a6aaff5b343885711c6ebb68340fac
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: d97caeffc6e8beebddb01a5bd126d61ba988de65
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057857"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689293"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core の静的ファイル
 
@@ -54,7 +54,7 @@ HTML、CSS、画像、JavaScript などの静的ファイルは、既定では A
 
 ### <a name="serve-files-in-web-root"></a>Web ルート内のファイルの提供
 
-既定の Web アプリ テンプレートでは、`Startup.Configure` 内で <xref:Owin.StaticFileExtensions.UseStaticFiles%2A> メソッドが呼び出されます。これにより、静的ファイルを提供できるようになります。
+既定の Web アプリ テンプレートでは、`Startup.Configure` 内で <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> メソッドが呼び出されます。これにより、静的ファイルを提供できるようになります。
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
 
@@ -104,23 +104,31 @@ HTML、CSS、画像、JavaScript などの静的ファイルは、既定では A
 
 ## <a name="static-file-authorization"></a>静的ファイルの承認
 
-静的ファイル ミドルウェアでは、承認の確認は行いません。 `wwwroot` の下にあるものも含め、このミドルウェアによって提供されるすべてのファイルは、一般に公開されます。 承認に基づいてファイルを提供するには:
+ASP.NET Core テンプレートでは、<xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> を呼び出す前に <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> が呼び出されます。 ほとんどのアプリがこのパターンに従います。 認可ミドルウェアの前に静的ファイル ミドルウェアが呼び出される場合:
 
-* `wwwroot` や既定の静的ファイル ミドルウェアがアクセスできる任意のディレクトリの外にそれらを配置します。
-* `UseAuthorization` の後に `UseStaticFiles` を呼び出し、パスを指定します。
-
-  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  * 静的ファイルに対して認可チェックは実行されません。
+  * 静的ファイル ミドルウェアによって提供される静的ファイル (`wwwroot` 下にあるものなど) には、パブリックにアクセスできます。
   
-  上記の方法では、ユーザーの認証が必要です。
+認可に基づいて静的ファイルを提供するには:
 
-  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+  * それらを `wwwroot` の外部に保存します。
+  * `UseAuthorization` を呼び出した後に、パスを指定して `UseStaticFiles` を呼び出します。
+  * [フォールバック認可ポリシー](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)を設定します。
 
-   [!INCLUDE[](~/includes/requireAuth.md)]
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2&highlight=24-29)]
+  
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-25)]
 
-承認に基づいてファイルを提供する別の方法:
+  前のコードでは、フォールバック認可ポリシーによって "***すべての** _" ユーザーを認証することが要求されます。 独自の認可要件を指定する、コントローラー、Razor Pages などのエンドポイントでは、フォールバック認可ポリシーは使用されません。 たとえば、`[AllowAnonymous]` や `[Authorize(PolicyName="MyPolicy")]` を使用する Razor Pages、コントローラー、またはアクション メソッドでは、フォールバック認可ポリシーではなく適用された認可属性が使用されます。
 
-* `wwwroot` や静的ファイル ミドルウェアがアクセスできる任意のディレクトリの外にファイルを配置します。
-* 承認が適用されるアクション メソッドを使用して提供し、<xref:Microsoft.AspNetCore.Mvc.FileResult> オブジェクトを返します。
+  <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> により、現在のインスタンスに <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> が追加されます。これにより、現在のユーザーが認証されます。
+
+  `UseAuthentication` の前に既定の静的ファイル ミドルウェア (`app.UseStaticFiles();`) が呼び出されるため、`wwwroot` 下の静的資産にはパブリックにアクセスできます。 _MyStaticFiles* フォルダー内の静的資産には認証が必要です。 これは[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)で示されています。
+
+認可に基づいてファイルを提供する別の方法:
+
+  * `wwwroot` や静的ファイル ミドルウェアがアクセスできる任意のディレクトリの外にファイルを配置します。
+  * 承認が適用されるアクション メソッドを使用して提供し、<xref:Microsoft.AspNetCore.Mvc.FileResult> オブジェクトを返します。
 
   [!code-csharp[](static-files/samples/3.x/StaticFilesSample/Controllers/HomeController.cs?name=snippet_BannerImage)]
 

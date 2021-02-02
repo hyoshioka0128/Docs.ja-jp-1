@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: ec183f4aadc6bafd8e77f9d97291ba3d47bd92f5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 74886eae7431045e56de535b5221040bd56cdc2d
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506930"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751569"
 ---
-# <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor のルーティング
+# <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor のルーティング
 
 作成者: [Luke Latham](https://github.com/guardrex)
 
@@ -326,11 +326,11 @@ C# コード内の URI とナビゲーションを管理するには、<xref:Mic
 要求のクエリ文字列は、<xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> プロパティから取得されます。
 
 ```razor
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 
 ...
 
-var query = new Uri(Navigation.Uri).Query;
+var query = new Uri(NavigationManager.Uri).Query;
 ```
 
 クエリ文字列のパラメーターを解析するには:
@@ -354,7 +354,7 @@ var query = new Uri(Navigation.Uri).Query;
 
 ::: moniker-end
 
-## <a name="navlink-component"></a>`NavLink` コンポーネント
+## <a name="navlink-and-navmenu-components"></a>`NavLink` および `NavMenu` コンポーネント
 
 ナビゲーション リンクを作成するときは、HTML ハイパーリンク要素 (`<a>`) の代わりに <xref:Microsoft.AspNetCore.Components.Routing.NavLink> コンポーネントを使用します。 <xref:Microsoft.AspNetCore.Components.Routing.NavLink> コンポーネントは `<a>` 要素のように動作しますが、`href` が現在の URL と一致するかどうかに基づいて `active` CSS クラスを切り替える点が異なります。 `active` クラスは、表示されているナビゲーション リンクの中でどのページがアクティブ ページであるかをユーザーが理解するのに役立ちます。 必要に応じて、CSS クラス名を <xref:Microsoft.AspNetCore.Components.Routing.NavLink.ActiveClass?displayProperty=nameWithType> に割り当てて、現在のルートが `href` と一致したときに、レンダリングされるリンクにカスタム CSS クラスを適用します。
 

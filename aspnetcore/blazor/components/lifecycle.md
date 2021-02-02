@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: acaa276efda9fb4d09a5c1b1ca59c6abde1b64ec
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 3591ba18351b89e2d5dfaef796777273c97ce98b
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252392"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751614"
 ---
-# <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
+# <a name="aspnet-core-blazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
 
 著者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
 
@@ -68,14 +68,38 @@ Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行
 
 ### <a name="before-parameters-are-set"></a>パラメーターが設定される前
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> は、レンダリング ツリーのコンポーネントの親によって指定されたパラメーターを設定します。
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> により、レンダリング ツリーのコンポーネントの親によって、またはルート パラメーターから指定されたパラメーターが設定されます。 開発者のコードでは、このメソッドをオーバーライドすることによって、<xref:Microsoft.AspNetCore.Components.ParameterView> のパラメーターと直接対話できます。
 
-```csharp
-public override async Task SetParametersAsync(ParameterView parameters)
-{
-    await ...
+次の例では、`Param` のルート パラメーターの解析が成功した場合、<xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> によって `Param` パラメーターの値が `value` に代入されます。 `value` が `null` でなければ、`SetParametersAsyncExample` コンポーネントによってその値が表示されます。
 
-    await base.SetParametersAsync(parameters);
+`Pages/SetParametersAsyncExample.razor`:
+
+```razor
+@page "/setparametersasync-example/{Param?}"
+
+<h1>SetParametersAsync Example</h1>
+
+<p>@message</p>
+
+@code {
+    private string message;
+
+    [Parameter]
+    public string Param { get; set; }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        if (parameters.TryGetValue<string>(nameof(Param), out var value))
+        {
+            message = $"The value of 'Param' is {value}.";
+        }
+        else 
+        {
+            message = "The value of 'Param' is null.";
+        }
+
+        await base.SetParametersAsync(parameters);
+    }
 }
 ```
 
@@ -296,9 +320,9 @@ public class WeatherForecastService
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## <a name="component-disposal-with-idisposable"></a>IDisposable を使用したコンポーネントの破棄
+## <a name="component-disposal-with-idisposable"></a>`IDisposable` を使用したコンポーネントの破棄
 
-コンポーネントが <xref:System.IDisposable> を実装している場合は、コンポーネントが UI から削除されると、[`Dispose` メソッド](/dotnet/standard/garbage-collection/implementing-dispose)が呼び出されます。 破棄は、[コンポーネントの初期化](#component-initialization-methods)中など、いつでも実行できます。 次のコンポーネントでは、`@implements IDisposable` および `Dispose` メソッドが使用されます。
+コンポーネントが <xref:System.IDisposable> を実装している場合、そのコンポーネントが UI から削除されるときにフレームワークで[破棄メソッド](/dotnet/standard/garbage-collection/implementing-dispose)を呼び出し、アンマネージ リソースを解放することができます。 破棄は、[コンポーネントの初期化](#component-initialization-methods)中など、いつでも実行できます。 次のコンポーネントでは、[`@implements`](xref:mvc/views/razor#implements) Razor ディレクティブを使用して <xref:System.IDisposable> が実装されています。
 
 ```razor
 @using System
@@ -314,6 +338,15 @@ public class WeatherForecastService
 }
 ```
 
+非同期の破棄タスクの場合は、前の例の `Dispose` の代わりに `DisposeAsync` を使用します。
+
+```csharp
+public async ValueTask DisposeAsync()
+{
+    ...
+}
+```
+
 > [!NOTE]
 > `Dispose` では、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> の呼び出しはサポートされていません。 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、レンダラーの破棄の一部として呼び出されることがあるため、その時点での UI 更新の要求はサポートされていません。
 
@@ -326,6 +359,8 @@ public class WeatherForecastService
 * プライベート メソッドのアプローチ
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  
+詳細については、「[アンマネージ リソースのクリーンアップ](/dotnet/standard/garbage-collection/unmanaged)」と、その後に続く `Dispose` および `DisposeAsync` メソッドの実装に関するトピックを参照してください。
 
 ## <a name="cancelable-background-work"></a>取り消し可能なバックグラウンド作業
 
@@ -397,6 +432,6 @@ public class WeatherForecastService
 }
 ```
 
-## <a name="no-locblazor-server-reconnection-events"></a>Blazor Server 再接続イベント
+## <a name="blazor-server-reconnection-events"></a>Blazor Server 再接続イベント
 
 この記事で説明するコンポーネント ライフサイクル イベントは、[Blazor Server の再接続イベント ハンドラー](xref:blazor/fundamentals/additional-scenarios#reflect-the-connection-state-in-the-ui)とは別々に動作します。 Blazor Server アプリとクライアントの SignalR 接続が失われた場合には、UI の更新だけが中断されます。 その接続が再確立されると、UI の更新が再開されます。 回線ハンドラーのイベントと構成の詳細については、「<xref:blazor/fundamentals/additional-scenarios>」を参照してください。

@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: d0ed36731d78d3e98aa294aca50492f0a3ac8174
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 4256e90ca5f185992a73d1e43460ca5d27159d6f
+ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506696"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98758276"
 ---
-# <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>ASP.NET Core Blazor Server の脅威の緩和のガイダンス
+# <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>ASP.NET Core Blazor Server の脅威の緩和のガイダンス
 
 作成者: [Javier Calvarro Jeannine](https://github.com/javiercn)
 
@@ -41,7 +41,7 @@ JS 相互運用はインターネット経由で行われ、クライアント�
 * 制約された環境には適用されません。
 * 制約された環境はセキュリティ リスクが低いため、実装する価値がありません。
 
-## <a name="no-locblazor-and-shared-state"></a>Blazor と共有状態
+## <a name="blazor-and-shared-state"></a>Blazor と共有状態
 
 [!INCLUDE[](~/blazor/includes/security/blazor-shared-state.md)]
 
@@ -306,12 +306,7 @@ ASP.NET Core アプリをセキュリティで保護するためのガイダン�
 
 サーバーでエラーが発生すると、フレームワークによってクライアントに通知され、セッションが破棄されます。 既定では、クライアントは、ブラウザーの開発者ツールで見られる一般的なエラー メッセージを受け取ります。
 
-クライアント側のエラーには、呼び出し履歴は含まれず、エラーの原因についての詳細は提供されませんが、サーバー ログにはこのような情報が含まれています。 開発目的で、詳細なエラーを有効にすることによって、機密性の高いエラー情報をクライアントが利用できるようにすることができます。
-
-JavaScript では、以下を使用して詳細なエラーを有効にします。
-
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* `DetailedErrors` 構成キーを `true` に設定します。これはアプリ設定ファイル (`appsettings.json`) で設定できます。 このキーは、値を `true` にした `ASPNETCORE_DETAILEDERRORS` 環境変数を使用することで設定することもできます。
+クライアント側のエラーには、呼び出し履歴は含まれず、エラーの原因についての詳細は提供されませんが、サーバー ログにはこのような情報が含まれています。 開発目的で、[詳細なエラーを有効にする](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors)ことによって、機密性の高いエラー情報をクライアントが利用できるようにすることができます。
 
 > [!WARNING]
 > インターネット上でクライアントにエラー情報を公開することは、常に回避すべきセキュリティ リスクです。

@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 2df938f3ace47472536020f9848e954fc4446f15
-ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
+ms.openlocfilehash: 0b555ad7befe882c4ffd06e2505a9edc1263eee2
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98658587"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057084"
 ---
-# <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をセキュリティで保護する
+# <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をセキュリティで保護する
 
 作成者: [Javier Calvarro Jeannine](https://github.com/javiercn)
 
@@ -107,9 +107,17 @@ Blazor WebAssembly アプリでは、すべてのクライアント側コード�
 * [その他のシナリオ: ユーザーをカスタマイズする](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
 
-## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Identity Server を使用した Azure App Service on Linux
+## <a name="azure-app-service-on-linux-with-identity-server"></a>Identity Server を使用した Azure App Service on Linux
 
 Identity Server を使用して Azure App Service on Linux にデプロイするときに、発行者を明示的に指定します。 詳細については、「<xref:security/authentication/identity/spa#azure-app-service-on-linux>」を参照してください。
+
+## <a name="windows-authentication"></a>Windows 認証
+
+Blazor WebAssembly またはその他の SPA フレームワークでは、Windows 認証を使用しないことをお勧めします。 Windows 認証の代わりにトークンベースのプロトコルを使用することをお勧めします (Active Directory フェデレーション サービス (AD FS) を使用する OIDC など)。
+
+Windows 認証が Blazor WebAssembly またはその他の SPA フレームワークで使用されている場合、クロスサイト リクエスト フォージェリ (CSRF) トークンからアプリを保護するために追加の手段が必要になります。 cookie に当てはまるのと同じ問題が Windows 認証にも当てはまります。これに加えて、Windows 認証では、オリジン間での認証コンテキストの共有を防ぐメカニズムは提供されません。 CSRF からの追加の保護なしで Windows 認証を使用するアプリは、少なくとも組織のイントラネットに限定する必要があり、インターネットでは使用できません。
+
+詳細については、「<xref:security/anti-request-forgery>」を参照してください。
 
 ## <a name="implementation-guidance"></a>実装ガイダンス
 

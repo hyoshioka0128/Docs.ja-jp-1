@@ -1,5 +1,5 @@
 ---
-title: .NET Core の gRPC の概要
+title: .NET の gRPC の概要
 author: juntaoluo
 description: Kestrel サーバーと ASP.NET Core の gRPC サービスについて説明します。
 monikerRange: '>= aspnetcore-3.0'
@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/index
-ms.openlocfilehash: 80f44e3845cc1e3c87d5d657807a318eb65e6c6f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5820049aba90a2fbd06a23756b12ac9656c3b2c4
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059898"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057513"
 ---
-# <a name="introduction-to-grpc-on-net-core"></a>.NET Core の gRPC の概要
+# <a name="introduction-to-grpc-on-net"></a>.NET の gRPC の概要
 
 作成者: [John Luo](https://github.com/juntaoluo)、[James Newton-King](https://twitter.com/jamesnk)
 
@@ -106,7 +106,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-`GreeterService` は `GreeterBase` 型を継承します。これは *\*.proto* ファイル内の `Greeter` サービスから生成されます。 サービスは、 *Startup.cs* 内でクライアントがアクセスできるようになります。
+`GreeterService` は `GreeterBase` 型を継承します。これは *\*.proto* ファイル内の `Greeter` サービスから生成されます。 サービスは、*Startup.cs* 内でクライアントがアクセスできるようになります。
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -119,7 +119,7 @@ ASP.NET Core での gRPC サービスについて詳しくは、「<xref:grpc/as
 
 ## <a name="call-grpc-services-with-a-net-client"></a>.NET クライアントを使用して gRPC サービスを呼び出す
 
-gRPC クライアントは、 [ *\*.proto* ファイルから生成される](xref:grpc/basics#generated-c-assets)具象的なクライアントの種類です。 具象 gRPC クライアントには、 *\*.proto* ファイル内の gRPC サービスに変換するためのメソッドが含まれます。
+gRPC クライアントは、[ *\*.proto* ファイルから生成される](xref:grpc/basics#generated-c-assets)具象的なクライアントの種類です。 具象 gRPC クライアントには、 *\*.proto* ファイル内の gRPC サービスに変換するためのメソッドが含まれます。
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");

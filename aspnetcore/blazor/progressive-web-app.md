@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 196e19528341e98ac06cefb08ba92f9e47d265ea
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 1706d3502dc68f1c25e0c35ba8f5dd44b55ce690
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252475"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658652"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly を使用してプログレッシブ Web アプリケーションをビルドする
+# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly を使用してプログレッシブ Web アプリケーションをビルドする
 
 作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -71,7 +71,7 @@ dotnet new blazorwasm -o MyBlazorPwa --pwa
 
 必要に応じて、ASP.NET Core でホストされるテンプレートから作成されたアプリに対して PWA を構成できます。 PWA シナリオは、ホスティング モデルに依存しません。
 
-## <a name="convert-an-existing-no-locblazor-webassembly-app-into-a-pwa"></a>既存の Blazor WebAssembly アプリを PWA に変換する
+## <a name="convert-an-existing-blazor-webassembly-app-into-a-pwa"></a>既存の Blazor WebAssembly アプリを PWA に変換する
 
 このセクションのガイダンスに従って、既存の Blazor WebAssembly アプリを PWA に変換します。
 
@@ -272,10 +272,20 @@ const shouldServeIndexHtml = event.request.mode === 'navigate';
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 この変更を行わないと、ネットワーク接続に関係なく、サービス ワーカーによってこのような URL に対する要求がインターセプトされ、`/index.html` を使用してそれらが解決されます。
+
+外部認証プロバイダー用にその他のエンドポイントをチェックに追加します。 次の例では、Google 認証用の `/signin-google` がチェックに追加されています。
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+コンテンツが常にネットワークからフェッチされる開発環境では、必要な操作はありません。
 
 ### <a name="control-asset-caching"></a>アセット キャッシュの制御
 

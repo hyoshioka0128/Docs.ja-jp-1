@@ -4,7 +4,7 @@ author: mjrousos
 description: ASP.NET Core での認証について説明します。
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 1/24/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: e9e4ca11d20557666c75b84e56af825d002df0f1
-ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
+ms.openlocfilehash: 72036e9c4c92ee5dd82ac4a67e766fb0e5c8f924
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94464004"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057292"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>ASP.NET Core の認証の概要
 
@@ -62,7 +62,19 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 ## <a name="authentication-concepts"></a>認証の概念
 
+認証には、アクセス許可の決定を行う認可用の <xref:System.Security.Claims.ClaimsPrincipal> を提供する役割があります。 正しいクレーム セットを生成する役割がある認証ハンドラーを選択するには、複数の認証スキームの手法があります。
+
+  * [認証スキーム](xref:security/authorization/limitingidentitybyscheme)。これについては、次のセクションでも説明します。
+  * 既定の認証スキーム。これについては、次のセクションで説明します。
+  * [HttpContext.User](xref:Microsoft.AspNetCore.Http.HttpContext.User) を直接設定する。
+
+スキームの自動プローブはありません。 既定のスキームが指定されていない場合は、Authorize 属性でスキームを指定する必要があります。そうしないと、次のエラーがスローされます。
+
+  InvalidOperationException:authenticationScheme が指定されておらず、DefaultAuthenticateScheme が見つかりませんでした。 既定のスキームは、AddAuthentication(string defaultScheme) または AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions) のいずれかを使用して設定できます。
+
 ### <a name="authentication-scheme"></a>認証スキーム
+
+[認証スキーム](xref:security/authorization/limitingidentitybyscheme)では、正しいクレーム セットを生成する役割がある認証ハンドラーを選択できます。 詳細については、[特定のスキームでの承認](xref:security/authorization/limitingidentitybyscheme)に関するページを参照してください。
 
 認証スキームは、次のものに対応する名前です。
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel/endpoints
-ms.openlocfilehash: 780250feab456fa3eedee4e023c9bc774e748291
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 5fec573013da5bcb5039b7a189fd84d964349b3a
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253873"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658743"
 ---
 # <a name="configure-endpoints-for-the-aspnet-core-kestrel-web-server"></a>ASP.NET Core Kestrel Web サーバーのエンドポイントを構成する
 
@@ -169,7 +169,7 @@ Kestrel は、既定の HTTPS アプリ設定構成スキーマを使用でき�
 次の *appsettings.json* の例では以下のようになります。
 
 * `AllowInvalid` を `true` に設定し、の無効な証明書 (自己署名証明書など) の使用を許可します。
-* 証明書 (この後の例では `HttpsDefaultCert`) が指定されていないすべての HTTPS エンドポイントは、`Certificates` > `Default` または開発証明書で定義されている証明書にフォールバックします。
+* 証明書 (この後の例では `HttpsDefaultCert`) が指定されていないすべての HTTPS エンドポイントは、`Certificates:Default` または開発証明書で定義されている証明書にフォールバックします。
 
 ```json
 {
@@ -185,8 +185,16 @@ Kestrel は、既定の HTTPS アプリ設定構成スキーマを使用でき�
           "Password": "<certificate password>"
         }
       },
-      "HttpsInlineCertStore": {
+      "HttpsInlineCertAndKeyFile": {
         "Url": "https://localhost:5002",
+        "Certificate": {
+          "Path": "<path to .pem/.crt file>",
+          "KeyPath": "<path to .key file>",
+          "Password": "<certificate password>"
+        }
+      },
+      "HttpsInlineCertStore": {
+        "Url": "https://localhost:5003",
         "Certificate": {
           "Subject": "<subject; required>",
           "Store": "<certificate store; required>",
@@ -195,14 +203,7 @@ Kestrel は、既定の HTTPS アプリ設定構成スキーマを使用でき�
         }
       },
       "HttpsDefaultCert": {
-        "Url": "https://localhost:5003"
-      },
-      "Https": {
-        "Url": "https://*:5004",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5004"
       }
     },
     "Certificates": {
@@ -215,7 +216,24 @@ Kestrel は、既定の HTTPS アプリ設定構成スキーマを使用でき�
 }
 ```
 
-証明書ノードの `Path` と `Password` を使用する代わりの方法は、証明書ストアのフィールドを使って証明書を指定することです。 たとえば、 `Certificates`  >  `Default` の証明書は次のように指定できます。
+スキーマに関する注意事項:
+
+* エンドポイント名は[大文字と小文字が区別されます](xref:fundamentals/configuration/index#configuration-keys-and-values)。 たとえば、 `HTTPS` and `Https` は同等です。
+* `Url` パラメーターは、エンドポイントごとに必要です。 このパラメーターの形式は、1 つの値に制限されることを除き、最上位レベルの `Urls` 構成パラメーターと同じです。
+* これらのエンドポイントは、最上位レベルの `Urls` 構成での定義に追加されるのではなく、それを置き換えます。 コードで `Listen` を使用して定義されているエンドポイントは、構成セクションで定義されているエンドポイントに累積されます。
+* `Certificate` セクションは省略可能です。 `Certificate` セクションを指定しないと、`Certificates:Default` で定義した既定値が使用されます。 既定値を使用できない場合は、開発証明書が使用されます。 既定値がなく、開発証明書も存在しない場合、サーバーにより例外がスローされ、起動に失敗します。
+* `Certificate` セクションでは複数の[証明書のソース](#certificate-sources)がサポートされています。
+* ポートが競合しない限り、[構成](xref:fundamentals/configuration/index)で任意の数のエンドポイントを定義できます。
+
+#### <a name="certificate-sources"></a>証明書のソース
+
+さまざまなソースから証明書を読み込むように証明書ノードを構成することができます。
+
+* *.pfx* ファイルを読み込むための `Path` と `Password`。
+* *.pem*/ *.crt* および *.key* ファイルを読み込むための `Path`、`KeyPath`、および `Password`。
+* 証明書ストアから読み込むための `Subject` と `Store`。
+
+たとえば、 `Certificates:Default`   の証明書は次のように指定できます。
 
 ```json
 "Default": {
@@ -226,15 +244,9 @@ Kestrel は、既定の HTTPS アプリ設定構成スキーマを使用でき�
 }
 ```
 
-スキーマに関する注意事項:
+#### <a name="configurationloader"></a>ConfigurationLoader
 
-* エンドポイント名は大文字と小文字が区別されます。 たとえば、`HTTPS` と `Https` は有効です。
-* `Url` パラメーターは、エンドポイントごとに必要です。 このパラメーターの形式は、1 つの値に制限されることを除き、最上位レベルの `Urls` 構成パラメーターと同じです。
-* これらのエンドポイントは、最上位レベルの `Urls` 構成での定義に追加されるのではなく、それを置き換えます。 コードで `Listen` を使用して定義されているエンドポイントは、構成セクションで定義されているエンドポイントに累積されます。
-* `Certificate` セクションは省略可能です。 `Certificate` セクションを指定しないと、前述のシナリオで定義した既定値が使用されます。 既定値を使用できない場合、サーバーにより例外がスローされ、開始できません。
-* `Certificate` セクションは、`Path`&ndash;`Password` 証明書と `Subject`&ndash;`Store` 証明書の両方をサポートします。
-* ポートが競合しない限り、この方法で任意の数のエンドポイントを定義できます。
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` が `.Endpoint(string name, listenOptions => { })` メソッドで返す `KestrelConfigurationLoader` を使用して、構成されているエンドポイントの設定を補足できます。
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` が `.Endpoint(string name, listenOptions => { })` メソッドで返す <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> を使用して、構成されているエンドポイントの設定を補足できます。
 
 ```csharp
 webBuilder.UseKestrel((context, serverOptions) =>

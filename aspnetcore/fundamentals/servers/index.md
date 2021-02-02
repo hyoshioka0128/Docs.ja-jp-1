@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 49e299ed00ea0e5d54c1ba795971da379cd5b695
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 2acddd212639ac0a82b3c46f2225ff66d0999dd0
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253138"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217558"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>ASP.NET Core での Web サーバーの実装
 
@@ -32,31 +32,13 @@ ms.locfileid: "98253138"
 
 ASP.NET Core アプリは、インプロセス HTTP サーバー実装を使用して実行されます。 サーバーの実装では、HTTP 要求がリッスンされ、<xref:Microsoft.AspNetCore.Http.HttpContext> に構成された[要求機能](xref:fundamentals/request-features)のセットとしてアプリに公開されます。
 
-## <a name="kestrel"></a>Kestrel
-
-Kestrel は、ASP.NET Core のプロジェクト テンプレートにより指定された既定の Web サーバーです。
-
-Kestrel を使用する:
-
-* これ自体で、インターネットを含むネットワークから直接要求を処理するエッジ サーバーとして。
-
-  ![リバース プロキシ サーバーなしでインターネットと直接通信する Kestrel](kestrel/_static/kestrel-to-internet2.png)
-
-* [インターネット インフォメーション サービス (IIS)](https://www.iis.net/)、[Nginx](https://nginx.org)、[Apache](https://httpd.apache.org/) などの *リバース プロキシ サーバー* と共に。 リバース プロキシ サーバーはインターネットから HTTP 要求を受け取り、これを Kestrel に転送します。
-
-  ![IIS、Nginx、または Apache などのリバース プロキシ サーバーを介してインターネットと間接的に通信する Kestrel](kestrel/_static/kestrel-to-internet.png)
-
-&mdash;リバース プロキシ サーバーの有無に関わらず&mdash;、いずれのホスティング構成もサポートされています。
-
-Kestrel の構成ガイダンスおよびリバース プロキシ構成で Kestrel を使用するときの情報については、「<xref:fundamentals/servers/kestrel>」をご覧ください。
-
 ::: moniker range=">= aspnetcore-2.2"
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
 ASP.NET Core には次のものが付属しています。
 
-* [Kestrel サーバー](xref:fundamentals/servers/kestrel)は、クロスプラットフォーム HTTP サーバーの既定の実装です。
+* [Kestrel サーバー](xref:fundamentals/servers/kestrel)は、クロスプラットフォーム HTTP サーバーの既定の実装です。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、HTTP.sys の高度な機能の一部は提供されません。 詳細については、このドキュメントの「[Kestrel と HTTP.sys](#korh)」を参照してください。
 * IIS HTTP サーバーは、IIS 用の[インプロセス サーバー](#hosting-models)です。
 * [HTTP.sys サーバー](xref:fundamentals/servers/httpsys)は、[HTTP.sys カーネル ドライバーおよび HTTP サーバー API](/windows/desktop/Http/http-api-start-page) に基づく Windows 専用の HTTP サーバーです。
 
@@ -66,6 +48,26 @@ ASP.NET Core には次のものが付属しています。
 * [Kestrel サーバー](#kestrel)を使用して IIS ワーカー プロセスとは異なるプロセス内 ([プロセス外ホスティング モデル](#hosting-models))。
 
 [ASP.NET Core モジュール](xref:host-and-deploy/aspnet-core-module)はネイティブの IIS モジュールであり、IIS とインプロセス IIS HTTP サーバーまたは Kestrel の間のネイティブ IIS 要求が処理されます。 詳細については、「<xref:host-and-deploy/aspnet-core-module>」を参照してください。
+
+<a name="korh"></a>
+
+## <a name="kestrel-vs-httpsys"></a>Kestrel と HTTP.sys
+
+Kestrel は、次のような点が HTTP.sys より優れています。
+
+  * よりよいパフォーマンスとメモリ使用率
+  * クロス プラットフォーム
+  * 機敏性。OS から独立して開発され、パッチが適用されます。
+  * プログラムによるポートと TLS の構成
+  * [PPv2](https://github.com/aspnet/AspLabs/blob/master/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) や代替トランスポートなどのプロトコルを使用できる拡張性。
+
+HTTP.sys は、kestrel にはない次の機能を備えた共有カーネル モード コンポーネントとして動作します。
+
+  * ポート共有
+  * カーネル モードの Windows 認証。 [Kestrel でサポートされているのは、ユーザー モード認証のみです](xref:security/authentication/windowsauth#kestrel)。
+  * キュー転送による高速プロキシ
+  * 直接ファイル伝送
+  * 応答キャッシュ
 
 ## <a name="hosting-models"></a>ホスティング モデル
 
@@ -89,6 +91,24 @@ ASP.NET Core には、既定のクロスプラットフォーム HTTP サーバ�
 ---
 
 ::: moniker-end
+
+## <a name="kestrel"></a>Kestrel
+
+ [Kestrel サーバー](xref:fundamentals/servers/kestrel)は、クロスプラットフォーム HTTP サーバーの既定の実装です。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、HTTP.sys の高度な機能の一部は提供されません。 詳細については、このドキュメントの「[Kestrel と HTTP.sys](#korh)」を参照してください。
+
+Kestrel を使用する:
+
+* これ自体で、インターネットを含むネットワークから直接要求を処理するエッジ サーバーとして。
+
+  ![リバース プロキシ サーバーなしでインターネットと直接通信する Kestrel](kestrel/_static/kestrel-to-internet2.png)
+
+* [インターネット インフォメーション サービス (IIS)](https://www.iis.net/)、[Nginx](https://nginx.org)、[Apache](https://httpd.apache.org/) などの *リバース プロキシ サーバー* と共に。 リバース プロキシ サーバーはインターネットから HTTP 要求を受け取り、これを Kestrel に転送します。
+
+  ![IIS、Nginx、または Apache などのリバース プロキシ サーバーを介してインターネットと間接的に通信する Kestrel](kestrel/_static/kestrel-to-internet.png)
+
+&mdash;リバース プロキシ サーバーの有無に関わらず&mdash;、いずれのホスティング構成もサポートされています。
+
+Kestrel の構成ガイダンスおよびリバース プロキシ構成で Kestrel を使用するときの情報については、「<xref:fundamentals/servers/kestrel>」をご覧ください。
 
 ::: moniker range="< aspnetcore-2.2"
 
@@ -140,7 +160,7 @@ Kestrel のリバース プロキシ サーバーとして Linux で Apache を�
 
 ## <a name="httpsys"></a>HTTP.sys
 
-Windows で ASP.NET Core アプリを実行する場合は、HTTP.sys を Kestrel の代わりに使用できます。 最適なパフォーマンスを得るには、通常は Kestrel をお勧めします。 HTTP.sys は、アプリがインターネットに公開されていて、必要な機能が HTTP.sys でサポートされているものの、Kestrel ではサポートされていないシナリオで使用できます。 詳細については、「<xref:fundamentals/servers/httpsys>」を参照してください。
+Windows で ASP.NET Core アプリを実行する場合は、HTTP.sys を Kestrel の代わりに使用できます。 Kestrel で使用できない機能がアプリに必要な場合を除き、HTTP.sys より Kestrel をお勧めします。 詳細については、「<xref:fundamentals/servers/httpsys>」を参照してください。
 
 ![インターネットと直接通信する HTTP.sys](httpsys/_static/httpsys-to-internet.png)
 

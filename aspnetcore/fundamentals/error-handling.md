@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: ad9920ccd830b93d083f3c5ede03702164842b6e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e65983fb1a440057283111ea5a79a79b765607b7
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97753115"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751688"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>ASP.NET Core のエラーを処理する
 
@@ -68,7 +68,14 @@ _ スタック トレース
 
 Razor Pages アプリのテンプレートには、エラー ページ ( *.cshtml*) と <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> クラス (`ErrorModel`) が *Pages* フォルダー内に用意されています。 MVC アプリの場合、プロジェクト テンプレートには、Home コントローラーの `Error` アクション メソッドとエラー ビューが含まれています。
 
-`HttpGet` などの HTTP メソッド属性を使ってエラー ハンドラー アクション メソッドをマークしないでください。 明示的な動詞を使用すると、要求がアクション メソッドに届かないことがあります。 認証されていないユーザーにエラー ビューが表示される場合は、メソッドへの匿名アクセスを許可します。
+例外処理ミドルウェアでは、"*元の*" HTTP メソッドを使用して要求が再実行されます。 エラー ハンドラーのエンドポイントが特定の HTTP メソッドのセットに制限されている場合は、それらの HTTP メソッドに対してのみ実行されます。 たとえば、`[HttpGet]` 属性を使用する MVC コントローラーのアクションは、GET 要求に対してのみ実行されます。 "*すべての*" 要求がカスタム エラー処理ページに到達するようにするために、それらを特定の HTTP メソッドのセットに制限しないでください。
+
+元の HTTP メソッドに応じて例外を異なる方法で処理するには:
+
+* Razor Pages の場合は、複数のハンドラー メソッドを作成します。 たとえば、GET 例外を処理するために `OnGet` を使用し、POST 例外を処理するために `OnPost` を使用します。
+* MVC の場合は、複数のアクションに HTTP 動詞属性を適用します。 たとえば、GET 例外を処理するために `[HttpGet]` を使用し、POST 例外を処理するために `[HttpPost]` を使用します。
+
+認証されていないユーザーがカスタム エラー処理ページを表示できるようにするには、匿名アクセスがサポートされるようにします。
 
 ### <a name="access-the-exception"></a>例外にアクセスする
 
