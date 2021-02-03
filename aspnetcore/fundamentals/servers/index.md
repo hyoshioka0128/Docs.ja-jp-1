@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 2acddd212639ac0a82b3c46f2225ff66d0999dd0
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: a49388c73f2ec0ea03b35dbba1575ce70a4e1512
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217558"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238335"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>ASP.NET Core での Web サーバーの実装
 
@@ -38,7 +38,7 @@ ASP.NET Core アプリは、インプロセス HTTP サーバー実装を使用�
 
 ASP.NET Core には次のものが付属しています。
 
-* [Kestrel サーバー](xref:fundamentals/servers/kestrel)は、クロスプラットフォーム HTTP サーバーの既定の実装です。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、HTTP.sys の高度な機能の一部は提供されません。 詳細については、このドキュメントの「[Kestrel と HTTP.sys](#korh)」を参照してください。
+* [Kestrel サーバー](xref:fundamentals/servers/kestrel)は、クロスプラットフォーム HTTP サーバーの既定の実装です。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、HTTP.sys の高度な機能の一部は提供されません。 詳細については、このドキュメントの「[Kestrel と HTTP.sys](#korh)」(次のセクション) を参照してください。
 * IIS HTTP サーバーは、IIS 用の[インプロセス サーバー](#hosting-models)です。
 * [HTTP.sys サーバー](xref:fundamentals/servers/httpsys)は、[HTTP.sys カーネル ドライバーおよび HTTP サーバー API](/windows/desktop/Http/http-api-start-page) に基づく Windows 専用の HTTP サーバーです。
 

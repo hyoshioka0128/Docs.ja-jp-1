@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 35620299b1138ca45a6ebf1d789a9f4aa9b29518
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 0a271b2e306e2969530248fe820ed8aab2fa45e0
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751606"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238192"
 ---
-# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>ASP.NET Core Blazor の認証と承認
+# <a name="aspnet-core-blazor-authentication-and-authorization"></a>ASP.NET Core Blazor の認証と承認
 
 作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)、[Luke Latham](https://github.com/guardrex)
 
@@ -48,7 +48,7 @@ Blazor WebAssembly アプリはクライアント上で実行されます。 承
 
 Blazor は、既存の ASP.NET Core 認証メカニズムを使用してユーザーの ID を証明します。 詳細なメカニズムは、Blazor アプリのホスティング方法、Blazor WebAssembly サーバーか Blazor Server かによって異なります。
 
-### <a name="no-locblazor-webassembly-authentication"></a>Blazor WebAssembly 認証
+### <a name="blazor-webassembly-authentication"></a>Blazor WebAssembly 認証
 
 Blazor WebAssembly アプリでは、ユーザーがすべてのクライアント側コードを変更できるため、認証チェックがバイパスされる可能性があります。 JavaScript SPA フレームワークや任意のオペレーティング システム用のネイティブ アプリを含め、すべてのクライアント側アプリのテクノロジにも同じことが当てはまります。
 
@@ -61,7 +61,7 @@ Blazor WebAssembly アプリでは、ユーザーがすべてのクライアン�
 
 アプリの作成と構成の詳細については、「<xref:blazor/security/webassembly/index>」を参照してください。
 
-### <a name="no-locblazor-server-authentication"></a>Blazor Server 認証
+### <a name="blazor-server-authentication"></a>Blazor Server 認証
 
 Blazor Server アプリは、SignalR を使用して作成されたリアルタイム接続を介して動作します。 [SignalR ベースのアプリの認証](xref:signalr/authn-and-authz)は、接続が確立したときに処理されます。 認証は、cookie または他のベアラー トークンに基づいている場合があります。
 
@@ -391,9 +391,9 @@ You can only see this if you're signed in.
 
 <xref:Microsoft.AspNetCore.Components.Routing.Router> コンポーネントを <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> コンポーネントとともに使用すると、以下の場合にアプリがカスタム コンテンツを指定できます。
 
-* コンテンツが見つからない。
-* ユーザーはコンポーネントに適用されている [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 条件に失敗します。 [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 属性については、「[`[Authorize]` 属性](#authorize-attribute)」セクションを参照してください。
-* 非同期認証が実行中です。
+* ユーザーはコンポーネントに適用されている [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 条件に失敗します。 [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType) 要素のマークアップが表示されます。 [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 属性については、「[`[Authorize]` 属性](#authorize-attribute)」セクションを参照してください。
+* 非同期の認可が進行中です。これは通常、ユーザーの認証プロセスが進行中であることを意味します。 [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) 要素のマークアップが表示されます。
+* コンテンツが見つからない。 [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType) 要素のマークアップが表示されます。
 
 既定の Blazor Server プロジェクト テンプレートでは、`App` コンポーネント (`App.razor`) によりカスタム コンテンツの設定方法が示されます。
 
@@ -409,8 +409,8 @@ You can only see this if you're signed in.
                     <p>You may need to log in as a different user.</p>
                 </NotAuthorized>
                 <Authorizing>
-                    <h1>Authentication in progress</h1>
-                    <p>Only visible while authentication is in progress.</p>
+                    <h1>Authorization in progress</h1>
+                    <p>Only visible while authorization is in progress.</p>
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>
