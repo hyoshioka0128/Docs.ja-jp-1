@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/interprocess
-ms.openlocfilehash: d806a340d8540fce8af6ccc6ff68325e4b733922
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8c0f8fb1468e61d5aa2e7f42cb5da33c01819124
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059885"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217467"
 ---
 # <a name="inter-process-communication-with-grpc"></a>gRPC を使用したプロセス間通信
 
@@ -64,9 +64,6 @@ Kestrel には、UDS エンドポイントのサポートが組み込まれて�
 ## <a name="client-configuration"></a>クライアントの構成
 
 `GrpcChannel` では、カスタム トランスポート経由での gRPC 呼び出しがサポートされます。 チャネルが作成されると、カスタムの `ConnectCallback` がある `SocketsHttpHandler` で構成できます。 コールバックを使用すると、クライアントはカスタム トランスポート経由で接続を確立し、そのトランスポートを介して HTTP 要求を送信できます。
-
-> [!IMPORTANT]
-> `SocketsHttpHandler.ConnectCallback` は、.NET 5 リリース候補 2 の新しい API です。
 
 Unix ドメイン ソケットの接続ファクトリの例:
 
