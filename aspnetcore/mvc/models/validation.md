@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 77d49710b9d69f6fbbe92970f1c455de32489444
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d6fa7e4524a8afdc23d4ad46354d9d8b395656a3
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056960"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530191"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>MVC とページ ASP.NET Core でのモデルの検証 Razor
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>MVC とページ ASP.NET Core でのモデルの検証 Razor
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -92,9 +92,27 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 
 特定の属性のエラー メッセージに対して `String.Format` に渡されるパラメーターを確認するには、[DataAnnotations のソース コード](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations)をご覧ください。
 
-## <a name="required-attribute"></a>[Required] 属性
+## <a name="non-nullable-reference-types-and-required-attribute"></a>Null 非許容の参照型と [Required] 属性
 
-.NET Core 3.0 以降の検証システムでは null 非許容型のパラメーターまたはバインド プロパティは `[Required]` 属性を持つものとして処理されます。 `decimal` や `int` などの[値の型](/dotnet/csharp/language-reference/keywords/value-types)は null 非許容型です。 `Startup.ConfigureServices` で <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> を次のように構成することで、この動作を無効にできます。
+検証システムは、属性を持っているかのように、null 非許容パラメーターまたはバインドされたプロパティを扱い `[Required]` ます。 [ `Nullable` コンテキストを有効にする](/dotnet/csharp/nullable-references#nullable-contexts)ことで、MVC は属性で属性が付けられているかのように、null 非許容のプロパティまたはパラメーターの検証を暗黙的に開始し `[Required]` ます。 次のコードについて考えてみます。
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+アプリがでビルドされた場合 `<Nullable>enable</Nullable>` 、 `Name` JSON またはフォームの post での欠損値が検証エラーになります。 Null 値を許容する参照型を使用して、プロパティに null 値または欠損値を指定できるようにし `Name` ます。
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+. `Startup.ConfigureServices` で <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> を次のように構成することで、この動作を無効にできます。
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -176,9 +194,9 @@ public string MiddleName { get; set; }
 
 組み込みの検証属性で処理されないシナリオの場合は、カスタム検証属性を作成できます。 <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> を継承するクラスを作成し、<xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> メソッドをオーバーライドします。
 
-`IsValid` メソッドは、 *value* という名前のオブジェクトを受け取ります。これは、検証対象の入力です。 オーバーロードは `ValidationContext` オブジェクトも受け取ります。これは、モデル バインドによって作成されたモデル インスタンスなどの追加情報を提供します。
+`IsValid` メソッドは、*value* という名前のオブジェクトを受け取ります。これは、検証対象の入力です。 オーバーロードは `ValidationContext` オブジェクトも受け取ります。これは、モデル バインドによって作成されたモデル インスタンスなどの追加情報を提供します。
 
-次の例では、 *Classic* ジャンルの映画の公開日が指定した年より後ではないことを検証します。 `[ClassicMovie]` 属性:
+次の例では、*Classic* ジャンルの映画の公開日が指定した年より後ではないことを検証します。 `[ClassicMovie]` 属性:
 
 * サーバー上でのみ実行されます。
 * クラシック映画の場合は、公開日が検証されます。
@@ -210,7 +228,7 @@ public string MiddleName { get; set; }
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAgeSignature)]
 
-[年齢確認] ページ ( *CheckAge.cshtml* ) には 2 つのフォームがあります。 最初のフォームでは、`Age` の値 `99` がクエリ文字列パラメーター `https://localhost:5001/Users/CheckAge?Age=99` として送信されます。
+[年齢確認] ページ (*CheckAge.cshtml*) には 2 つのフォームがあります。 最初のフォームでは、`Age` の値 `99` がクエリ文字列パラメーター `https://localhost:5001/Users/CheckAge?Age=99` として送信されます。
 
 クエリ文字列の正しく書式設定された `age` パラメーターが送信されると、フォームの有効性が確認されます。
 
@@ -357,7 +375,7 @@ $.get({
 
 HTML に `data-` 属性をレンダリングするこの方法は、サンプル アプリの `ClassicMovie` 属性で使用されています。 この方法を使用してクライアント検証を追加するには、次のようにします。
 
-1. カスタム検証属性の属性アダプター クラスを作成します。 [Attributeadapterbase \<T> ](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2)からクラスを派生させます。 次の例で示すように、レンダリングされた出力に `data-` 属性を追加する `AddValidation` メソッドを作成します。
+1. カスタム検証属性の属性アダプター クラスを作成します。 <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>からクラスを派生させます。 次の例で示すように、レンダリングされた出力に `data-` 属性を追加する `AddValidation` メソッドを作成します。
 
    [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs?name=snippet_Class)]
 
@@ -430,7 +448,7 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 組み込みの検証属性には次のものがあります。
 
 * `[CreditCard]`: プロパティにクレジットカード形式があることを検証します。
-* `[Compare]`: モデル内の2つのプロパティが一致することを検証します。 たとえば、 *Register.cshtml.cs* ファイルは `[Compare]` を使用して、入力された 2 つのパスワードが一致していることを検証します。 [スキャフォールディング Identity ](xref:security/authentication/scaffold-identity)を参照してください。
+* `[Compare]`: モデル内の2つのプロパティが一致することを検証します。 たとえば、*Register.cshtml.cs* ファイルは `[Compare]` を使用して、入力された 2 つのパスワードが一致していることを検証します。 [スキャフォールディング Identity ](xref:security/authentication/scaffold-identity)を参照してください。
 * `[EmailAddress]`: プロパティが電子メール形式であることを検証します。
 * `[Phone]`: プロパティに電話番号の書式が設定されていることを検証します。
 * `[Range]`: プロパティ値が指定した範囲内にあることを検証します。
@@ -440,7 +458,7 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 * `[Url]`: プロパティに URL 形式があることを検証します。
 * `[Remote]`: サーバーでアクションメソッドを呼び出すことによって、クライアントの入力を検証します。 この属性の動作の詳細については、「 [ `[Remote]` 属性](#remote-attribute)」を参照してください。
 
-クライアント側の検証で `[RegularExpression]` 属性を使用する場合、regex はクライアントの JavaScript で実行されます。 これは、[ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) 一致の動作が使用されることを意味します。 詳細については、[こちらの GitHub の問題](https://github.com/dotnet/corefx/issues/42487)のページを参照してください。
+クライアント側の検証で `[RegularExpression]` 属性を使用する場合、regex はクライアントの JavaScript で実行されます。 これは、[ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) 一致の動作が使用されることを意味します。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/corefx/issues/42487)します。
 
 検証属性の完全な一覧については、[System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) 名前空間で確認できます。
 
@@ -542,9 +560,9 @@ public string MiddleName { get; set; }
 
 組み込みの検証属性で処理されないシナリオの場合は、カスタム検証属性を作成できます。 <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> を継承するクラスを作成し、<xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*> メソッドをオーバーライドします。
 
-`IsValid` メソッドは、 *value* という名前のオブジェクトを受け取ります。これは、検証対象の入力です。 オーバーロードは `ValidationContext` オブジェクトも受け取ります。これは、モデル バインドによって作成されたモデル インスタンスなどの追加情報を提供します。
+`IsValid` メソッドは、*value* という名前のオブジェクトを受け取ります。これは、検証対象の入力です。 オーバーロードは `ValidationContext` オブジェクトも受け取ります。これは、モデル バインドによって作成されたモデル インスタンスなどの追加情報を提供します。
 
-次の例では、 *Classic* ジャンルの映画の公開日が指定した年より後ではないことを検証します。 `[ClassicMovie2]` 属性では最初にジャンルがチェックされ、 *Classic* である場合にのみ続行されます。 クラシックとして識別された映画については、公開日が属性のコンストラクターに渡された制限より後ではないことがチェックされます。
+次の例では、*Classic* ジャンルの映画の公開日が指定した年より後ではないことを検証します。 `[ClassicMovie2]` 属性では最初にジャンルがチェックされ、*Classic* である場合にのみ続行されます。 クラシックとして識別された映画については、公開日が属性のコンストラクターに渡された制限より後ではないことがチェックされます。
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttribute.cs?name=snippet_ClassicMovieAttribute)]
 
@@ -573,7 +591,7 @@ public string MiddleName { get; set; }
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAge)]
 
-[年齢確認] ページ ( *CheckAge.cshtml* ) には 2 つのフォームがあります。 最初のフォームでは、`Age` の値 `99` がクエリ文字列 `https://localhost:5001/Users/CheckAge?Age=99` として送信されます。
+[年齢確認] ページ (*CheckAge.cshtml*) には 2 つのフォームがあります。 最初のフォームでは、`Age` の値 `99` がクエリ文字列 `https://localhost:5001/Users/CheckAge?Age=99` として送信されます。
 
 クエリ文字列の正しく書式設定された `age` パラメーターが送信されると、フォームの有効性が確認されます。
 
@@ -728,7 +746,7 @@ $.get({
 
 HTML に `data-` 属性をレンダリングするこの方法は、サンプル アプリの `ClassicMovie` 属性で使用されています。 この方法を使用してクライアント検証を追加するには、次のようにします。
 
-1. カスタム検証属性の属性アダプター クラスを作成します。 [Attributeadapterbase \<T> ](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2)からクラスを派生させます。 次の例で示すように、レンダリングされた出力に `data-` 属性を追加する `AddValidation` メソッドを作成します。
+1. カスタム検証属性の属性アダプター クラスを作成します。 <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>からクラスを派生させます。 次の例で示すように、レンダリングされた出力に `data-` 属性を追加する `AddValidation` メソッドを作成します。
 
    [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttributeAdapter.cs?name=snippet_ClassicMovieAttributeAdapter)]
 
@@ -758,9 +776,9 @@ HTML に `data-` 属性をレンダリングするこの方法は、サンプル
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 
-クライアント検証を無効にするもう 1 つのオプションは、 *.cshtml* ファイルで `_ValidationScriptsPartial` への参照をコメントにすることです。
+クライアント検証を無効にするもう 1 つのオプションは、*.cshtml* ファイルで `_ValidationScriptsPartial` への参照をコメントにすることです。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [System.ComponentModel.DataAnnotations 名前空間](xref:System.ComponentModel.DataAnnotations)
 * [モデルバインド](model-binding.md)
