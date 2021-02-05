@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: fe30c3b3be92c30dea6d0cb97e642eec1da6328b
-ms.sourcegitcommit: 72c8ada9b9644ee4751ed6869e892a8558dd8e66
+ms.openlocfilehash: efc73022d0bd8c29595f9bed1c06fe07002eb54a
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/23/2021
-ms.locfileid: "98723513"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530100"
 ---
-# <a name="create-and-use-aspnet-core-no-locrazor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
+# <a name="create-and-use-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
 作成者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)、[Scott Addie](https://github.com/scottaddie)、[Tobias Bartsch](https://www.aveo-solutions.com/)
 
@@ -38,7 +38,7 @@ Blazor アプリは *コンポーネント* を使用してビルドします。
 
 コンポーネントは、C# と HTML マークアップの組み合わせを使用して、[Razor](xref:mvc/views/razor) コンポーネント ファイル (`.razor`) で実装します。 Blazor のコンポーネントは、正式には *Razor コンポーネント* と呼ばれます。
 
-### <a name="no-locrazor-syntax"></a>Razor の構文
+### <a name="razor-syntax"></a>Razor の構文
 
 Blazor アプリの Razor コンポーネントでは、Razor 構文が多用されます。 Razor マークアップ言語に慣れていない場合は、続行する前に、「[ASP.NET Core の Razor 構文のリファレンス](xref:mvc/views/razor)」を読むことをお勧めします。
 
@@ -339,6 +339,11 @@ Blazor による子コンテンツのレンダリング方法により、`for` �
 >     </ChildComponent>
 > }
 > ```
+
+<xref:Microsoft.AspNetCore.Components.RenderFragment> を Razor コンポーネント UI のテンプレートとして使用する方法については、次の記事を参照してください。
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>属性スプラッティングと任意のパラメーター
 
@@ -824,7 +829,7 @@ HTML 要素属性は、.NET 値に基づいて条件付きでレンダリング�
 }
 ```
 
-## <a name="no-locrazor-templates"></a>Razor テンプレート
+## <a name="razor-templates"></a>Razor テンプレート
 
 レンダリング フラグメントは、Razor テンプレート構文を使用して定義できます。 Razor テンプレートは、UI スニペットを定義する 1 つの方法であり、次の形式を想定しています。
 
