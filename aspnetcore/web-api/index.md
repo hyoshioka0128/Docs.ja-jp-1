@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/index
-ms.openlocfilehash: 51f76bc33d2da6097d26c1ffe17b1c93046a7b88
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 03debcb211a8cb8f0ebd6d5e67fbc8de7b574e27
+ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052462"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99551654"
 ---
 # <a name="create-web-apis-with-aspnet-core"></a>ASP.NET Core を使って Web API を作成する
 
 作成者: [Scott Addie](https://github.com/scottaddie)、[Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core では、C# を使った RESTful サービス (別名: Web API) の作成がサポートされています。 要求を処理するために、Web API ではコントローラーを使用します。 Web API の " *コントローラー* " は `ControllerBase` から派生するクラスです。 この記事では、コントローラーを使って Web API 要求を処理する方法について説明します。
+ASP.NET Core では、C# を使った RESTful サービス (別名: Web API) の作成がサポートされています。 要求を処理するために、Web API ではコントローラーを使用します。 Web API の "*コントローラー*" は `ControllerBase` から派生するクラスです。 この記事では、コントローラーを使って Web API 要求を処理する方法について説明します。
 
 [サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/index/samples)します。 ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
@@ -98,7 +98,7 @@ Web API は、<xref:Microsoft.AspNetCore.Mvc.ControllerBase> から派生した 
 * [マルチパート/フォーム データ要求の推論](#multipartform-data-request-inference)
 * [エラー状態コードに関する問題の詳細](#problem-details-for-error-status-codes)
 
-" *エラー状態コードに関する問題の詳細* " 機能には、 [互換性バージョン](xref:mvc/compatibility-version) 2.2 以降が必要です。 その他の機能では、互換性バージョン 2.1 以降が必要です。
+"*エラー状態コードに関する問題の詳細*" 機能には、[互換性バージョン](xref:mvc/compatibility-version) 2.2 以降が必要です。 その他の機能では、互換性バージョン 2.1 以降が必要です。
 
 ::: moniker-end
 
@@ -440,3 +440,4 @@ public IActionResult CreateProduct(Product product)
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
+* [Microsoft Learn:ASP.NET Core で Web API を作成する](/learn/modules/build-web-api-aspnet-core/)

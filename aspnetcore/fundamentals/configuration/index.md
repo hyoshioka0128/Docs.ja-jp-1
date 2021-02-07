@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 97ee00dd37ed4eef1c013e0f45b598a79f3f260c
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 62c9d1a58e0f771d91e2bc57f39ec5ebb25baaed
+ms.sourcegitcommit: 37186f76e4a50d7fb7389026dd0e5e234b51ebb2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035867"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99541369"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core の構成
 
@@ -98,7 +98,7 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 
 [!INCLUDE[](~/includes/bind.md)]
 
-[既定](#default)の構成を利用する場合、[reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) で *appsettings.json* と *appsettings.* `Environment` *.json* ファイルを有効にすることができます。 アプリの開始***後** _に *appsettings.json* と *appsettings.* `Environment` *.json* ファイルに加えられた変更は、[JSON 構成プロバイダー](#jcp) によって読み取られます。
+[既定](#default)の構成を利用する場合、[reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) で *appsettings.json* と *appsettings.* `Environment` *.json* ファイルを有効にすることができます。 アプリの開始 ***後*** に *appsettings.json* と *appsettings.* `Environment` *.json* ファイルに加えられた変更は、[JSON 構成プロバイダー](#jcp)によって読み取られます。
 
 追加の JSON 構成ファイルを追加する方法の詳細については、このドキュメント中の「[JSON 構成プロバイダー](#jcp)」を参照してください。
 
@@ -112,7 +112,7 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 
 構成データのガイドライン:
 
-_ 構成プロバイダーのコード内、またはプレーンテキストの構成ファイル内には、パスワードなどの機密データを格納しないでください。 [Secret Manager](xref:security/app-secrets) ツールを使用すると、開発時にシークレットを格納できます。
+* 構成プロバイダーのコードやプレーンテキストの構成ファイルには、パスワードなどの機密データを格納しないでください。 [Secret Manager](xref:security/app-secrets) ツールを使用すると、開発時にシークレットを格納できます。
 * 開発環境やテスト環境では運用シークレットを使用しないでください。
 * プロジェクトの外部にシークレットを指定してください。そうすれば、誤ってリソース コード リポジトリにコミットされることはありません。
 
@@ -129,7 +129,7 @@ _ 構成プロバイダーのコード内、またはプレーンテキストの
 
 ## <a name="environment-variables"></a>環境変数
 
-[既定](#default)の構成を使用すると、<xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> によって、 *appsettings.json* 、*appsettings.* `Environment` *.json*、および[ユーザー シークレット](xref:security/app-secrets)の読み取り後に、環境変数のキーと値のペアから構成が読み込まれます。 そのため、環境から読み取られたキー値によって、 *appsettings.json* 、*appsettings.* `Environment` *.json*、およびユーザー シークレットから読み取られた値がオーバーライドされます。
+[既定](#default)の構成を使用すると、<xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> によって、 *appsettings.json* 、*appsettings.* `Environment` *.json*、および [ユーザー シークレット](xref:security/app-secrets)の読み取り後に、環境変数のキーと値のペアから構成が読み込まれます。 そのため、環境から読み取られたキー値によって、 *appsettings.json* 、*appsettings.* `Environment` *.json*、およびユーザー シークレットから読み取られた値がオーバーライドされます。
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -449,13 +449,13 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
   * `reloadOnChange: true` は、次のとおりです。変更が保存されると、ファイルが再読み込みされます。
 * *MyConfig.json* ファイルの前に [既定の構成プロバイダー](#default)を読み取ります。 [環境変数構成プロバイダー](#evcp) および [コマンド ライン構成プロバイダー](#clcp)を含む、既定の構成プロバイダーでの *MyConfig.json* ファイルのオーバーライドの設定。
 
-通常は、[環境変数構成プロバイダー](#evcp)および [コマンドライン構成プロバイダー](#clcp)で設定されている値をオーバーライドするカスタム JSON ファイルは***必要ありません** _。
+通常は、[環境変数構成プロバイダー](#evcp)および [コマンドライン構成プロバイダー](#clcp)で設定されている値をオーバーライドするカスタム JSON ファイルは ***必要ありません***。
 
 次のコードは、すべての構成プロバイダーをクリアし、いくつかの構成プロバイダーを追加します：
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-上記のコードでは、_MyConfig.json* および *MyConfig*.`Environment`.*json* ファイル内の設定は:
+上記のコードでは、*MyConfig.json* と *MyConfig*.`Environment`.*json* ファイルの設定は：
 
 * *appsettings.json* および *appsettings*.`Environment`.*json* ファイル内の設定をオーバーライドします。
 * [環境変数の構成プロバイダー](#evcp)と[コマンドライン構成プロバイダー](#clcp)の設定によってオーバーライドされます。
@@ -727,7 +727,7 @@ Index: 5  Value: value5
 
 起動時の簡易メソッドを使用して構成にアクセスする例については、[アプリ起動時の簡易メソッド](xref:fundamentals/startup#convenience-methods)に関連する記事をご覧ください。
 
-## <a name="access-configuration-in-no-locrazor-pages"></a>Razor ページの構成にアクセスする
+## <a name="access-configuration-in-razor-pages"></a>Razor ページの構成にアクセスする
 
 次のコードでは Razor ページの構成データが表示されます:
 
@@ -805,7 +805,7 @@ Index: 5  Value: value5
 
 ## <a name="additional-resources"></a>その他の技術情報
 
-* [構成のソースコード](https://github.com/dotnet/extensions/tree/master/src/Configuration)
+* [構成のソースコード](https://github.com/dotnet/runtime/tree/master/src/libraries/Microsoft.Extensions.Configuration)
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
@@ -1839,7 +1839,7 @@ public class Startup
 
 起動時の簡易メソッドを使用して構成にアクセスする例については、[アプリ起動時の簡易メソッド](xref:fundamentals/startup#convenience-methods)に関連する記事をご覧ください。
 
-## <a name="access-configuration-in-a-no-locrazor-pages-page-or-mvc-view"></a>Razor Pages ページまたは MVC ビューで構成にアクセスする
+## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Razor Pages ページまたは MVC ビューで構成にアクセスする
 
 Razor Pages ページまたは MVC ビューで構成設定にアクセスするには、[Microsoft.Extensions.Configuration](xref:Microsoft.Extensions.Configuration) 名前空間に [using ディレクティブ](xref:mvc/views/razor#using) ([C# リファレンス: using ディレクティブ](/dotnet/csharp/language-reference/keywords/using-directive)) を追加して、<xref:Microsoft.Extensions.Configuration.IConfiguration> をページまたはビューに挿入します。
 
