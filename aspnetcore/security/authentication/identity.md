@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: ad4184fce494ba06acf7e583a42a54d04d37ea20
-ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
+ms.openlocfilehash: 266781d0abc564952e124bc6eca3805c07592251
+ms.sourcegitcommit: 50d3e939a90c5480df480f651dda032901468dd5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/03/2020
-ms.locfileid: "96556646"
+ms.lasthandoff: 02/08/2021
+ms.locfileid: "99819056"
 ---
-# <a name="introduction-to-no-locidentity-on-aspnet-core"></a>IdentityASP.NET Core の概要
+# <a name="introduction-to-identity-on-aspnet-core"></a>IdentityASP.NET Core の概要
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -39,7 +39,7 @@ ASP.NET Core Identity:
 
 [!INCLUDE[](~/includes/requireAuth.md)]
 
-[ Identity ソースコード](https://github.com/dotnet/AspNetCore/tree/master/src/Identity)は GitHub で入手できます。 [スキャフォールディング Identity ](xref:security/authentication/scaffold-identity)生成されたファイルを表示して、テンプレートとの対話を確認し Identity ます。
+[ Identity ソースコード](https://github.com/dotnet/AspNetCore/tree/main/src/Identity)は GitHub で入手できます。 [スキャフォールディング Identity ](xref:security/authentication/scaffold-identity)生成されたファイルを表示して、テンプレートとの対話を確認し Identity ます。
 
 Identity は、通常、ユーザー名、パスワード、およびプロファイルデータを格納するために SQL Server データベースを使用して構成されます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
 
@@ -62,7 +62,7 @@ Identity は、通常、ユーザー名、パスワード、およびプロフ�
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [**ファイル**] [新しいプロジェクト] を選択し > **New** > **Project** ます。
+* [**ファイル**] [新しいプロジェクト] を選択し >  > ます。
 * **[ASP.NET Core Web アプリケーション]** を選択します。 プロジェクトに **WebApp1** という名前を付け、プロジェクトのダウンロードと同じ名前空間にします。 **[OK]** をクリックします。
 * ASP.NET Core **Web アプリケーション** を選択し、[ **認証の変更**] を選択します。
 * **個々のユーザーアカウント** を選択し、[ **OK]** をクリックします。
@@ -119,7 +119,7 @@ dotnet ef database update
 
 <a name="pw"></a>
 
-### <a name="configure-no-locidentity-services"></a>サービスの構成 Identity
+### <a name="configure-identity-services"></a>サービスの構成 Identity
 
 サービスはに追加されて `ConfigureServices` います。 一般的なパターンは、すべての `Add{Service}` メソッドを呼び出した後、すべての `services.Configure{Service}` メソッドを呼び出すことです。
 
@@ -153,7 +153,7 @@ Identity は、 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.aut
 
 テンプレートで生成されたアプリは、 [承認](xref:security/authorization/secure-data)を使用しません。 `app.UseAuthorization` は、アプリが承認を追加する正しい順序で追加されるようにするために用意されています。 `UseRouting`、 `UseAuthentication` 、 `UseAuthorization` 、および `UseEndpoints` は、前のコードに示されている順序で呼び出す必要があります。
 
-およびの詳細に `IdentityOptions` つい `Startup` ては、「」および「アプリケーションの起動」を参照してください <xref:Microsoft.AspNetCore.Identity.IdentityOptions> 。 [Application Startup](xref:fundamentals/startup)
+およびの詳細に `IdentityOptions` つい `Startup` ては、「」および「アプリケーションの起動」を参照してください <xref:Microsoft.AspNetCore.Identity.IdentityOptions> 。 [](xref:fundamentals/startup)
 
 ## <a name="scaffold-register-login-logout-and-registerconfirmation"></a>スキャフォールディング Register、Login、LogOut、および RegisterConfirmation
 
@@ -214,7 +214,7 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
-## <a name="test-no-locidentity"></a>Test Identity
+## <a name="test-identity"></a>Test Identity
 
 既定の web プロジェクトテンプレートでは、ホームページへの匿名アクセスが許可されます。 テストするには Identity 、次のように追加し [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) ます。
 
@@ -222,20 +222,20 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 サインインしている場合は、サインアウトします。アプリを実行し、[ **プライバシー** ] リンクを選択します。 ログイン ページにリダイレクトされます。
 
-### <a name="explore-no-locidentity"></a>Tsm Identity
+### <a name="explore-identity"></a>Tsm Identity
 
 詳細については、次を参照して Identity ください。
 
 * [完全な id UI ソースの作成](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * 各ページのソースを確認し、デバッガーをステップ実行します。
 
-## <a name="no-locidentity-components"></a>Identity コンポーネント
+## <a name="identity-components"></a>Identity コンポーネント
 
 すべての Identity 依存する NuGet パッケージは、 [ASP.NET Core 共有フレームワーク](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework)に含まれています。
 
 のプライマリパッケージ Identity は[AspNetCore です Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/)。 このパッケージには、のインターフェイスのコアセットが含まれており、によって含まれてい ASP.NET Core Identity `Microsoft.AspNetCore.Identity.EntityFrameworkCore` ます。
 
-## <a name="migrating-to-no-locaspnet-core-identity"></a>移行先 ASP.NET Core Identity
+## <a name="migrating-to-aspnet-core-identity"></a>移行先 ASP.NET Core Identity
 
 既存のストアの移行に関する詳細とガイダンスについて Identity は、「[認証と Identity の移行](xref:migration/identity)」を参照してください。
 
@@ -243,7 +243,7 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 パスワードの最小要件を設定するサンプルについては、「 [構成](#pw) 」を参照してください。
 
-## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault Identity と AddIdentity
+## <a name="adddefaultidentity-and-addidentity"></a>AddDefault Identity と AddIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> は ASP.NET Core 2.1 で導入されました。 `AddDefaultIdentity`の呼び出しは、次の呼び出しに似ています。
 
@@ -253,7 +253,7 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 詳細については、「 [Adddefault Identity source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) 」を参照してください。
 
-## <a name="prevent-publish-of-static-no-locidentity-assets"></a>静的アセットの発行を禁止する Identity
+## <a name="prevent-publish-of-static-identity-assets"></a>静的アセットの発行を禁止する Identity
 
 静的 Identity アセット (UI 用のスタイルシートおよび JavaScript ファイル) を web ルートに発行できないようにするには Identity 、 `ResolveStaticWebAssetsInputsDependsOn` `RemoveIdentityAssets` アプリケーションのプロジェクトファイルに次のプロパティとターゲットを追加します。
 
@@ -300,7 +300,7 @@ Identity SQL Server データベースを使用して、ユーザー名、パス
 
 <a name="adi"></a>
 
-## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault Identity と AddIdentity
+## <a name="adddefaultidentity-and-addidentity"></a>AddDefault Identity と AddIdentity
 
 <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> は ASP.NET Core 2.1 で導入されました。 `AddDefaultIdentity`の呼び出しは、次の呼び出しに似ています。
 
@@ -316,7 +316,7 @@ Identity SQL Server データベースを使用して、ユーザー名、パス
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* [**ファイル**] [新しいプロジェクト] を選択し > **New** > **Project** ます。
+* [**ファイル**] [新しいプロジェクト] を選択し >  > ます。
 * **[ASP.NET Core Web アプリケーション]** を選択します。 プロジェクトに **WebApp1** という名前を付け、プロジェクトのダウンロードと同じ名前空間にします。 **[OK]** をクリックします。
 * ASP.NET Core **Web アプリケーション** を選択し、[ **認証の変更**] を選択します。
 * **個々のユーザーアカウント** を選択し、[ **OK]** をクリックします。
@@ -363,7 +363,7 @@ dotnet ef database update
 
 <a name="pw"></a>
 
-### <a name="configure-no-locidentity-services"></a>サービスの構成 Identity
+### <a name="configure-identity-services"></a>サービスの構成 Identity
 
 サービスはに追加されて `ConfigureServices` います。 一般的なパターンは、すべての `Add{Service}` メソッドを呼び出した後、すべての `services.Configure{Service}` メソッドを呼び出すことです。
 
@@ -431,7 +431,7 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-no-locidentity"></a>Test Identity
+## <a name="test-identity"></a>Test Identity
 
 既定の web プロジェクトテンプレートでは、ホームページへの匿名アクセスが許可されます。 をテストするに Identity は、[ [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) プライバシー] ページにを追加します。
 
@@ -439,20 +439,20 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 サインインしている場合は、サインアウトします。アプリを実行し、[ **プライバシー** ] リンクを選択します。 ログイン ページにリダイレクトされます。
 
-### <a name="explore-no-locidentity"></a>Tsm Identity
+### <a name="explore-identity"></a>Tsm Identity
 
 詳細については、次を参照して Identity ください。
 
 * [完全な id UI ソースの作成](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * 各ページのソースを確認し、デバッガーをステップ実行します。
 
-## <a name="no-locidentity-components"></a>Identity コンポーネント
+## <a name="identity-components"></a>Identity コンポーネント
 
 すべての Identity 依存する NuGet パッケージは、 [AspNetCore メタパッケージ](xref:fundamentals/metapackage-app)に含まれています。
 
 のプライマリパッケージ Identity は[AspNetCore です Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/)。 このパッケージには、のインターフェイスのコアセットが含まれており、によって含まれてい ASP.NET Core Identity `Microsoft.AspNetCore.Identity.EntityFrameworkCore` ます。
 
-## <a name="migrating-to-no-locaspnet-core-identity"></a>移行先 ASP.NET Core Identity
+## <a name="migrating-to-aspnet-core-identity"></a>移行先 ASP.NET Core Identity
 
 既存のストアの移行に関する詳細とガイダンスについて Identity は、「[認証と Identity の移行](xref:migration/identity)」を参照してください。
 
