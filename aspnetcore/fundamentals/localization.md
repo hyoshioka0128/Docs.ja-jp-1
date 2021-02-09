@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 07e2f561b0e9db58780d6e8a271e32b00132b1b5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 67f245b7f4e4aa97b30c5318c73732617aea44c7
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059521"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217571"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>ASP.NET Core のグローバリゼーションおよびローカリゼーション
 
@@ -134,7 +134,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### <a name="supportedcultures-and-supporteduicultures"></a>SupportedCultures と SupportedUICultures
 
-ASP.NET Core では、`SupportedCultures` と `SupportedUICultures` という 2 つのカルチャ値を指定できます。 日付、数値、および通貨の書式設定など、カルチャに依存する関数の結果は、`SupportedCultures` の [CultureInfo](/dotnet/api/system.globalization.cultureinfo) オブジェクトによって決まります。 テキストの並べ替え順序、大文字と小文字の表記規則、文字列比較も `SupportedCultures` によって決まります。 サーバーがカルチャを取得する方法の詳細については、「[CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture)」を参照してください。 `SupportedUICultures` は、 *.resx* ファイルからのどの翻訳文字列が [ResourceManager](/dotnet/api/system.resources.resourcemanager) によって検索されるかを決定します。 `ResourceManager` は、`CurrentUICulture` によって決定されるカルチャ固有の文字列を単に検索します。 .NET のすべてのスレッドに `CurrentCulture` オブジェクトと `CurrentUICulture`オブジェクトがあります。 ASP.NET Core は、カルチャに依存する関数を表示するときに、これらの値を検査します。 たとえば、現在のスレッドのカルチャが "en-US" (英語、米国) に設定されている場合は、`DateTime.Now.ToLongDateString()` は、"Thursday, February 18, 2016" を表示しますが、`CurrentCulture` が "es-ES" (スペイン語、スペイン) に設定されている場合、出力は "jueves, 18 de febrero de 2016" になります。
+ASP.NET Core では、<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedCultures> と <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedUICultures> という 2 つのカルチャ値を指定できます。 日付、数値、および通貨の書式設定など、カルチャに依存する関数の結果は、`SupportedCultures` の <xref:System.Globalization.CultureInfo> オブジェクトによって決まります。 テキストの並べ替え順序、大文字と小文字の表記規則、文字列比較も `SupportedCultures` によって決まります。 サーバーによるカルチャの取得方法の詳細については、<xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> と <xref:System.Globalization.CultureInfo.CurrentUICulture?displayProperty=nameWithType> に関する記事を参照してください。 `SupportedUICultures` は、 `.resx` ファイルからのどの翻訳文字列が <xref:System.Resources.ResourceManager> によって検索されるかを決定します。 `ResourceManager` では、`CurrentUICulture` によって決定されるカルチャ固有の文字列が検索されます。 .NET のすべてのスレッドに `CurrentCulture` オブジェクトと `CurrentUICulture`オブジェクトがあります。 フレームワークでは、カルチャに依存する関数を表示するときに、これらの値が検査されます。 現在のスレッドのカルチャが `en-US` (英語、米国) に設定されている場合は、`DateTime.Now.ToLongDateString()` によって `Thursday, February 18, 2016` が表示されます。ただし、`CurrentCulture` が `es-ES` (スペイン語、スペイン) に設定されている場合は、出力は `jueves, 18 de febrero de 2016` になります。
 
 ## <a name="resource-files"></a>リソース ファイル
 
@@ -177,7 +177,7 @@ Razor ビューの `@inject IViewLocalizer` を使用するリソース ファ�
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-アセンブリのルート名前空間がアセンブリ名と異なると、[RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) 属性によってアセンブリのルート名前空間が提供されます。 
+アセンブリのルート名前空間がアセンブリ名と異なると、<xref:Microsoft.Extensions.Localization.RootNamespaceAttribute> 属性によってアセンブリのルート名前空間が提供されます。 
 
 > [!WARNING]
 > これは、プロジェクト名が有効な .NET 識別子でない場合に発生する可能性があります。 たとえば、`my-project-name.csproj` ではルート名前空間 `my_project_name` が使用されるので、アセンブリ名 `my-project-name` はこのエラーにつながります。 
@@ -261,7 +261,7 @@ Visual Studio で、ファイル名にカルチャを指定せずにリソース
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 多くの場合、実稼働アプリケーションは、ASP.NET Core カルチャ cookie を使用してカルチャを設定するためのメカニズムを提供します。 cookie を作成するには、`MakeCookieValue` メソッドを使用します。
 
@@ -531,7 +531,7 @@ Razor ビューの `@inject IViewLocalizer` を使用するリソース ファ�
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-アセンブリのルート名前空間がアセンブリ名と異なると、[RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) 属性によってアセンブリのルート名前空間が提供されます。 
+アセンブリのルート名前空間がアセンブリ名と異なると、<xref:Microsoft.Extensions.Localization.RootNamespaceAttribute> 属性によってアセンブリのルート名前空間が提供されます。 
 
 > [!WARNING]
 > これは、プロジェクト名が有効な .NET 識別子でない場合に発生する可能性があります。 たとえば、`my-project-name.csproj` ではルート名前空間 `my_project_name` が使用されるので、アセンブリ名 `my-project-name` はこのエラーにつながります。 
@@ -617,7 +617,7 @@ http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 多くの場合、実稼働アプリケーションは、ASP.NET Core カルチャ cookie を使用してカルチャを設定するためのメカニズムを提供します。 cookie を作成するには、`MakeCookieValue` メソッドを使用します。
 
@@ -886,7 +886,7 @@ Razor ビューの `@inject IViewLocalizer` を使用するリソース ファ�
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-アセンブリのルート名前空間がアセンブリ名と異なると、[RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1) 属性によってアセンブリのルート名前空間が提供されます。 
+アセンブリのルート名前空間がアセンブリ名と異なると、<xref:Microsoft.Extensions.Localization.RootNamespaceAttribute> 属性によってアセンブリのルート名前空間が提供されます。 
 
 > [!WARNING]
 > これは、プロジェクト名が有効な .NET 識別子でない場合に発生する可能性があります。 たとえば、`my-project-name.csproj` ではルート名前空間 `my_project_name` が使用されるので、アセンブリ名 `my-project-name` はこのエラーにつながります。 
@@ -972,7 +972,7 @@ http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 多くの場合、実稼働アプリケーションは、ASP.NET Core カルチャ cookie を使用してカルチャを設定するためのメカニズムを提供します。 cookie を作成するには、`MakeCookieValue` メソッドを使用します。
 

@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 0753ef0f1cde7bbb45ecc09b97fecb5ce364811c
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 58a87bc5413523fdf052a9e1c41196bb8b0ab457
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024653"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99529970"
 ---
-# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly パフォーマンスに関するベスト プラクティス
+# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly パフォーマンスに関するベスト プラクティス
 
 作成者: [Pranav Krishnamoorthy](https://github.com/pranavkm)、[Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -191,7 +191,7 @@ Blazor WebAssembly は、最も現実的なアプリケーションの UI シナ
 @RenderWelcomeInfo
 
 @code {
-    RenderFragment RenderWelcomeInfo = __builder =>
+    private RenderFragment RenderWelcomeInfo = __builder =>
     {
         <div>
             <p>Welcome to your new app!</p>
@@ -221,12 +221,12 @@ public static RenderFragment SayHello = __builder =>
 <div class="chat">
     @foreach (var message in messages)
     {
-        @DisplayChatMessage(message)
+        @ChatMessageDisplay(message)
     }
 </div>
 
 @code {
-    RenderFragment<ChatMessage> DisplayChatMessage = message => __builder =>
+    private RenderFragment<ChatMessage> ChatMessageDisplay = message => __builder =>
     {
         <div class="chat-message">
             <span class="author">@message.Author</span>
@@ -237,6 +237,17 @@ public static RenderFragment SayHello = __builder =>
 ```
 
 この方法には、コンポーネントごとのオーバーヘッドなしでレンダリング ロジックを再利用できるという利点があります。 ただし、その UI のサブツリーを個別に更新することはできません。また、コンポーネント境界がないため、親がレンダリングされるときに UI のそのサブツリーのレンダリングをスキップすることもできません。
+
+次の例の `TitleTemplate` など、フィールド初期化子で参照できない非静的フィールド、メソッド、またはプロパティについては、<xref:Microsoft.AspNetCore.Components.RenderFragment> のフィールドの代わりにプロパティを使用します。
+
+```csharp
+protected RenderFragment DisplayTitle => __builder =>
+{
+    <div>
+        @TitleTemplate
+    </div>   
+};
+```
 
 #### <a name="dont-receive-too-many-parameters"></a>受け取るパラメーターの数が多すぎないようにする
 

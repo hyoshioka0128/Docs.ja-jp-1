@@ -4,7 +4,7 @@ author: juntaoluo
 description: ASP.NET Core で gRPC サービスを作成するときの基本的な概念について説明します。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 01/14/2021
+ms.date: 01/29/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 44a6f1d2a25314460fa4bce469f697a2fa4c0825
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: f17ba247747f906cf026fc0f7bc04d51f4c8cb2a
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252852"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530204"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>ASP.NET Core を使用した gRPC サービス
 
@@ -77,22 +77,41 @@ gRPC には [Grpc. AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) �
 
 ルーティング パイプラインは ASP.NET Core のミドルウェアと機能で共有されるため、追加の要求ハンドラーを提供するようにアプリを構成することができます。 MVC コントローラーなどの追加の要求ハンドラーは、構成されている gRPC サービスと並行して動作します。
 
+## <a name="server-options"></a>サーバー オプション
+
+gRPC サービスは、すべての組み込み ASP.NET Core サーバーによってホストできます。
+
+> [!div class="checklist"]
+>
+> * Kestrel
+> * TestServer
+> * IIS&dagger;
+> * HTTP.sys&Dagger;
+
+&dagger;IIS では、.NET 5 および Windows 10 ビルド 20241 以降が必要です。
+
+&Dagger;HTTP.sys では、.NET 5 および Windows 10 ビルド 19529 以降が必要です。
+
+ASP.NET Core アプリに適切なサーバーを選択する方法の詳細については、「<xref:fundamentals/servers/index>」を参照してください。
+
 ::: moniker range=">= aspnetcore-5.0"
 
-### <a name="configure-kestrel"></a>Kestrel を構成する
+## <a name="kestrel"></a>Kestrel
+
+[Kestrel](xref:fundamentals/servers/kestrel) は、ASP.NET Core 向けのクロスプラットフォーム Web サーバーです。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、ポート共有など、HTTP.sys の高度な機能の一部は提供されません。
 
 Kestrel gRPC エンドポイントは次のようになります。
 
 * HTTP/2 が必要です。
 * [トランスポート層セキュリティ (TLS)](https://tools.ietf.org/html/rfc5246) で保護されている必要があります。
 
-#### <a name="http2"></a>HTTP/2
+### <a name="http2"></a>HTTP/2
 
 gRPC には HTTP/2 が必要です。 ASP.NET Core 用 gRPC は、[HttpRequest](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) が `HTTP/2` であるかを検証します。
 
 Kestrel は、最新のオペレーティング システムで [HTTP/2 をサポート](xref:fundamentals/servers/kestrel/http2)しています。 Kestrel エンドポイントは、既定で HTTP/1.1 接続と HTTP/2 接続をサポートするように構成されています。
 
-#### <a name="tls"></a>TLS
+### <a name="tls"></a>TLS
 
 gRPC に使用される Kestrel エンドポイントは、TLS で保護されている必要があります。 開発環境では、ASP.NET Core 開発証明書が存在する場合に、TLS で保護されたエンドポイントが `https://localhost:5001` に自動的に作成されます。 構成は必要ありません。 `https` プレフィックスによって、Kestrel エンドポイントが TLS を使用していることが確認されます。
 
@@ -104,7 +123,7 @@ gRPC に使用される Kestrel エンドポイントは、TLS で保護され�
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-#### <a name="protocol-negotiation"></a>プロトコル ネゴシエーション
+### <a name="protocol-negotiation"></a>プロトコル ネゴシエーション
 
 TLS は、通信のセキュリティ保護以外にも使用されます。 エンドポイントで複数のプロトコルがサポートされている場合、クライアントとサーバー間の接続プロトコルをネゴシエートするために TLS [ALPN (Application-Layer Protocol Negotiation)](https://tools.ietf.org/html/rfc7301#section-3) ハンドシェイクが使用されます。 このネゴシエーションでは、HTTP/1.1 または HTTP/2 のどちらが接続に使用されるかを判断します。
 
@@ -115,24 +134,38 @@ Kestrel で HTTP/2 および TLS を有効にする方法について詳しく�
 > [!NOTE]
 > macOS の場合、ASP.NET Core gRPC と TLS の組み合わせに対応していません。 macOS で gRPC サービスを正常に実行するには、追加の構成が必要です。 詳細については、[macOS で ASP.NET Core gRPC アプリを起動できない](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos)場合に関するページを参照してください。
 
+## <a name="iis"></a>IIS
+
+[インターネット インフォメーション サービス (IIS)](xref:host-and-deploy/iis/index) は、Web アプリ (ASP.NET Core を含む) をホストするための、柔軟かつ安全で管理しやすい Web サーバーです。 IIS で gRPC サービスをホストするには、.NET 5 および Windows 10 ビルド 20241 以降が必要です。
+
+IIS は、TLS と HTTP/2 を使用するように構成する必要があります。 詳細については、「<xref:host-and-deploy/iis/protocols>」を参照してください。
+
+## <a name="httpsys"></a>HTTP.sys
+
+[HTTP.sys](xref:fundamentals/servers/httpsys) は、Windows 上でのみ動作する ASP.NET Core 用 Web サーバーです。 HTTP.sys で gRPC サービスをホストするには、.NET 5 および Windows 10 ビルド 20241 以降が必要です。
+
+HTTP.sys は、TLS と HTTP/2 を使用するように構成する必要があります。 詳細については、[HTTP.sys Web サーバーの HTTP/2 サポート](xref:fundamentals/servers/httpsys#http2-support)に関する記事を参照してください。
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-### <a name="configure-kestrel"></a>Kestrel を構成する
+## <a name="kestrel"></a>Kestrel
+
+[Kestrel](xref:fundamentals/servers/kestrel) は、ASP.NET Core 向けのクロスプラットフォーム Web サーバーです。 Kestrel を使用すると、最高のパフォーマンスとメモリ使用率が提供されますが、ポート共有など、HTTP.sys の高度な機能の一部は提供されません。
 
 Kestrel gRPC エンドポイントは次のようになります。
 
 * HTTP/2 が必要です。
 * [トランスポート層セキュリティ (TLS)](https://tools.ietf.org/html/rfc5246) で保護されている必要があります。
 
-#### <a name="http2"></a>HTTP/2
+### <a name="http2"></a>HTTP/2
 
 gRPC には HTTP/2 が必要です。 ASP.NET Core 用 gRPC は、[HttpRequest](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) が `HTTP/2` であるかを検証します。
 
 Kestrel は、最新のオペレーティング システムで [HTTP/2 をサポート](xref:fundamentals/servers/kestrel#http2-support)しています。 Kestrel エンドポイントは、既定で HTTP/1.1 接続と HTTP/2 接続をサポートするように構成されています。
 
-#### <a name="tls"></a>TLS
+### <a name="tls"></a>TLS
 
 gRPC に使用される Kestrel エンドポイントは、TLS で保護されている必要があります。 開発環境では、ASP.NET Core 開発証明書が存在する場合に、TLS で保護されたエンドポイントが `https://localhost:5001` に自動的に作成されます。 構成は必要ありません。 `https` プレフィックスによって、Kestrel エンドポイントが TLS を使用していることが確認されます。
 
@@ -144,7 +177,7 @@ gRPC に使用される Kestrel エンドポイントは、TLS で保護され�
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-#### <a name="protocol-negotiation"></a>プロトコル ネゴシエーション
+### <a name="protocol-negotiation"></a>プロトコル ネゴシエーション
 
 TLS は、通信のセキュリティ保護以外にも使用されます。 エンドポイントで複数のプロトコルがサポートされている場合、クライアントとサーバー間の接続プロトコルをネゴシエートするために TLS [ALPN (Application-Layer Protocol Negotiation)](https://tools.ietf.org/html/rfc7301#section-3) ハンドシェイクが使用されます。 このネゴシエーションでは、HTTP/1.1 または HTTP/2 のどちらが接続に使用されるかを判断します。
 

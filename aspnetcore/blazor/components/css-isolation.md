@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/css-isolation
-ms.openlocfilehash: 92545eab4004f6b67080f79d64b94bb424d5a102
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 0748f606314963788e6733ca2ae2ca2123d839b3
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96320084"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99529983"
 ---
-# <a name="aspnet-core-no-locblazor-css-isolation"></a>ASP.NET Core Blazor の CSS の分離
+# <a name="aspnet-core-blazor-css-isolation"></a>ASP.NET Core Blazor の CSS の分離
 
 作成者: [Dave Brock](https://twitter.com/daveabrock)
 
@@ -34,11 +34,19 @@ CSS の分離により、グローバル スタイルへの依存を防ぐこと
 
 ## <a name="enable-css-isolation"></a>CSS の分離を有効にする 
 
-コンポーネント固有のスタイルを定義するには、コンポーネントの `.razor` ファイルの名前と一致する `.razor.css` ファイルを作成します。 この `.razor.css` ファイルは、"*スコープ付き CSS ファイル*" です。 
+コンポーネント固有のスタイルを定義するには、同じフォルダー内のコンポーネントの `.razor` ファイルの名前と一致する `.razor.css` ファイルを作成します。 `.razor.css` ファイルは、"*スコープ付き CSS ファイル*" です。 
 
-`MyComponent.razor` ファイルを持つ `MyComponent` コンポーネントの場合、コンポーネントと共に `MyComponent.razor.css` という名前のファイルを作成します。 ファイル名 `.razor.css` の `MyComponent` 値では、大文字と小文字は区別 **されません**。
+`Example.razor` ファイル内の `Example` コンポーネントの場合、コンポーネントと共に `Example.razor.css` という名前のファイルを作成します。 `Example.razor.css` ファイルは、`Example` コンポーネント (`Example.razor`) と同じフォルダー内に存在する必要があります。 ファイルの "`Example`" ベース名では、大文字と小文字が区別 **されません**。
 
-たとえば、既定の Blazor プロジェクト テンプレートの `Counter` コンポーネントに CSS の分離を追加するには、`Counter.razor` ファイルと共に `Counter.razor.css` という名前の新しいファイルを追加し、次の CSS を追加します。
+`Pages/Example.razor`:
+
+```razor
+@page "/example"
+
+<h1>Scoped CSS Example</h1>
+```
+
+`Pages/Example.razor.css`:
 
 ```css
 h1 { 
@@ -47,10 +55,10 @@ h1 {
 }
 ```
 
-`Counter.razor.css` で定義されるスタイルは、`Counter` コンポーネントのレンダリングされる出力にのみ適用されます。 アプリ内の他の場所で定義されるどの `h1` CSS も、`Counter` スタイルと競合しません。
+**`Example.razor.css` で定義されるスタイルは、`Example` コンポーネントのレンダリングされる出力にのみ適用されます。** CSS の分離は、一致する Razor ファイル内の HTML 要素に適用されます。 アプリ内の他の場所で定義されるどの `h1` CSS 宣言も、`Example` コンポーネントのスタイルと競合しません。
 
 > [!NOTE]
-> バンドルが発生したときにスタイルの分離を保証するために、`@import` Razor ブロックは、スコープ付き CSS ファイルではサポートされません。
+> バンドルが発生したときにスタイルの分離を保証するために、Razor コード ブロックでの CSS のインポートはサポートされていません。
 
 ## <a name="css-isolation-bundling"></a>CSS の分離のバンドル
 
@@ -59,7 +67,7 @@ CSS の分離は、ビルド時に発生します。 このプロセス中、Bla
 既定では、これらの静的ファイルはアプリのルート パスから参照されます。 アプリでは、生成された HTML の `<head>` タグ内の参照を調べることにより、バンドルされたファイルを参照します。
 
 ```html
-<link href="MyProjectName.styles.css" rel="stylesheet">
+<link href="ProjectName.styles.css" rel="stylesheet">
 ```
 
 バンドルされたファイル内で、各コンポーネントはスコープ識別子に関連付けられます。 スタイルが設定されるコンポーネントごとに、HTML 属性が形式 `b-<10-character-string>` を使用して追加されます。 識別子は一意であり、アプリごとに異なります。 レンダリングされる `Counter` コンポーネントでは、Blazor により、スコープ識別子が `h1` 要素に追加されます。
@@ -68,7 +76,7 @@ CSS の分離は、ビルド時に発生します。 このプロセス中、Bla
 <h1 b-3xxtam6d07>
 ```
 
-`MyProjectName.styles.css` ファイルは、スコープ識別子を使用してスタイル宣言をそのコンポーネントと共にグループ化します。 次の例では、前述の `<h1>` 要素のスタイルを示します。
+`ProjectName.styles.css` ファイルは、スコープ識別子を使用してスタイル宣言をそのコンポーネントと共にグループ化します。 次の例では、前述の `<h1>` 要素のスタイルを示します。
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -77,7 +85,7 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-ビルド時、規則 `{STATIC WEB ASSETS BASE PATH}/MyProject.lib.scp.css` でプロジェクト バンドルが作成されます。ここで、プレースホルダー `{STATIC WEB ASSETS BASE PATH}` は静的な Web アセットのベース パスです。
+ビルド時、規則 `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css` でプロジェクト バンドルが作成されます。ここで、プレースホルダー `{STATIC WEB ASSETS BASE PATH}` は静的な Web アセットのベース パスです。
 
 NuGet パッケージや [Razor クラス ライブラリ](xref:blazor/components/class-libraries)などの他のプロジェクトを利用する場合、バンドル ファイルは次のようになります。
 
@@ -90,7 +98,7 @@ NuGet パッケージや [Razor クラス ライブラリ](xref:blazor/component
 
 次の例は、`Child` という名前の子コンポーネントを持つ `Parent` という名前の親コンポーネントを示します。
 
-`Parent.razor`:
+`Pages/Parent.razor`:
 
 ```razor
 @page "/parent"
@@ -102,13 +110,15 @@ NuGet パッケージや [Razor クラス ライブラリ](xref:blazor/component
 </div>
 ```
 
-`Child.razor`:
+`Shared/Child.razor`:
 
 ```razor
 <h1>Child Component</h1>
 ```
 
 `::deep` 連結子を使用して `Parent.razor.css` 内の `h1` 宣言を更新し、`h1` スタイル宣言を親コンポーネントとその子に適用する必要があることを示します。
+
+`Pages/Parent.razor.css`:
 
 ```css
 ::deep h1 { 
@@ -118,26 +128,27 @@ NuGet パッケージや [Razor クラス ライブラリ](xref:blazor/component
 
 これで、子コンポーネント用の個別のスコープ付き CSS ファイルを作成する必要なく、`h1` スタイルは、`Parent` と `Child` の各コンポーネントに適用されます。
 
-> [!NOTE]
-> `::deep` 連結子は、子孫要素でのみ機能します。 次の HTML 構造体では、想定どおりに `h1` スタイルがコンポーネントに適用されます。
-> 
-> ```razor
-> <div>
->     <h1>Parent</h1>
->
->     <Child />
-> </div>
-> ```
->
-> このシナリオでは、ASP.NET Core により、親コンポーネントのスコープ識別子が `div` 要素に適用されるため、ブラウザーでは、スタイルを親コンポーネントから継承することが認識されます。
->
-> ただし、`div` 要素を除外すると、子孫関係が削除され、スタイルは子コンポーネントに適用 **されません**。
->
-> ```razor
-> <h1>Parent</h1>
->
-> <Child />
-> ```
+`::deep` 連結子は、子孫要素でのみ機能します。 次のマークアップでは、想定どおりに `h1` スタイルがコンポーネントに適用されます。 親コンポーネントのスコープ識別子が `div` 要素に適用されるため、ブラウザーでは、スタイルを親コンポーネントから継承することが認識されます。
+
+`Pages/Parent.razor`:
+
+```razor
+<div>
+    <h1>Parent</h1>
+
+    <Child />
+</div>
+```
+
+ただし、`div` 要素を除外すると、子孫関係が削除されます。 次の例では、スタイルは子コンポーネントに適用 **されません**。
+
+`Pages/Parent.razor`:
+
+```razor
+<h1>Parent</h1>
+
+<Child />
+```
 
 ## <a name="css-preprocessor-support"></a>CSS プリプロセッサのサポート
 
@@ -155,11 +166,28 @@ CSS の分離は、すぐに使用できるように設計されていますが�
 
 ```xml
 <ItemGroup>
-    <None Update="MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/Example.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
-前の例では、`MyComponent.Razor.css` 用に生成された CSS により、そのスコープ識別子は `b-<10-character-string>` から `my-custom-scope-identifier` に変更されます。
+前の例では、`Example.Razor.css` 用に生成された CSS により、そのスコープ識別子は `b-<10-character-string>` から `my-custom-scope-identifier` に変更されます。
+
+スコープ識別子を使用して、スコープ付き CSS ファイルでの継承を実現します。 次のプロジェクト ファイルの例では、`BaseComponent.razor.css` ファイルに、コンポーネント間の共通スタイルが含まれています。 `DerivedComponent.razor.css` ファイルでは、これらのスタイルが継承されます。
+
+```xml
+<ItemGroup>
+  <None Update="Pages/BaseComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/DerivedComponent.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
+
+ワイルドカード (`*`) 演算子を使用して、複数のファイル間でスコープ識別子を共有します。
+
+```xml
+<ItemGroup>
+  <None Update="Pages/*.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
 
 ### <a name="change-base-path-for-static-web-assets"></a>静的な Web アセットのベース パスを変更する
 
@@ -181,7 +209,7 @@ Blazor でスコープ付きファイルを公開し、それを実行時に読�
 </PropertyGroup>
 ```
 
-## <a name="no-locrazor-class-library-rcl-support"></a>Razor クラス ライブラリ (RCL) のサポート
+## <a name="razor-class-library-rcl-support"></a>Razor クラス ライブラリ (RCL) のサポート
 
 [Razor クラス ライブラリ (RCL)](xref:razor-pages/ui-class) により分離スタイルが提供される場合、`<link>` タグの `href` 属性は `{STATIC WEB ASSET BASE PATH}/{ASSEMBLY NAME}.bundle.scp.css` を指します。ここで、プレースホルダーは次のとおりです。
 
@@ -192,6 +220,8 @@ Blazor でスコープ付きファイルを公開し、それを実行時に読�
 
 * 静的な Web 資産のベース パスは `_content/ClassLib` です。
 * クラス ライブラリのアセンブリ名は `ClassLib` です。
+
+`wwwroot/index.html` (Blazor WebAssembly) または `Pages_Host.cshtml` (Blazor Server):
 
 ```html
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">

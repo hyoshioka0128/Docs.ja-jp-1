@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: e7bd5f4d61661dd23eb0907f896d0d32b7799aac
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 55993f951bfe910fb179fdb25b8d04f81d4ee2c9
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061302"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057461"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>ASP.NET Core の URL リライト ミドルウェア
 
@@ -290,7 +290,7 @@ IIS URL リライト モジュールに適用される同じルール セット�
 
 #### <a name="unsupported-features"></a>サポートされていない機能
 
-ASP.NET Core 2.x でリリースされたミドルウェアは、次の IIS URL リライト モジュールの機能をサポートしていません。
+ミドルウェアでは、次の IIS URL リライト モジュールの機能がサポートされていません。
 
 * 送信ルール
 * カスタム サーバー変数

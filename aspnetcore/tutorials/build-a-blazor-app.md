@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 6659b075f54292d9546466919f6842b920e6ece1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 106e1119db777074b5eae24f5d7e216e6127ca13
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97808739"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238303"
 ---
-# <a name="build-a-no-locblazor-todo-list-app"></a>Blazor Todo リスト アプリを構築する
+# <a name="build-a-blazor-todo-list-app"></a>Blazor Todo リスト アプリを構築する
 
 作成者: [Daniel Roth](https://github.com/danroth27)、[Luke Latham](https://github.com/guardrex)
 
@@ -54,7 +54,7 @@ ms.locfileid: "97808739"
 
 ::: moniker-end
 
-## <a name="create-a-todo-list-no-locblazor-app"></a>ToDo リスト Blazor アプリを作成する
+## <a name="create-a-todo-list-blazor-app"></a>ToDo リスト Blazor アプリを作成する
 
 1. コマンド シェルで `TodoList` という名前の新しい Blazor アプリを作成します。
 
@@ -108,6 +108,12 @@ ms.locfileid: "97808739"
    `TodoItem.cs`:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
+   
+   > [!NOTE]
+   > Visual Studio を使用して `ToDoItem.cs` ファイルと `ToDoItem` クラスを作成する場合は、次のいずれかの方法を使用します。
+   >
+   > * Visual Studio によってクラス用に生成される名前空間を削除します。
+   > * 前のコード ブロックの **[コピー]** ボタンを使用し、Visual Studio によって生成されるファイルの内容全体を置き換えます。
 
 1. `Todo` コンポーネントに戻り、次のタスクを実行します。
 

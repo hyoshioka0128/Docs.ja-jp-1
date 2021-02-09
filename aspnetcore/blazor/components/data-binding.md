@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: e873fdd201cf0cdc809030fde30c6a8da2899861
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 67a63f1b4f705a4857dea2e6d1a942d4f21469f5
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751556"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057097"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor データ バインディング
 
@@ -146,7 +146,7 @@ Blazor には日付の書式を設定するためのサポートが組み込ま�
 
 一般的なシナリオは、子コンポーネントのプロパティをその親のプロパティにバインディングすることです。 このシナリオは、複数のレベルのバインドが同時に発生するため、*チェーン バインド* と呼ばれます。
 
-[コンポーネント パラメーター](xref:blazor/components/index#component-parameters)を使用すると、`@bind-{PROPERTY OR FIELD}` 構文を使用して親コンポーネントのプロパティとフィールドをバインドできます。
+[コンポーネント パラメーター](xref:blazor/components/index#component-parameters)を使用すると、`@bind-{PROPERTY}` 構文を使用して親コンポーネントのプロパティをバインドできます。
 
 チェーン バインドは、子コンポーネントで [`@bind`](xref:mvc/views/razor#bind) 構文を使用して実装することはできません。 子コンポーネントから親のプロパティを更新するには、イベント ハンドラーと値を別々に指定する必要があります。
 

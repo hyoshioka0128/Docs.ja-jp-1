@@ -1,4 +1,4 @@
-HTTP トレーラーは HTTP ヘッダーに似ていますが、応答本文の送信後に送信される点が異なります。 IIS と HTTP.SYS の場合は、HTTP/2 応答トレーラーのみがサポートされています。
+HTTP トレーラーは HTTP ヘッダーに似ていますが、応答本文の送信後に送信される点が異なります。 IIS と HTTP.sys の場合は、HTTP/2 応答トレーラーのみがサポートされています。
 
 ```csharp
 if (httpContext.Response.SupportsTrailers())

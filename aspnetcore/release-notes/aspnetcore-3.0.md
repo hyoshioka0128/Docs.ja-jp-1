@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 235daac5c08248ca2052de6b44e66a8162ce23ad
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 161d6aeefe1882b86ce97cdcfa7e5b23048693f0
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93051240"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217506"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>ASP.NET Core 3.0 の新機能
 
@@ -53,11 +53,11 @@ Blazor フレームワークでサポートされるシナリオ:
 
 Blazor では、UI の更新プログラムを適用する方法からコンポーネントのレンダリング ロジックが分離されます。 Blazor Server では、ASP.NET Core アプリでサーバー上の Razor コンポーネントをホストするためのサポートが提供されます。 UI の更新は SignalR 接続を介して処理されます。 Blazor Server は ASP.NET Core 3.0 でサポートされています。
 
-### <a name="no-locblazor-webassembly-preview"></a>Blazor WebAssembly (プレビュー)
+### <a name="blazor-webassembly-preview"></a>Blazor WebAssembly (プレビュー)
 
 Blazor アプリは、WebAssembly ベースの .NET ランタイムを使用してブラウザーで直接実行することもできます。 Blazor WebAssembly はプレビュー段階であり、ASP.NET Core 3.0 ではサポートされて "*いません*"。 Blazor WebAssembly は、ASP.NET Core の今後のリリースでサポートされる予定です。
 
-### <a name="no-locrazor-components"></a>Razor のコンポーネント
+### <a name="razor-components"></a>Razor のコンポーネント
 
 Blazor アプリはコンポーネントから構築されています。 コンポーネントは、ページ、ダイアログ、フォームなどのユーザー インターフェイス (UI) の自己完結型チャンクです。 コンポーネントは、UI レンダリング ロジックとクライアント側のイベント ハンドラーを定義する通常の .NET クラスです。 JavaScript を使用せずに、機能豊富な対話型 Web アプリを作成できます。
 
@@ -324,14 +324,14 @@ subject.complete();
 
 Json.NET を ASP.NET Core 3.0 に追加するには、「[Newtonsoft.Json ベースの JSON 形式のサポートを追加する](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support)」を参照してください。
 
-## <a name="new-no-locrazor-directives"></a>新しい Razor ディレクティブ
+## <a name="new-razor-directives"></a>新しい Razor ディレクティブ
 
 次の一覧には、新しい Razor ディレクティブが含まれます。
 
 * [`@attribute`](xref:mvc/views/razor#attribute):`@attribute` ディレクティブでは、指定された属性が生成されたページまたはビューのクラスに適用されます。 たとえば、`@attribute [Authorize]` のようにします。
 * [`@implements`](xref:mvc/views/razor#implements):`@implements` ディレクティブでは、生成されたクラスのインターフェイスが実装されます。 たとえば、`@implements IDisposable` のようにします。
 
-## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 では、Web API と SPA の認証と承認がサポートされています
+## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4 では、Web API と SPA の認証と承認がサポートされています
 
 ASP.NET Core 3.0 では、Web API 認証のサポートの使用により、シングルページ アプリ (SPA) での認証が提供されます。 ユーザーを認証および格納するための ASP.NET Core Identity が [IdentityServer4](https://identityserver.io/) と組み合わされ、OpenID Connect が実装されます。
 
@@ -376,7 +376,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 既定のユーザー プリンシパルは、証明書のプロパティで構成されます。 ユーザー プリンシパルには、プリンシパルの補完または置換を可能にするイベントが含まれています。 詳細については、「<xref:security/authentication/certauth>」を参照してください。
 
-[Windows 認証](/windows-server/security/windows-authentication/windows-authentication-overview)は、Linux および macOS に拡張されています。 以前のバージョンでは、Windows 認証は [IIS](xref:host-and-deploy/iis/index) と [HttpSys](xref:fundamentals/servers/httpsys) に限定されていました。 ASP.NET Core 3.0 では、[Kestrel](xref:fundamentals/servers/kestrel) は、Windows、Linux、および macOS 上で、Windows ドメインに参加しているホストに対して Negotiate、[Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview)、および [NTLM](/windows-server/security/kerberos/ntlm-overview) を使用できます。 これらの認証スキームの Kestrel サポートは、[Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) パッケージによって提供されます。 他の認証サービスと同様に、認証アプリ全体を構成してからサービスを構成します。
+[Windows 認証](/windows-server/security/windows-authentication/windows-authentication-overview)は、Linux および macOS に拡張されています。 以前のバージョンでは、Windows 認証は [IIS](xref:host-and-deploy/iis/index) と [HTTP.sys](xref:fundamentals/servers/httpsys) に限定されていました。 ASP.NET Core 3.0 では、[Kestrel](xref:fundamentals/servers/kestrel) は、Windows、Linux、および macOS 上で、Windows ドメインに参加しているホストに対して Negotiate、[Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview)、および [NTLM](/windows-server/security/kerberos/ntlm-overview) を使用できます。 これらの認証スキームの Kestrel サポートは、[Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) パッケージによって提供されます。 他の認証サービスと同様に、認証アプリ全体を構成してからサービスを構成します。
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

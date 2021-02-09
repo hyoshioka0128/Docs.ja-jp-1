@@ -5,7 +5,7 @@ description: IHttpClientFactory インターフェイスを使用して、ASP.NE
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/09/2020
+ms.date: 1/21/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: 34c35daac3da845bac9156fe96078df7902a4cd0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1cf3029452f87a396847f969f0f3136a75874752
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059495"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057331"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>ASP.NET Core で IHttpClientFactory を使用して HTTP 要求を行う
 
 ::: moniker range=">= aspnetcore-3.0"
 
-寄稿者: [Glenn Condron](https://github.com/glennc)、[Ryan Nowak](https://github.com/rynowak)、[Steve Gordon](https://github.com/stevejgordon)、[Rick Anderson](https://twitter.com/RickAndMSFT)、[Kirk Larkin](https://github.com/serpent5)
+作成者: [Kirk Larkin](https://github.com/serpent5)、[Steve Gordon](https://github.com/stevejgordon)、[Glenn Condron](https://github.com/glennc)、[Ryan Nowak](https://github.com/rynowak)。
 
 アプリ内で <xref:System.Net.Http.HttpClient> インスタンスを構成して作成するために、<xref:System.Net.Http.IHttpClientFactory> を登録して使用できます。 `IHttpClientFactory` には次のような利点があります。
 
@@ -58,7 +58,7 @@ ms.locfileid: "93059495"
 
 `IHttpClientFactory` は、`AddHttpClient` を呼び出すことによって登録できます。
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
 
 `IHttpClientFactory` は、[依存関係の挿入 (DI)](xref:fundamentals/dependency-injection) を使用して要求できます。 次のコードでは、`IHttpClientFactory` を使用して `HttpClient` インスタンスを作成しています。
 
@@ -238,16 +238,15 @@ HTTP DELETE 要求の例を次に示します。
 
 `HttpClient` は、送信 HTTP 要求用にリンクできるハンドラーのデリゲートの概念を備えています。 `IHttpClientFactory`:
 
-* 各名前付きクライアントに適用するハンドラーの定義が簡単になります。
-* 送信要求ミドルウェア パイプラインを構築するための複数のハンドラーの登録とチェーン化がサポートされています。 各ハンドラーは、送信要求の前と後に処理を実行できます。 このパターンは次のようなものです。
-
-  * ASP.NET Core での受信ミドルウェア パイプラインに似ています。
-  * 次のような HTTP 要求に関する横断的な問題を管理するためのメカニズムが提供されます。
-
-    * キャッシュ
-    * エラー処理
-    * シリアル化
-    * ログ
+  * 各名前付きクライアントに適用するハンドラーの定義が簡単になります。
+  * 送信要求ミドルウェア パイプラインを構築するための複数のハンドラーの登録とチェーン化がサポートされています。 これらの各ハンドラーでは、送信要求の前と後に処理を実行できます。 このパターンは次のようなものです。
+  
+    * ASP.NET Core での受信ミドルウェア パイプラインに似ています。
+    * 次のような HTTP 要求に関する横断的な問題を管理するためのメカニズムが提供されます。
+      * キャッシュ
+      * エラー処理
+      * シリアル化
+      * ログ
 
 デリゲート ハンドラーを作成するには、次のようにします。
 
@@ -262,13 +261,31 @@ HTTP DELETE 要求の例を次に示します。
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
 
-上記のコードでは、`ValidateHeaderHandler` が DI で登録されます。 `IHttpClientFactory` では、ハンドラーごとに個別の DI スコープが作成されます。 ハンドラーは、任意のスコープのサービスに依存することができます。 ハンドラーが依存するサービスは、ハンドラーが破棄されるときに破棄されます。
-
-登録が済むと、<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> を呼び出してハンドラーの型を渡すことができます。
+上記のコードでは、`ValidateHeaderHandler` が DI で登録されます。 登録が済むと、<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> を呼び出してハンドラーの型を渡すことができます。
 
 実行する順序で、複数のハンドラーを登録することができます。 最後の `HttpClientHandler` が要求を実行するまで、各ハンドラーは次のハンドラーをラップします。
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+
+### <a name="use-di-in-outgoing-request-middleware"></a>送信要求ミドルウェアで DI を使用する
+
+`IHttpClientFactory` によって新しいデリゲート ハンドラーが作成される際、ハンドラーのコンストラクター パラメーターを満たすために DI が使用されます。 `IHttpClientFactory` により、ハンドラーごとに **個別の** DI スコープが作成されます。これにより、ハンドラーによって "*スコープ付き*" サービスが使用されるときに、予期しない動作が発生する可能性があります。
+
+たとえば、識別子 `OperationId` を持つ操作としてタスクを表す、次のインターフェイスとその実装について考えてみます。
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+
+その名前が示すように、`IOperationScoped` は "*スコープ付き*" 有効期間を使用して DI に登録されます。
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+
+次のデリゲート ハンドラーでは、`IOperationScoped` を使用して、送信要求用の `X-OPERATION-ID` ヘッダーを設定します。
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+
+[`HttpRequestsSample` ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)] で、`/Operation` に移動してページを更新します。 要求スコープの値は要求ごとに変更されますが、ハンドラーのスコープの値は 5 秒ごとに変更されるだけです。
+
+ハンドラーは、任意のスコープのサービスに依存することができます。 ハンドラーが依存するサービスは、ハンドラーが破棄されるときに破棄されます。
 
 次の方法のいずれかを使って、要求ごとの状態をメッセージ ハンドラーと共有します。
 
@@ -363,7 +380,7 @@ DI 対応のアプリ内で `IHttpClientFactory` を使用すれば、次のこ�
 - `SocketsHttpHandler` を使用すると、`HttpClient` インスタンス間で接続を共有できます。 この共有によってソケットの枯渇が防止されます。
 - `SocketsHttpHandler` では、古くなった DNS の問題を回避するために `PooledConnectionLifetime` に従って接続を循環されます。
 
-### <a name="no-loccookies"></a>Cookies
+### <a name="cookies"></a>Cookies
 
 `HttpMessageHandler` インスタンスをプールすると、`CookieContainer` オブジェクトが共有されます。 予期せぬ `CookieContainer` オブジェクト共有があると、多くの場合、コードは不適切なものとなります。 cookie を必要とするアプリの場合は、次のいずれかを検討してください。
 
@@ -681,7 +698,7 @@ DI 対応のアプリ内で `IHttpClientFactory` を使用すれば、次のこ�
 - `SocketsHttpHandler` を使用すると、`HttpClient` インスタンス間で接続を共有できます。 この共有によってソケットの枯渇が防止されます。
 - `SocketsHttpHandler` では、古くなった DNS の問題を回避するために `PooledConnectionLifetime` に従って接続を循環されます。
 
-### <a name="no-loccookies"></a>Cookies
+### <a name="cookies"></a>Cookies
 
 `HttpMessageHandler` インスタンスをプールすると、`CookieContainer` オブジェクトが共有されます。 予期せぬ `CookieContainer` オブジェクト共有があると、多くの場合、コードは不適切なものとなります。 cookie を必要とするアプリの場合は、次のいずれかを検討してください。
 
@@ -989,7 +1006,7 @@ DI 対応のアプリ内で `IHttpClientFactory` を使用すれば、次のこ�
 - `SocketsHttpHandler` を使用すると、`HttpClient` インスタンス間で接続を共有できます。 この共有によってソケットの枯渇が防止されます。
 - `SocketsHttpHandler` では、古くなった DNS の問題を回避するために `PooledConnectionLifetime` に従って接続を循環されます。
 
-### <a name="no-loccookies"></a>Cookies
+### <a name="cookies"></a>Cookies
 
 `HttpMessageHandler` インスタンスをプールすると、`CookieContainer` オブジェクトが共有されます。 予期せぬ `CookieContainer` オブジェクト共有があると、多くの場合、コードは不適切なものとなります。 cookie を必要とするアプリの場合は、次のいずれかを検討してください。
 

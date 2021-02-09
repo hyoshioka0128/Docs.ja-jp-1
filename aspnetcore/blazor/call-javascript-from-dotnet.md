@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 53b702cddca778e06e617df3798bffb21677d36b
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: ca42b611a61fc394655e396f914e8e050c578e6a
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751650"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530087"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>ASP.NET Core Blazor で .NET メソッドから JavaScript 関数を呼び出す
 
@@ -523,14 +523,14 @@ export function showPrompt(message) {
 }
 ```
 
-前の JavaScript モジュールを静的 Web アセット (`wwwroot/exampleJsInterop.js`) として .NET ライブラリに追加し、<xref:Microsoft.JSInterop.IJSRuntime> サービスを使用してそのモジュールを .NET コードにインポートします。 サービスは、次の例では `js` (表示はなし) として挿入されます。
+前の JavaScript モジュールを静的 Web アセット (`wwwroot/exampleJsInterop.js`) として .NET ライブラリに追加し、<xref:Microsoft.JSInterop.IJSRuntime> サービスの <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> を呼び出して、そのモジュールを .NET コードにインポートします。 サービスは、次の例では `js` (表示はなし) として挿入されます。
 
 ```csharp
 var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-前の例の `import` 識別子は、JavaScript モジュールをインポートするために特別に使用される特殊な識別子です。 安定した静的な Web アセット パスを使用してモジュールを指定します: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`。 JavaScript ファイルへの正しい静的アセット パスを作成するためには、現在のディレクトリ (`./`) に対するパス セグメントが必要です。 プレースホルダー `{LIBRARY NAME}` は、ライブラリの名前です。 プレースホルダー `{PATH UNDER WWWROOT}` は、`wwwroot` の下にあるスクリプトへのパスです。
+前の例の `import` 識別子は、JavaScript モジュールをインポートするために特別に使用される特殊な識別子です。 安定した静的な Web アセット パスを使用してモジュールを指定します: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`。 JavaScript ファイルへの正しい静的アセット パスを作成するためには、現在のディレクトリ (`./`) に対するパス セグメントが必要です。 モジュールを動的にインポートするにはネットワーク要求が必要であるため、これは <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> を呼び出すことによってのみ、非同期的に実現できます。 `{LIBRARY NAME}` プレースホルダーは、ライブラリの名前です。 `{PATH UNDER WWWROOT}` プレースホルダーは、`wwwroot` の下にあるスクリプトへのパスです。
 
 <xref:Microsoft.JSInterop.IJSRuntime> により、モジュールが `IJSObjectReference` としてインポートされます。これは、.NET コードから JavaScript オブジェクトへの参照を表します。 モジュールからエクスポートされた JavaScript 関数を呼び出すには、`IJSObjectReference` を使用します。
 
