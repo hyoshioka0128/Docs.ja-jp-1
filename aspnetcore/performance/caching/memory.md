@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/memory
-ms.openlocfilehash: 9b19c782d1d42ddaba590f05bab31899402f681a
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.openlocfilehash: 19e8dc0ae4d5f8fd28d03d5be87c0b1bbf32d940
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96901224"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107221"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>ASP.NET Core 内のメモリ内のキャッシュ
 
@@ -51,7 +51,7 @@ Web ファームの固定されていないセッションでは、キャッシ�
 * .NET Standard 2.0 以降を対象とするすべての [.net 実装](/dotnet/standard/net-standard#net-implementation-support) 。 たとえば、2.0 以降の ASP.NET Core ます。
 * .NET Framework 4.5 以降。
 
-[Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/) / `IMemoryCache` ASP.NET Core に統合することをお勧めします。 `System.Runtime.Caching` / そのため、この記事で説明され `MemoryCache` ているように、このキャッシュはお勧めします。 たとえば、は `IMemoryCache` ASP.NET Core [依存関係の挿入](xref:fundamentals/dependency-injection)とネイティブに連携します。
+[](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/) / `IMemoryCache` ASP.NET Core に統合することをお勧めします。 `System.Runtime.Caching` / そのため、この記事で説明され `MemoryCache` ているように、このキャッシュはお勧めします。 たとえば、は `IMemoryCache` ASP.NET Core [依存関係の挿入](xref:fundamentals/dependency-injection)とネイティブに連携します。
 
 `System.Runtime.Caching` / `MemoryCache` ASP.NET 4.x から ASP.NET Core にコードを移植するときは、互換性ブリッジとして使用します。
 
@@ -235,7 +235,7 @@ Web ファームの固定されていないセッションでは、キャッシ�
 * .NET Standard 2.0 以降を対象とするすべての [.net 実装](/dotnet/standard/net-standard#net-implementation-support) 。 たとえば、2.0 以降の ASP.NET Core ます。
 * .NET Framework 4.5 以降。
 
-[Microsoft.Extensions.Caching.Memory](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/) / `IMemoryCache` ASP.NET Core に統合することをお勧めします。 `System.Runtime.Caching` / そのため、この記事で説明され `MemoryCache` ているように、このキャッシュはお勧めします。 たとえば、は `IMemoryCache` ASP.NET Core [依存関係の挿入](xref:fundamentals/dependency-injection)とネイティブに連携します。
+[](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Memory/) / `IMemoryCache` ASP.NET Core に統合することをお勧めします。 `System.Runtime.Caching` / そのため、この記事で説明され `MemoryCache` ているように、このキャッシュはお勧めします。 たとえば、は `IMemoryCache` ASP.NET Core [依存関係の挿入](xref:fundamentals/dependency-injection)とネイティブに連携します。
 
 `System.Runtime.Caching` / `MemoryCache` ASP.NET 4.x から ASP.NET Core にコードを移植するときは、互換性ブリッジとして使用します。
 

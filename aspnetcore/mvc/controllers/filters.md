@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: ee30ef89c5d7aeae83f23a81eb02235397c89ac2
-ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
+ms.openlocfilehash: 79457d55e0dcda342bc0017bb386c23525666657
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/01/2021
-ms.locfileid: "99238317"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107195"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core フィルター
 
@@ -192,12 +192,12 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 
 | Sequence | フィルターのスコープ | フィルター メソッド |
 |:--------:|:------------:|:-------------:|
-| 1 | グローバル | `OnActionExecuting` |
+| 1 | Global | `OnActionExecuting` |
 | 2 | コントローラーまたは Razor ページ| `OnActionExecuting` |
 | 3 | メソッド | `OnActionExecuting` |
 | 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラーまたは Razor ページ | `OnActionExecuted` |
-| 6 | グローバル | `OnActionExecuted` |
+| 6 | Global | `OnActionExecuted` |
 
 ### <a name="controller-level-filters"></a>コントローラー レベルのフィルター
 
@@ -403,7 +403,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 リソース フィルターの例:
 
 * 前に示した[ショートサーキットするリソース フィルター](#short-circuiting-resource-filter)。
-* [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/2.0.0-preview2/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
+* [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
 
   * モデル バインドがフォーム データにアクセスすることを禁止します。
   * メモリにフォーム データが読み込まれないようにする目的で大きなファイルのアップロードに使用されます。
@@ -558,11 +558,11 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 `IFilterFactory.IsReusable`:
 
 * ファクトリによって作成されたフィルターインスタンスが、作成された要求スコープの外部で再利用される可能性があることを示すヒントです。
-* Singleton 以外の有効期間が設定されたサービスに依存するフィルターと共に使用することはでき **ません**。
+* シングルトン以外の有効期間が設定されたサービスに依存するフィルターでは使用 ***しない*** でください。
 
 ASP.NET Core ランタイムで保証されないこと:
 
-_ フィルターの1つのインスタンスが作成されることを指定します。
+* フィルターのインスタンスが 1 つ作成されます。
 * フィルターが後の時点で、DI コンテナーから再要求されることはありません。
 
 > [!WARNING] 
@@ -751,19 +751,19 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 
 | Sequence | フィルターのスコープ | フィルター メソッド |
 |:--------:|:------------:|:-------------:|
-| 1 | グローバル | `OnActionExecuting` |
+| 1 | Global | `OnActionExecuting` |
 | 2 | コントローラー | `OnActionExecuting` |
 | 3 | メソッド | `OnActionExecuting` |
 | 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラー | `OnActionExecuted` |
-| 6 | グローバル | `OnActionExecuted` |
+| 6 | Global | `OnActionExecuted` |
 
 このシーケンスが示すもの:
 
 * メソッド フィルターは、コントローラー フィルター内で入れ子になります。
 * コントローラー フィルターは、グローバル フィルター内で入れ子になります。
 
-### <a name="controller-and-no-locrazor-page-level-filters"></a>コントローラーおよび Razor ページレベルのフィルター
+### <a name="controller-and-razor-page-level-filters"></a>コントローラーおよび Razor ページレベルのフィルター
 
 <xref:Microsoft.AspNetCore.Mvc.Controller> 基底クラスから継承するすべてのコントローラーに、[Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*)、[Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*)、[Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted` メソッドが含まれています。 これらのメソッド:
@@ -813,8 +813,8 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | メソッド | 0 | `OnActionExecuting` |
 | 2 | コントローラー | 1  | `OnActionExecuting` |
-| 3 | グローバル | 2  | `OnActionExecuting` |
-| 4 | グローバル | 2  | `OnActionExecuted` |
+| 3 | Global | 2  | `OnActionExecuting` |
+| 4 | Global | 2  | `OnActionExecuted` |
 | 5 | コントローラー | 1  | `OnActionExecuted` |
 | 6 | メソッド | 0  | `OnActionExecuted` |
 
