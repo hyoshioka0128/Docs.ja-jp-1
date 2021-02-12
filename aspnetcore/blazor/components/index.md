@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: efc73022d0bd8c29595f9bed1c06fe07002eb54a
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 111512916cb7f0a4fc1f17648e2f9c69e366dff3
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530100"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107052"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
@@ -268,7 +268,7 @@ namespace BlazorSample
 
 ### <a name="component-parameters"></a>コンポーネントのパラメーター
 
-コンポーネントには、"*コンポーネント パラメーター*" を指定できます。これは、[`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) 属性を指定したコンポーネント クラス上で、単純な、または複雑なパブリック プロパティを使用して定義します。 マークアップ内でコンポーネントの引数を指定するには、属性を使います。
+コンポーネントには、"*コンポーネント パラメーター*" を指定できます。これは、[`[Parameter]` 属性](xref:Microsoft.AspNetCore.Components.ParameterAttribute)を指定したコンポーネント クラス上で、単純な、または複雑なパブリック プロパティを使用して定義します。 マークアップ内でコンポーネントの引数を指定するには、属性を使います。
 
 `Components/ChildComponent.razor`:
 
@@ -396,7 +396,7 @@ Blazor による子コンテンツのレンダリング方法により、`for` �
        size="50">
 ```
 
-任意の属性を受け入れるには、<xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> プロパティを `true` に設定した [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) 属性を使用して、コンポーネント パラメーターを定義します。
+任意の属性を受け入れるには、<xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> プロパティを `true` に設定した [`[Parameter]` 属性](xref:Microsoft.AspNetCore.Components.ParameterAttribute)を使用して、コンポーネント パラメーターを定義します。
 
 ```razor
 @code {
@@ -584,7 +584,10 @@ public class NotifierService
 }
 ```
 
-前の例では、Blazor の同期コンテキスト外で `NotifierService` からコンポーネントの `OnNotify` メソッドが呼び出されます。 `InvokeAsync` を使用して、正しいコンテキストに切り替え、レンダリングをキューに登録します。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
+前の例の場合:
+
+* Blazor の同期コンテキスト外で `NotifierService` からコンポーネントの `OnNotify` メソッドが呼び出されます。 `InvokeAsync` を使用して、正しいコンテキストに切り替え、レンダリングをキューに登録します。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
+* コンポーネントは <xref:System.IDisposable> を実装し、`OnNotify` デリゲートは `Dispose` メソッドでサブスクライブを解除します。このメソッドは、コンポーネントが破棄されたときにフレームワークによって呼び出されます。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>\@ キーを使用して要素とコンポーネントの保存を制御する
 
@@ -772,7 +775,7 @@ Blazor フレームワークでは、一般に安全な親から子へのパラ�
 
 ## <a name="apply-an-attribute"></a>属性を適用する
 
-属性は、[`@attribute`][7] ディレクティブを使用して Razor コンポーネントに適用できます。 次の例では、[`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 属性をコンポーネント クラスに適用しています。
+属性は、[`@attribute`][7] ディレクティブを使用して Razor コンポーネントに適用できます。 次の例では、[`[Authorize]` 属性](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)をコンポーネント クラスに適用しています。
 
 ```razor
 @page "/"

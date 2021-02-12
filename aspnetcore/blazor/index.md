@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: bd42ba41c6f599d7c0308febbbde71e0d060cc84
-ms.sourcegitcommit: 20a41c8e40a2e69e99291e2fe18caa04c02e7109
+ms.openlocfilehash: d42136de00ccc9b7565c5ae088e1ecf4560a63c5
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "99578296"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106883"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>ASP.NET Core Blazor の概要
 
@@ -148,8 +148,9 @@ Blazor WebAssembly アプリをビルドしてブラウザーで実行する場�
 
 Blazor では、UI の更新プログラムを適用する方法からコンポーネントのレンダリング ロジックが分離されます。 *Blazor Server* では、ASP.NET Core アプリでサーバー上の Razor コンポーネントをホストするためのサポートが提供されます。 UI の更新は [SignalR](xref:signalr/introduction) 接続を介して処理されます。
 
-ランタイムでは以下が処理されます。
+ランタイムはサーバー上にとどまり、次の処理を行います。
 
+* アプリの C# コードを実行しています。
 * ブラウザーからサーバーへの UI イベントの送信。
 * サーバーによって返送される、レンダリングされたコンポーネントへの UI の更新の適用。
 
