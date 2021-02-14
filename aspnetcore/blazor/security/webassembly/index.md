@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: fc2ebae6e88e312aafec790229f978c3130e64de
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 48a6227c30f025e118782b13e46fe0c7d6505851
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100106688"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280832"
 ---
 # <a name="secure-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をセキュリティで保護する
-
-作成者: [Javier Calvarro Jeannine](https://github.com/javiercn)
 
 Blazor WebAssembly アプリは、シングル ページ アプリケーション (SPA) と同じ方法でセキュリティ保護されます。 ユーザーを SPA で認証する方法はいくつかありますが、最も一般的で包括的な方法は、[OpenID Connect (OIDC)](https://openid.net/connect/) などの [OAuth 2.0 プロトコル](https://oauth.net/)に基づく実装を使用することです。
 

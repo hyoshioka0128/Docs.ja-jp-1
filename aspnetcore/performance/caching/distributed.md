@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 6d87c8de66bf5600189465b96dee903841106b6f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6f89046f2e1805111dd81b3282253a72a7c6ea09
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061146"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100281013"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>ASP.NET Core での分散キャッシュ
 
@@ -113,7 +113,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、 [シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、[シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
 
 ### <a name="distributed-redis-cache"></a>分散 Redis Cache
 
@@ -129,12 +129,12 @@ Table and index were created successfully.
 
 [Ncache](https://github.com/Alachisoft/NCache) は、.NET および .net Core でネイティブに開発されたオープンソースのメモリ内分散キャッシュです。 NCache はローカルに動作し、Azure または他のホスティングプラットフォームで実行される ASP.NET Core アプリの分散キャッシュクラスターとして構成されます。
 
-NCache をローカルコンピューターにインストールして構成するには、「 [ncache はじめに Guide For Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/)」を参照してください。
+ローカルコンピューターに NCache をインストールして構成する方法については、「 [はじめに Guide For Windows (.net および .Net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/)」を参照してください。
 
 NCache を構成するには:
 
 1. [Ncache オープンソース NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/)をインストールします。
-1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)でキャッシュクラスターを構成します。
+1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)でキャッシュクラスターを構成します。
 1. `Startup.ConfigureServices` に次のコードを追加します。
 
    ```csharp
@@ -167,7 +167,7 @@ NCache を構成するには:
 >
 > また、DI を使用する代わりに、必要に応じてインスタンスを作成することもできます <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> が、コードでインスタンスを作成すると、コードのテストが難しくなり、 [明示的な依存関係の原則](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)に違反する可能性があります。
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>推奨事項
 
 アプリに最適なの実装を決定する際には、 <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> 次の点を考慮してください。
 
@@ -182,7 +182,7 @@ NCache を構成するには:
 
 SQL Server が分散キャッシュバッキングストアとして使用されている場合、キャッシュに同じデータベースを使用すると、アプリの通常のデータストレージと取得が両方のパフォーマンスに悪影響を与える可能性があります。 分散キャッシュバッキングストアには専用の SQL Server インスタンスを使用することをお勧めします。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [Azure での Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure での SQL Database](/azure/sql-database/)
@@ -280,7 +280,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、 [シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、[シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
 
 ### <a name="distributed-redis-cache"></a>分散 Redis Cache
 
@@ -299,12 +299,12 @@ Redis をローカルコンピューターにインストールするには、�
 
 [Ncache](https://github.com/Alachisoft/NCache) は、.NET および .net Core でネイティブに開発されたオープンソースのメモリ内分散キャッシュです。 NCache はローカルに動作し、Azure または他のホスティングプラットフォームで実行される ASP.NET Core アプリの分散キャッシュクラスターとして構成されます。
 
-NCache をローカルコンピューターにインストールして構成するには、「 [ncache はじめに Guide For Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/)」を参照してください。
+ローカルコンピューターに NCache をインストールして構成する方法については、「 [はじめに Guide For Windows (.net および .Net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/)」を参照してください。
 
 NCache を構成するには:
 
 1. [Ncache オープンソース NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/)をインストールします。
-1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)でキャッシュクラスターを構成します。
+1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)でキャッシュクラスターを構成します。
 1. `Startup.ConfigureServices` に次のコードを追加します。
 
    ```csharp
@@ -337,7 +337,7 @@ NCache を構成するには:
 >
 > また、DI を使用する代わりに、必要に応じてインスタンスを作成することもできます <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> が、コードでインスタンスを作成すると、コードのテストが難しくなり、 [明示的な依存関係の原則](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)に違反する可能性があります。
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>推奨事項
 
 アプリに最適なの実装を決定する際には、 <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> 次の点を考慮してください。
 
@@ -352,7 +352,7 @@ NCache を構成するには:
 
 SQL Server が分散キャッシュバッキングストアとして使用されている場合、キャッシュに同じデータベースを使用すると、アプリの通常のデータストレージと取得が両方のパフォーマンスに悪影響を与える可能性があります。 分散キャッシュバッキングストアには専用の SQL Server インスタンスを使用することをお勧めします。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [Azure での Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure での SQL Database](/azure/sql-database/)
@@ -450,7 +450,7 @@ Table and index were created successfully.
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、 [シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
+> <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*>通常、(および必要に応じ <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> て <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) は、ソース管理の外部に格納されます (たとえば、[シークレットマネージャー](xref:security/app-secrets)または appsettings に格納され *appsettings.json* / *ます)。ENVIRONMENT} json* ファイル)。 接続文字列には、ソース管理システムから保持する必要がある資格情報を含めることができます。
 
 ### <a name="distributed-redis-cache"></a>分散 Redis Cache
 
@@ -475,12 +475,12 @@ Redis をローカルコンピューターにインストールするには、�
 
 [Ncache](https://github.com/Alachisoft/NCache) は、.NET および .net Core でネイティブに開発されたオープンソースのメモリ内分散キャッシュです。 NCache はローカルに動作し、Azure または他のホスティングプラットフォームで実行される ASP.NET Core アプリの分散キャッシュクラスターとして構成されます。
 
-NCache をローカルコンピューターにインストールして構成するには、「 [ncache はじめに Guide For Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/)」を参照してください。
+ローカルコンピューターに NCache をインストールして構成する方法については、「 [はじめに Guide For Windows (.net および .Net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/)」を参照してください。
 
 NCache を構成するには:
 
 1. [Ncache オープンソース NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/)をインストールします。
-1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)でキャッシュクラスターを構成します。
+1. [Ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)でキャッシュクラスターを構成します。
 1. `Startup.ConfigureServices` に次のコードを追加します。
 
    ```csharp
@@ -513,7 +513,7 @@ NCache を構成するには:
 >
 > また、DI を使用する代わりに、必要に応じてインスタンスを作成することもできます <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> が、コードでインスタンスを作成すると、コードのテストが難しくなり、 [明示的な依存関係の原則](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)に違反する可能性があります。
 
-## <a name="recommendations"></a>Recommendations
+## <a name="recommendations"></a>推奨事項
 
 アプリに最適なの実装を決定する際には、 <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> 次の点を考慮してください。
 
@@ -528,7 +528,7 @@ NCache を構成するには:
 
 SQL Server が分散キャッシュバッキングストアとして使用されている場合、キャッシュに同じデータベースを使用すると、アプリの通常のデータストレージと取得が両方のパフォーマンスに悪影響を与える可能性があります。 分散キャッシュバッキングストアには専用の SQL Server インスタンスを使用することをお勧めします。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [Azure での Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure での SQL Database](/azure/sql-database/)
