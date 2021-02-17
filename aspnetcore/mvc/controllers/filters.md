@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 79457d55e0dcda342bc0017bb386c23525666657
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 416fc292d82cf841b2134e23a8e494e3e8d945ca
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100107195"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100563980"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core フィルター
 
@@ -192,12 +192,12 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 
 | Sequence | フィルターのスコープ | フィルター メソッド |
 |:--------:|:------------:|:-------------:|
-| 1 | Global | `OnActionExecuting` |
+| 1 | グローバル | `OnActionExecuting` |
 | 2 | コントローラーまたは Razor ページ| `OnActionExecuting` |
 | 3 | メソッド | `OnActionExecuting` |
 | 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラーまたは Razor ページ | `OnActionExecuted` |
-| 6 | Global | `OnActionExecuted` |
+| 6 | グローバル | `OnActionExecuted` |
 
 ### <a name="controller-level-filters"></a>コントローラー レベルのフィルター
 
@@ -551,7 +551,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/UnprocessableResultFilter.cs?name=snippet)]
 
-### <a name="ifilterfactory"></a>IFilterFactory
+## <a name="ifilterfactory"></a>IFilterFactory
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> は、<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> を実装します。 そのため、`IFilterFactory` インスタンスはフィルター パイプライン内の任意の場所で `IFilterMetadata` インスタンスとして使用できます。 ランタイムでは、フィルターを呼び出す準備をする際、`IFilterFactory` へのキャストが試行されます。 そのキャストが成功した場合、呼び出される `IFilterMetadata` インスタンスを作成するために <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> メソッドが呼び出されます。 これにより、アプリの起動時に正確なフィルター パイプラインを明示的に設定する必要がないため、柔軟なデザインが可能になります。
 
@@ -751,12 +751,12 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 
 | Sequence | フィルターのスコープ | フィルター メソッド |
 |:--------:|:------------:|:-------------:|
-| 1 | Global | `OnActionExecuting` |
+| 1 | グローバル | `OnActionExecuting` |
 | 2 | コントローラー | `OnActionExecuting` |
 | 3 | メソッド | `OnActionExecuting` |
 | 4 | メソッド | `OnActionExecuted` |
 | 5 | コントローラー | `OnActionExecuted` |
-| 6 | Global | `OnActionExecuted` |
+| 6 | グローバル | `OnActionExecuted` |
 
 このシーケンスが示すもの:
 
@@ -813,8 +813,8 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
 |:--------:|:------------:|:-----------------:|:-------------:|
 | 1 | メソッド | 0 | `OnActionExecuting` |
 | 2 | コントローラー | 1  | `OnActionExecuting` |
-| 3 | Global | 2  | `OnActionExecuting` |
-| 4 | Global | 2  | `OnActionExecuted` |
+| 3 | グローバル | 2  | `OnActionExecuting` |
+| 4 | グローバル | 2  | `OnActionExecuted` |
 | 5 | コントローラー | 1  | `OnActionExecuted` |
 | 6 | メソッド | 0  | `OnActionExecuted` |
 
@@ -1091,7 +1091,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/UnprocessableResultFilter.cs?name=snippet)]
 
-### <a name="ifilterfactory"></a>IFilterFactory
+## <a name="ifilterfactory"></a>IFilterFactory
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> は、<xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> を実装します。 そのため、`IFilterFactory` インスタンスはフィルター パイプライン内の任意の場所で `IFilterMetadata` インスタンスとして使用できます。 ランタイムでは、フィルターを呼び出す準備をする際、`IFilterFactory` へのキャストが試行されます。 そのキャストが成功した場合、呼び出される `IFilterMetadata` インスタンスを作成するために <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> メソッドが呼び出されます。 これにより、アプリの起動時に正確なフィルター パイプラインを明示的に設定する必要がないため、柔軟なデザインが可能になります。
 

@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 30baab0649268f4abf0dbd6c99dfeef3f43d0054
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536303"
+---
 関連する構成値を読み取る方法としては、[オプション パターン](xref:fundamentals/configuration/options)を使用することをお勧めします。 たとえば、以下の構成値を読み取るには、次のようにします:
 
 ```json
@@ -15,11 +35,11 @@
 
 * パラメーターのないパブリック コンストラクターを持った非抽象でなければなりません。
 * 型のパブリックな読み取り/書き込みプロパティは、すべてバインドされます。
-* フィールドはバインド ***されません** _。 上のコード `Position` はバインドされません。 `Position` プロパティは、クラスを構成プロバイダーにバインドするときに、アプリで文字列 `"Position"` をハードコーディングする必要をなくすために使用されます。
+* フィールドはバインド ***されません***。 上のコード `Position` はバインドされません。 `Position` プロパティは、クラスを構成プロバイダーにバインドするときに、アプリで文字列 `"Position"` をハードコーディングする必要をなくすために使用されます。
 
 コード例を次に示します。
 
-_ [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) を呼び出して、`PositionOptions` クラスを `Position` セクションにバインドします。
+* [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) を呼び出して、`PositionOptions` クラスを `Position` セクションにバインドします。
 * `Position` 構成データを表示します。
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]

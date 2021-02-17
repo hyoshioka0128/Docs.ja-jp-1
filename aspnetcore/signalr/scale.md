@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: d3e9cd23a55702bcf9b002dcce556428683afeca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e70f3143159a1817e326a95b30e7369a5c9ab025
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052774"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564004"
 ---
-# <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR のホストとスケーリング
+# <a name="aspnet-core-signalr-hosting-and-scaling"></a>ASP.NET Core SignalR のホストとスケーリング
 
 ( [Andrew Stanton](https://twitter.com/anurse))、 [Brady](https://twitter.com/bradygaster)氏、 [Tom Dykstra](https://github.com/tdykstra)
 
@@ -70,7 +70,7 @@ An attempt was made to access a socket in a way forbidden by its access permissi
 
 この問題を解決するためのオプションは、 [Azure SignalR サービス](#azure-signalr-service) と [Redis バックプレーン](#redis-backplane)です。
 
-## <a name="azure-no-locsignalr-service"></a>Azure SignalR Service
+## <a name="azure-signalr-service"></a>Azure SignalR Service
 
 Azure SignalR サービスは、バックプレーンではなくプロキシです。 クライアントがサーバーへの接続を開始するたびに、クライアントはサービスに接続するためにリダイレクトされます。 このプロセスを次の図に示します。
 
@@ -100,7 +100,7 @@ Redis バックプレーンは、お客様のインフラストラクチャで�
 
 前述した Azure SignalR サービスの利点は、Redis バックプレーンの欠点です。
 
-* 次の **両方** が当てはまる場合を除き、固定セッション ( [クライアントアフィニティ](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity)とも呼ばれます) が必要です。
+* 次の **両方** が当てはまる場合を除き、固定セッション ([クライアントアフィニティ](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity)とも呼ばれます) が必要です。
   * すべてのクライアントは、Websocket **のみ** を使用するように構成されています。
   * クライアント構成で [Skipnegotiation 設定](xref:signalr/configuration#configure-additional-options) が有効になっています。 
    サーバーで接続が開始されると、接続はそのサーバー上にとどまります。
@@ -112,7 +112,7 @@ Redis バックプレーンは、お客様のインフラストラクチャで�
 Windows 10 と Windows 8.x はクライアントオペレーティングシステムです。 クライアントオペレーティングシステムの IIS では、同時接続数が10個に制限されています。 SignalRの接続は次のとおりです。
 
 * 一時的で、頻繁に再確立されます。
-* 使用されなくなった場合、すぐに **は破棄されません** 。
+* 使用されなくなった場合、すぐに **は破棄されません**。
 
 上記の条件を満たすと、クライアント OS で10個の接続制限に達する可能性が高くなります。 クライアント OS を開発に使用する場合は、次のことをお勧めします。
 
@@ -201,10 +201,11 @@ Websocket over Nginx の詳細については、「 [Nginx as a WebSocket Proxy]
 Nginx の ASP.NET Core の詳細については、次の記事を参照してください。
 * <xref:host-and-deploy/linux-nginx>
 
-## <a name="third-party-no-locsignalr-backplane-providers"></a>サードパーティ製 SignalR バックプレーンプロバイダー
+## <a name="third-party-signalr-backplane-providers"></a>サードパーティ製 SignalR バックプレーンプロバイダー
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
+* [Rebus](https://github.com/rebus-org/Rebus.SignalR)
 
 ## <a name="next-steps"></a>次のステップ
 

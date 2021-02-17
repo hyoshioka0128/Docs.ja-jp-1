@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core を使用してネイティブ モバイル アプリのバックエンド サービスを作成する
-author: ardalis
+author: rick-anderson
 description: ASP.NET Core MVC を使用してネイティブ モバイル アプリをサポートするバックエンド サービスを作成する方法について説明します。
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 2/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -17,30 +17,30 @@ no-loc:
 - Razor
 - SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: 4e86241771e884ba9079bcdf9a09eebc6acd62c8
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: e496b7811cc534b6f0f6dfdb857f6e462b38049e
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530217"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564029"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>ASP.NET Core を使用してネイティブ モバイル アプリのバックエンド サービスを作成する
 
-作成者: [Steve Smith](https://ardalis.com/)
+[James Montemagno](https://twitter.com/JamesMontemagno)
 
 モバイル アプリは、ASP.NET Core バックエンド サービスと通信できます。 iOS シミュレーターと Android エミュレーターからローカル Web サービスに接続する手順については、「[Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services)」 (iOS シミュレーターと Android エミュレーターからローカル Web サービスに接続する) を参照してください。
 
-[サンプル バックエンド サービス コードの表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
+[サンプル バックエンド サービス コードの表示またはダウンロード](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST)
 
 ## <a name="the-sample-native-mobile-app"></a>サンプル ネイティブ モバイル アプリ
 
-このチュートリアルでは、ASP.NET Core MVC を使用してネイティブ モバイル アプリをサポートするバックエンド サービスを作成する方法について説明します。 [Xamarin Forms ToDoRest アプリ](/xamarin/xamarin-forms/data-cloud/consuming/rest)をネイティブ クライアントとして使用します。これには、Android、iOS、Windows Universal、Window Phone デバイス用に個別のネイティブ クライアントが含まれています。 リンクされているチュートリアルに従って、ネイティブ アプリを作成し (必要な無料の Xamarin ツールをインストールし)、Xamarin サンプル ソリューションをダウンロードすることができます。 Xamarin サンプルには、ASP.NET Web API 2 サービス プロジェクトが含まれています。この記事の ASP.NET Core アプリで、このプロジェクトを置き換えます (クライアント側に変更は必要ありません)。
+このチュートリアルでは、ASP.NET Core を使用してネイティブモバイルアプリをサポートするバックエンドサービスを作成する方法について説明します。 これは、Android、iOS、Windows 用の個別のネイティブクライアントを含む、ネイティブクライアントとして [TodoRest アプリ](/xamarin/xamarin-forms/data-cloud/consuming/rest) を使用します。 リンクされているチュートリアルに従って、ネイティブ アプリを作成し (必要な無料の Xamarin ツールをインストールし)、Xamarin サンプル ソリューションをダウンロードすることができます。 Xamarin サンプルには ASP.NET Core Web API サービスプロジェクトが含まれています。このプロジェクトでは、この記事の ASP.NET Core アプリが置き換えられます (クライアントが変更する必要はありません)。
 
 ![Android スマートフォン上で動作する To Do Rest アプリケーション](native-mobile-backend/_static/todo-android.png)
 
 ### <a name="features"></a>特徴
 
-この ToDoRest アプリは、To-Do 項目の一覧表示、追加、削除、更新をサポートしています。 各項目には、ID、名前、メモ、完了したかどうかを示すプロパティがあります。
+[TodoREST アプリ](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST)では、To-Do 項目の一覧表示、追加、削除、および更新がサポートされています。 各項目には、ID、名前、メモ、完了したかどうかを示すプロパティがあります。
 
 項目のメイン ビューには、上記のように各項目の名前が表示され、完了しているかどうかがチェックマークで示されます。
 
@@ -52,57 +52,52 @@ ms.locfileid: "99530217"
 
 ![項目の編集ダイアログ](native-mobile-backend/_static/todo-android-edit-item.png)
 
-このサンプルは、既定で、developer.xamarin.com でホストされている読み取り専用操作を許可するバックエンド サービスを使用するように構成されています。 次のセクションで作成する ASP.NET Core アプリをコンピューター上で実行して、自分自身をテストするには、アプリの `RestUrl` 定数を更新する必要があります。 `ToDoREST` プロジェクトに移動し、*Constants.cs* ファイルを開きます。 `RestUrl` は、マシンの IP アドレスを含む URL に置き換えます (このアドレスはマシンからではなくデバイス エミュレーターから使用されるため、localhost または 127.0.0.1 には置き換えないでください)。 ポート番号 (5000) も含めます。 このサービスがデバイスで動作することをテストするために、アクティブなファイアウォールがこのポートへのアクセスをブロックしていないことを確認します。
+お使いのコンピューターで実行されている次のセクションで作成した ASP.NET Core アプリに対してテストするには、アプリの定数を更新し [`RestUrl`](https://github.com/xamarin/xamarin-forms-samples/blob/master/WebServices/TodoREST/TodoREST/Constants.cs#L13) ます。
 
-```csharp
-// URL of REST service (Xamarin ReadOnly Service)
-//public static string RestUrl = "http://developer.xamarin.com:8081/api/todoitems{0}";
+Android エミュレーターはローカルコンピューター上では実行されず、ループバック IP (10.0.2.2) を使用してローカルコンピューターと通信します。 [DeviceInfo](/xamarin/essentials/device-information/)を活用して、正しい URL を使用するためにシステムが実行されているオペレーティングシステムを検出します。
 
-// use your machine's IP address
-public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
-```
+プロジェクトに移動 [`TodoREST`](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST/TodoREST) し、ファイルを開き [`Constants.cs`](https://github.com/xamarin/xamarin-forms-samples/blob/master/WebServices/TodoREST/TodoREST/Constants.cs) ます。 *Constants.cs* ファイルには、次の構成が含まれています。
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoREST/Constants.cs" highlight="13":::
+
+必要に応じて、web サービスを Azure などのクラウドサービスにデプロイし、を更新することができ `RestUrl` ます。
 
 ## <a name="creating-the-aspnet-core-project"></a>ASP.NET Core プロジェクトの作成
 
-Visual Studio で新しい ASP.NET Core Web アプリケーションを作成します。 Web API テンプレートと [No Authentication]\(認証なし\) を選択します。 プロジェクトに *ToDoApi* という名前を付けます。
+Visual Studio で新しい ASP.NET Core Web アプリケーションを作成します。 [Web API] テンプレートを選択します。 プロジェクトに *TodoAPI* という名前を指定します。
 
 ![Web API プロジェクト テンプレートが選択されている [新しい ASP.NET Core Web アプリケーション] ダイアログ](native-mobile-backend/_static/web-api-template.png)
 
-アプリケーションは、ポート 5000 に対して行われたすべての要求に応答する必要があります。 これを達成するために、`.UseUrls("http://*:5000")` を含むように *Program.cs* を更新します。
+アプリは、モバイルクライアントのクリアテキスト http トラフィックを含む、ポート5000に対して行われたすべての要求に応答する必要があります。 *Startup.cs* を更新して、 <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> 開発で実行しないようにします。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=10-16&highlight=3)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet" highlight="7-11":::
 
 > [!NOTE]
-> 既定でローカル以外の要求を無視する IIS Express の背後ではなく、アプリケーションを直接実行するようにします。 コマンド プロンプトから [dotnet run](/dotnet/core/tools/dotnet-run) を実行するか、Visual Studio ツールバーの [デバッグ ターゲット] ドロップダウンからアプリケーション名のプロファイルを選択します。
+> IIS Express の背後ではなく、直接アプリを実行します。 既定では、IIS Express はローカル以外の要求を無視します。 コマンドプロンプトから [dotnet run](/dotnet/core/tools/dotnet-run) を実行するか、Visual Studio ツールバーの [デバッグターゲット] ドロップダウンからアプリ名プロファイルを選択します。
 
 To-Do 項目を表すモデル クラスを追加します。 必須フィールドを `[Required]` 属性でマークします。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Models/TodoItem.cs":::
 
-API メソッドには、データを操作する何らかの方法が必要です。 元の Xamarin サンプルで使用されているものと同じ `IToDoRepository` インターフェイスを使用します。
+API メソッドには、データを操作する何らかの方法が必要です。 元の Xamarin サンプルで使用されているものと同じ `ITodoRepository` インターフェイスを使用します。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Interfaces/IToDoRepository.cs)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs":::
 
 このサンプルの実装では、項目のプライベート コレクションを使用します。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Services/ToDoRepository.cs)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Services/TodoRepository.cs":::
 
 *Startup.cs* で実装を構成します。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=6&range=29-35)]
-
-この時点で、*ToDoItemsController* を作成する準備が整いました。
-
-> [!TIP]
-> Web API の作成方法については、[ASP.NET Core MVC と Visual Studio での最初の Web API の構築](../tutorials/first-web-api.md)に関するページを参照してください。
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet2" highlight="3":::
 
 ## <a name="creating-the-controller"></a>コントローラーの作成
 
-*ToDoItemsController* プロジェクトに新しいコントローラーを追加します。 Microsoft.AspNetCore.Mvc.Controller から継承する必要があります。 `api/todoitems` で始まるパスに対する要求をコントローラーが処理することを示す `Route` 属性を追加します。 ルート内の `[controller]` トークンはコントローラーの名前に置き換えられます (`Controller` サフィックスは省略されます)。これは特にグローバル ルートの場合に役立ちます。 詳細については、[ルーティング](../fundamentals/routing.md)に関するページを参照してください。
+新しいコントローラーをプロジェクト [TodoItemsController](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs)に追加します。 このメソッドは、から継承する必要があり <xref:Microsoft.AspNetCore.Mvc.ControllerBase> ます。 `api/todoitems` で始まるパスに対する要求をコントローラーが処理することを示す `Route` 属性を追加します。 ルート内の `[controller]` トークンはコントローラーの名前に置き換えられます (`Controller` サフィックスは省略されます)。これは特にグローバル ルートの場合に役立ちます。 詳細については、[ルーティング](../fundamentals/routing.md)に関するページを参照してください。
 
-コントローラーを使用するには `IToDoRepository` が機能する必要があります。コントローラーのコンストラクターを介してこの種類のインスタンスを要求します。 実行時に、[依存関係の挿入](../fundamentals/dependency-injection.md)用のフレームワークのサポートを使用して、このインスタンスが提供されます。
+コントローラーを使用するには `ITodoRepository` が機能する必要があります。コントローラーのコンストラクターを介してこの種類のインスタンスを要求します。 実行時に、[依存関係の挿入](../fundamentals/dependency-injection.md)用のフレームワークのサポートを使用して、このインスタンスが提供されます。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=1-17&highlight=9,14)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDI":::
 
 この API は、データ ソースに対して CRUD (Create (作成)、Read (読み取り)、Update (更新)、Delete (削除)) 操作を実行する 4 つの異なる HTTP 動詞をサポートしています。 この中で最も単純な操作は読み取りです。HTTP GET 要求に対応します。
 
@@ -110,9 +105,9 @@ API メソッドには、データを操作する何らかの方法が必要で�
 
 項目一覧の要求は、`List` メソッドに対する GET 要求で行われます。 `List` メソッドの `[HttpGet]` 属性は、このアクションが GET 要求のみを処理する必要があることを示します。 このアクションのルートは、コントローラーで指定されたルートです。 ルートの一部としてアクション名を使用する必要はありません。 各アクションに一意で明確なルートを持たせる必要があります。 ルーティング属性をコントローラー レベルとメソッド レベルの両方で適用して、特定のルートを構築することができます。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=19-23)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
 
-`List` メソッドは、200 OK 応答コードとすべての ToDo 項目を JSON としてシリアル化して返します。
+メソッドは、 `List` JSON としてシリアル化された 200 OK 応答コードとすべての Todo 項目を返します。
 
 次のように、[Postman](https://www.getpostman.com/docs/) などのさまざまなツールを使用して、新しい API メソッドをテストできます。
 
@@ -120,15 +115,15 @@ API メソッドには、データを操作する何らかの方法が必要で�
 
 ### <a name="creating-items"></a>項目の作成
 
-慣例により、新しいデータ項目の作成は HTTP POST 動詞にマッピングされます。 `Create` メソッドには `[HttpPost]` 属性が適用され、このメソッドは `ToDoItem` インスタンスを受け入れます。 `item` 引数は POST の本文で渡されるため、このパラメーターは `[FromBody]` 属性を指定します。
+慣例により、新しいデータ項目の作成は HTTP POST 動詞にマッピングされます。 `Create` メソッドには `[HttpPost]` 属性が適用され、このメソッドは `TodoItem` インスタンスを受け入れます。 `item` 引数は POST の本文で渡されるため、このパラメーターは `[FromBody]` 属性を指定します。
 
 メソッド内では、データ ストア内で項目が有効であることと事前に存在することが確認され、問題がなければ、リポジトリを使用して追加されます。 `ModelState.IsValid` の確認で[モデルの検証](../mvc/models/validation.md)が実行されます。この確認は、ユーザー入力を受け入れるすべての API メソッドで実行する必要があります。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=25-46)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetCreate":::
 
-このサンプルでは、​​モバイル クライアントに渡されるエラー コードを含む列挙型を使用しています。
+このサンプルでは、 `enum` モバイルクライアントに渡されるエラーコードを含むを使用します。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=91-99)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetErrorCode":::
 
 Postman を使用して新しい項目の追加をテストします。このときに、要求の本文で JSON 形式の新しいオブジェクトを提供する POST 動詞を選択します。 また、`application/json` の `Content-Type` を指定する要求ヘッダーも追加する必要があります。
 
@@ -140,7 +135,7 @@ Postman を使用して新しい項目の追加をテストします。このと
 
 レコードの変更は、HTTP PUT 要求を使用して行われます。 `Edit` メソッドは、この変更以外は `Create` とほとんど同じです。 レコードが見つからない場合、`Edit` アクションから `NotFound` (404) 応答が返されます。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=48-69)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetEdit":::
 
 Postman を使用してテストするには、動詞を PUT に変更します。 要求の本文で更新されたオブジェクト データを指定します。
 
@@ -152,11 +147,24 @@ Postman を使用してテストするには、動詞を PUT に変更します�
 
 レコードを削除するには、サービスに対して DELETE 要求を実行し、削除する項目の ID を渡します。 更新と同様に、存在しない項目に対する要求は `NotFound` 応答を受け取ります。 それ以外の成功した要求は `NoContent` (204) 応答を受け取ります。
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=71-88)]
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
 削除機能をテストする場合、要求の本文には何も指定する必要がありません。
 
 ![DELETE と応答が表示される Postman コンソール](native-mobile-backend/_static/postman-delete.png)
+
+## <a name="prevent-over-posting"></a>過剰な投稿を防止する
+
+現在、サンプル アプリでは `TodoItem` オブジェクト全体が公開されています。 通常、運用環境のアプリでは、モデルのサブセットを使用して入力されるデータおよび返されるデータが制限されています。 その背景には複数の理由があり、セキュリティは主なものです。 モデルのサブセットは、通常、データ転送オブジェクト (DTO)、入力モデル、またはビュー モデルと呼ばれます。 この記事では **DTO** を使用しています。
+
+DTO は次の目的で使用できます。
+
+* 過剰な投稿を防止する。
+* クライアントが表示しないことになっているプロパティを非表示にする。
+* ペイロード サイズを減らすために、いくつかのプロパティを省略する。
+* 入れ子になったオブジェクトを含むオブジェクト グラフをフラット化する。 フラット化されたオブジェクト グラフは、クライアントにとってより便利になる可能性があります。
+
+DTO アプローチの例については、「[過剰投稿の防止](xref:tutorials/first-web-api#prevent-over-posting)」を参照してください。
 
 ## <a name="common-web-api-conventions"></a>一般的な Web API 規約
 
@@ -169,4 +177,4 @@ API の共通ポリシーを特定した場合、通常はそのポリシーを[
 - [Xamarin. Forms: Web サービス認証](/xamarin/xamarin-forms/data-cloud/authentication/)
 - [Xamarin. フォーム: RESTful Web サービスを使用する](/xamarin/xamarin-forms/data-cloud/web-services/rest)
 - [Microsoft Learn: Xamarin アプリで REST web サービスを使用する](/learn/modules/consume-rest-services/)
-- [Microsoft Learn: ASP.NET Core で web API を作成する](/learn/modules/build-web-api-aspnet-core/)
+- [Microsoft Learn:ASP.NET Core で Web API を作成する](/learn/modules/build-web-api-aspnet-core/)
