@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 5fb658d165ac679be232e983f5a4da5ebf3422b3
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100552077"
+---
 ASP.NET Core Identity では、ASP.NET Core Web アプリにユーザー インターフェイス (UI) ログイン機能が追加されます。 Web API と SPA をセキュリティで保護するには、次のいずれかを使用します。
 
 * [Azure Active Directory](/azure/api-management/api-management-howto-protect-backend-with-aad)
