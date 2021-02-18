@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 6e7fa6e231e97793fbf7e1ac1d208bf3013c6fce
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e8589a1e288c39b487673fafc04c59fa07916335
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506574"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280673"
 ---
-# <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core でのアセンブリの遅延読み込みBlazor WebAssembly
-
-作成者: [Safia Abdalla](https://safia.rocks)、[Luke Latham](https://github.com/guardrex)
+# <a name="lazy-load-assemblies-in-aspnet-core-blazor-webassembly"></a>ASP.NET Core でのアセンブリの遅延読み込みBlazor WebAssembly
 
 Blazor WebAssembly アプリの起動時のパフォーマンスは、一部のアプリケーション アセンブリの読み込みをそれが必要になるまで延期することで改善できます。これは "*遅延読み込み*" と呼ばれています。 たとえば、1 つのコンポーネントをレンダリングするためにのみ使用されるアセンブリの読み込みを、ユーザーがそのコンポーネントに移動する場合にのみ行うように設定することができます。 読み込みが完了すると、アセンブリはクライアント側にキャッシュされ、今後のすべてのナビゲーションで使用できるようになります。
 

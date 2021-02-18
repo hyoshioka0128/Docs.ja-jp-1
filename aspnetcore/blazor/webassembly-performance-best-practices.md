@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 58a87bc5413523fdf052a9e1c41196bb8b0ab457
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 1860a36ba4122fb39ca92797da9a44b282afa793
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99529970"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280657"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly パフォーマンスに関するベスト プラクティス
-
-作成者: [Pranav Krishnamoorthy](https://github.com/pranavkm)、[Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Blazor WebAssembly は、最も現実的なアプリケーションの UI シナリオでハイ パフォーマンスを実現できるように、慎重に設計および最適化されています。 ただし、最適な結果を得るには、開発者が適切なパターンと機能を使用する必要があります。 次の点を考慮してください。
 
@@ -91,7 +89,7 @@ Blazor WebAssembly は、最も現実的なアプリケーションの UI シナ
         prevInboundFlightId = InboundFlight.FlightId;
     }
 
-    protected override void ShouldRender() => shouldRender;
+    protected override bool ShouldRender() => shouldRender;
 
     // Note that 
 }
@@ -545,7 +543,7 @@ function jsInteropCall() {
 
 ### <a name="intermediate-language-il-trimming"></a>中間言語 (IL) のトリミング
 
-[使用されていないアセンブリを Blazor WebAssembly アプリからトリミング](xref:blazor/host-and-deploy/configure-trimmer)すると、アプリのバイナリで使用されていないコードを削除して、アプリのサイズを縮小することができます。 既定では、アプリケーションの発行時にトリマーが実行されます。 トリミングを活用するには、[-c|--configuration](/dotnet/core/tools/dotnet-publish#options) オプションを `Release` に設定した状態で [`dotnet publish`](/dotnet/core/tools/dotnet-publish) コマンドを使用して、展開用にアプリを発行します。
+使用されていないアセンブリを Blazor WebAssembly アプリからトリミングすると、アプリのバイナリで使用されていないコードを削除して、アプリのサイズを縮小することができます。 詳細については、「<xref:blazor/host-and-deploy/configure-trimmer>」を参照してください。
 
 ::: moniker-end
 
@@ -555,11 +553,11 @@ function jsInteropCall() {
 
 [Blazor WebAssembly アプリをリンク](xref:blazor/host-and-deploy/configure-linker)すると、アプリのバイナリで使用されていないコードをトリミングすることで、アプリのサイズが縮小されます。 既定では、中間言語 (IL) リンカーは、`Release` 構成でビルドする場合にのみ有効になります。 これを活用するには、[-c|--configuration](/dotnet/core/tools/dotnet-publish#options) オプションを `Release` に設定した状態で [`dotnet publish`](/dotnet/core/tools/dotnet-publish) コマンドを使用して、展開用にアプリを発行します。
 
-::: moniker-end
-
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+::: moniker-end
 
 ### <a name="use-systemtextjson"></a>System.Text.Json を使用する
 

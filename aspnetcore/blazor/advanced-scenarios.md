@@ -19,18 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: 95714b3c0d21d3b348a9a8a984e2a42e7708499e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ba2bf91f3318225383ec9d164c34be9124aa311b
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93056557"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280853"
 ---
-# <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>ASP.NET Core Blazor の高度なシナリオ
+# <a name="aspnet-core-blazor-advanced-scenarios"></a>ASP.NET Core Blazor の高度なシナリオ
 
-作成者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
-
-## <a name="no-locblazor-server-circuit-handler"></a>Blazor Server 回線ハンドラー
+## <a name="blazor-server-circuit-handler"></a>Blazor Server 回線ハンドラー
 
 Blazor Server を使用すると、コードで "*回線ハンドラー*" を定義できます。これにより、ユーザーの回線の状態の変更時にコードを実行できます。 回線ハンドラーは、`CircuitHandler` から派生させ、そのクラスをアプリのサービス コンテナーに登録することで実装します。 次の回線ハンドラーの例では、開いている SignalR 接続を追跡します。
 

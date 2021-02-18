@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 417f69e797296cdcd01fc4ce326388512a406368
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: d1f3e2028ca120b5901aca0b24802d872ae52597
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058273"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279727"
 ---
-# <a name="aspnet-core-no-locblazor-layouts"></a>ASP.NET Core Blazor レイアウト
-
-作成者: [Rainer Stropek](https://www.timecockpit.com)、[Luke Latham](https://github.com/guardrex)
+# <a name="aspnet-core-blazor-layouts"></a>ASP.NET Core Blazor レイアウト
 
 メニュー、著作権メッセージ、会社のロゴなどの一部のアプリ要素は、通常、アプリの全体のレイアウトの一部であり、アプリのすべてのコンポーネントで使用されます。 これらの要素のコードをアプリのすべてのコンポーネントにコピーするのは、効率的な方法ではありません。 要素の 1 つに更新が必要になるたびに、すべてのコンポーネントを更新する必要があります。 このような複製を維持することは困難であり、時間の経過と共にコンテンツの一貫性が失われる可能性があります。 *レイアウト* によって、この問題を解決します。
 
@@ -125,7 +123,7 @@ Blazor プロジェクト テンプレートのいずれかに基づくアプリ
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
-## <a name="share-a-no-locrazor-pages-layout-with-integrated-components"></a>統合コンポーネントと Razor Pages レイアウトを共有する
+## <a name="share-a-razor-pages-layout-with-integrated-components"></a>統合コンポーネントと Razor Pages レイアウトを共有する
 
 ルーティング可能なコンポーネントが Razor Pages アプリに統合されている場合、コンポーネントでアプリの共有レイアウトを使用できます。 詳細については、「<xref:blazor/components/prerendering-and-integration>」を参照してください。
 

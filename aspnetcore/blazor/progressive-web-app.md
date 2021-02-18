@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: fcf06295deb41f304b92caa82535a1197c909898
-ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
+ms.openlocfilehash: 515da543fc6b6cca0b90968b154d91b611ea3345
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/01/2021
-ms.locfileid: "99238238"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280544"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly を使用してプログレッシブ Web アプリケーションをビルドする
-
-作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 プログレッシブ Web アプリケーション (PWA) は、通常、最新のブラウザーの API と機能を使用してデスクトップ アプリのように動作するシングル ページ アプリケーション (SPA) です。 Blazor WebAssembly は、標準ベースのクライアント側 Web アプリ プラットフォームであるため、次の機能に必要な任意のブラウザー API (PWA API を含む) を使用できます。
 
@@ -406,4 +404,4 @@ PWA テンプレートは、認証と組み合わせて使用できます。 オ
 ## <a name="additional-resources"></a>その他の技術情報
 
 * [整合性 PowerShell スクリプトのトラブルシューティング](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
-* [認証のための SignalR のクロスオリジンネゴシエーション](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [認証のための SignalR のクロスオリジンネゴシエーション](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)

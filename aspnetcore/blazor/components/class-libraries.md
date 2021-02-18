@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 14370f9bbf45079fd3654d3e55af4178691cf4f5
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: fed5d26ecd73a4710ee794c413fd51e0b4cb4913
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252553"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280193"
 ---
-# <a name="aspnet-core-no-locrazor-components-class-libraries"></a>ASP.NET Core Razor コンポーネント クラス ライブラリ
-
-作成者: [Simon Timms](https://github.com/stimms)
+# <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core Razor コンポーネント クラス ライブラリ
 
 コンポーネントは、プロジェクト間で [Razor クラス ライブラリ (RCL)](xref:razor-pages/ui-class) で共有できます。 *Razor コンポーネント クラス ライブラリ* は、次から含めることができます。
 
@@ -127,7 +125,7 @@ Welcome to your new app.
 
 <!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -176,17 +174,17 @@ When the `Link` component is used in a child component, the linked asset is also
 
 ::: moniker-end
 
-## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>静的アセットを含む Razor コンポーネント クラス ライブラリを作成する
+## <a name="create-a-razor-components-class-library-with-static-assets"></a>静的アセットを含む Razor コンポーネント クラス ライブラリを作成する
 
 RCL には、静的アセットを含めることができます。 静的アセットは、ライブラリを使用するすべてのアプリで使用できます。 詳細については、「<xref:razor-pages/ui-class#create-an-rcl-with-static-assets>」を参照してください。
 
-## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>複数のホスト型 Blazor アプリにコンポーネントと静的アセットを提供する
+## <a name="supply-components-and-static-assets-to-multiple-hosted-blazor-apps"></a>複数のホスト型 Blazor アプリにコンポーネントと静的アセットを提供する
 
 詳細については、「<xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>」を参照してください。
 
 ::: moniker range=">= aspnetcore-5.0"
 
-## <a name="browser-compatibility-analyzer-for-no-locblazor-webassembly"></a>Blazor WebAssembly のブラウザー互換性アナライザー
+## <a name="browser-compatibility-analyzer-for-blazor-webassembly"></a>Blazor WebAssembly のブラウザー互換性アナライザー
 
 Blazor WebAssembly アプリは完全な .NET API 領域を対象としていますが、ブラウザー サンドボックスの制約により、すべての .NET API が WebAssembly でサポートされているわけではありません。 サポートされていない API は、WebAssembly で実行すると <xref:System.PlatformNotSupportedException> がスローされます。 開発者が、アプリのターゲット プラットフォームでサポートされていない API をアプリで使用すると、プラットフォーム互換性アナライザーから警告を受け取ります。 Blazor WebAssembly アプリの場合、API がブラウザーでサポートされているかどうかが確認されるということです。 互換性アナライザーの .NET フレームワーク API に注釈を付けることは、進行中のプロセスであるため、現在、すべての .NET フレームワーク API に注釈が付けられるわけではありません。
 
@@ -210,7 +208,7 @@ private static string GetLoggingDirectory()
 
 詳細については、「[特定のプラットフォームでサポートされていない API に注釈を付ける (dotnet/designs GitHub リポジトリ)」](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms)」参照してください。
 
-## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor JavaScript の分離とオブジェクト参照
+## <a name="blazor-javascript-isolation-and-object-references"></a>Blazor JavaScript の分離とオブジェクト参照
 
 Blazor により、標準 [JavaScript モジュール](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)で JavaScript の分離が有効にされます。 JavaScript の分離には、次のような利点があります。
 

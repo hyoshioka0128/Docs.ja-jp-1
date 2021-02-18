@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: d51a4a43f585b0a0b7e3aab2c5de1b2d215de494
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a8bb659a72e8370c31cc9c213689399e74f11b5c
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059599"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564061"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Azure App Service および IIS での ASP.NET Core のトラブルシューティング
 
@@ -321,6 +321,8 @@ ASP.NET Core モジュールの stdout には、アプリケーション イベ�
 トラブルシューティングが完了したら、`stdoutLogEnabled="false"` を設定して stdout ログを無効にします。
 
 詳細については、「<xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>」を参照してください。
+
+<a name="enhanced-diagnostic-logs"></a>
 
 ### <a name="aspnet-core-module-debug-log-azure-app-service"></a>ASP.NET Core モジュールのデバッグ ログ (Azure App Service)
 
@@ -760,7 +762,7 @@ Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` はランタイム バージョンです)
 1. アプリを実行します: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-エラーを表示しているアプリからのコンソール出力は、Kudu コンソールにパイプされます。
+エラーを示すアプリからのコンソール出力はすべて、Kudu コンソールにパイプされます。
 
 #### <a name="test-a-64-bit-x64-app"></a>64 ビット (x64) アプリをテストする
 
@@ -773,7 +775,7 @@ Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
   1. `cd D:\home\site\wwwroot`
   1. アプリを実行します: `{ASSEMBLY NAME}.exe`
 
-エラーを表示しているアプリからのコンソール出力は、Kudu コンソールにパイプされます。
+エラーを示すアプリからのコンソール出力はすべて、Kudu コンソールにパイプされます。
 
 **プレビュー リリース上で実行されているフレームワークに依存するデプロイ**
 
@@ -1238,7 +1240,7 @@ Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` はランタイム バージョンです)
 1. アプリを実行します: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-エラーを表示しているアプリからのコンソール出力は、Kudu コンソールにパイプされます。
+エラーを示すアプリからのコンソール出力はすべて、Kudu コンソールにパイプされます。
 
 #### <a name="test-a-64-bit-x64-app"></a>64 ビット (x64) アプリをテストする
 
@@ -1251,7 +1253,7 @@ Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
   1. `cd D:\home\site\wwwroot`
   1. アプリを実行します: `{ASSEMBLY NAME}.exe`
 
-エラーを表示しているアプリからのコンソール出力は、Kudu コンソールにパイプされます。
+エラーを示すアプリからのコンソール出力はすべて、Kudu コンソールにパイプされます。
 
 **プレビュー リリース上で実行されているフレームワークに依存するデプロイ**
 

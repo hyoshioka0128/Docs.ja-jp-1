@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: d1c75d85283b583d8bfd885fcd6552b69c2528c7
-ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
+ms.openlocfilehash: c180580ec56313e444f2daf2b7d08c4d909b498a
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98758266"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280523"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-app-roles"></a>Azure Active Directory (AAD) グループ、管理者ロール、およびアプリ ロール
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Javier Calvarro Nelson](https://github.com/javiercn)
 
 Azure Active Directory (AAD) には、ASP.NET Core Identity と組み合わせることができる承認方法がいくつか用意されています。
 
@@ -248,7 +246,7 @@ builder.Services.AddGraphClient();
 
 ## <a name="authorization-configuration"></a>承認の構成
 
-**クライアント** アプリの `Program.Main` で、各[アプリ ロール](#app-roles)、AAD 管理者ロール、またはセキュリティ グループに対して[ポリシー](xref:security/authorization/policies)を作成します。 次の例では、AAD の "*課金管理者*" ロールに対するポリシーを作成します。
+**クライアント** アプリの `Program.Main` で、各 [アプリ ロール](#app-roles)、AAD 管理者ロール、またはセキュリティ グループに対して [ポリシー](xref:security/authorization/policies)を作成します。 次の例では、AAD の "*課金管理者*" ロールに対するポリシーを作成します。
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -334,7 +332,7 @@ AAD 管理者ロールの ID の完全な一覧については、Azure ドキュ
 
 ## <a name="authorize-server-apiweb-api-access"></a>サーバー API または Web API のアクセスを承認する
 
-**サーバー** API アプリでは、アクセス トークンに `groups`、`wids`、`http://schemas.microsoft.com/ws/2008/06/identity/claims/role` の要求が含まれている場合に、セキュリティ グループ、AAD 管理者ロール、およびアプリ ロールに対する[認可ポリシー](xref:security/authorization/policies)を使用して、セキュリティで保護された API エンドポイントにアクセスすることをユーザーに許可できます。 次の例では、`Startup.ConfigureServices` で `wids` (既知の ID またはロール テンプレート ID) 要求を使用して、AAD "*課金管理者*" ロールに対するポリシーを作成しています。
+**サーバー** API アプリでは、アクセス トークンに `groups`、`wids`、`http://schemas.microsoft.com/ws/2008/06/identity/claims/role` の要求が含まれている場合に、セキュリティ グループ、AAD 管理者ロール、およびアプリ ロールに対する [認可ポリシー](xref:security/authorization/policies)を使用して、セキュリティで保護された API エンドポイントにアクセスすることをユーザーに許可できます。 次の例では、`Startup.ConfigureServices` で `wids` (既知の ID またはロール テンプレート ID) 要求を使用して、AAD "*課金管理者*" ロールに対するポリシーを作成しています。
 
 ```csharp
 services.AddAuthorization(options =>
@@ -492,7 +490,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   }
   ```
 
-* 手続き型のコードを使用して、ユーザーが `admin` **および** `developer` ロールの **両方** であることを要求します。それには、前の例の[条件付き OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) を[条件付き AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) に変更します。
+* 手続き型のコードを使用して、ユーザーが `admin` **および** `developer` ロールの **両方** であることを要求します。それには、前の例の [条件付き OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) を [条件付き AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) に変更します。
 
   ```csharp
   if (user.IsInRole("admin") && user.IsInRole("developer"))
@@ -552,7 +550,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   }
   ```
 
-* 手続き型のコードを使用して、ユーザーが `admin` **および** `developer` ロールの **両方** であることを要求します。それには、前の例の[条件付き OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) を[条件付き AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) に変更します。
+* 手続き型のコードを使用して、ユーザーが `admin` **および** `developer` ロールの **両方** であることを要求します。それには、前の例の [条件付き OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) を [条件付き AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) に変更します。
 
   ```csharp
   if (User.IsInRole("admin") && User.IsInRole("developer"))

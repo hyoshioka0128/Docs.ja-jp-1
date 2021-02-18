@@ -20,16 +20,14 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 3402117334548f9d90880d4f536e8baa288e7bc9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: d120440c292d15b7741260ed31af92d60db2261c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506982"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280075"
 ---
-# <a name="prerender-and-integrate-aspnet-core-no-locrazor-components"></a>ASP.NET Core Razor コンポーネントのプリレンダリングと統合を行う
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
+# <a name="prerender-and-integrate-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントのプリレンダリングと統合を行う
 
 ::: zone pivot="webassembly"
 
@@ -284,7 +282,7 @@ Razor コンポーネントは、Blazor Server アプリ内の Razor Pages と M
 
 1. コンポーネントを任意のページまたはビューに統合します。 詳細については、「[ページまたはビューからコンポーネントをレンダリングする](#render-components-from-a-page-or-view)」セクションを参照してください。
 
-## <a name="use-routable-components-in-a-no-locrazor-pages-app"></a>Razor Pages アプリでルーティング可能なコンポーネントを使用する
+## <a name="use-routable-components-in-a-razor-pages-app"></a>Razor Pages アプリでルーティング可能なコンポーネントを使用する
 
 *ここは、ユーザー要求から直接ルーティング可能なコンポーネントを追加することに関係のあるセクションです。*
 

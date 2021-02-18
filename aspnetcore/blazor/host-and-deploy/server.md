@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: a209109210ef5e335734a974ceb0c2af7cb8e1a1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 75682171a59a610a24364778616774c49257d2ad
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94595442"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279844"
 ---
-# <a name="host-and-deploy-no-locblazor-server"></a>Blazor Server のホストと展開
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Rainer Stropek](https://www.timecockpit.com)、[Daniel Roth](https://github.com/danroth27)
+# <a name="host-and-deploy-blazor-server"></a>Blazor Server のホストと展開
 
 ## <a name="host-configuration-values"></a>ホストの構成値
 
@@ -58,13 +56,13 @@ Blazor Server アプリで使用できるインフラストラクチャを最大
 
 各回線では、最小限の *Hello World* スタイルのアプリに約 250 KB のメモリが使用されます。 回線のサイズは、アプリのコードと各コンポーネントに関連付けられている状態の保守要件によって変わります。 アプリとインフラストラクチャの開発時にはリソースのニーズを測定することをお勧めしますが、展開ターゲットを計画する際に、次のベースラインを出発点にすることができます。アプリで 5,000 人の同時ユーザーをサポートすることを想定している場合は、アプリに対して少なくとも 1.3 GB のサーバー メモリ (またはユーザーあたり最大 273 KB) の予算を割り当てること検討してください。
 
-### <a name="no-locsignalr-configuration"></a>SignalR 構成
+### <a name="signalr-configuration"></a>SignalR 構成
 
 Blazor Server アプリでは、ブラウザーとの通信に ASP.NET Core SignalR が使用されます。 [SignalR のホストとスケーリングの条件](xref:signalr/publish-to-azure-web-app)は、Blazor Server アプリに適用されます。
 
 Blazor は、待ち時間、信頼性、および[セキュリティ](xref:signalr/security)が低いために WebSocket を SignalR トランスポートとして使用する場合に最適です。 WebSocket が使用できない場合や、ロング ポーリングを使用するようにアプリが明示的に構成されている場合は、SignalR によってロング ポーリングが使用されます。 Azure App Service にデプロイする場合は、サービスの Azure portal 設定で WebSocket を使用するようにアプリを構成します。 Azure App Service 用にアプリを構成する方法の詳細については、[SignalR の発行ガイドライン](xref:signalr/publish-to-azure-web-app)を参照してください。
 
-#### <a name="azure-no-locsignalr-service"></a>Azure SignalR Service
+#### <a name="azure-signalr-service"></a>Azure SignalR Service
 
 Blazor Server アプリには [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) を使用することをお勧めします。 このサービスでは、多数の同時 SignalR 接続に対して Blazor Server アプリをスケールアップできます。 さらに、SignalR サービスのグローバル リーチとハイパフォーマンスのデータ センターは、地理的条件による待機時間の短縮に役立ちます。
 
@@ -102,7 +100,7 @@ Azure SignalR サービス用にアプリを構成するには、そのアプリ
 
      * Azure portal で App Service の **[構成]**  >  **[アプリケーションの設定]** (**名前**: `Azure__SignalR__StickyServerMode`、**値**: `Required`)。 この方法は、[Azure SignalR サービスをプロビジョニングする](#provision-the-azure-signalr-service)場合に、アプリに自動的に適用されます。
 
-### <a name="provision-the-azure-no-locsignalr-service"></a>Azure SignalR サービスをプロビジョニングする
+### <a name="provision-the-azure-signalr-service"></a>Azure SignalR サービスをプロビジョニングする
 
 Visual Studio でアプリに合わせて Azure SignalR サービスをプロビジョニングするには、次のようにします。
 

@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: fe50b95dda14afeae35c4922d0ae3470280bfd02
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: f6a93eb9d95182d29a60cc1a5c48122b9166aa84
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252527"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280146"
 ---
-# <a name="aspnet-core-no-locblazor-event-handling"></a>ASP.NET Core Blazor のイベント処理
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
+# <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor のイベント処理
 
 Razor コンポーネントでは、イベント処理機能が提供されます。 [`@on{EVENT}`](xref:mvc/views/razor#onevent) という名前の HTML 要素属性 (`@onclick` など) でデリゲート型の値がある場合、Razor コンポーネントでは、属性の値がイベント ハンドラーとして扱われます。
 

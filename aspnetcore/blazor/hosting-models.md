@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: a6f1c88b8e93c0d8ccfebca482895ebab8d18a81
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 780161090d376f08b849fadb47127810d6661d0c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506917"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279759"
 ---
-# <a name="aspnet-core-no-locblazor-hosting-models"></a>ASP.NET Core Blazor のホスティング モデル
-
-作成者: [Daniel Roth](https://github.com/danroth27)
+# <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor のホスティング モデル
 
 Blazor は、[WebAssembly](https://webassembly.org/) ベースの .NET ランタイム ( *Blazor WebAssembly* ) 上のブラウザーのクライアント側で、または ASP.NET Core ( *Blazor Server* ) のサーバー側で実行されるように設計された Web フレームワークです。 ホスティング モデルに関係なく、アプリ モデルとコンポーネント モデルは "*同じ*" です。
 
@@ -38,7 +36,7 @@ Blazor のプライマリ ホスティング モデルは、WebAssembly 上の�
 
 ![Blazor WebAssembly:Blazor アプリは、ブラウザー内の UI スレッドで実行されます。](hosting-models/_static/blazor-webassembly.png)
 
-Blazor WebAssembly アプリは、該当するファイルを提供するバックエンド ASP.NET Core アプリなしの展開用として作成されると、"*スタンドアロン*" Blazor WebAssembly アプリと呼ばれます。 そのアプリが、バックエンド アプリを使用して該当するファイルを提供する展開用として作成されると、"*ホストされている*" Blazor WebAssembly アプリと呼ばれます。 ホストされている Blazor WebAssembly アプリとサーバーとのやりとりは、通常、Web API 呼び出しまたは [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>) を使用してネットワーク経由で行われます。
+Blazor WebAssembly アプリは、該当するファイルを提供するバックエンド ASP.NET Core アプリなしの展開用として作成されると、"*スタンドアロン*" Blazor WebAssembly アプリと呼ばれます。 そのアプリが、バックエンド アプリを使用して該当するファイルを提供する展開用として作成されると、"*ホストされている*" Blazor WebAssembly アプリと呼ばれます。 ホストされている Blazor WebAssembly アプリとサーバーとのやりとりは、通常、Web API 呼び出しまたは [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>) を使用してネットワーク経由で行われます。
 
 `blazor.webassembly.js` スクリプトは、フレームワークによって提供され、次の処理を行います。
 
@@ -160,5 +158,5 @@ IIS を使用すると、スティッキー セッションは "*アプリケー
 
 * <xref:blazor/tooling>
 * <xref:signalr/introduction>
-* <xref:blazor/fundamentals/additional-scenarios>
-* <xref:tutorials/signalr-blazor-webassembly>
+* <xref:blazor/fundamentals/signalr>
+* <xref:tutorials/signalr-blazor>

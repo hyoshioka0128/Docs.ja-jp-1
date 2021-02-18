@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: f8f261f25d854a9bf36ad3299f4af392d5c4fafd
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8baee9bc0a8e569174f33dac6a406b2162d09552
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93055881"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279918"
 ---
-# <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>ASP.NET Core Blazor のグローバリゼーションおよびローカライズ
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
+# <a name="aspnet-core-blazor-globalization-and-localization"></a>ASP.NET Core Blazor のグローバリゼーションおよびローカライズ
 
 複数のカルチャと言語でユーザーが Razor コンポーネントにアクセスできるようにすることができます。 利用できる .NET のグローバリゼーションおよびローカライズのシナリオは、次のとおりです。
 
@@ -127,7 +125,7 @@ Blazor Server アプリは、[ローカライズ ミドルウェア](xref:fundam
 
 使用例を含む詳細については、「<xref:fundamentals/localization>」を参照してください。
 
-#### <a name="no-loccookies"></a>Cookies
+#### <a name="cookies"></a>Cookies
 
 ローカライズ カルチャの cookie では、ユーザーのカルチャが保持されます。 ローカライズ ミドルウェアでは、後続の要求で cookie を読み取り、ユーザーのカルチャを設定します。 
 
