@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: fundamentals/target-aspnetcore
 ms.openlocfilehash: c012658a6f48247af60c8bfd56a7d987f6aa8a68
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "93061510"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>クラス ライブラリで ASP.NET Core API を使用する
@@ -52,7 +52,7 @@ ASP.NET Core を参照するには、次の `<FrameworkReference>` 要素をプ�
 
 ASP.NET Core を参照するためのこの方法は、.NET Core 3.x を対象とするプロジェクトでのみサポートされます。
 
-## <a name="include-no-locblazor-extensibility"></a>Blazor 拡張機能を含める
+## <a name="include-blazor-extensibility"></a>Blazor 拡張機能を含める
 
 Blazor は、WebAssembly (WASM) [ホスティング モデル](xref:blazor/hosting-models)と Server ホスティング モデルをサポートします。 特別な理由がない限り、[Razor コンポーネント](xref:blazor/components/index)は両方のホスティング モデルをサポートする必要があります。 Razor コンポーネント ライブラリでは、[Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk) を使用する必要があります。
 
@@ -113,7 +113,7 @@ Razor コンポーネントを含むライブラリの詳細については、�
 
 このセクションでは、MVC の複数のバージョンをサポートするマルチターゲット機能については説明しません。 複数の ASP.NET Core バージョンのサポートに関するガイダンスについては、「[複数のバージョンの ASP.NET Core をサポートする](#support-multiple-aspnet-core-versions)」を参照してください。
 
-### <a name="no-locrazor-views-or-no-locrazor-pages"></a>Razor ビューまたは Razor Pages
+### <a name="razor-views-or-razor-pages"></a>Razor ビューまたは Razor Pages
 
 [Razor ビュー](xref:mvc/views/overview)または [Razor Pages](xref:razor-pages/index) を含むプロジェクトでは、[Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk) を使用する必要があります。
 

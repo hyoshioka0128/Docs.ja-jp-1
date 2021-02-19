@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: fundamentals/app-state
 ms.openlocfilehash: c11b748f9d79235b14c9541019da6e1fb3428af6
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "93051409"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>ASP.NET Core でのセッションと状態の管理
@@ -49,7 +49,7 @@ HTTP はステートレス プロトコルです。 既定で、HTTP 要求は�
 | [HttpContext.Items](#httpcontextitems) | サーバー側アプリ コード |
 | [キャッシュ](#cache) | サーバー側アプリ コード |
 
-## <a name="no-loccookies"></a>Cookies
+## <a name="cookies"></a>Cookies
 
 Cookie には、要求と要求の間でデータが格納されます。 cookie は要求ごとに送信されるために、そのサイズは最小に抑える必要があります。 理想的には、識別子だけを cookie に格納し、データはアプリで格納します。 ほとんどのブラウザーで cookie のサイズは 4096 バイトに制限されています。 ドメインごとに使用できる cookie の数も制限されています。
 
@@ -288,7 +288,7 @@ cookie ベース TempData プロバイダーは既定で有効になります。
 
 エラーを確認するための推奨される方法は、アプリがセッションへの書き込みを終了したら、`await feature.Session.CommitAsync` を呼び出すことです。 バッキング ストアが利用できない場合、<xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> は例外をスローします。 `CommitAsync` が失敗した場合、アプリは例外を処理できます。 <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> は、データ ストアが利用できない場合に同じ条件でスローします。
   
-## <a name="no-locsignalr-and-session-state"></a>SignalR とセッション状態
+## <a name="signalr-and-session-state"></a>SignalR とセッション状態
 
 SignalR アプリでは、セッション状態を使用して情報を格納することはできません。 SignalR アプリは、ハブ内の `Context.Items` に接続ごとの状態を格納できます。 <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
@@ -320,7 +320,7 @@ HTTP はステートレス プロトコルです。 手順を追加しないと�
 | [キャッシュ](#cache) | サーバー側アプリ コード |
 | [依存性の注入](#dependency-injection) | サーバー側アプリ コード |
 
-## <a name="no-loccookies"></a>Cookies
+## <a name="cookies"></a>Cookies
 
 Cookie には、要求と要求の間でデータが格納されます。 cookie は要求ごとに送信されるために、そのサイズは最小に抑える必要があります。 理想的には、識別子だけを cookie に格納し、データはアプリで格納します。 ほとんどのブラウザーで cookie のサイズは 4096 バイトに制限されています。 ドメインごとに使用できる cookie の数も制限されています。
 
@@ -599,7 +599,7 @@ app.Run(async (context) =>
 
   エラーを確認するための推奨される方法は、アプリがセッションへの書き込みを終了したら、アプリ コードから `await feature.Session.CommitAsync();` を呼び出すことです。 バッキング ストアが利用できない場合、`CommitAsync` は例外をスローします。 `CommitAsync` が失敗した場合、アプリは例外を処理できます。 `LoadAsync` は、データ ストアが利用できない場合に同じ条件で例外をスローします。
   
-## <a name="no-locsignalr-and-session-state"></a>SignalR とセッション状態
+## <a name="signalr-and-session-state"></a>SignalR とセッション状態
 
 SignalR アプリでは、セッション状態を使用して情報を格納することはできません。 SignalR アプリは、ハブ内の `Context.Items` に接続ごとの状態を格納できます。 <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
