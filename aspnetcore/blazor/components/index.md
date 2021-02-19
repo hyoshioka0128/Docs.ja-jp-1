@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 823c24620b369874fdbc3e314b5b08952df83c8b
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 7b4438b4003916488c17d389b9817b5e09d1086c
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280114"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536221"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
@@ -285,16 +285,168 @@ public string Title { get; set; } = "Panel Title from Child";
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
-慣例により、C# コードで構成される属性値は、[Razor の予約済み `@` シンボル](xref:mvc/views/razor#razor-syntax)を使用してパラメーターに割り当てられます。
+[Razor の予約済み `@` シンボル](xref:mvc/views/razor#razor-syntax)を使用して、C# のフィールド、プロパティ、およびメソッドを HTML 属性値としてコンポーネント パラメーターに割り当てます。
 
-* 親フィールドまたはプロパティ: `Title="@{FIELD OR PROPERTY}`。プレースホルダー `{FIELD OR PROPERTY}` は親コンポーネントの C# フィールドまたはプロパティです。
-* メソッドの結果: `Title="@{METHOD}"`。プレースホルダー `{METHOD}` は親コンポーネントの C# メソッドです。
-* [暗黙的または明示的な式](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`。プレースホルダー `{EXPRESSION}` は C# 式です。
+* 親コンポーネントのフィールド、プロパティ、またはメソッドを子コンポーネントのパラメーターに割り当てる場合は、そのフィールド、プロパティ、またはメソッドの名前の先頭に `@` シンボルを付けます。 [暗黙的な C# の式](xref:mvc/views/razor#implicit-razor-expressions)の結果をパラメーターに割り当てる場合は、暗黙的な式の先頭に `@` シンボルを付けます。
+
+  次の親コンポーネントでは、上記の `ChildComponent` コンポーネントの 4 つのインスタンスが表示され、それらの `Title` パラメーター値が次のように設定されます。
+
+  * `title` フィールドの値。
+  * `GetTitle` C# メソッドの結果。
+  * <xref:System.DateTime.ToLongDateString%2A> を使用した長い形式での現在のローカル日付。
+  * `person` オブジェクトの `Name` プロパティ。
+
+  `Pages/ParentComponent.razor`:
+  
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
+  
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new Person();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+  
+  Razor ページ (`.cshtml`) とは異なり、Blazor では、コンポーネントのレンダリング中に Razor 式で非同期処理を実行することはできません。 これは、Blazor が対話型 UI をレンダリングするように設計されているためです。 対話型 UI の場合、画面には常に何かが表示されている必要があるため、レンダリング フローをブロックしても意味はありません。 代わりに、非同期処理は、いずれかの[非同期ライフサイクル イベント](xref:blazor/components/lifecycle)中に実行されます。 非同期ライフサイクル イベントが発生するたびに、コンポーネントは再びレンダリングされる可能性があります。 次の Razor 構文はサポートされて **いません**。
+  
+  ```razor
+  <ChildComponent Title="@await ...">
+      ...
+  </ChildComponent>
+  ```
+  
+  上記の例に含まれるコードでは、アプリがビルドされると "*コンパイラ エラー*" が発生します。
+  
+  > 'await' 演算子は、非同期メソッド内でのみ使用できます。 このメソッドを 'async' 修飾子でマークし、その戻り値の型を 'Task' に変更することを検討してください。
+
+  上記の例で非同期的に `Title` パラメーターの値を取得するには、次の例に示すように、コンポーネントで [`OnInitializedAsync` ライフサイクル イベント](xref:blazor/components/lifecycle#component-initialization-methods)を使用できます。
+  
+  ```razor
+  <ChildComponent Title="@title">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title;
+      
+      protected override async Task OnInitializedAsync()
+      {
+          title = await ...;
+      }
+  }
+  ```
+  
+* 親コンポーネントの[明示的な C# の式](xref:mvc/views/razor#explicit-razor-expressions)の結果を子コンポーネントのパラメーターに割り当てるには、式をかっこで囲み、先頭に `@` シンボルを付けます。
+
+  次の子コンポーネントには、<xref:System.DateTime> コンポーネント パラメーターである `ShowItemsSinceDate` が含まれています。
+  
+  `Shared/ChildComponent.razor`:
+  
+  ```razor
+  <div class="panel panel-default">
+      <div class="panel-heading">Explicit DateTime Expression Example</div>
+      <div class="panel-body">
+          <p>@ChildContent</p>
+          <p>One week ago date: @ShowItemsSinceDate</p>
+      </div>
+  </div>
+
+  @code {
+      [Parameter]
+      public DateTime ShowItemsSinceDate { get; set; }
+
+      [Parameter]
+      public RenderFragment ChildContent { get; set; }
+  }
+  ```
+  
+  次の親コンポーネントでは、明示的な C# 式 (過去 1 週間を表します) を使用して、子の `ShowItemsSinceDate` パラメーターに割り当てるための日付が計算されます。
+  
+  `Pages/ParentComponent.razor`:
+
+  ```razor
+  <ChildComponent ShowItemsSinceDate="@(DateTime.Now - TimeSpan.FromDays(7))">
+      Title from explicit Razor expression.
+  </ChildComponent>
+  ```
+
+  パラメーターに割り当てるために、明示的な式を使用してテキストを式の結果と連結することは、サポートされて **いません**。 次の例では、"SKU-" というテキストを、親コンポーネントの `product` オブジェクトによって提供される製品在庫数 (`SKU` プロパティ、"Stock Keeping Unit") と連結しようとしています。 この構文は Razor ページ (`.cshtml`) でサポートされていますが、子の `Title` パラメーターに割り当てる場合は無効です。
+  
+  ```razor
+  <ChildComponent Title="SKU-@(product.SKU)">
+      Title from composed Razor expression. This doesn't compile.
+  </ChildComponent>
+  ```
+  
+  上記の例に含まれるコードでは、アプリがビルドされると "*コンパイラ エラー*" が発生します。
+  
+  > コンポーネント属性では、複合コンテンツ (C# とマークアップの混合) はサポートされていません。
+  
+  合成値の割り当てをサポートするには、メソッド、フィールド、またはプロパティを使用します。 次の例では、C# メソッド `GetTitle` 内で "SKU-" と製品の在庫数の連結が実行されます。
+  
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+  
+  @code {
+      private Product product = new Product();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
   
 詳細については、「[ASP.NET Coreの Razor 構文リファレンス](xref:mvc/views/razor)」を参照してください。
 
 > [!WARNING]
 > 独自の "*コンポーネント パラメーター*" を書き込み先とするコンポーネントを作成する代わりに、プライベート フィールドを使用してください。 詳細については、「[上書きされたパラメーター](#overwritten-parameters)」セクションをご覧ください。
+
+#### <a name="component-parameters-should-be-auto-properties"></a>コンポーネント パラメーターは自動プロパティである必要がある
+
+コンポーネント パラメーターは "*自動プロパティ*" として宣言する必要があります。つまり、そのゲッターやセッターにカスタム ロジックを含めることはできません。 たとえば、次の `StartData` プロパティは自動プロパティです。
+
+```csharp
+[Parameter]
+public DateTime StartData { get; set; }
+```
+
+`get` または `set` アクセサーにカスタム ロジックを配置しないでください。なぜなら、コンポーネント パラメーターの目的は、親コンポーネントから子コンポーネントに情報をフローさせるためのチャネルとして使用することだけだからです。 子コンポーネントのプロパティのセッターに、親コンポーネントの再レンダリングが発生する原因となるロジックが含まれている場合、レンダリングの無限ループが発生します。
+
+受け取ったパラメーター値を変換する必要がある場合は、次のようにします。
+
+* パラメーター プロパティは、指定された生データを表す純粋な自動プロパティのままにしておきます。
+* パラメーター プロパティに基づいて変換されたデータを指定する、その他のプロパティまたはメソッドを作成します。
+
+新しいデータを受け取るたびに受け取ったパラメーターを変換したい場合は、`OnParametersSetAsync` をオーバーライドできます。
 
 ## <a name="child-content"></a>子コンテンツ
 

@@ -5,7 +5,7 @@ description: 構成 API を使用して、ASP.NET Core アプリを構成する�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/24/2020
+ms.date: 1/29/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 62c9d1a58e0f771d91e2bc57f39ec5ebb25baaed
-ms.sourcegitcommit: 37186f76e4a50d7fb7389026dd0e5e234b51ebb2
+ms.openlocfilehash: 0f069b049889f7caade493e238ac7a23db5e79af
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/04/2021
-ms.locfileid: "99541369"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536305"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core の構成
 
@@ -232,9 +232,30 @@ setx Logging__1__Name=ToConsole
 setx Logging__1__Level=Information
 ```
 
-### <a name="environment-variables-set-in-launchsettingsjson"></a>launchSettings.json で設定された環境変数
+### <a name="environment-variables-set-in-generated-launchsettingsjson"></a>生成された launchSettings.json に設定されている環境変数
 
-*launchSettings.json* に設定されている環境変数で、システム環境に設定されているそれらがオーバーライドされます。
+*launchSettings.json* に設定されている環境変数で、システム環境に設定されているそれらがオーバーライドされます。 たとえば、ASP.NET Core Web テンプレートでは、エンドポイント構成を次のように設定する *launchSettings.json* ファイルが生成されます。
+
+```json
+"applicationUrl": "https://localhost:5001;http://localhost:5000"
+```
+
+`applicationUrl` を構成すると `ASPNETCORE_URLS` 環境変数が設定され、環境で設定されている値がオーバーライドされます。
+
+### <a name="escape-environment-variables-on-linux"></a>Linux で環境変数をエスケープする
+
+Linux では、`systemd` で解析できるように URL 環境変数の値をエスケープする必要があります。 Linux ツール `systemd-escape` を使用すると、`http:--localhost:5001` が生成されます
+ 
+ ```cmd
+ groot@terminus:~$ systemd-escape http://localhost:5001
+ http:--localhost:5001
+ ```
+
+### <a name="display-environment-variables"></a>環境変数を表示する
+
+次のコードでは、アプリケーションの起動時に環境変数と値が表示されます。これは環境設定をデバッグするときに役立つことがあります。
+
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
 
 <a name="clcp"></a>
 
@@ -556,6 +577,38 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
 
 `MemoryConfigurationProvider` を使用した別の例については、[配列をバインド](#boa)を参照してください。
 
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+
+<a name="kestrel"></a>
+
+## <a name="kestrel-endpoint-configuration"></a>Kestrel のエンドポイントの構成
+
+Kestrel 固有のエンドポイント構成によって、すべての[サーバー間](xref:fundamentals/servers/index)のエンドポイント構成がオーバーライドされます。 サーバー間のエンドポイント構成には、次のものがあります。
+
+  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
+  * [コマンド ライン](xref:fundamentals/configuration/index#command-line)での `--urls`
+  * [環境変数](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+
+ASP.NET Core Web アプリで使用される次の *appsettings.json* ファイルについて考えてみましょう。
+
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8)]
+
+上の強調表示されているマークアップが ASP.NET Core Web アプリで使用され、"***かつ***" 次のサーバー間エンドポイント構成を使用してコマンド ラインでアプリが起動される場合:
+
+`dotnet run --urls="https://localhost:7777"`
+
+Kestrel は、`https://localhost:7777` ではなく、 *appsettings.json* ファイルで Kestrel 専用に構成されたエンドポイント (`https://localhost:9999`) にバインドされます。
+
+環境変数として構成された Kestrel 固有のエンドポイントを考えてみます。
+
+`set Kestrel__Endpoints__Https__Url=https://localhost:8888`
+
+上記の環境変数では、`Https` が Kestrel 固有のエンドポイントの名前です。 前の *appsettings.json* ファイルでも、`Https` という名前の Kestrel 固有のエンドポイントが定義されています。 [既定](#default-configuration)で、[環境変数構成プロバイダー](#evcp)を使用している環境変数は *appsettings.* `Environment` *.json* の後に読み取られます。したがって、上記の環境変数は `Https` エンドポイント用に使用されます。
+
+::: moniker-end
+::: moniker range=">= aspnetcore-3.0"
+
 ## <a name="getvalue"></a>GetValue
 
 [`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) 指定したキーを使用して、構成から単一の値を抽出し、それを指定した型に変換します：
@@ -773,7 +826,7 @@ Index: 5  Value: value5
 
 ## <a name="default-host-configuration"></a>既定のホスト構成
 
-[Web ホスト](xref:fundamentals/host/web-host)を使用する場合の既定の構成の詳細については、[このトピックの ASP.NET Core 2.2 バージョン](?view=aspnetcore-2.2)を参照してください。
+[Web ホスト](xref:fundamentals/host/web-host)を使用する場合の既定の構成の詳細については、[このトピックの ASP.NET Core 2.2 バージョン](?view=aspnetcore-2.2&preserve-view=true)を参照してください。
 
 * ホストの構成は、次から提供されます。
   * [環境変数構成プロバイダー](#environment-variables)を使用する、プレフィックス `DOTNET_` (`DOTNET_ENVIRONMENT` など) が付いた環境変数。 構成のキーと値のペアが読み込まれるときに、プレフィックス (`DOTNET_`) は削除されます。
