@@ -18,16 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/get-started-with-swashbuckle
-ms.openlocfilehash: 7a6ceea09bde8999b9e64796c0ba5fc6f3f45a2d
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: df9c78770f3494b1ae9e0d3604926d77cb1e67bb
+ms.sourcegitcommit: 20a41c8e40a2e69e99291e2fe18caa04c02e7109
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530230"
+ms.lasthandoff: 02/05/2021
+ms.locfileid: "99578322"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Swashbuckle と ASP.NET Core の概要
-
-[Shayne Boyer](https://twitter.com/spboyer) および [Scott Addie](https://twitter.com/Scott_Addie) 著
 
 [サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
@@ -505,3 +503,7 @@ app.UseSwaggerUI(c =>
      c.InjectStylesheet("/swagger-ui/custom.css");
 }
 ```
+
+## <a name="additional-resources"></a>その他のリソース
+
+* [Microsoft Learn: Swagger ドキュメントで API の開発者エクスペリエンスを向上させる](/learn/modules/improve-api-developer-experience-with-swagger/)
