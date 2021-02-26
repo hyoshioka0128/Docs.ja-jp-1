@@ -4,7 +4,7 @@ author: rick-anderson
 description: ASP.NET Core で Web API をビルドする方法を学習します。
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 08/13/2020
+ms.date: 02/04/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: ccbfc27eb89e23938a69f0ab4cb306d6a4136889
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1f7c7db857090ff0a174d37b86e1265bab40b4fd
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96175053"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564094"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>チュートリアル: ASP.NET Core で Web API を作成する
 
@@ -97,7 +97,6 @@ ms.locfileid: "96175053"
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -130,7 +129,6 @@ ms.locfileid: "96175053"
 プロジェクト フォルダーでコマンド ターミナルを開き、次のコマンドを実行します。
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -270,13 +268,10 @@ Swagger が削除されているため、上記のマークアップにより、
 ### <a name="add-nuget-packages"></a>NuGet パッケージを追加する
 
 * **[ツール]** メニューで **[NuGet パッケージ マネージャー]、[ソリューションの NuGet パッケージの管理]** の順に選択します。
-* **[参照]** タブを選択し、検索ボックスに「**Microsoft.EntityFrameworkCore.SqlServer**」と入力します。
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* 左側のウィンドウで、 **[Microsoft.EntityFrameworkCore.SqlServer]** を選択します。
+* **[参照]** タブを選択し、検索ボックスに「**Microsoft.EntityFrameworkCore.InMemory**」と入力します。
+* 左側のウィンドウで、 **[Microsoft.EntityFrameworkCore.InMemory]** を選択します。
 * 右側のウィンドウで **[プロジェクト]** チェックボックスをオンにして、 **[インストール]** を選択します。
-* 前の手順を使用して、**Microsoft.EntityFrameworkCore.InMemory** NuGet パッケージを追加します。
 
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet パッケージ マネージャー](first-web-api/_static/5/vsNuGet.png)
 
 ## <a name="add-the-todocontext-database-context"></a>TodoContext データベースコンテキストの追加
@@ -355,7 +350,7 @@ ASP.NET Core テンプレートの対象は次のとおりです。
 
 ## <a name="update-the-posttodoitem-create-method"></a>PostTodoItem 作成メソッドの更新
 
-[nameof](/dotnet/csharp/language-reference/operators/nameof) 演算子を使用するために、`PostTodoItem` で return ステートメントを置き換えます。
+[nameof](/dotnet/csharp/language-reference/operators/nameof) 演算子を使用するために、`PostTodoItem` で return ステートメントを更新します。
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
@@ -621,7 +616,6 @@ DTO のアプローチを実演するために、`TodoItem` クラスを更新�
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -654,7 +648,6 @@ DTO のアプローチを実演するために、`TodoItem` クラスを更新�
 プロジェクト フォルダーでコマンド ターミナルを開き、次のコマンドを実行します。
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -764,10 +757,9 @@ Ctrl キーを押しながら F5 キーを押して、アプリを実行しま�
 ### <a name="add-nuget-packages"></a>NuGet パッケージを追加する
 
 * **[ツール]** メニューで **[NuGet パッケージ マネージャー]、[ソリューションの NuGet パッケージの管理]** の順に選択します。
-* **[参照]** タブを選択し、検索ボックスに「**Microsoft.EntityFrameworkCore.SqlServer**」と入力します。
-* 左側のウィンドウで、 **[Microsoft.EntityFrameworkCore.SqlServer]** を選択します。
+* **[参照]** タブを選択し、検索ボックスに「**Microsoft.EntityFrameworkCore.InMemory**」と入力します。
+* 左側のウィンドウで、 **[Microsoft.EntityFrameworkCore.InMemory]** を選択します。
 * 右側のウィンドウで **[プロジェクト]** チェックボックスをオンにして、 **[インストール]** を選択します。
-* 前の手順を使用して、**Microsoft.EntityFrameworkCore.InMemory** NuGet パッケージを追加します。
 
 ![NuGet パッケージ マネージャー](first-web-api/_static/vs3NuGet.png)
 

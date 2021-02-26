@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 3591ba18351b89e2d5dfaef796777273c97ce98b
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 03a49c827a1f70e6b721adf293857bb33475ed36
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751614"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107078"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
-
-著者: [Luke Latham](https://github.com/guardrex)、[Daniel Roth](https://github.com/danroth27)
 
 Blazor フレームワークには、同期と非同期のライフサイクル メソッドが含まれています。 コンポーネントの初期化およびレンダリング中にコンポーネントで追加の操作を実行するには、ライフサイクル メソッドをオーバーライドします。
 
@@ -70,7 +68,9 @@ Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> により、レンダリング ツリーのコンポーネントの親によって、またはルート パラメーターから指定されたパラメーターが設定されます。 開発者のコードでは、このメソッドをオーバーライドすることによって、<xref:Microsoft.AspNetCore.Components.ParameterView> のパラメーターと直接対話できます。
 
-次の例では、`Param` のルート パラメーターの解析が成功した場合、<xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> によって `Param` パラメーターの値が `value` に代入されます。 `value` が `null` でなければ、`SetParametersAsyncExample` コンポーネントによってその値が表示されます。
+次の例では、`Param` のルート パラメーターの解析が成功した場合、<xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> によって `Param` パラメーターの値が `value` に代入されます。 `value` が `null` でなければ、コンポーネントによってその値が表示されます。
+
+[ルート パラメーターの照合では大文字と小文字が区別されません](xref:blazor/fundamentals/routing#route-parameters)が、ルート テンプレートでは <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> によってパラメーター名が大文字と小文字を区別して照合されます。 次の例では、値を取得するために、`/{param?}` ではなく、`/{Param?}` を使用する必要があります。 このシナリオで `/{param?}` が使用される場合、<xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> から `false` が返され、`message` はどちらの文字列にも設定されません。
 
 `Pages/SetParametersAsyncExample.razor`:
 
@@ -91,11 +91,14 @@ Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行
     {
         if (parameters.TryGetValue<string>(nameof(Param), out var value))
         {
-            message = $"The value of 'Param' is {value}.";
-        }
-        else 
-        {
-            message = "The value of 'Param' is null.";
+            if (value is null)
+            {
+                message = "The value of 'Param' is null.";
+            }
+            else
+            {
+                message = $"The value of 'Param' is {value}.";
+            }
         }
 
         await base.SetParametersAsync(parameters);
@@ -105,7 +108,7 @@ Developer によって [`StateHasChanged`](#state-changes) の呼び出しが行
 
 <xref:Microsoft.AspNetCore.Components.ParameterView> には、<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> が呼び出されるたびに、コンポーネントのパラメーター値のセットが含まれます。
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> の既定の実装では、対応する値が <xref:Microsoft.AspNetCore.Components.ParameterView> 内にある [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) または [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) 属性を使用して、各プロパティの値が設定されます。 対応する値が <xref:Microsoft.AspNetCore.Components.ParameterView> 内にないパラメーターは、変更されないままになります。
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> の既定の実装では、対応する値が <xref:Microsoft.AspNetCore.Components.ParameterView> 内にある [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) または [`[CascadingParameter]` 属性](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute)を使用して、各プロパティの値が設定されます。 対応する値が <xref:Microsoft.AspNetCore.Components.ParameterView> 内にないパラメーターは、変更されないままになります。
 
 [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) が呼び出されない場合、カスタム コードでは、必要に応じて受信パラメーター値を解釈できます。 たとえば、受信したパラメーターをクラスのプロパティに割り当てる必要はありません。
 
@@ -135,7 +138,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-[コンテンツをプリレンダリングする](xref:blazor/fundamentals/additional-scenarios#render-mode) Blazor Server アプリによって、<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> が "*2 回*" 呼び出されます。
+[コンテンツをプリレンダリングする](xref:blazor/fundamentals/signalr#render-mode) Blazor Server アプリによって、<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> が "*2 回*" 呼び出されます。
 
 * コンポーネントが最初にページの一部として静的にレンダリングされるときに 1 回。
 * ブラウザーがサーバーへの接続を確立するときに 2 回目。
@@ -314,7 +317,7 @@ public class WeatherForecastService
 }
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> の詳細については、「<xref:blazor/fundamentals/additional-scenarios#render-mode>」を参照してください。
+<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> の詳細については、「<xref:blazor/fundamentals/signalr#render-mode>」を参照してください。
 
 ## <a name="detect-when-the-app-is-prerendering"></a>アプリがプリレンダリングされていることを検出する
 
@@ -338,7 +341,45 @@ public class WeatherForecastService
 }
 ```
 
-非同期の破棄タスクの場合は、前の例の `Dispose` の代わりに `DisposeAsync` を使用します。
+オブジェクトが破棄を必要とする場合、<xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> が呼び出されるきに、ラムダを使用してオブジェクトを破棄できます。
+
+`Pages/CounterWithTimerDisposal.razor`:
+
+```razor
+@page "/counter-with-timer-disposal"
+@using System.Timers
+@implements IDisposable
+
+<h1>Counter with <code>Timer</code> disposal</h1>
+
+<p>Current count: @currentCount</p>
+
+@code {
+    private int currentCount = 0;
+    private Timer timer = new Timer(1000);
+
+    protected override void OnInitialized()
+    {
+        timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
+        timer.Start();
+    }
+
+    private void OnTimerCallback()
+    {
+        _ = InvokeAsync(() =>
+        {
+            currentCount++;
+            StateHasChanged();
+        });
+    }
+
+    public void IDisposable.Dispose() => timer.Dispose();
+}
+```
+
+上記の例は、「<xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>」に示されています。
+
+非同期の破棄タスクの場合は、<xref:System.IDisposable.Dispose> の代わりに `DisposeAsync` を使用します。
 
 ```csharp
 public async ValueTask DisposeAsync()
@@ -350,7 +391,7 @@ public async ValueTask DisposeAsync()
 > [!NOTE]
 > `Dispose` では、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> の呼び出しはサポートされていません。 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、レンダラーの破棄の一部として呼び出されることがあるため、その時点での UI 更新の要求はサポートされていません。
 
-.NET イベントからイベント ハンドラーのサブスクライブを解除します。 次の [Blazor フォーム](xref:blazor/forms-validation)の例は、`Dispose` メソッドでイベント ハンドラーをアンフックする方法を示しています。
+.NET イベントからイベント ハンドラーのサブスクライブを解除します。 次の [Blazor フォーム](xref:blazor/forms-validation)の例は、`Dispose` メソッドでイベント ハンドラーの登録を解除する方法を示しています。
 
 * プライベート フィールドとラムダのアプローチ
 
@@ -359,7 +400,47 @@ public async ValueTask DisposeAsync()
 * プライベート メソッドのアプローチ
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
-  
+
+[匿名関数](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)、メソッド、または式が使用されている場合、<xref:System.IDisposable> の実装やデリゲートの登録解除を行う必要はありません。 しかし、デリゲートの登録解除に失敗することは、**イベントを公開するオブジェクトが、デリゲートを登録するコンポーネントの有効期間を超えている場合** に問題になります。 この場合、登録されたデリゲートによって元のオブジェクトが保持されているため、メモリ リークが発生します。 そのため、イベント デリゲートがすぐに破棄されることがわかっている場合にのみ、次のアプローチを使用してください。 破棄が必要なオブジェクトの有効期間が不明な場合は、前の例で示したように、デリゲート メソッドを登録し、そのデリゲートを適切に破棄します。
+
+* 匿名のラムダ メソッドのアプローチ (明示的な破棄は不要)
+
+  ```csharp
+  private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+  {
+      formInvalid = !editContext.Validate();
+      StateHasChanged();
+  }
+
+  protected override void OnInitialized()
+  {
+      editContext = new EditContext(starship);
+      editContext.OnFieldChanged += (s, e) => HandleFieldChanged((editContext)s, e);
+  }
+  ```
+
+* 匿名ラムダ式のアプローチ (明示的な破棄は不要)
+
+  ```csharp
+  private ValidationMessageStore messageStore;
+
+  [CascadingParameter]
+  private EditContext CurrentEditContext { get; set; }
+
+  protected override void OnInitialized()
+  {
+      ...
+
+      messageStore = new ValidationMessageStore(CurrentEditContext);
+
+      CurrentEditContext.OnValidationRequested += (s, e) => messageStore.Clear();
+      CurrentEditContext.OnFieldChanged += (s, e) => 
+          messageStore.Clear(e.FieldIdentifier);
+  }
+  ```
+
+  匿名ラムダ式を使用した上記のコードの完全な例は、「<xref:blazor/forms-validation#validator-components>」に示されています。
+
 詳細については、「[アンマネージ リソースのクリーンアップ](/dotnet/standard/garbage-collection/unmanaged)」と、その後に続く `Dispose` および `DisposeAsync` メソッドの実装に関するトピックを参照してください。
 
 ## <a name="cancelable-background-work"></a>取り消し可能なバックグラウンド作業
@@ -434,4 +515,4 @@ public async ValueTask DisposeAsync()
 
 ## <a name="blazor-server-reconnection-events"></a>Blazor Server 再接続イベント
 
-この記事で説明するコンポーネント ライフサイクル イベントは、[Blazor Server の再接続イベント ハンドラー](xref:blazor/fundamentals/additional-scenarios#reflect-the-connection-state-in-the-ui)とは別々に動作します。 Blazor Server アプリとクライアントの SignalR 接続が失われた場合には、UI の更新だけが中断されます。 その接続が再確立されると、UI の更新が再開されます。 回線ハンドラーのイベントと構成の詳細については、「<xref:blazor/fundamentals/additional-scenarios>」を参照してください。
+この記事で説明するコンポーネント ライフサイクル イベントは、[Blazor Server の再接続イベント ハンドラー](xref:blazor/fundamentals/signalr#reflect-the-connection-state-in-the-ui)とは別々に動作します。 Blazor Server アプリとクライアントの SignalR 接続が失われた場合には、UI の更新だけが中断されます。 その接続が再確立されると、UI の更新が再開されます。 回線ハンドラーのイベントと構成の詳細については、「<xref:blazor/fundamentals/signalr>」を参照してください。

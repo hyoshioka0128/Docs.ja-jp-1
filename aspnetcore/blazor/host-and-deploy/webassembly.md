@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 2b464c2b6ca434ce4c3b559480da69945266ff69
-ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
+ms.openlocfilehash: 04eba2e004e920e9ca799b316781857f0b0b4ca3
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98570974"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279775"
 ---
-# <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly のホストと展開
-
-作成者: [Luke Latham](https://github.com/guardrex)、[Rainer Stropek](https://www.timecockpit.com)、[Daniel Roth](https://github.com/danroth27)、[Ben Adams](https://twitter.com/ben_a_adams)、[Safia Abdalla](https://safia.rocks)
+# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly のホストと展開
 
 [Blazor WebAssembly ホスティング モデル](xref:blazor/hosting-models#blazor-webassembly)を使用する場合は以下のようになります。
 
@@ -52,12 +50,15 @@ Blazor は、適切な圧縮ファイルにサービスを提供するため、�
 * IIS の `web.config` の圧縮構成については、[IIS の「Brotli と Gzip の圧縮」](#brotli-and-gzip-compression)セクションを参照してください。 
 * GitHub ページなど、静的に圧縮されたファイル コンテント ネゴシエーションをサポートしない静的ホスティング ソリューションでホストするとき、Brotli 圧縮ファイルをフェッチし、デコードするようにアプリを構成することを検討してください。
 
-  * [google/brotli GitHub リポジトリ](https://github.com/google/brotli)から、JavaScript Brotli デコーダーを入手します。 デコーダー ファイルは、`decode.min.js` という名前で、リポジトリの [`js` フォルダー](https://github.com/google/brotli/tree/master/js)にあります。
+  * [google/brotli GitHub リポジトリ](https://github.com/google/brotli)から、JavaScript Brotli デコーダーを入手します。 デコーダー ファイルは、`decode.js` という名前で、リポジトリの [`js` フォルダー](https://github.com/google/brotli/tree/master/js)にあります。
+  
+    > [!NOTE]
+    > 以前のバージョンは [google/brotli GitHub リポジトリ](https://github.com/google/brotli)の `decode.js` スクリプト (`decode.min.js`) の縮小バージョンにあります。 独自にスクリプトを縮小するか (例については、[BuildBundlerMinifier のバンドルと縮小](xref:client-side/bundling-and-minification#configure-bundling-and-minification)に関するページを参照してください)、[decode.min.js の TypeError (google/brotli #881)](https://github.com/google/brotli/issues/881) の問題が解決されるまで [npm package](https://www.npmjs.com/package/brotli) を使用します。 このセクションのサンプル コードでは、スクリプトの **未縮小** バージョンを使用しています。
 
   * そのデコーダーを使用するようにアプリを更新します。 `wwwroot/index.html` の終了タグ `<body>` に含まれるマークアップを次のように変更します。
   
     ```html
-    <script src="decode.min.js"></script>
+    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -128,7 +129,7 @@ ASP.NET Core アプリでのホストと展開の詳細については、「<xre
 
 Azure App Service の展開については、「<xref:tutorials/publish-to-azure-webapp-using-vs>」を参照してください。
 
-## <a name="hosted-deployment-with-multiple-no-locblazor-webassembly-apps"></a>複数の Blazor WebAssembly アプリによるホストされた展開
+## <a name="hosted-deployment-with-multiple-blazor-webassembly-apps"></a>複数の Blazor WebAssembly アプリによるホストされた展開
 
 ### <a name="app-configuration"></a>アプリの構成
 
@@ -315,7 +316,7 @@ Azure App Service の展開については、「<xref:tutorials/publish-to-azure
 Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
 * The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
-* The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) to obtain the static assets.
 
 The preceding approaches are demonstrated in the following examples.
 
@@ -369,7 +370,7 @@ The preceding approaches are demonstrated in the following examples.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements):
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements):
 
 ```razor
 <div class="my-component">
@@ -387,7 +388,7 @@ The library's `jeep-yj.png` image can also be added to the library's `Component1
 </div>
 ```
 
-An alternative to using the [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
+An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
 
 ```html
 <head>

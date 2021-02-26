@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 939841ca7214e212a2f197ea1e00b0f6152c471e
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: d984023a1c46c5383d47a1634c54e61747b83d60
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280508"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101211"
 ---
 # <a name="build-a-blazor-todo-list-app"></a>Blazor Todo リスト アプリを構築する
 
@@ -117,7 +117,7 @@ ms.locfileid: "100280508"
 
    `Shared/NavMenu.razor` ファイルを保存します。
 
-1. `TodoList` フォルダーからコマンド シェルで [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch) コマンドを実行して、アプリをビルドして実行します。 アプリが実行された後、そのアプリのナビゲーション バーにある **[`Todo`]** リンクを選択して、新しい Todo ページにアクセスします。これにより、`/todo` にページが読み込まれます。
+1. `TodoList` フォルダーからコマンド シェルで [`dotnet watch run`](xref:tutorials/dotnet-watch) コマンドを実行して、アプリをビルドして実行します。 アプリが実行された後、そのアプリのナビゲーション バーにある **[`Todo`]** リンクを選択して、新しい Todo ページにアクセスします。これにより、`/todo` にページが読み込まれます。
 
    アプリでコマンド シェルを実行したままにします。 ファイルが保存されるたびに、アプリが自動的に再構築されます。 コンパイルおよび再起動中は、ブラウザーからアプリへの接続が一時的に失われます。 接続が再確立されると、ブラウザーのページが自動的に再読み込みされます。
 

@@ -5,7 +5,7 @@ description: Blazor アプリのビルドに使用できるツールについて
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/28/2020
+ms.date: 02/11/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -20,16 +20,14 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 5901a1cb693dfe8e34e62ce2a28456bcf584221c
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 6b61d9a4645d273b0c78fae0388d569771c43a2d
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252267"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536247"
 ---
-# <a name="tooling-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor 用のツール
-
-作成者: [Daniel Roth](https://github.com/danroth27)、[Luke Latham](https://github.com/guardrex)
+# <a name="tooling-for-aspnet-core-blazor"></a>ASP.NET Core Blazor 用のツール
 
 ::: zone pivot="windows"
 
@@ -50,6 +48,8 @@ ms.locfileid: "98252267"
 1. <kbd>Ctrl</kbd>+<kbd>F5</kbd> キーを押してアプリを実行します。
 
 ASP.NET Core HTTPS 開発証明書の信頼の詳細については、「<xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>」を参照してください。
+
+ホストされている Blazor WebAssembly アプリを実行する場合は、ソリューションの **`Server`** プロジェクトから、そのアプリを実行します。
 
 ::: zone-end
 
@@ -72,11 +72,11 @@ ASP.NET Core HTTPS 開発証明書の信頼の詳細については、「<xref:s
    ```
 
    ホステッド Blazor WebAssembly エクスペリエンスの場合は、ホステッド オプション (`-ho` または `--hosted`) をコマンドに追加します。
-   
+
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1 -ho
    ```
-   
+
    Blazor Server エクスペリエンスの場合は、コマンド シェルで次のコマンドを実行します。
 
    ```dotnetcli
@@ -88,6 +88,57 @@ ASP.NET Core HTTPS 開発証明書の信頼の詳細については、「<xref:s
 1. Visual Studio Code で `WebApplication1` フォルダーを開きます。
 
 1. IDE によって、プロジェクトをビルドおよびデバッグするためにアセットを追加するよう要求されます。 **[はい]** を選択します。
+
+   **ホストされている Blazor WebAssembly の起動とタスクの構成**
+
+   ホストされている Blazor WebAssembly ソリューションについては、`launch.json` ファイルと `tasks.json` ファイルを含む `.vscode` フォルダーを追加 (または移動) します。このフォルダーは、`Client`、`Server`、`Shared` という、通常のプロジェクト フォルダー名を含むものです。 **`Server`** プロジェクトでホストされている Blazor WebAssembly アプリが `launch.json` ファイルと `tasks.json` ファイルの構成によって実行されるように更新または確認します。
+
+   **`.vscode/launch.json`** (`launch` の構成):
+
+   ```json
+   ...
+   "cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
+   ...
+   ```
+
+   現在の作業ディレクトリの前の構成 (`cwd`) では、`{SERVER APP FOLDER}` プレースホルダーは **`Server`** プロジェクトのフォルダーです (通常は "`Server`")。
+
+   システム上で Microsoft Edge が使用されており、Google Chrome がインストールされていない場合は、`"browser": "edge"` の追加のプロパティを構成に追加します。
+
+   `Server` のプロジェクト フォルダー、およびそれによって、既定のブラウザーである Google Chrome ではなく、Microsoft Edge がデバッグ実行用のブラウザーとして生成される例を次に示します。
+
+   ```json
+   ...
+   "cwd": "${workspaceFolder}/Server",
+   "browser": "edge"
+   ...
+   ```
+
+   **`.vscode/tasks.json`** ([`dotnet` コマンド](/dotnet/core/tools/dotnet)引数):
+
+   ```json
+   ...
+   "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
+   ...
+   ```
+
+   前の引数は次のとおりです。
+
+   * `{SERVER APP FOLDER}` プレースホルダーは **`Server`** プロジェクトのフォルダーです (通常は "`Server`")。
+   * `{PROJECT NAME}` プレースホルダーはアプリの名前です。通常、この名前は、Blazor プロジェクト テンプレートから生成されたアプリ内のソリューションの名前とそれに続く "`.Server`" から付けられます。
+
+   [Blazor WebAssembly アプリでの SignalR の使用に関するチュートリアル](xref:tutorials/signalr-blazor)の次の例では、`Server` のプロジェクト フォルダー名と `BlazorWebAssemblySignalRApp.Server` のプロジェクト名を使用します。
+
+   ```json
+   ...
+   "args": [
+     "build",
+       "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
+       "/property:GenerateFullPaths=true",
+       "/consoleloggerparameters:NoSummary"
+   ],
+   ...
+   ```
 
 1. <kbd>Ctrl</kbd>+<kbd>F5</kbd> キーを押してアプリを実行します。
 
@@ -125,13 +176,15 @@ Linux で証明書を信頼するための一元的な方法はありません�
 
 開発証明書を信頼することを求めるメッセージが表示されたら、証明書を信頼して続行します。 証明書を信頼するには、ユーザーとキーチェーンのパスワードが必要です。 ASP.NET Core HTTPS 開発証明書の信頼の詳細については、「<xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>」を参照してください。
 
+ホストされている Blazor WebAssembly アプリを実行する場合は、ソリューションの **`Server`** プロジェクトから、そのアプリを実行します。
+
 ::: zone-end
 
-## <a name="use-visual-studio-code-for-cross-platform-no-locblazor-development"></a>クロスプラットフォームの Blazor 開発に Visual Studio Code を使用する
+## <a name="use-visual-studio-code-for-cross-platform-blazor-development"></a>クロスプラットフォームの Blazor 開発に Visual Studio Code を使用する
 
 [Visual Studio Code](https://code.visualstudio.com/) は、Blazor アプリの開発に使用できるオープン ソースのクロスプラットフォーム統合開発環境 (IDE) です。 .NET CLI を使用して、Visual Studio Code で開発用の新しい Blazor アプリを作成します。 詳細については、[この記事の Linux バージョン](?pivots=linux)を参照してください。
 
-## <a name="no-locblazor-template-options"></a>Blazor テンプレート オプション
+## <a name="blazor-template-options"></a>Blazor テンプレート オプション
 
 Blazor フレームワークには、Blazor ホスティング モデルのそれぞれに対して新しいアプリを作成するためのテンプレートが用意されています。 テンプレートは、Blazor 開発用に選択したツール (Visual Studio、Visual Studio for Mac、Visual Studio Code、または .NET CLI) に関係なく、新しい Blazor プロジェクトとソリューションを作成するために使用されます。
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: d97caeffc6e8beebddb01a5bd126d61ba988de65
-ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
+ms.openlocfilehash: fad569ab06735600299d8051a258651e329db8ce
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/22/2021
-ms.locfileid: "98689293"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107182"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core の静的ファイル
 
@@ -119,11 +119,11 @@ ASP.NET Core テンプレートでは、<xref:Microsoft.AspNetCore.Builder.Autho
   
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-25)]
 
-  前のコードでは、フォールバック認可ポリシーによって "***すべての** _" ユーザーを認証することが要求されます。 独自の認可要件を指定する、コントローラー、Razor Pages などのエンドポイントでは、フォールバック認可ポリシーは使用されません。 たとえば、`[AllowAnonymous]` や `[Authorize(PolicyName="MyPolicy")]` を使用する Razor Pages、コントローラー、またはアクション メソッドでは、フォールバック認可ポリシーではなく適用された認可属性が使用されます。
+  前のコードでは、フォールバック認可ポリシーによって "***すべて***" のユーザーを認証することが要求されます。 独自の認可要件を指定する、コントローラー、Razor Pages などのエンドポイントでは、フォールバック認可ポリシーは使用されません。 たとえば、`[AllowAnonymous]` や `[Authorize(PolicyName="MyPolicy")]` を使用する Razor Pages、コントローラー、またはアクション メソッドでは、フォールバック認可ポリシーではなく適用された認可属性が使用されます。
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> により、現在のインスタンスに <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> が追加されます。これにより、現在のユーザーが認証されます。
 
-  `UseAuthentication` の前に既定の静的ファイル ミドルウェア (`app.UseStaticFiles();`) が呼び出されるため、`wwwroot` 下の静的資産にはパブリックにアクセスできます。 _MyStaticFiles* フォルダー内の静的資産には認証が必要です。 これは[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)で示されています。
+  `UseAuthentication` の前に既定の静的ファイル ミドルウェア (`app.UseStaticFiles();`) が呼び出されるため、`wwwroot` 下の静的資産にはパブリックにアクセスできます。 *MyStaticFiles* フォルダー内の静的資産には認証が必要です。 これは[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)で示されています。
 
 認可に基づいてファイルを提供する別の方法:
 
@@ -469,7 +469,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 「[MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml)」 (MIME コンテンツ タイプ) を参照してください。
 
-カスタム <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> を使用する方法、または Blazor サーバー アプリで他の <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> を構成する方法については、<xref:blazor/fundamentals/additional-scenarios#static-files> を参照してください。
+カスタム <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> を使用する方法、または Blazor サーバー アプリで他の <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> を構成する方法については、<xref:blazor/fundamentals/static-files> を参照してください。
 
 ## <a name="non-standard-content-types"></a>非標準のコンテンツ タイプ
 

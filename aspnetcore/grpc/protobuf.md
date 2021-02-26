@@ -4,7 +4,7 @@ author: jamesnk
 description: .NET アプリの Protobuf メッセージを作成する方法について学習します。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/23/2020
+ms.date: 02/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: b70a5ee00405eecfce900b86dc631a54682dce1a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: adb048c9b20e172ef8a7bc13f9b56928b1d4bf77
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058897"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280287"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>.NET アプリの Protobuf メッセージを作成する
 
@@ -48,6 +48,8 @@ message Person {
 ```
 
 上記のメッセージ定義によって、名前と値のペアとして 3 つのフィールドが指定されています。 .NET 型のプロパティと同様に、各フィールドには名前と型があります。 フィールドの型は、[Protobuf のスカラー値の型](#scalar-value-types) (`int32` など)、または別のメッセージにすることができます。
+
+[Protobuf スタイル ガイド](https://developers.google.com/protocol-buffers/docs/style)では、フィールド名に `underscore_separated_names` を使用することが推奨されています。 .NET アプリ用に作成された新しい Protobuf メッセージは、Protobuf スタイル ガイドラインに従う必要があります。 .NET ツールによって、.NET の名前付け基準を使用する .NET 型が自動的に生成されます。 たとえば、`first_name` Protobuf フィールドによって `FirstName` .NET プロパティが生成されます。
 
 名前に加え、メッセージ定義の各フィールドには一意の番号があります。 フィールドの番号は、メッセージが Protobuf にシリアル化されるときにフィールドを特定するために使用されます。 小さい数をシリアル化する方が、フィールド名全体をシリアル化するよりも高速です。 フィールド番号によってフィールドが特定されるため、変更するときは注意が必要です。 Protobuf メッセージの変更の詳細については、「<xref:grpc/versioning>」を参照してください。
 

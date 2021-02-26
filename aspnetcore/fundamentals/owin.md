@@ -4,7 +4,7 @@ author: ardalis
 description: ASP.NET Core が Open Web Interface for .NET (OWIN) をどのようにサポートしているかを確認します。確認することで、Web アプリケーションを Web サーバーから切り離すことができるようになります。
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 12/18/2018
+ms.date: 2/8/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,18 +18,23 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/owin
-ms.openlocfilehash: 6085abc45137223d7a676107cf06dc2cf97a5c19
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c44803c6f67d8e03759a01f7aa71d82088be9a11
+ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060678"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99975275"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>Open Web Interface for .NET (OWIN) と ASP.NET Core
 
 作成者: [Steve Smith](https://ardalis.com/)、[Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core は、Open Web Interface for .NET (OWIN) をサポートします。 OWIN により、Web アプリを Web サーバーから切り離すことが可能になります。 ミドルウェアをパイプラインで使用し、要求と関連する応答を処理するための標準的な方法を定義します。 ASP.NET Core アプリケーションとミドルウェアは、OWIN ベースのアプリケーション、サーバー、およびミドルウェアと相互運用できます。
+ASP.NET Core:
+
+* Open Web Interface for .NET (OWIN) をサポートします。
+* `Microsoft.Owin.*` ([Katana](/aspnet/aspnet/overview/owin-and-katana/)) ライブラリの .NET Core と互換性のある置換があります。
+
+OWIN により、Web アプリを Web サーバーから切り離すことが可能になります。 ミドルウェアをパイプラインで使用し、要求と関連する応答を処理するための標準的な方法を定義します。 ASP.NET Core アプリケーションとミドルウェアは、OWIN ベースのアプリケーション、サーバー、およびミドルウェアと相互運用できます。
 
 OWIN には、さまざまなオブジェクト モデルを使用する 2 つのフレームワークを併用できる分離レイヤーがあります。 `Microsoft.AspNetCore.Owin` パッケージには 2 つのアダプター実装が用意されています。
 

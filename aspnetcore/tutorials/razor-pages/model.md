@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 7ea28e0ecad410335c37c603c8ec1eb5e6e41d33
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 92bfda330399b43871b3ae0e6b609726f7ad4a91
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97485993"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564043"
 ---
-# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
+# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -161,7 +161,7 @@ ms.locfileid: "97485993"
 1. **[Add Razor Pages using Entity Framework (CRUD)]\(Entity Framework を使用して Razor Pages (CRUD) を追加する\)** ダイアログを完了します。
    1. **[モデル クラス]** ドロップ ダウンで、 **[Movie (RazorPagesMovie.Models)]** を選択します。
    1. **Data context class** 行で、 **+** (+) 記号を選択します。
-      1. **[データ コンテキストの追加]** ダイアログで、クラス名 *RazorPagesMovie.Data.RazorPagesMovieContext* が生成されます。
+      1. **[データ コンテキストの追加]** ダイアログで、クラス名 `RazorPagesMovie.Data.RazorPagesMovieContext` が生成されます。
    1. **[追加]** を選びます。
 
    ![前の手順からのイメージ。](model/_static/3/arp.png)
@@ -226,7 +226,7 @@ SQLite が選択されている場合、テンプレートで生成されたコ�
    ![前の手順からのイメージ。](model/_static/add_scaffoldMac.png)
 
 1. **[Add Razor Pages using Entity Framework (CRUD)]\(Entity Framework を使用して Razor Pages (CRUD) を追加する\)** ダイアログを完了します。
-   1. **DbContext Class to use:** 行で、クラスに *RazorPagesMovie.Data.RazorPagesMovieContext* という名前を付けます。
+   1. **[DbContext Class to use:]\(使用する DbContext クラス:\)** 行で、クラスに `RazorPagesMovie.Data.RazorPagesMovieContext` という名前を付けます。
    1. **[完了]** を選択します。
 
    ![前の手順からのイメージ。](model/_static/5/arpMac.png)

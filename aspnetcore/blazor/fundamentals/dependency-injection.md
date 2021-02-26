@@ -20,14 +20,14 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/dependency-injection
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 3f2b4eff5422acbec80b2fd9b801101271cc3f75
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 30edffedf1faf96ed54d5380762c8558e478966c
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97808726"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106922"
 ---
-# <a name="aspnet-core-no-locblazor-dependency-injection"></a>ASP.NET Core Blazor 依存関係の挿入
+# <a name="aspnet-core-blazor-dependency-injection"></a>ASP.NET Core Blazor 依存関係の挿入
 
 作成者: [Rainer Stropek](https://www.timecockpit.com)、[Mike Rousos](https://github.com/mjrousos)
 
@@ -119,7 +119,7 @@ DI システムは、ASP.NET Core の DI システムが基になっています
 
 [!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
 
-内部的には、生成されたプロパティ (`DataRepository`) によって、[`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) 属性が使用されます。 通常、この属性を直接使用することはありません。 コンポーネントで基底クラスが必要であり、基底クラスで挿入されたプロパティも必要な場合は、[`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) 属性を手動で追加します。
+内部的には、生成されたプロパティ (`DataRepository`) によって、[`[Inject]` 属性](xref:Microsoft.AspNetCore.Components.InjectAttribute)が使用されます。 通常、この属性を直接使用することはありません。 コンポーネントで基底クラスが必要であり、基底クラスで挿入されたプロパティも必要な場合は、[`[Inject]` 属性](xref:Microsoft.AspNetCore.Components.InjectAttribute)を手動で追加します。
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -144,7 +144,7 @@ public class ComponentBase : IComponent
 
 ## <a name="use-di-in-services"></a>サービスで DI を使用する
 
-複雑なサービスでは、追加のサービスが必要になる場合があります。 次の例では、`DataAccess` に <xref:System.Net.Http.HttpClient> の既定のサービスが必要です。 [`@inject`](xref:mvc/views/razor#inject) (または [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) 属性) は、サービスでは使用できません。 代わりに、"*コンストラクター挿入*" を使用する必要があります。 サービスのコンストラクターにパラメーターを追加することによって、必要なサービスが追加されます。 DI では、サービスを作成するときに、コンストラクターで必要なサービスが認識され、それに応じてサービスが提供されます。 次の例では、コンストラクターは DI で <xref:System.Net.Http.HttpClient> を受け取ります。 <xref:System.Net.Http.HttpClient> は既定のサービスです。
+複雑なサービスでは、追加のサービスが必要になる場合があります。 次の例では、`DataAccess` に <xref:System.Net.Http.HttpClient> の既定のサービスが必要です。 [`@inject`](xref:mvc/views/razor#inject) (または [`[Inject]` 属性](xref:Microsoft.AspNetCore.Components.InjectAttribute)) は、サービスでは使用できません。 代わりに、"*コンストラクター挿入*" を使用する必要があります。 サービスのコンストラクターにパラメーターを追加することによって、必要なサービスが追加されます。 DI では、サービスを作成するときに、コンストラクターで必要なサービスが認識され、それに応じてサービスが提供されます。 次の例では、コンストラクターは DI で <xref:System.Net.Http.HttpClient> を受け取ります。 <xref:System.Net.Http.HttpClient> は既定のサービスです。
 
 ```csharp
 using System.Net.Http;
@@ -180,7 +180,7 @@ Blazor アプリでサービスの有効期間を制限するには、<xref:Micr
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase> は、<xref:Microsoft.AspNetCore.Components.ComponentBase> 型の抽象的で破棄可能な子であり、<xref:System.IServiceProvider>型の保護された <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> プロパティがあります。 このプロバイダーを使用すると、コンポーネントの有効期間にスコープが設定されているサービスを解決できます。
 
-  [`@inject`](xref:mvc/views/razor#inject) または [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) 属性を使用してコンポーネントに挿入された DI サービスは、コンポーネントのスコープでは作成されません。 コンポーネントのスコープを使用するには、<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> または <xref:System.IServiceProvider.GetService%2A> を使用してサービスを解決する必要があります。 <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> プロバイダーを使用して解決されたすべてのサービスには、同じスコープから提供される依存関係があります。
+  [`@inject`](xref:mvc/views/razor#inject) または [`[Inject]` 属性](xref:Microsoft.AspNetCore.Components.InjectAttribute)を使用してコンポーネントに挿入された DI サービスは、コンポーネントのスコープでは作成されません。 コンポーネントのスコープを使用するには、<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> または <xref:System.IServiceProvider.GetService%2A> を使用してサービスを解決する必要があります。 <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> プロバイダーを使用して解決されたすべてのサービスには、同じスコープから提供される依存関係があります。
 
   [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
 

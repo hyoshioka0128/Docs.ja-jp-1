@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: 5a255c2d3535311cecd6b7219447e80d1ae78877
-ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
+ms.openlocfilehash: f7cac477e2c5bca54e24ae3faeadff9b51bdcd0f
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98758252"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101062"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>ASP.NET Core Blazor アプリのエラーを処理する
-
-作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 この記事では、ハンドルされない例外を Blazor で管理する方法と、エラーを検出して処理するアプリを開発する方法について説明します。
 
@@ -173,7 +171,7 @@ Blazor は、ハンドルされない例外が発生した回線に対して、�
 Blazor によってコンポーネントのインスタンスが作成されるとき:
 
 * コンポーネントのコンストラクターが呼び出されます。
-* [`@inject`](xref:mvc/views/razor#inject) ディレクティブ、または [`[Inject]`](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) 属性を介して、コンポーネントのコンストラクターに渡されるシングルトン以外の DI サービスのコンストラクターが呼び出されます。
+* [`@inject`](xref:mvc/views/razor#inject) ディレクティブ、または [`[Inject]` 属性](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component)を介して、コンポーネントのコンストラクターに渡されるシングルトン以外の DI サービスのコンストラクターが呼び出されます。
 
 実行されたいずれかのコンストラクターまたは任意の `[Inject]` プロパティのセッターがハンドルされない例外をスローすると、Blazor Server の回線が失敗します。 フレームワークではコンポーネントをインスタンス化できないため、この例外は致命的です。 コンストラクターのロジックによって例外がスローされる可能性がある場合、アプリでは、エラー処理とログ記録を含む [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) ステートメントを使用して、例外をトラップする必要があります。
 
@@ -195,7 +193,17 @@ Blazor によってコンポーネントのインスタンスが作成される�
   * `loadFailed` が `true` に設定されます。これがユーザーにエラー メッセージを表示するために使われます。
   * エラーがログに記録されます。
 
-[!code-razor[](handle-errors/samples_snapshot/3.x/product-details.razor?highlight=11,27-39)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+
+::: moniker-end
 
 ### <a name="rendering-logic"></a>レンダリング ロジック
 
@@ -205,7 +213,17 @@ Blazor によってコンポーネントのインスタンスが作成される�
 
 レンダリング ロジックで null 参照例外が発生しないようにするには、そのメンバーにアクセスする前に `null` オブジェクトかどうかを調べます。 次の例では、`person.Address` が `null` の場合は `person.Address` プロパティにアクセスしません。
 
-[!code-razor[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
+
+::: moniker-end
 
 上記のコードは、`person` が `null` でないことを前提としています。 多くの場合、コードの構造によって、コンポーネントがレンダリングされる時点でオブジェクトの存在が保証されます。 そのような場合は、レンダリング ロジックで `null` かどうかを調べる必要はありません。 前の例では、`person` が存在することを保証できるのは、コンポーネントがインスタンス化されるときに `person` が作成されるためです。
 
@@ -242,7 +260,7 @@ Blazor によってコンポーネントのインスタンスが作成される�
 * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> の呼び出しが非同期に失敗した場合、.NET <xref:System.Threading.Tasks.Task> が失敗します。 たとえば、JavaScript 側のコードが例外をスローしたり、`rejected` として完了した `Promise` を返したりするために、<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> の呼び出しが失敗することがあります。 開発者コードで例外をキャッチする必要があります。 [`await`](/dotnet/csharp/language-reference/keywords/await) 演算子を使用する場合は、エラー処理とログ記録を含む [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) ステートメントでメソッド呼び出しをラップすることを検討してください。 そうしないと、失敗したコードにより、Blazor Server 回線にとって致命的なハンドルされない例外が発生する結果となります。
 * 既定では、<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> の呼び出しは一定の期間内に完了する必要があります。そうでないと呼び出しがタイムアウトになります。既定のタイムアウト期間は 1 分です。 タイムアウトにより、完了メッセージを送り返さないネットワーク接続や JavaScript コードでの損失からコードを保護します。 呼び出しがタイムアウトになった場合、結果の <xref:System.Threading.Tasks> は <xref:System.OperationCanceledException> で失敗します。 ログ記録を使用して例外をトラップし、処理します。
 
-同様に、JavaScript コードでは、[`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) 属性によって示される .NET メソッドの呼び出しを開始することがあります。 ハンドルされない例外が、これらの .NET メソッドでスローされた場合:
+同様に、JavaScript コードを使用して、[`[JSInvokable]` 属性](xref:blazor/call-dotnet-from-javascript)によって示される .NET メソッドの呼び出しを開始できます。 ハンドルされない例外が、これらの .NET メソッドでスローされた場合:
 
 * 例外は Blazor Server 回線にとって致命的なものとして扱われません。
 * JavaScript 側の `Promise` が拒否されます。

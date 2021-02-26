@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: 72b33bc3c2861380551915b1e8caab49122e8fab
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: d9fc767a4b5160c616053b075ba92194bcffa275
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99529918"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280012"
 ---
 # <a name="aspnet-core-blazor-component-virtualization"></a>ASP.NET Core Blazor コンポーネントの仮想化
-
-作成者: [Daniel Roth](https://github.com/danroth27)
 
 Blazor フレームワークに組み込まれている仮想化サポートを使用して、コンポーネント レンダリングの認識されるパフォーマンスを向上させます。 仮想化は、UI レンダリングを現在表示されている部分のみに制限するための手法です。 たとえば、仮想化が有用なのは、アプリで項目の長いリストや項目の一部のみをレンダリングする必要があるが、表示する必要があるのはどんなときでも項目のサブセットのみである場合です。 Blazor には、仮想化をアプリのコンポーネントに追加するために使用できる [`Virtualize` コンポーネント](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)が用意されています。
 
@@ -156,6 +154,8 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
     ...
 </Virtualize>
 ```
+
+既定では、初期レンダリングが行われた "*後*" に、`Virtualize` コンポーネントによって実際のレンダリング サイズが測定されます。 正確な初期レンダリングのパフォーマンスを支援し、ページを再読み込みするための正しいスクロール位置を確保するために、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> を使用して事前に正確な項目のサイズを提供します。 既定の <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> によって一部の項目が現在表示されているビューの外側にレンダーされる場合、2 回目の再レンダリングがトリガーされます。 仮想化されたリストでブラウザーのスクロール位置を正しく維持するには、最初のレンダリングが正しいことが必要です。 そうでない場合、間違った項目がユーザーに表示されるおそれがあります。 
 
 ## <a name="overscan-count"></a>オーバースキャン数
 

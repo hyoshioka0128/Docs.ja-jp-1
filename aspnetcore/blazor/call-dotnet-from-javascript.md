@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: e602f29e6932280f4625ade64201ff232e02150d
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 45ddcc9e006df2c5e86a7859efc76882b269a496
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751630"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280398"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>ASP.NET Core Blazor で JavaScript 関数から .NET メソッドを呼び出す
-
-作成者: [Javier Calvarro Nelson](https://github.com/javiercn)、[Daniel Roth](https://github.com/danroth27)、[Shashikant Rudrawadi](http://wisne.co)、[Luke Latham](https://github.com/guardrex)
 
 Blazor アプリでは、.NET メソッドから JavaScript 関数を呼び出すことも、JavaScript 関数から .NET メソッドを呼び出すこともできます。 これらのシナリオは、"*JavaScript 相互運用*" ("*JS 相互運用*") と呼ばれます。
 
@@ -41,9 +39,9 @@ Blazor アプリでは、.NET メソッドから JavaScript 関数を呼び出�
 
 ## <a name="static-net-method-call"></a>静的 .NET メソッドの呼び出し
 
-JavaScript から静的 .NET メソッドを呼び出すには、`DotNet.invokeMethod` 関数または `DotNet.invokeMethodAsync` 関数を使用します。 呼び出す静的メソッドの識別子、関数を含むアセンブリの名前、任意の引数を渡します。 Blazor Server のシナリオをサポートするには、非同期バージョンを使用することをお勧めします。 .NET メソッドはパブリックかつ静的であり、[`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) 属性を持つ必要があります。 オープン ジェネリック メソッドを呼び出すことは、現在サポートされていません。
+JavaScript から静的 .NET メソッドを呼び出すには、`DotNet.invokeMethod` 関数または `DotNet.invokeMethodAsync` 関数を使用します。 呼び出す静的メソッドの識別子、関数を含むアセンブリの名前、任意の引数を渡します。 Blazor Server のシナリオをサポートするには、非同期バージョンを使用することをお勧めします。 .NET メソッドはパブリックかつ静的であり、[`[JSInvokable]` 属性](xref:Microsoft.JSInterop.JSInvokableAttribute)を持つ必要があります。 オープン ジェネリック メソッドを呼び出すことは、現在サポートされていません。
 
-サンプル アプリには、`int` 配列を返す C# メソッドが含まれています。 [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) 属性がメソッドに適用されます。
+サンプル アプリには、`int` 配列を返す C# メソッドが含まれています。 [`[JSInvokable]` 属性](xref:Microsoft.JSInterop.JSInvokableAttribute)がメソッドに適用されます。
 
 `Pages/JsInterop.razor`:
 
@@ -78,7 +76,7 @@ Array(4) [ 1, 2, 3, 4 ]
 
 4 番目の配列値は、`ReturnArrayAsync` によって返される配列 (`data.push(4);`) にプッシュされます。
 
-既定では、メソッド識別子はメソッド名ですが、[`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) 属性コンストラクターを使用して別の識別子を指定することもできます。
+既定では、メソッド識別子はメソッド名ですが、[`[JSInvokable]` 属性](xref:Microsoft.JSInterop.JSInvokableAttribute)コンストラクターを使用して別の識別子を指定することもできます。
 
 ```csharp
 @code {

@@ -16,7 +16,7 @@
 * PR にラベル "cla-required" が割り当てられた場合、[貢献者使用許諾契約書 (CLA) を作成します](https://cla.dotnetfoundation.org/)。
 * PR のフィードバックに対応します。
 
-このプロセスで新しい記事が公開された例については、.NET Docs リポジトリの[問題 &num;67](https://github.com/dotnet/docs/issues/67) と[Pull Request &num;798](https://github.com/dotnet/docs/pull/798) を参照してください。 新しい記事は「[XML コメントによるコードの文書化](https://docs.microsoft.com/dotnet/articles/csharp/codedoc)」です。
+このプロセスで新しい記事が公開された例については、.NET Docs リポジトリの [Issue 1477](https://github.com/dotnet/docs/issues/1477) と [Pull Request 18955](https://github.com/dotnet/docs/pull/18955) を参照してください。 「[単体テストにコードカバレッジを使用する](/dotnet/core/testing/unit-testing-code-coverage)」は、新しい記事です。
 
 ## <a name="docs-authoring-pack-extension-in-visual-studio-code"></a>Visual Studio Code での Docs Authoring 拡張機能
 

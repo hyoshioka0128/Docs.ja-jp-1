@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 9c65abd5a055bb677a14921296316e7e03760bc2
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ad37f8434b6025c5f3ec97dc52987f5660a64edc
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96855366"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106675"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>ASP.NET Core での HTTP.sys Web サーバーの実装
 
@@ -62,7 +62,7 @@ HTTP.sys は、次のような展開に適しています。
 
   ![インターネットと直接通信する HTTP.sys](httpsys/_static/httpsys-to-internet.png)
 
-* 内部の展開で、[Windows 認証](xref:security/authentication/windowsauth)などの、Kestrel では使用できない機能が要求されている。
+* 内部の展開から Kestrel では使用できない機能が要求されている。 詳細については、このドキュメントの「[Kestrel と HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
   ![内部ネットワークと直接通信する HTTP.sys](httpsys/_static/httpsys-to-internal.png)
 
@@ -278,7 +278,7 @@ Visual Studio では、既定の起動プロファイルは IIS Express 用で�
 
 HTTP.sys 内の追加の HTTP/2 機能によって、gRPC がサポートされています。これには、応答トレーラーやリセット フレームの送信に関するサポートが含まれます。
 
-HTTP.SYS で gRPC を実行するための要件:
+HTTP.sys で gRPC を実行するための要件:
 
 * Windows 10、OS Build 19041.508 以降
 * TLS 1.2 以降の接続

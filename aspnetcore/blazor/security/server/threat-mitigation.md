@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 4256e90ca5f185992a73d1e43460ca5d27159d6f
-ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
+ms.openlocfilehash: 524a1f85838d083ed2f01afd96601bcd5e6ce12b
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98758276"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280979"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>ASP.NET Core Blazor Server の脅威の緩和のガイダンス
-
-作成者: [Javier Calvarro Jeannine](https://github.com/javiercn)
 
 Blazor Server アプリでは、サーバーとクライアントが長期間のリレーションシップを維持する、"*ステートフル*" なデータ処理モデルが採用されています。 永続的な状態は[回線](xref:blazor/state-management)によって維持されます。これは、長期間続く可能性がある接続にまたがることがあります。
 
@@ -108,20 +106,18 @@ Blazor クライアントは、セッションごとに 1 つの接続を確立�
 
 ## <a name="denial-of-service-dos-attacks"></a>サービス拒否 (DoS) 攻撃
 
-サービス拒否 (DoS) 攻撃では、クライアントがサーバーにそのリソースを 1 つ以上使い果たさせることで、アプリを利用できなくします。 Blazor Server アプリには既定の制限がいくつかあり、<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> で設定された DoS 攻撃から保護するために、他の ASP.NET Core や SignalR の制限に依存しています。
+サービス拒否 (DoS) 攻撃では、クライアントがサーバーにそのリソースを 1 つ以上使い果たさせることで、アプリを利用できなくします。 Blazor Server アプリには、既定の制限があり、DoS 攻撃から保護するために <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> で設定される他の ASP.NET Core や SignalR の制限に依存しています。
 
-| Blazor Server アプリの制限 | 説明 | Default |
-| --- | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | 特定のサーバーが一度にメモリに保持する切断された回線の最大数。 | 100 |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | 切断された回線が破棄されるまでにメモリに保持される最大時間。 | 3 分 |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | 非同期の JavaScript 関数呼び出しがタイムアウトするまでにサーバーが待機する最大時間。 | 1 分 |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | 堅牢な再接続をサポートするために、サーバーが一定期間、メモリに保持する回線あたりの未確認のレンダリング バッチの最大数。 制限に達すると、クライアントによって 1 つ以上のバッチが確認されるまで、サーバーは新しいレンダリング バッチの生成を停止します。 | 10 |
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType>
 
-<xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> を使用して、単一の受信ハブ メッセージの最大メッセージ サイズを設定します。
+詳細および構成コーディングの例については、次の記事を参照してください。
 
-| SignalR および ASP.NET Core の制限 | 説明 | Default |
-| --- | --- | --- |
-| <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> | 個々のメッセージのメッセージ サイズ。 | 32 KB |
+* <xref:blazor/fundamentals/signalr>
+* <xref:signalr/configuration>
 
 ## <a name="interactions-with-the-browser-client"></a>ブラウザー (クライアント) との対話
 

@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 5964554c36e2242b70faee390374828acd2bd860
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100552940"
+---
 AAD に登録されているサーバー API を使用するときに、アプリの AAD 登録が[未確認の発行元ドメイン](/azure/active-directory/develop/howto-configure-publisher-domain)に依存するテナント内にある場合、サーバー API アプリのアプリ ID の URI は、`api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}` ではなく `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}` の形式になります。 このケースの場合、 *`Client`* アプリの `Program.Main` (`Program.cs`) の既定のアクセス トークン スコープは、次のようになります。
 
 ```csharp

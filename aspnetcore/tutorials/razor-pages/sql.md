@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 8c9d0d9c24e0ce81925ccde463bcf085531b665e
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: fa1060ae1a046a40d55e9fef4a094aa9e51a18af
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024738"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101172"
 ---
-# <a name="part-4-of-tutorial-series-on-no-locrazor-pages"></a>Razor ページのチュートリアル シリーズのパート 4。
+# <a name="part-4-of-tutorial-series-on-razor-pages"></a>Razor ページのチュートリアル シリーズのパート 4。
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT) および [Joe Audette](https://twitter.com/joeaudette)
 
@@ -142,7 +142,7 @@ if (context.Movie.Any())
 
 * 依存関係挿入コンテナーからデータベース コンテキスト インスタンスを取得します。
 * `seedData.Initialize` メソッドを呼び出すと、データベース コンテキスト インスタンスに渡されます。
-* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
+* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
 
 `Update-Database` が実行されていなかった場合、次の例外が発生します。
 
@@ -296,7 +296,7 @@ if (context.Movie.Any())
 
 * 依存関係挿入コンテナーからデータベース コンテキスト インスタンスを取得します。
 * `seedData.Initialize` メソッドを呼び出すと、データベース コンテキスト インスタンスに渡されます。
-* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
+* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
 
 `Update-Database` が実行されていなかった場合、次の例外が発生します。
 
@@ -440,7 +440,7 @@ if (context.Movie.Any())
 
 * 依存関係挿入コンテナーからデータベース コンテキスト インスタンスを取得します。
 * `seedData.Initialize` メソッドを呼び出すと、データベース コンテキスト インスタンスに渡されます。
-* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
+* seed メソッドが完了したら、コンテキストを破棄します。 [using ステートメント](/dotnet/csharp/language-reference/keywords/using-statement)を使用すると、コンテキストが確実に破棄されます。
 
 運用アプリは `Database.Migrate` を呼び出しません。 これは、`Update-Database` が実行されていないとき、前述のコードに追加され、次の例外を阻止します。
 

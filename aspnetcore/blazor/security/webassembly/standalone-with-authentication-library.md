@@ -5,7 +5,7 @@ description: 認証ライブラリを使用して、ASP.NET Core Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 02/10/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,20 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-authentication-library
-ms.openlocfilehash: 3da9ea045de996602ead052f6f13ffc999273a50
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: a198606caf55232c221f1d1f1224918d3f87f04c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252488"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280882"
 ---
-# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-the-authentication-library"></a>認証ライブラリを使用して、ASP.NET Core Blazor WebAssembly スタンドアロン アプリをセキュリティで保護する
-
-作成者: [Javier Calvarro Nelson](https://github.com/javiercn)、[Luke Latham](https://github.com/guardrex)
+# <a name="secure-an-aspnet-core-blazor-webassembly-standalone-app-with-the-authentication-library"></a>認証ライブラリを使用して、ASP.NET Core Blazor WebAssembly スタンドアロン アプリをセキュリティで保護する
 
 *Azure Active Directory (AAD) および Azure Active Directory B2C (AAD B2C) については、このトピックのガイダンスに従わず、この目次ノードの AAD および AAD B2C のトピックを参照してください。*
 
-[`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) ライブラリを使用する [スタンドアロン Blazor WebAssembly アプリ](xref:blazor/hosting-models#blazor-webassembly)を作成するには、選択したツールのガイダンスに従ってください。
+[`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) ライブラリを使用する [スタンドアロン Blazor WebAssembly アプリ](xref:blazor/hosting-models#blazor-webassembly)を作成するには、選択したツールのガイダンスに従ってください。 認証のサポートを追加する場合は、アプリの設定と構成に関するガイダンスについて、この記事の次のセクションを参照してください。
 
 > [!NOTE]
 > Identity プロバイダー (IP) では [OpenID Connect (OIDC)](https://openid.net/connect/) を使用する必要があります。 たとえば、Facebook の IP は OIDC に準拠しているプロバイダーではないため、このトピックのガイダンスは Facebook IP では機能しません。 詳細については、「<xref:blazor/security/webassembly/index#authentication-library>」を参照してください。
@@ -43,11 +41,11 @@ ms.locfileid: "98252488"
 
 1. **[新しい ASP.NET Core Web アプリケーションを作成する]** ダイアログで **[Blazor WebAssembly アプリ]** テンプレートを選択した後、 **[認証]** の下の **[変更]** を選択します。
 
-1. ASP.NET Core の [Identity](xref:security/authentication/identity) システムを使用してアプリ内にユーザーを格納するには、 **[アプリ内のストア ユーザー アカウント]** オプションを使用して、 **[個人のユーザー アカウント]** を選択します。
+1. ASP.NET Core の [Identity](xref:security/authentication/identity) システムを使用するには、 **[アプリ内のストア ユーザー アカウント]** オプションを使用して、 **[個人のユーザー アカウント]** を選択します。 この選択によって認証のサポートが追加されます。ユーザーがデータベースに保存されることはありません。 この記事の以降のセクションで詳細について説明します。
 
 # <a name="visual-studio-code--net-core-cli"></a>[Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-空のフォルダーに、認証メカニズムを使用して新しい Blazor WebAssembly プロジェクトを作成します。 ASP.NET Core の [Identity](xref:security/authentication/identity) システムを使用してアプリ内にユーザーを格納するには、`-au|--auth` オプションを使用して `Individual` 認証メカニズムを指定します。
+空のフォルダーに、認証メカニズムを使用して新しい Blazor WebAssembly プロジェクトを作成します。 ASP.NET Core の [Identity](xref:security/authentication/identity) システムを使用するには、`-au|--auth` オプションを使用して `Individual` 認証メカニズムを指定します。 この選択によって認証のサポートが追加されます。ユーザーがデータベースに保存されることはありません。 この記事の以降のセクションで詳細について説明します。
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -o {APP NAME}
@@ -67,7 +65,7 @@ dotnet new blazorwasm -au Individual -o {APP NAME}
 
 1. **[新しい Blazor WebAssembly アプリの構成]** ステップで、 **[認証]** ドロップダウンから **[Individual Authentication (in-app)]\(個別認証 (アプリ内)\)** を選択します。
 
-1. ASP.NET Core の [Identity](xref:security/authentication/identity) を使用してアプリに格納されている個々のユーザーに対して、アプリが作成されます。
+1. アプリは ASP.NET Core [Identity](xref:security/authentication/identity) を使用するように作成されます。これによりユーザーがデータベースに保存されることはありません。 この記事の以降のセクションで詳細について説明します。
 
 ---
 
@@ -88,6 +86,8 @@ dotnet new blazorwasm -au Individual -o {APP NAME}
 ## <a name="authentication-service-support"></a>認証サービスのサポート
 
 ユーザーの認証に対するサポートは、[`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) パッケージによって提供される <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> 拡張メソッドを使用して、サービス コンテナーに登録されます。 このメソッドでは、アプリが IdentityID プロバイダー (IP) とやり取りするために必要なサービスが設定されます。
+
+新しいアプリの場合は、次の構成で `{AUTHORITY}` と `{CLIENT ID}` のプレースホルダーに値を指定します。 アプリの IP での使用に必要なその他の構成値を指定します。 この例は Google 用であり、`PostLogoutRedirectUri`、`RedirectUri`、`ResponseType` が必要です。 アプリに認証を追加する場合は、次のコードと構成を、プレースホルダーの値とその他の構成値を指定して、アプリに手動で追加します。
 
 `Program.cs`:
 
@@ -131,7 +131,9 @@ Google OAuth 2.0 OIDC の例:
 
 Blazor WebAssembly テンプレートでは、`openid` と `profile` の既定のスコープが自動的に構成されます。
 
-Blazor WebAssembly テンプレートでは、セキュリティで保護された API のアクセス トークンを要求するようにアプリが自動的に構成されるわけではありません。 サインイン フローの一部としてアクセス トークンをプロビジョニングするには、<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> の既定のトークン スコープにスコープを追加します。
+Blazor WebAssembly テンプレートでは、セキュリティで保護された API のアクセス トークンを要求するようにアプリが自動的に構成されるわけではありません。 サインイン フローの一部としてアクセス トークンをプロビジョニングするには、<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions> の既定のトークン スコープにスコープを追加します。 アプリに認証を追加する場合は、次のコードを手動で追加し、スコープ URI を構成します。
+
+`Program.cs`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

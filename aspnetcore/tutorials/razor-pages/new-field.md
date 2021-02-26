@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 2961fcaa8bbb93527eb80f5aa7b18ef04761fb50
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 852c26f89b229d89797d9ce6fce2983319defe9c
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486162"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101147"
 ---
-# <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>パート 7、ASP.NET Core で Razor ページでの新しいフィールドの追加
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>パート 7、ASP.NET Core で Razor ページでの新しいフィールドの追加
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -41,7 +41,7 @@ ms.locfileid: "97486162"
 
 EF Code First を使用してデータベースを自動的に作成する場合、Code First では次が実行されます。
 
-* データベースに [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
+* データベースに [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
 * モデル クラスがデータベースと同期されていない場合、EF から例外がスローされます。
 
 スキーマとモデルが同期中であることが自動的に検証されるようにすると、整合性のないデータベース コードの問題を発見しやすくなります。
@@ -182,7 +182,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 EF Code First を使用してデータベースを自動的に作成する場合、Code First では次が実行されます。
 
-* データベースに [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
+* データベースに [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
 * モデル クラスがデータベースと同期されていない場合、EF から例外がスローされます。
 
 スキーマとモデルが同期中であることが自動的に検証されるようにすると、整合性のないデータベース コードの問題を発見しやすくなります。
@@ -323,7 +323,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 EF Code First を使用してデータベースを自動的に作成する場合、Code First では次が実行されます。
 
-* データベースに [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
+* データベースに [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) テーブルが追加され、データベースのスキーマが生成元のモデル クラスと同期しているかどうかが追跡されます。
 * モデル クラスがデータベースと同期されていない場合、EF から例外がスローされます。
 
 スキーマとモデルが同期中であることが自動的に検証されるようにすると、整合性のないデータベース コードの問題を発見しやすくなります。

@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 1287ab5ce61e58848329c96393c3ee8c37610245
-ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
+ms.openlocfilehash: 012c8794b3d239ce93ac942000c7ec4f71d06cbf
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98658691"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279998"
 ---
-# <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor のフォームと検証
-
-作成者: [Daniel Roth](https://github.com/danroth27)、[Rémi Bourgarel](https://remibou.github.io/)、[Luke Latham](https://github.com/guardrex)
+# <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor のフォームと検証
 
 フォームと検証は、Blazor で[データ注釈](xref:mvc/models/validation)を使用してサポートされています。
 
@@ -380,6 +378,9 @@ public class CustomValidator : ComponentBase
     }
 }
 ```
+
+> [!NOTE]
+> 匿名のラムダ式は、<xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> と前の例の <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> に対して登録されているイベント ハンドラーです。 このシナリオでは、<xref:System.IDisposable> を実装したり、イベント デリゲートの登録を解除したりする必要はありません。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
 
 ## <a name="business-logic-validation"></a>ビジネス ロジックの検証
 
@@ -1052,7 +1053,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ::: moniker-end
 
-### <a name="no-locblazor-data-annotations-validation-package"></a>Blazor データ注釈検証パッケージ
+### <a name="blazor-data-annotations-validation-package"></a>Blazor データ注釈検証パッケージ
 
 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) は、<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネントを使用して検証エクスペリエンスのギャップを埋めるパッケージです。 パッケージは現在、*試験段階* です。
 
@@ -1063,7 +1064,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="compareproperty-attribute"></a>`[CompareProperty]` 属性
 
-<xref:System.ComponentModel.DataAnnotations.CompareAttribute> は、検証結果を特定のメンバーに関連付けないため、<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネントで正しく機能しません。 これにより、フィールドレベルの検証と、送信時のモデル全体が検証されたときの動作に一貫性がなくなることがあります。 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) "*試験的*" パッケージでは、これらの制限を回避する追加の検証属性 `ComparePropertyAttribute` が導入されています。 Blazor アプリでは、`[CompareProperty]` は [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) 属性の直接の代わりとなるものです。
+<xref:System.ComponentModel.DataAnnotations.CompareAttribute> は、検証結果を特定のメンバーに関連付けないため、<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネントで正しく機能しません。 これにより、フィールドレベルの検証と、送信時のモデル全体が検証されたときの動作に一貫性がなくなることがあります。 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) "*試験的*" パッケージでは、これらの制限を回避する追加の検証属性 `ComparePropertyAttribute` が導入されています。 Blazor アプリでは、`[CompareProperty]` は [`[Compare]` 属性](xref:System.ComponentModel.DataAnnotations.CompareAttribute)の直接の代わりとなるものです。
 
 ::: moniker-end
 
@@ -1124,7 +1125,7 @@ public class ShipDescription
 
 * コンポーネントを初期化するときに、フォームの <xref:Microsoft.AspNetCore.Components.Forms.EditContext> を使用してモデルを割り当てます。
 * コンテキストの <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> コールバックでフォームを検証して、送信ボタンを有効または無効にします。
-* `Dispose` メソッドでイベント ハンドラーをアンフックします。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
+* <xref:System.IDisposable> を実装し、`Dispose` メソッドでイベント ハンドラーの登録を解除します。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
 
 > [!NOTE]
 > さらに、<xref:Microsoft.AspNetCore.Components.Forms.EditContext>を使用する場合は、<xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> を <xref:Microsoft.AspNetCore.Components.Forms.EditForm>に割り当てないでください。

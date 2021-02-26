@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 5bdfcc5660b4c897d3552d4cf25e43dade71541c
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 9214fa10a2bf7d53a4cb12263a3fa69bded84b29
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252514"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536234"
 ---
-# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をデバッグする
-
-[Daniel Roth](https://github.com/danroth27)
+# <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をデバッグする
 
 Blazor WebAssembly アプリは、Chromium ベースのブラウザー (Edge/Chrome) のブラウザー開発ツールを使用してデバッグできます。 次の統合開発環境 (IDE) を使用して、アプリをデバッグすることもできます。
 
@@ -164,6 +162,8 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
 
 <h2 id="vscode">スタンドアロン Blazor WebAssembly のデバッグ</h2>
 
+`.vscode` フォルダー内の VS Code 資産の構成の詳細については、「<xref:blazor/tooling>」の **Linux** オペレーティング システムのガイダンスを参照してください。
+
 1. VS Code でスタンドアロンの Blazor WebAssembly アプリを開きます。
 
    デバッグを有効にするために追加の設定が必要であることを示す通知が表示される場合があります。
@@ -192,13 +192,15 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
 > [!NOTE]
 > デバッグ プロキシが実行状態になる前のアプリの起動中には、ブレークポイントで停止することは **ありません**。 これには、`Program.Main` (`Program.cs`) のブレークポイントと、アプリから要求された最初のページによって読み込まれるコンポーネントの [`OnInitialized{Async}` メソッド](xref:blazor/components/lifecycle#component-initialization-methods)のブレークポイントが含まれます。
 
-## <a name="debug-hosted-no-locblazor-webassembly"></a>ホストされた Blazor WebAssembly のデバッグ
+## <a name="debug-hosted-blazor-webassembly"></a>ホストされた Blazor WebAssembly のデバッグ
 
 1. VS Code で、ホストされた Blazor WebAssembly アプリのソリューション フォルダーを開きます。
 
 1. プロジェクトの起動構成が設定されていない場合は、次の通知が表示されます。 **[はい]** を選択します。
 
    > Required assets to build and debug are missing from '{APPLICATION NAME}'. (ビルドとデバッグに必要な資産が、'<アプリケーション名>' にありません。) 追加しますか?
+
+   `.vscode` フォルダー内の VS Code 資産の構成の詳細については、「<xref:blazor/tooling>」の **Linux** オペレーティング システムのガイダンスを参照してください。
 
 1. ウィンドウの上部にあるコマンド パレットで、ホストされているソリューション内の *Server* プロジェクトを選択します。
 
@@ -238,7 +240,7 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
 
 ## <a name="example-launch-configurations"></a>起動構成の例
 
-### <a name="launch-and-debug-a-standalone-no-locblazor-webassembly-app"></a>スタンドアロン Blazor WebAssembly アプリを起動してデバッグする
+### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>スタンドアロン Blazor WebAssembly アプリを起動してデバッグする
 
 ```json
 {
@@ -259,7 +261,7 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
 }
 ```
 
-### <a name="launch-and-debug-a-hosted-no-locblazor-webassembly-app-with-microsoft-edge"></a>Microsoft Edge でホストされている Blazor WebAssembly アプリを起動してデバッグする
+### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Microsoft Edge でホストされている Blazor WebAssembly アプリを起動してデバッグする
 
 ブラウザーの構成の既定値は Google Chrome です。 デバッグに Microsoft Edge を使用する場合は、`browser` を `edge` に設定します。 Google Chrome を使用するには、`browser` オプションを設定しないか、オプションの値を `chrome` に設定します。
 

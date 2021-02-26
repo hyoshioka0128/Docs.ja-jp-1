@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/rendering
-ms.openlocfilehash: 1a4d4116b8a6d9266bbacbbdd8f20dc49b4e1db0
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: e1222981d4af3f4e233cdc0c57bb96a71972af15
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253860"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280049"
 ---
-# <a name="aspnet-core-no-locblazor-component-rendering"></a>ASP.NET Core Blazor コンポーネントのレンダリング
-
-作成者: [Steve Sanderson](https://github.com/SteveSandersonMS)
+# <a name="aspnet-core-blazor-component-rendering"></a>ASP.NET Core Blazor コンポーネントのレンダリング
 
 コンポーネントは、その親コンポーネントによってコンポーネント階層に最初に追加されるときにレンダリングされる "*必要*" があります。 コンポーネントのレンダリングが厳密に必要なのは、このときだけです。
 
@@ -109,18 +107,20 @@ ms.locfileid: "98253860"
 
 .NET でのタスクの定義方法が理由で、<xref:System.Threading.Tasks.Task> の受信側で観察できるのは、中間の非同期状態ではなく、最終的な完了だけとなっています。 したがって、<xref:Microsoft.AspNetCore.Components.ComponentBase> で再レンダリングをトリガーできるのは、<xref:System.Threading.Tasks.Task> が最初に返されたときと、<xref:System.Threading.Tasks.Task> が最終的に完了したときに限られます。 他の中間点での再レンダリングに対する認識はありません。 中間点で再レンダリングを行いたい場合は、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を使用します。
 
-### <a name="receiving-a-call-from-something-external-to-the-no-locblazor-rendering-and-event-handling-system"></a>Blazor 再レンダリングおよびイベント処理システムの外部の何かからの呼び出しを受信する
+### <a name="receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system"></a>Blazor 再レンダリングおよびイベント処理システムの外部の何かからの呼び出しを受信する
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase> によって認識されるのは、その独自のライフサイクル メソッドと Blazor でトリガーされるイベントのみです。 ご利用のコード内で発生する可能性がある他のイベントについては、<xref:Microsoft.AspNetCore.Components.ComponentBase> によって認識されません。 たとえば、C# カスタム データ ストアによって発生したイベントは、Blazor によって認識されません。 そのようなイベントで再レンダリングをトリガーして、更新された値を UI に表示するためには、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を使用します。
 
 <xref:System.Timers.Timer?displayProperty=fullName> を使用してカウントを一定の間隔で更新し、<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出して UI を更新する次の `Counter` コンポーネントについて、別のユース ケースで考えてみましょう。
 
-`Pages/Counter.razor`:
+`Pages/CounterWithTimerDisposal.razor`:
 
 ```razor
-@page "/counter"
+@page "/counter-with-timer-disposal"
 @using System.Timers
 @implements IDisposable
+
+<h1>Counter with <code>Timer</code> disposal</h1>
 
 <p>Current count: @currentCount</p>
 
@@ -134,7 +134,7 @@ ms.locfileid: "98253860"
         timer.Start();
     }
 
-    void OnTimerCallback()
+    private void OnTimerCallback()
     {
         _ = InvokeAsync(() =>
         {
@@ -143,11 +143,14 @@ ms.locfileid: "98253860"
         });
     }
 
-    void IDisposable.Dispose() => timer.Dispose();
+    public void IDisposable.Dispose() => timer.Dispose();
 }
 ```
 
-前の例において、コールバックで `currentCount` への変更が Blazor によって認識されることはないため、`OnTimerCallback` では <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出す必要があります。 `OnTimerCallback` は、Blazor で管理される再レンダリング フローまたはイベント通知の外部で実行されます。
+前の例の場合:
+
+* コールバックでの `currentCount` への変更は Blazor によって認識されないため、`OnTimerCallback` で <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出す必要があります。 `OnTimerCallback` は、Blazor で管理される再レンダリング フローまたはイベント通知の外部で実行されます。
+* コンポーネントによって <xref:System.IDisposable> が実装されます。この場合、フレームワークによって `Dispose` メソッドが呼び出されると、<xref:System.Timers.Timer> が破棄されます。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
 
 同様に、コールバックは Blazor の同期コンテキストの外部で呼び出されるため、<xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> 内のロジックをラップして、それをレンダラーの同期コンテキストに移動することが必要です。 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> を呼び出すことができるのは、レンダラーの同期コンテキストからのみであり、それ以外の場合は例外がスローされます。 これは、他の UI フレームワーク内の UI スレッドへのマーシャリングに相当します。
 

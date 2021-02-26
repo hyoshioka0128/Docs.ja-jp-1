@@ -5,7 +5,7 @@ description: Blazor アプリをビルドする際に中間言語 (IL) リンカ
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2020
+ms.date: 02/08/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,31 +19,28 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-trimmer
-ms.openlocfilehash: 337b188d3c0aeac9c5c635ebca265b9a35c6904d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 41887638f13a08d375075e8377da19d1d0098c4b
+ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93055803"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99975217"
 ---
-# <a name="configure-the-trimmer-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor 用のトリマーを構成する
+# <a name="configure-the-trimmer-for-aspnet-core-blazor"></a>ASP.NET Core Blazor 用のトリマーを構成する
 
-作成者: [Pranav Krishnamoorthy](https://github.com/pranavkm)
+Blazor WebAssembly では、発行された出力のサイズを縮小するために、[中間言語 (IL)](/dotnet/standard/managed-code#intermediate-language--execution) トリミングが実行されます。 既定では、トリミングはアプリの発行時に行われます。
 
-Blazor WebAssembly では、発行された出力のサイズを縮小するために、[中間言語 (IL)](/dotnet/standard/managed-code#intermediate-language--execution) トリミングが実行されます。
+トリミングは好ましくない効果を与える場合があります。 リフレクションを使用するアプリの場合、実行時にリフレクションに必要な型がトリマーでは判断できないことがしばしばあります。 リフレクションを使用するアプリをトリミングするには、アプリのコードと、アプリが依存するパッケージまたはフレームワークの両方で、リフレクションに必要な型をトリマーに通知する必要があります。 実行時にアプリの動的な動作に反応することもトリマーはできません。 展開後、トリミングされたアプリが確実に正しく機能するよう、発行された出力を開発中に頻繁にテストしてください。
 
-アプリをトリミングするとサイズが最適化されますが、悪影響を及ぼす可能性があります。 リフレクションや関連する動的機能を使用するアプリは、トリミングされると中断する可能性があります。トリマーが、動的な動作を認識せず、通常、実行時にリフレクションで必要とされる型を特定できないからです。 そのようなアプリをトリミングするには、コードのリフレクション、およびアプリが依存しているパッケージまたはフレームワークのリフレクションで必要なすべての型を、トリマーに通知する必要があります。
+トリマーを構成するには、.NET の基礎ドキュメントの[トリミング オプション](/dotnet/core/deploying/trimming-options)に関する記事を参照してください。次の項目に関するガイダンスが含まれています。
 
-トリミングされたアプリが展開後に正しく動作するには、発行された出力を、開発中に頻繁にテストすることが重要です。
-
-.NET アプリのトリミングを無効にするには、アプリのプロジェクト ファイルで、`PublishTrimmed` MSBuild プロパティを `false` に設定します。
-
-```xml
-<PropertyGroup>
-  <PublishTrimmed>false</PublishTrimmed>
-</PropertyGroup>
-```
-トリマーを構成するためのその他のオプションについては、[トリミングのオプション](/dotnet/core/deploying/trimming-options)に関する記事をご覧ください。
+* プロジェクト ファイルの `<PublishTrimmed>` プロパティを使用し、アプリ全体のトリミングを無効にします。
+* 使用されていない IL をトリマーによって破棄する積極度を制御します。
+* 特定のアセンブリのトリミングをトリマーに禁止します。
+* トリミング用の "ルート" アセンブリ。
+* プロジェクト ファイルで `<SuppressTrimAnalysisWarnings>` プロパティを `false` に設定することで、リフレクションされた型の警告を表示します。
+* シンボル トリミングとデバッガー サポートを制御します。
+* フレームワーク ライブラリ機能をトリミングするためのトリマー機能を設定します。
 
 ## <a name="additional-resources"></a>その他のリソース
 

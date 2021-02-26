@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: f17ba247747f906cf026fc0f7bc04d51f4c8cb2a
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 1a5510364ee46165e275d07073ab087d79d65313
+ms.sourcegitcommit: 50d3e939a90c5480df480f651dda032901468dd5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530204"
+ms.lasthandoff: 02/08/2021
+ms.locfileid: "99819043"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>ASP.NET Core を使用した gRPC サービス
 
@@ -142,7 +142,7 @@ IIS は、TLS と HTTP/2 を使用するように構成する必要がありま�
 
 ## <a name="httpsys"></a>HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) は、Windows 上でのみ動作する ASP.NET Core 用 Web サーバーです。 HTTP.sys で gRPC サービスをホストするには、.NET 5 および Windows 10 ビルド 20241 以降が必要です。
+[HTTP.sys](xref:fundamentals/servers/httpsys) は、Windows 上でのみ動作する ASP.NET Core 用 Web サーバーです。 HTTP.sys で gRPC サービスをホストするには、.NET 5 および Windows 10 ビルド 19529 以降が必要です。
 
 HTTP.sys は、TLS と HTTP/2 を使用するように構成する必要があります。 詳細については、[HTTP.sys Web サーバーの HTTP/2 サポート](xref:fundamentals/servers/httpsys#http2-support)に関する記事を参照してください。
 
