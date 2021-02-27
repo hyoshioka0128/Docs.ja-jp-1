@@ -1,4 +1,24 @@
-Blazor サーバー アプリをプリレンダリングしている間、ブラウザーとの接続が確立されていないため、JavaScript への呼び出しなどの特定のアクションは実行できません。 コンポーネントは、プリレンダリング時に異なるレンダリングが必要になる場合があります。
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: c152524e0acd3803bd3b8078f667cce01180e25d
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100551569"
+---
+Blazor Server アプリをプリレンダリングしている間、ブラウザーとの接続が確立されていないため、JavaScript への呼び出しなどの特定のアクションは実行できません。 コンポーネントは、プリレンダリング時に異なるレンダリングが必要になる場合があります。
 
 ブラウザーとの接続が確立されるまで JavaScript の相互運用呼び出しを遅らせるために、[OnAfterRenderAsync コンポーネント ライフサイクル イベント](xref:blazor/components/lifecycle#after-component-render)を使用できます。 このイベントは、アプリが完全にレンダリングされ、クライアント接続が確立された後にのみ呼び出されます。
 
@@ -31,7 +51,7 @@ Blazor サーバー アプリをプリレンダリングしている間、ブラ
 ```
 
 > [!WARNING]
-> 前の例では、デモンストレーションのみを目的として、ドキュメント オブジェクト モデル (DOM) を直接変更しています。 ほとんどのシナリオにおいて、JavaScript で DOM を直接変更することはお勧めできません。JavaScript が Blazor の変更追跡に影響する可能性があるためです。
+> 前の例では、デモンストレーションのみを目的として、ドキュメント オブジェクト モデル (DOM) を直接変更しています。 JavaScript での DOM の直接変更は、ほとんどのシナリオでは推奨されません。JavaScript が Blazor の変更追跡に影響する可能性があるためです。
 
 次のコンポーネントは、プリレンダリングと互換性のある方法で、コンポーネントの初期化ロジックの一部として JavaScript の相互運用を使用する方法を示しています。 コンポーネントには、<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> 内からレンダリングの更新をトリガーできることが示されています。 このシナリオでは、開発者が無限ループを作成しないようにする必要があります。
 
@@ -82,4 +102,4 @@ Set value via JS interop call:
 ```
 
 > [!WARNING]
-> 前の例では、デモンストレーションのみを目的として、ドキュメント オブジェクト モデル (DOM) を直接変更しています。 ほとんどのシナリオにおいて、JavaScript で DOM を直接変更することはお勧めできません。JavaScript が Blazor の変更追跡に影響する可能性があるためです。
+> 前の例では、デモンストレーションのみを目的として、ドキュメント オブジェクト モデル (DOM) を直接変更しています。 JavaScript での DOM の直接変更は、ほとんどのシナリオでは推奨されません。JavaScript が Blazor の変更追跡に影響する可能性があるためです。

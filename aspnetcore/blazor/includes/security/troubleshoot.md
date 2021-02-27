@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 4e7c0e9b0a164e0181af5d6baaedf0669c1c06aa
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100551751"
+---
 ## <a name="troubleshoot"></a>トラブルシューティング
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -16,7 +36,7 @@
   このエラーを解決するには:
 
   1. Azure portal で、[アプリのマニフェスト](/azure/active-directory/develop/reference-app-manifest)にアクセスします。
-  1. [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) 属性を `null` または `true` に設定します。
+  1. [`allowPublicClient` 属性](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute)を `null` または `true` に設定します。
 
 ::: moniker-end
 
@@ -24,14 +44,14 @@
 
 Cookie とサイト データは、アプリが更新されても保持され、テストやトラブルシューティングに影響する可能性があります。 アプリ コードの変更、プロバイダーによるユーザー アカウントの変更、プロバイダー アプリの構成変更を行うときは、次のものをクリアしてください。
 
-* ユーザーのサインインの Cookie
-* アプリの Cookie
+* ユーザー サインイン cookie
+* アプリ cookie
 * キャッシュおよび保存されたサイト データ
 
-残った Cookie とサイト データがテストとトラブルシューティングに影響しないようにする方法を、次に示します。
+残った cookie とサイト データがテストとトラブルシューティングに影響しないようにする方法を、次に示します。
 
 * ブラウザーを構成する
-  * ブラウザーが閉じるたびに Cookie とサイト データをすべて削除するように構成できることをテストするために、ブラウザーを使用します。
+  * ブラウザーが閉じるたびに cookie とサイト データをすべて削除するように構成できることをテストするために、ブラウザーを使用します。
   * アプリ、テスト ユーザー、プロバイダー構成が変更されるたびにブラウザーが手動で、または IDE によって閉じられていることを確認します。
 * カスタム コマンドを使用して、Visual Studio でブラウザーをシークレットまたはプライベート モードで開く。
   * Visual Studio の **[実行]** ボタンをクリックして **[ブラウザーの選択]** ダイアログボックスを開きます。

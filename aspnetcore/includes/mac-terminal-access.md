@@ -1,4 +1,24 @@
-### <a name="accessing-a-command-terminal-on-visual-studios-for-mac"></a>Visual Studio for Mac でコマンド ターミナルにアクセスする
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: cc421e92ad9b635ac795ae06a4b9a1daf821f89c
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564080"
+---
+### <a name="accessing-a-command-terminal-on-mac"></a>Mac でのコマンド ターミナルへのアクセス
 
 Mac でコマンド ターミナルに初めてアクセスするときは、次の設定を構成する必要があります。
 

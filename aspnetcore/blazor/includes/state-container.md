@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 76dbf3cae1c264fa474101bc4398da28f45a1c10
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100254390"
+---
 入れ子になったコンポーネントは通常、「ASP.NET Core Blazor データ バインディング<xref:blazor/components/data-binding>」で説明されているように、"*チェーン バインド*" を使用してデータをバインドします。 入れ子になったコンポーネントと入れ子になっていないコンポーネントは、登録済みのメモリ内状態コンテナーを使用してデータへのアクセスを共有できます。 カスタムの状態コンテナー クラスでは、割り当て可能な <xref:System.Action> を使用して、状態変更のアプリのさまざまな部分でコンポーネントに通知できます。 次に例を示します。
 
 * コンポーネントのペアでは、状態コンテナーを使用してプロパティを追跡します。
@@ -22,13 +42,13 @@ public class StateContainer
 }
 ```
 
-`Program.Main` (Blazor WebAssembly) では、次のようになります。
+`Program.Main` (Blazor WebAssembly):
 
 ```csharp
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-`Startup.ConfigureServices` (Blazor Server) では、次のようになります。
+`Startup.ConfigureServices` (Blazor Server):
 
 ```csharp
 services.AddSingleton<StateContainer>();
@@ -59,7 +79,7 @@ services.AddSingleton<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 1 {DateTime.Now}");
+        StateContainer.SetProperty($"New value set in Component 1: {DateTime.Now}");
     }
 
     public void Dispose()
@@ -91,7 +111,7 @@ services.AddSingleton<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 2 {DateTime.Now}");
+        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
     }
 
     public void Dispose()
@@ -100,3 +120,5 @@ services.AddSingleton<StateContainer>();
     }
 }
 ```
+
+前のコンポーネントによって <xref:System.IDisposable> が実装され、`Dispose` メソッドで `OnChange` デリゲートがサブスクライブ解除されます。このメソッドは、コンポーネントが破棄されるときにフレームワークによって呼び出されます。 詳細については、「<xref:blazor/components/lifecycle#component-disposal-with-idisposable>」を参照してください。
