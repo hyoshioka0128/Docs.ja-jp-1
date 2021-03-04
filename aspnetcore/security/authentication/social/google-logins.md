@@ -4,7 +4,7 @@ author: rick-anderson
 description: このチュートリアルでは、既存の ASP.NET Core アプリに Google アカウントユーザー認証を統合する方法について説明します。
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 03/19/2020
+ms.date: 02/18/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: 111ea7c972778dfd5296d0401c16563aeaa36a63
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 181ce87e8085839e0fcc0d77010c588ef7a290b1
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060314"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102110132"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>ASP.NET Core での Google 外部ログインのセットアップ
 
@@ -33,12 +33,16 @@ ms.locfileid: "93060314"
 
 ## <a name="create-a-google-api-console-project-and-client-id"></a>Google API コンソールプロジェクトとクライアント ID を作成する
 
-* [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)をインストールします。
-* [Google Sign-In と web アプリの統合](https://developers.google.com/identity/sign-in/web/sign-in)に移動し、[ **プロジェクトの構成** ] を選択します。
-* [ **OAuth クライアントの構成** ] ダイアログで、[ **Web サーバー** ] を選択します。
-* [承認された **リダイレクト uri** のテキスト入力] ボックスで、リダイレクト uri を設定します。 たとえば、`https://localhost:44312/signin-google` のように指定します。
-* **クライアント ID** と **クライアントシークレット** を保存します。
-* サイトをデプロイするときに、新しいパブリック url を **Google コンソール** から登録します。
+* アプリに [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet パッケージを追加します。
+* [「Google Sign-In を web アプリに統合する](https://developers.google.com/identity/sign-in/web/sign-in)(google ドキュメント)」のガイダンスに従ってください。
+* [Google コンソール](https://console.developers.google.com/apis/credentials)の [**資格情報**] ページで、[**資格情報の作成**] [  >  **OAuth クライアント ID**] を選択します。
+* [ **アプリケーションの種類** ] ダイアログボックスで、[ **Web アプリケーション**] を選択します。 アプリの **名前** を指定します。
+* [承認された **リダイレクト uri** ] セクションで、[ **uri の追加** ] を選択してリダイレクト uri を設定します。 リダイレクト URI の例: `https://localhost:{PORT}/signin-google` 、 `{PORT}` プレースホルダーはアプリのポートです。
+* [ **作成** ] ボタンを選択します。
+* アプリの構成で使用するために、 **クライアント ID** と **クライアントシークレット** を保存します。
+* サイトを展開するときは、次のいずれかの方法を実行します。
+  * **Google Console** のアプリのリダイレクト uri をアプリのデプロイ済みリダイレクト uri に更新します。
+  * 運用環境のリダイレクト URI を使用して、 **Google コンソール** で、実稼働アプリの新しい google API 登録を作成します。
 
 ## <a name="store-the-google-client-id-and-secret"></a>Google クライアント ID とシークレットを保存する
 
@@ -66,7 +70,7 @@ Google サービスをに追加し `Startup.ConfigureServices` ます。
 
 ## <a name="sign-in-with-google"></a>Google でサインイン
 
-* アプリを実行し、[ **ログイン** ] をクリックします。 Google でサインインするためのオプションが表示されます。
+* アプリを実行し、[ **ログイン**] をクリックします。 Google でサインインするためのオプションが表示されます。
 * [ **Google** ] ボタンをクリックします。これにより、認証のために google にリダイレクトされます。
 * Google の資格情報を入力すると、web サイトにリダイレクトされます。
 
@@ -78,7 +82,7 @@ Google サービスをに追加し `Startup.ConfigureServices` ます。
 
 ## <a name="change-the-default-callback-uri"></a>既定のコールバック URI を変更する
 
-URI セグメント `/signin-google` は、Google 認証プロバイダーの既定のコールバックとして設定されます。 [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions)クラスの [継承された[remoteauthenticationoptions]](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath)プロパティを使用して Google 認証ミドルウェアを構成するときに、既定のコールバック URI を変更できます。
+URI セグメント `/signin-google` は、Google 認証プロバイダーの既定のコールバックとして設定されます。 クラスの "継承された" プロパティを使用して Google authentication ミドルウェアを構成するときに、既定のコールバック URI を変更でき <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> ます。
 
 ## <a name="troubleshooting"></a>トラブルシューティング
 

@@ -19,14 +19,14 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: f1aa388015bd540a6fda263eac53753ada63bf79
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: e06c73edfc999053e0aa37f05d984a2b428f69a9
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94673992"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109937"
 ---
-# <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>cookieASP.NET Core での SameSite s の使用
+# <a name="work-with-samesite-cookies-in-aspnet-core"></a>cookieASP.NET Core での SameSite s の使用
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -42,13 +42,13 @@ SameSite は、クロスサイトリクエスト偽造 (CSRF) 攻撃に対して
 
 を出力する各 ASP.NET Core コンポーネント cookie は、SameSite が適切かどうかを判断する必要があります。
 
-## <a name="samesite-and-no-locidentity"></a>SameSite と Identity
+## <a name="samesite-and-identity"></a>SameSite と Identity
 
 [!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
 ## <a name="samesite-test-sample-code"></a>SameSite テストサンプルコード
 
- ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 
 次のサンプルをダウンロードしてテストできます。
 
@@ -62,7 +62,6 @@ SameSite は、クロスサイトリクエスト偽造 (CSRF) 攻撃に対して
 ::: moniker range=">= aspnetcore-3.0"
 
 次のサンプルをダウンロードしてテストできます。
-
 
 | サンプル               | ドキュメント |
 | ----------------- | ------------ |
@@ -227,7 +226,7 @@ Edge では、古い SameSite 標準がサポートされています。 Edge �
 
 ページに SameSite フラグが設定されてい `edge://flags/#same-site-by-default-cookies` ます。 Edge Chromium で互換性の問題は検出されませんでした。
 
-### <a name="test-with-no-locelectron"></a>テストに使用する Electron
+### <a name="test-with-electron"></a>テストに使用する Electron
 
 のバージョンに Electron は、古いバージョンの Chromium が含まれています。 たとえば、 Electron チームによって使用されるのバージョンは Chromium 66 であり、以前の動作を示しています。 使用している製品のバージョンで、独自の互換性テストを実行する必要があり Electron ます。 次のセクションの「 [古いブラウザーのサポート](#sob) 」を参照してください。
 
