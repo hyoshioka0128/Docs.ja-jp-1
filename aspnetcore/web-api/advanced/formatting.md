@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 5d228af00ee34e7f8ca60a5085872fdb93842367
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: 5fa7bc15bac2609c89fea54f8a788aaf9f5ad055
+ms.sourcegitcommit: 3982ff9dabb5b12aeb0a61cde2686b5253364f5d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057500"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102119033"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>ASP.NET Core Web API の応答データの書式設定
 
@@ -132,7 +132,7 @@ Accept ヘッダーに `*/*` が含まれる場合、`RespectBrowserAcceptHeader
 
 前のコードを使用する場合、コントローラー メソッドは要求の `Accept` ヘッダーに基づいて適切な形式を返します。
 
-### <a name="configure-systemtextjson-based-formatters"></a>ベースのフォーマッタで System.Text.Jsを構成する
+### <a name="configure-systemtextjson-based-formatters"></a>ベースのフォーマッタを構成する `System.Text.Json`
 
 ベースのフォーマッタの機能は、 `System.Text.Json` を使用して構成でき <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName> ます。 既定の書式設定はキャメルケースです。 次の強調表示されたコードは、文字セットの書式を設定します。
 
@@ -188,7 +188,7 @@ ASP.NET Core 3.0 より前、既定では、`Newtonsoft.Json` パッケージを
 
 一部の機能は `System.Text.Json` ベースのフォーマッタでうまく動作せず、`Newtonsoft.Json` ベースのフォーマッタの参照が必要となる場合があります。 アプリが以下の場合には、`Newtonsoft.Json` ベースのフォーマッタの使用を続けます。
 
-* `Newtonsoft.Json` 属性を使用する。 たとえば、`[JsonProperty]` または `[JsonIgnore]` です。
+* `Newtonsoft.Json` 属性を使用する。  たとえば、`[JsonProperty]` または `[JsonIgnore]` です。
 * シリアル化の設定をカスタマイズする。
 * `Newtonsoft.Json` で提供される機能に依存する。
 * `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings` を構成する。 ASP.NET Core 3.0 より前は、`JsonResult.SerializerSettings`が `Newtonsoft.Json` に固有の `JsonSerializerSettings` のインスタンスを受け入れます。
