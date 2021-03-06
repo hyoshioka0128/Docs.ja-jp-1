@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 266781d0abc564952e124bc6eca3805c07592251
-ms.sourcegitcommit: 50d3e939a90c5480df480f651dda032901468dd5
+ms.openlocfilehash: 4fa49f795b78b88e00bd32d04f74acd8689383b2
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/08/2021
-ms.locfileid: "99819056"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394474"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>IdentityASP.NET Core の概要
 
@@ -386,6 +386,15 @@ Register、Login、および LogOut の各ファイルを追加します。
 # <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 **WebApp1** という名前のプロジェクトを作成した場合は、次のコマンドを実行します。 それ以外の場合は、の正しい名前空間を使用し `ApplicationDbContext` ます。
+
+SQLite を使用する場合は、 `--useSqLite` 次のように指定する必要があります。
+
+```dotnetcli
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout" --useSqLite
+```
+
+SQL Express では、次のコマンドを使用します。
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
