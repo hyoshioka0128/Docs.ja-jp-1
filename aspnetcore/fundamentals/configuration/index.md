@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 0f069b049889f7caade493e238ac7a23db5e79af
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: 24b4d5fc11d21dce4d9e0fd2f8f0dd2d45e82baa
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100536305"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102110080"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core の構成
 
@@ -91,6 +91,8 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 
 * 開発中は、*appsettings*.***Development** _._json* 構成によって、 *appsettings.json* で見つかった値が上書きされます。
 * 運用環境では、*appsettings*.***Production** _._json* 構成によって、 *appsettings.json* で見つかった値が上書きされます。 たとえば、Azure にアプリをデプロイする場合。
+
+構成値を保証する必要がある場合は、「[GetValue](#getvalue)」を参照してください。 前の例では文字列が読み取られるだけで、既定値はサポートされていません
 
 <a name="optpat"></a>
 
@@ -1201,7 +1203,7 @@ public static readonly Dictionary<string, string> _switchMappings =
 
 スイッチ マッピング ディクショナリが作成されると、以下の表に示すデータが含まれます。
 
-| Key       | 値             |
+| Key       | [値]             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1778,7 +1780,7 @@ config.AddJsonFile(
 
 表に示すキーと値のペアが構成に読み込まれます。
 
-| Key             | 値  |
+| Key             | [値]  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1801,7 +1803,7 @@ JSON ファイルに配列が含まれる場合、配列要素の構成キーは
 
 JSON 構成プロバイダーは、次のキーと値のペアに構成データを読み取ります。
 
-| Key                     | 値  |
+| Key                     | [値]  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 5a3d3c6e06653de7f0d01565444d37013f347a5b
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 41b588acdef3eedd9fc081f50040d160147bab4b
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280314"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109651"
 ---
 # <a name="secure-aspnet-core-blazor-server-apps"></a>ASP.NET Core Blazor Server アプリをセキュリティで保護する
 
@@ -124,6 +124,10 @@ Identity を Blazor Server プロジェクトにスキャフォールディン�
 
 * [既存の承認がありません](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)。
 * [承認があります](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization)。
+
+## <a name="additional-claims-and-tokens-from-external-providers"></a>外部プロバイダーからの追加のクレームとトークン
+
+外部プロバイダーからの追加のクレームを格納するには、<xref:security/authentication/social/additional-claims> を参照してください。
 
 ## <a name="azure-app-service-on-linux-with-identity-server"></a>Identity Server を使用した Azure App Service on Linux
 
