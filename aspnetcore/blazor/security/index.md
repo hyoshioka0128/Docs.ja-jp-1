@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 9a14a8e16d8e50b47c479cf4d973459fbf61cec7
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: a840e5d54d48441e10c2a58af591a530c8fd7de9
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280371"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394890"
 ---
 # <a name="aspnet-core-blazor-authentication-and-authorization"></a>ASP.NET Core Blazor の認証と承認
 
@@ -299,7 +299,7 @@ UI オプションまたはアクセスを制御するロールやポリシー�
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> コンポーネントは、`NavMenu` コンポーネント (`Shared/NavMenu.razor`) で使用して [`NavLink` コンポーネント](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) のリスト項目 (`<li>...</li>`) を表示できますが、この方法では、表示された出力からリスト項目が削除されるだけであることに注意してください。 ユーザーがコンポーネントに移動するのを防ぐことはできません。
 
-認証を含む Blazor プロジェクト テンプレートから作成されたアプリでは、`AuthorizeView` コンポーネントに依存する `LoginDisplay` コンポーネントが使用されます。 `AuthorizeView` コンポーネントでは、Identity に関連する作業に関してコンテンツが選択的にユーザーに表示されます。 次の例は、Blazor WebAssembly プロジェクト テンプレートからのものです。
+認証を含む [Blazor プロジェクト テンプレート](xref:blazor/project-structure)から作成されたアプリでは、`AuthorizeView` コンポーネントに依存する `LoginDisplay` コンポーネントが使用されます。 `AuthorizeView` コンポーネントでは、Identity に関連する作業に関してコンテンツが選択的にユーザーに表示されます。 次の例は、[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)からのものです。
 
 `Shared/LoginDisplay.razor`:
 
@@ -329,7 +329,7 @@ UI オプションまたはアクセスを制御するロールやポリシー�
 }
 ```
 
-次の例は Blazor Server プロジェクト テンプレートからのものであり、Identity に関連する作業を処理するためにアプリの `Identity` 領域で ASP.NET Core Identity エンドポイントが使用されています。
+次の例は [Blazor Server プロジェクト テンプレート](xref:blazor/project-structure)からのものであり、Identity に関連する作業を処理するためにアプリの `Identity` 領域で ASP.NET Core Identity エンドポイントが使用されています。
 
 `Shared/LoginDisplay.razor`:
 
@@ -442,7 +442,7 @@ You can only see this if you're signed in.
 * 非同期の認可が進行中です。これは通常、ユーザーの認証プロセスが進行中であることを意味します。 [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) 要素のマークアップが表示されます。
 * コンテンツが見つからない。 [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType) 要素のマークアップが表示されます。
 
-既定の Blazor Server プロジェクト テンプレートでは、`App` コンポーネント (`App.razor`) によりカスタム コンテンツの設定方法が示されます。
+既定の [Blazor Server プロジェクト テンプレート](xref:blazor/project-structure)では、`App` コンポーネント (`App.razor`) によりカスタム コンテンツの設定方法が示されます。
 
 ```razor
 <CascadingAuthenticationState>
