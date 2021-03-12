@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: 6fc8913640a0a8d506e2c00002912897edbfd826
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 53d276db996304852d69566584e43d47aa73f921
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280480"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586554"
 ---
 # <a name="aspnet-core-blazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server と Entity Framework Core (EFCore)
 
@@ -39,16 +39,16 @@ Blazor Server はステートフル アプリ フレームワークです。 ア
 
 このサンプル アプリは、EF Core を使用する Blazor Server アプリのリファレンスとして作成されました。 サンプル アプリには、並べ替えとフィルター処理、削除、追加、更新の各操作を行うグリッドが含まれています。 このサンプルは、EF Core を使用してオプティミスティック同時実行制御を処理する方法を示しています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプルにはローカルの [SQLite](https://www.sqlite.org/index.html) データベースが使用されているため、どのプラットフォームでも使用できます。 このサンプルでは、生成された SQL クエリを表示するようにデータベースのログも構成されています。 これは `appsettings.Development.json` で構成されています。
 
-[!code-json[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)]
+[!code-json[](~/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)]
 
 グリッド、追加、および表示の各コンポーネントでは、操作ごとにコンテキストが作成される "操作ごとのコンテキスト" パターンが使用されます。 編集コンポーネントでは、コンポーネントごとにコンテキストが作成される "コンポーネントごとのコンテキスト" パターンが使用されます。
 
 > [!NOTE]
-> このトピックのコード例には、表示されていない名前空間とサービスを必要とするものもあります。 Razor の例に必要な [`@using`](xref:mvc/views/razor#using) および [`@inject`](xref:mvc/views/razor#inject) ディレクティブを含む完全に機能するコードを検査するには、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample)を参照してください。
+> このトピックのコード例には、表示されていない名前空間とサービスを必要とするものもあります。 Razor の例に必要な [`@using`](xref:mvc/views/razor#using) および [`@inject`](xref:mvc/views/razor#inject) ディレクティブを含む完全に機能するコードを検査するには、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample)を参照してください。
 
 <h2 id="database-access-5x">データベース アクセス</h2>
 
@@ -98,16 +98,16 @@ EF Core では、[データベース アクセスを構成](/ef/core/miscellaneo
 
 依存関係を持つ新しい <xref:Microsoft.EntityFrameworkCore.DbContext> を作成するには、ファクトリを使用することをお勧めします。 EF Core 5.0 以降には、新しいコンテキストを作成するためのファクトリが組み込まれています。
 
-次の例では、[SQLite](https://www.sqlite.org/index.html) を構成し、データのログ記録を有効にします。 このコードでは、[拡張メソッド (`AddDbContextFactory`)](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/FactoryExtensions.cs) を使用して、DI のデータベース ファクトリを構成し、既定のオプションを指定しています。
+次の例では、[SQLite](https://www.sqlite.org/index.html) を構成し、データのログ記録を有効にします。 このコードでは、[拡張メソッド (`AddDbContextFactory`)](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/FactoryExtensions.cs) を使用して、DI のデータベース ファクトリを構成し、既定のオプションを指定しています。
 
-[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
 
 ファクトリはコンポーネントに挿入され、新しいインスタンスを作成するために使用されます。 たとえば、`Pages/Index.razor` では次のようにします。
 
-[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
 
 > [!NOTE]
-> `Wrapper` は、`GridWrapper` コンポーネントへの[コンポーネント参照](xref:blazor/components/index#capture-references-to-components)です。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)の `Index` コンポーネント (`Pages/Index.razor`) を参照してください。
+> `Wrapper` は、`GridWrapper` コンポーネントへの[コンポーネント参照](xref:blazor/components/index#capture-references-to-components)です。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)の `Index` コンポーネント (`Pages/Index.razor`) を参照してください。
 
 新しい <xref:Microsoft.EntityFrameworkCore.DbContext> インスタンスは、[[ASP.NET Core の Identity モデル]](xref:security/authentication/customize_identity_model) を使用する場合など、`DbContext` ごとに接続文字列を構成できるファクトリを使用して作成できます。
 
@@ -134,11 +134,11 @@ services.AddScoped<ApplicationDbContext>(p =>
 
 サンプル アプリでは、コンポーネントが破棄されるときに、コンテキストも確実に破棄されます。
 
-[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 
 最後に、[`OnInitializedAsync`](xref:blazor/components/lifecycle) は新しいコンテキストを作成するためにオーバーライドされます。 サンプル アプリでは、[`OnInitializedAsync`](xref:blazor/components/lifecycle) を使用して同じメソッドで連絡先を読み込んでいます。
 
-[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
 
 <h3 id="enable-sensitive-data-logging">機密データのログ記録を有効にする</h3>
 
@@ -170,16 +170,16 @@ Blazor Server はステートフル アプリ フレームワークです。 ア
 
 このサンプル アプリは、EF Core を使用する Blazor Server アプリのリファレンスとして作成されました。 サンプル アプリには、並べ替えとフィルター処理、削除、追加、更新の各操作を行うグリッドが含まれています。 このサンプルは、EF Core を使用してオプティミスティック同時実行制御を処理する方法を示しています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプルにはローカルの [SQLite](https://www.sqlite.org/index.html) データベースが使用されているため、どのプラットフォームでも使用できます。 このサンプルでは、生成された SQL クエリを表示するようにデータベースのログも構成されています。 これは `appsettings.Development.json` で構成されています。
 
-[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)]
+[!code-json[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)]
 
 グリッド、追加、および表示の各コンポーネントでは、操作ごとにコンテキストが作成される "操作ごとのコンテキスト" パターンが使用されます。 編集コンポーネントでは、コンポーネントごとにコンテキストが作成される "コンポーネントごとのコンテキスト" パターンが使用されます。
 
 > [!NOTE]
-> このトピックのコード例には、表示されていない名前空間とサービスを必要とするものもあります。 Razor の例に必要な [`@using`](xref:mvc/views/razor#using) および [`@inject`](xref:mvc/views/razor#inject) ディレクティブを含む完全に機能するコードを検査するには、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample)を参照してください。
+> このトピックのコード例には、表示されていない名前空間とサービスを必要とするものもあります。 Razor の例に必要な [`@using`](xref:mvc/views/razor#using) および [`@inject`](xref:mvc/views/razor#inject) ディレクティブを含む完全に機能するコードを検査するには、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample)を参照してください。
 
 <h2 id="database-access-3x">データベース アクセス</h2>
 
@@ -229,23 +229,23 @@ EF Core では、[データベース アクセスを構成](/ef/core/miscellaneo
 
 依存関係を持つ新しい <xref:Microsoft.EntityFrameworkCore.DbContext> を作成するには、ファクトリを使用することをお勧めします。 このサンプル アプリでは、`Data/DbContextFactory.cs` で独自のファクトリを実装しています。
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
 
 前のファクトリは、次のようになっています。
 
 * すべての依存関係は、サービス プロバイダーを介して <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> によって満たされています。
-* `IDbContextFactory` は、EF Core ASP.NET Core 5.0 以降で使用できます。そのため、インターフェイスは、[ASP.NET Core 3.x 用のサンプル アプリに実装されます](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs)。
+* `IDbContextFactory` は、EF Core ASP.NET Core 5.0 以降で使用できます。そのため、インターフェイスは、[ASP.NET Core 3.x 用のサンプル アプリに実装されます](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs)。
 
 次の例では、[SQLite](https://www.sqlite.org/index.html) を構成し、データのログ記録を有効にします。 このコードでは、拡張メソッドを使用して、DI のデータベース ファクトリを構成し、既定のオプションを指定しています。
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
 
 ファクトリはコンポーネントに挿入され、新しいインスタンスを作成するために使用されます。 たとえば、`Pages/Index.razor` では次のようにします。
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
 
 > [!NOTE]
-> `Wrapper` は、`GridWrapper` コンポーネントへの[コンポーネント参照](xref:blazor/components/index#capture-references-to-components)です。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)の `Index` コンポーネント (`Pages/Index.razor`) を参照してください。
+> `Wrapper` は、`GridWrapper` コンポーネントへの[コンポーネント参照](xref:blazor/components/index#capture-references-to-components)です。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)の `Index` コンポーネント (`Pages/Index.razor`) を参照してください。
 
 新しい <xref:Microsoft.EntityFrameworkCore.DbContext> インスタンスは、[ASP.NET Core の Identity モデル])(xref:security/authentication/customize_identity_model) を使用する場合など、`DbContext` ごとに接続文字列を構成できるファクトリを使用して作成できます。
 
@@ -272,11 +272,11 @@ services.AddScoped<ApplicationDbContext>(p =>
 
 サンプル アプリでは、コンポーネントが破棄されるときに、コンテキストも確実に破棄されます。
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 
 最後に、[`OnInitializedAsync`](xref:blazor/components/lifecycle) は新しいコンテキストを作成するためにオーバーライドされます。 サンプル アプリでは、[`OnInitializedAsync`](xref:blazor/components/lifecycle) を使用して同じメソッドで連絡先を読み込んでいます。
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
 
 前の例の場合:
 

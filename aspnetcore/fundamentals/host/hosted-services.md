@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/hosted-services
-ms.openlocfilehash: b8d6ec079ed39fb3a2c314816ebae6cea0847a36
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c0492c0c5b660e1387b0d0a4f6be405ded49ee92
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061081"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587477"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>ASP.NET Core でホステッド サービスを使用するバックグラウンド タスク
 
@@ -38,7 +38,7 @@ ASP.NET Core では、バックグラウンド タスクを *ホステッド サ
 * [スコープ サービス](xref:fundamentals/dependency-injection#service-lifetimes)をアクティブ化するホステッド サービス。 スコープ サービスは[依存関係の挿入 (DI)](xref:fundamentals/dependency-injection) を使用できます。
 * 連続して実行される、キューに格納されたバックグラウンド タスク。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="worker-service-template"></a>ワーカー サービス テンプレート
 
@@ -193,7 +193,7 @@ ASP.NET Core では、バックグラウンド タスクを *ホステッド サ
 * [スコープ サービス](xref:fundamentals/dependency-injection#service-lifetimes)をアクティブ化するホステッド サービス。 スコープ サービスは[依存関係の挿入 (DI)](xref:fundamentals/dependency-injection) を使用できます
 * 連続して実行される、キューに格納されたバックグラウンド タスク。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="package"></a>Package
 

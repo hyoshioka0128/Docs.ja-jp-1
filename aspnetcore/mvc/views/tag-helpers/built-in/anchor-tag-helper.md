@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: d39db59b0fc273fe4193a4864f302ecd3f4ad348
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 2e49c545b0d343475ce44a636a6ae66324f9d3bf
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060912"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587204"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>ASP.NET Core のアンカー タグ ヘルパー
 
@@ -33,7 +33,7 @@ ms.locfileid: "93060912"
 
 タグ ヘルパーの概要については、「<xref:mvc/views/tag-helpers/intro>」をご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 *SpeakerController* は、このドキュメント全体にわたってサンプルとして使用されます。
 
@@ -53,7 +53,7 @@ ms.locfileid: "93060912"
 <a href="/Speaker">All Speakers</a>
 ```
 
-`asp-controller` 属性が指定されていて、`asp-action` が指定されていない場合は、既定値 `asp-action` が現在実行中のビューに関連付けられたコント ローラー アクションです。 `asp-action` が前のマークアップから省略されていて、アンカー タグ ヘルパーが *HomeController* の *Index* ビュー ( */Home* ) で使用されている場合、次の HTML が生成されます。
+`asp-controller` 属性が指定されていて、`asp-action` が指定されていない場合は、既定値 `asp-action` が現在実行中のビューに関連付けられたコント ローラー アクションです。 `asp-action` が前のマークアップから省略されていて、アンカー タグ ヘルパーが *HomeController* の *Index* ビュー (*/Home*) で使用されている場合、次の HTML が生成されます。
 
 ```html
 <a href="/Home">All Speakers</a>
@@ -185,7 +185,7 @@ MVC ビューは、次のように、アクションによって提供される�
 
 [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) 属性は、適切なルートの設定に使用する領域名を設定します。 `asp-area` 属性によってどのようにルートの再マップが行われるかの例を以下に示します。
 
-#### <a name="usage-in-no-locrazor-pages"></a>使用 ( Razor ページで)
+#### <a name="usage-in-razor-pages"></a>使用 ( Razor ページで)
 
 Razor ページ領域は ASP.NET Core 2.1 以降でサポートされています。
 
@@ -201,7 +201,7 @@ Razor ページ領域は ASP.NET Core 2.1 以降でサポートされていま�
         * *Index.cshtml.cs*
   * **ページ**
 
-[ *セッション* 領域の *インデックス* ] ページを参照するマークアップ Razor は次のとおりです。
+[ *セッション* 領域の *インデックス*] ページを参照するマークアップ Razor は次のとおりです。
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspAreaRazorPages)]
 
@@ -247,7 +247,7 @@ Razor ページ領域は ASP.NET Core 2.1 以降でサポートされていま�
 ```
 
 > [!TIP]
-> MVC アプリで領域をサポートするには、ルート テンプレートに領域への参照 (存在する場合) が含まれている必要があります。 そのテンプレートは、 *Startup.Configure* の `routes.MapRoute` メソッド呼び出しの 2 番目のパラメーターで表されます
+> MVC アプリで領域をサポートするには、ルート テンプレートに領域への参照 (存在する場合) が含まれている必要があります。 そのテンプレートは、*Startup.Configure* の `routes.MapRoute` メソッド呼び出しの 2 番目のパラメーターで表されます
 >
 > [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_UseMvc&highlight=5)]
 

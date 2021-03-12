@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 67f245b7f4e4aa97b30c5318c73732617aea44c7
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: 8212025bbf778334045b8fbe7a5dae312524b426
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217571"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588023"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>ASP.NET Core のグローバリゼーションおよびローカリゼーション
 
@@ -42,7 +42,7 @@ ms.locfileid: "99217571"
 1. サポートする言語およびカルチャのローカライズされたリソースを提供する
 1. 要求ごとに言語/カルチャを選択するための戦略を実装する
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/3.x/Localization)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/Localization)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="make-the-apps-content-localizable"></a>アプリのコンテンツをローカライズできるようにする
 
@@ -396,7 +396,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 1. サポートする言語およびカルチャのローカライズされたリソースを提供する
 1. 要求ごとに言語/カルチャを選択するための戦略を実装する
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/Localization)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="make-the-apps-content-localizable"></a>アプリのコンテンツをローカライズできるようにする
 
@@ -751,7 +751,7 @@ services.Configure<RequestLocalizationOptions>(options =>
 1. サポートする言語およびカルチャのローカライズされたリソースを提供する
 1. 要求ごとに言語/カルチャを選択するための戦略を実装する
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/2.x/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="make-the-apps-content-localizable"></a>アプリのコンテンツをローカライズできるようにする
 

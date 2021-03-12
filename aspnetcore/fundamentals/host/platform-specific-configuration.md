@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: c12487875db69472ee328dfc7a611ee99974c770
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b39215a70f990afeb7d3fe0a62981113b154354e
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061055"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588244"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>ASP.NET Core でホスティング スタートアップ アセンブリを使用する
 
@@ -34,7 +34,7 @@ ms.locfileid: "93061055"
 
 <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> (ホスティング スタートアップ) の実装を使うと、外部アセンブリからの起動時にアプリに拡張機能を追加できます。 たとえば、外部ライブラリではホスティング スタートアップ実装を使用して、追加の構成プロバイダーまたはサービスをアプリに提供できます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="hostingstartup-attribute"></a>HostingStartup 属性
 
@@ -106,7 +106,7 @@ ms.locfileid: "93061055"
 
 クラス ライブラリでは、ホスティング スタートアップの拡張機能を提供できます。 このライブラリには `HostingStartup` 属性が含まれています。
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)には、Razor Pages アプリ、*HostingStartupApp*、クラス ライブラリ、*HostingStartupLibrary* が含まれています。 クラス ライブラリには次のものが含まれています。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)には、Razor Pages アプリ、*HostingStartupApp*、クラス ライブラリ、*HostingStartupLibrary* が含まれています。 クラス ライブラリには次のものが含まれています。
 
 * `IHostingStartup` を実装するホスティング スタートアップ クラス `ServiceKeyInjection`。 `ServiceKeyInjection` では、メモリ内の構成プロバイダー ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)) を使用して、サービスの文字列のペアがアプリの構成に追加されます。
 * ホスティング スタートアップの名前空間とクラスを識別する `HostingStartup` 属性。
@@ -123,7 +123,7 @@ ms.locfileid: "93061055"
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) には、別のホスティング スタートアップ *HostingStartupPackage* を提供する NuGet パッケージ プロジェクトも含まれています。 パッケージには、前に説明したクラス ライブラリと同じ特性があります。 パッケージには次のものが含まれます。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) には、別のホスティング スタートアップ *HostingStartupPackage* を提供する NuGet パッケージ プロジェクトも含まれています。 パッケージには、前に説明したクラス ライブラリと同じ特性があります。 パッケージには次のものが含まれます。
 
 * `IHostingStartup` を実装するホスティング スタートアップ クラス `ServiceKeyInjection`。 `ServiceKeyInjection` では、アプリの構成にサービス文字列のペアが追加されます。
 * `HostingStartup`属性。
@@ -387,7 +387,7 @@ NuGet パッケージとランタイム ストアの詳細については、次�
 
 ## <a name="sample-code"></a>サンプル コード
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([ダウンロードする方法](xref:index#how-to-download-a-sample)) では、ホスティング スタートアップ実装のシナリオを示します。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([ダウンロードする方法](xref:index#how-to-download-a-sample)) では、ホスティング スタートアップ実装のシナリオを示します。
 
 * 2 つのホスティング スタートアップ アセンブリ (クラス ライブラリ) ではそれぞれ、メモリ内の構成のキーと値のペアの組が設定されます。
   * NuGet パッケージ (*HostingStartupPackage*)
@@ -460,7 +460,7 @@ dotnet nuget locals all --clear
 
 <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> (ホスティング スタートアップ) の実装を使うと、外部アセンブリからの起動時にアプリに拡張機能を追加できます。 たとえば、外部ライブラリではホスティング スタートアップ実装を使用して、追加の構成プロバイダーまたはサービスをアプリに提供できます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="hostingstartup-attribute"></a>HostingStartup 属性
 
@@ -504,7 +504,7 @@ dotnet nuget locals all --clear
 
 クラス ライブラリでは、ホスティング スタートアップの拡張機能を提供できます。 このライブラリには `HostingStartup` 属性が含まれています。
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)には、Razor Pages アプリ、*HostingStartupApp*、クラス ライブラリ、*HostingStartupLibrary* が含まれています。 クラス ライブラリには次のものが含まれています。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/)には、Razor Pages アプリ、*HostingStartupApp*、クラス ライブラリ、*HostingStartupLibrary* が含まれています。 クラス ライブラリには次のものが含まれています。
 
 * `IHostingStartup` を実装するホスティング スタートアップ クラス `ServiceKeyInjection`。 `ServiceKeyInjection` では、メモリ内の構成プロバイダー ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)) を使用して、サービスの文字列のペアがアプリの構成に追加されます。
 * ホスティング スタートアップの名前空間とクラスを識別する `HostingStartup` 属性。
@@ -521,7 +521,7 @@ dotnet nuget locals all --clear
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) には、別のホスティング スタートアップ *HostingStartupPackage* を提供する NuGet パッケージ プロジェクトも含まれています。 パッケージには、前に説明したクラス ライブラリと同じ特性があります。 パッケージには次のものが含まれます。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) には、別のホスティング スタートアップ *HostingStartupPackage* を提供する NuGet パッケージ プロジェクトも含まれています。 パッケージには、前に説明したクラス ライブラリと同じ特性があります。 パッケージには次のものが含まれます。
 
 * `IHostingStartup` を実装するホスティング スタートアップ クラス `ServiceKeyInjection`。 `ServiceKeyInjection` では、アプリの構成にサービス文字列のペアが追加されます。
 * `HostingStartup`属性。
@@ -773,7 +773,7 @@ NuGet パッケージとランタイム ストアの詳細については、次�
 
 ## <a name="sample-code"></a>サンプル コード
 
-[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([ダウンロードする方法](xref:index#how-to-download-a-sample)) では、ホスティング スタートアップ実装のシナリオを示します。
+[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([ダウンロードする方法](xref:index#how-to-download-a-sample)) では、ホスティング スタートアップ実装のシナリオを示します。
 
 * 2 つのホスティング スタートアップ アセンブリ (クラス ライブラリ) ではそれぞれ、メモリ内の構成のキーと値のペアの組が設定されます。
   * NuGet パッケージ (*HostingStartupPackage*)

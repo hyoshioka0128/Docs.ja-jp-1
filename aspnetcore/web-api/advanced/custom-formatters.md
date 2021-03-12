@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/custom-formatters
-ms.openlocfilehash: e4d73fdc0db3faeace5d68b3d71718315e68cae3
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 91c9c6513d7c8df671e283508ecc276768d79539
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058923"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587828"
 ---
 # <a name="custom-formatters-in-aspnet-core-web-api"></a>ASP.NET Core Web API のカスタム フォーマッタ
 
@@ -34,7 +34,7 @@ ASP.NET Core MVC は、入力と出力のフォーマッタを使用した Web A
 
 この記事では、カスタム フォーマッタを作成して、追加形式のサポートを追加する方法を示します。 カスタムプレーンテキスト入力フォーマッタの例については、GitHub の [TextPlainInputFormatter](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.Formatters/TextPlainInputFormatter.cs) を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="when-to-use-custom-formatters"></a>カスタム フォーマッタを使用するタイミング
 
@@ -57,7 +57,7 @@ ASP.NET Core MVC は、入力と出力のフォーマッタを使用した Web A
 * <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> および <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> メソッドをオーバーライドします。
 * <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> および `WriteResponseBodyAsync` メソッドをオーバーライドします。
 
-次のコードは、サンプルのクラスを示してい `VcardOutputFormatter` ます。 [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/samples)
+次のコードは、サンプルのクラスを示してい `VcardOutputFormatter` ます。 [](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples)
 
 [!code-csharp[](custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs?name=snippet_Class)]
   
@@ -75,7 +75,7 @@ ASP.NET Core MVC は、入力と出力のフォーマッタを使用した Web A
 
 [!code-csharp[](custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs?name=snippet_ctor)]
 
-フォーマッタクラスは、依存関係にコンストラクターの挿入を使用でき **ません** 。 たとえば、を `ILogger<VcardOutputFormatter>` パラメーターとしてコンストラクターに追加することはできません。 サービスにアクセスするには、メソッドに渡されるコンテキストオブジェクトを使用します。 この記事のコード例と [サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/samples) では、この方法を示しています。
+フォーマッタクラスは、依存関係にコンストラクターの挿入を使用でき **ません** 。 たとえば、を `ILogger<VcardOutputFormatter>` パラメーターとしてコンストラクターに追加することはできません。 サービスにアクセスするには、メソッドに渡されるコンテキストオブジェクトを使用します。 この記事のコード例と [サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples) では、この方法を示しています。
 
 ### <a name="override-canreadtype-and-canwritetype"></a>CanReadType と Canreadtype のオーバーライド
 
@@ -129,13 +129,13 @@ ASP.NET Core MVC は、入力と出力のフォーマッタを使用した Web A
 
 ## <a name="the-complete-vcardinputformatter-class"></a>完全な `VcardInputFormatter` クラス
 
-次のコードは、サンプルのクラスを示してい `VcardInputFormatter` ます。 [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/samples)
+次のコードは、サンプルのクラスを示してい `VcardInputFormatter` ます。 [](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples)
 
 [!code-csharp[](custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardInputFormatter.cs?name=snippet_Class)]
 
-## <a name="test-the-app"></a>アプリをテストする
+## <a name="test-the-app"></a>アプリケーションをテストする
 
-[この記事のサンプルアプリを実行](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/samples)します。これにより、基本的な vCard 入力フォーマッタと出力フォーマッタが実装されます。 アプリは次のような Vcard を読み取り、書き込みます。
+[この記事のサンプルアプリを実行](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples)します。これにより、基本的な vCard 入力フォーマッタと出力フォーマッタが実装されます。 アプリは次のような Vcard を読み取り、書き込みます。
 
 ```
 BEGIN:VCARD

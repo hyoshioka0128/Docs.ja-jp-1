@@ -1,1 +1,1 @@
-このプロジェクトは、[EF MVC Core チュートリアル シリーズに](https://docs.microsoft.com/aspnet/core/data/ef-mvc/intro)スニペットを提供するために使用されます。 次のチュートリアルでビルドされるサンプル プロジェクトは、https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final にあります。
+このプロジェクトは、[EF MVC Core チュートリアル シリーズに](https://docs.microsoft.com/aspnet/core/data/ef-mvc/intro)スニペットを提供するために使用されます。 次のチュートリアルでビルドされるサンプル プロジェクトは、https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final にあります。

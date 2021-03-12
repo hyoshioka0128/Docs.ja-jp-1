@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: a596d05e3d1d73d4faa2f84d97a40e4a2c1234e4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9d4920a7b572163b048bfb06029d913cee3f9e5a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059287"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587254"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>ASP.NET Core でのビューへの依存関係の挿入
 
@@ -30,7 +30,7 @@ ms.locfileid: "93059287"
 
 ASP.NET Core では、ビューへの[依存関係の挿入](xref:fundamentals/dependency-injection)をサポートしています。 この機能は、ビュー要素を作成するためだけに必要なローカライズやデータなど、ビュー固有のサービスに役立ちます。 コントローラーとビューの間で[関心の分離](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns)を保持する必要があります。 ビューに表示されるデータのほとんどは、コントローラーから渡されます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="configuration-injection"></a>構成の挿入
 
@@ -67,7 +67,7 @@ ASP.NET Core では、ビューへの[依存関係の挿入](xref:fundamentals/d
 
 [!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
-このビューでは、全体的な統計を示す概要と共に、`ToDoItem` インスタンスのリストが表示されます。 概要は、挿入された `StatisticsService` から作成されます。 このサービスは、 *Startup.cs* 内の `ConfigureServices` の依存関係の挿入に登録されます。
+このビューでは、全体的な統計を示す概要と共に、`ToDoItem` インスタンスのリストが表示されます。 概要は、挿入された `StatisticsService` から作成されます。 このサービスは、*Startup.cs* 内の `ConfigureServices` の依存関係の挿入に登録されます。
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Startup.cs?highlight=6,7&range=15-22)]
 

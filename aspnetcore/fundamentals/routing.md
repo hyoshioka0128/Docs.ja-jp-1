@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 1355fdaeae58b6f4e0cf8d41a74b1c28aee0e8fe
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 0ce89d2dee3fb2054655c003daddfda2ffa52696
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253086"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587283"
 ---
 # <a name="routing-in-aspnet-core"></a>ASP.NET Core のルーティング
 
@@ -53,7 +53,7 @@ ms.locfileid: "98253086"
 * 以前のバージョンのバージョン セレクター。
 * [ASP.NET Core 2.1 でのルーティング](?view=aspnetcore-2.1)に関する記事を選択します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このドキュメントのダウンロード サンプルは、特定の `Startup` クラスによって有効になります。 特定のサンプルを実行するには、目的の `Startup` クラスを呼び出すように *Program.cs* を変更します。
 
@@ -261,7 +261,7 @@ ASP.NET Core エンドポイントとは次のようなものです。
 
 ターミナル ミドルウェアを作成する前に、ルーティングとの統合を検討してください。
 
-[Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) または <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> と統合されている既存のターミナル ミドルウェアは、通常、ルーティング対応のエンドポイントにすることができます。 [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) では、ルーターウェアのパターンが示されています。
+[Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) または <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> と統合されている既存のターミナル ミドルウェアは、通常、ルーティング対応のエンドポイントにすることができます。 [MapHealthChecks](https://github.com/dotnet/AspNetCore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) では、ルーターウェアのパターンが示されています。
 * <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> で拡張メソッドを作成します。
 * <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*> を使用して、入れ子になったミドルウェア パイプラインを作成します。
 * ミドルウェアを新しいパイプラインにアタッチします。 例では、 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>が使用されます。
@@ -345,7 +345,7 @@ URL の照合は、構成可能な一連のフェーズで動作します。 各
 
 ### <a name="route-template-precedence-and-endpoint-selection-order"></a>ルート テンプレートの優先順位とエンドポイントの選択順序
 
-[ルート テンプレートの優先順位](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L16)とは、どれほど具体的であるかに基づいて、各ルート テンプレートに値を割り当てるシステムです。 ルート テンプレートの優先順位:
+[ルート テンプレートの優先順位](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Template/RoutePrecedence.cs#L16)とは、どれほど具体的であるかに基づいて、各ルート テンプレートに値を割り当てるシステムです。 ルート テンプレートの優先順位:
 
 * 一般的なケースでは、エンドポイントの順序を調整する必要はなくなります。
 * 一般的に期待されるルーティング動作との一致が試みられます。
@@ -360,7 +360,7 @@ URL の照合は、構成可能な一連のフェーズで動作します。 各
 * 複雑なセグメントは、制約を含むパラメーター セグメントと同じくらい具体的であると見なされます。
 * キャッチオール パラメーターは、まったく具体的ではありません。 キャッチオール ルートに関する重要な情報については、「[ルート テンプレート参照](#rtr)」の **キャッチオール** を参照してください。
 
-実際の値のリファレンスについては、[GitHub 上のソース コード](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189)を参照してください。
+実際の値のリファレンスについては、[GitHub 上のソース コード](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Template/RoutePrecedence.cs#L189)を参照してください。
 
 <a name="lg"></a>
 
@@ -586,7 +586,7 @@ ASP.NET Core フレームワークでは、正規表現コンストラクター�
 
 カスタム ルート制約は通常必要ありません。 カスタム ルート制約を実装する前に、モデル バインドなどの代替手段を検討してください。
 
-ASP.NET Core の [Constraints](https://github.com/dotnet/aspnetcore/tree/master/src/Http/Routing/src/Constraints) フォルダーには、制約を作成するための適切な例が用意されています。 たとえば、[GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18) です。
+ASP.NET Core の [Constraints](https://github.com/dotnet/aspnetcore/tree/main/src/Http/Routing/src/Constraints) フォルダーには、制約を作成するための適切な例が用意されています。 たとえば、[GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18) です。
 
 カスタムの `IRouteConstraint` を使うには、サービス コンテナー内の <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> に、ルート制約の種類が登録されている必要があります。 `ConstraintMap` は、ルート制約キーを、その制約を検証する `IRouteConstraint` の実装にマッピングするディクショナリです。 アプリの `ConstraintMap` は、`Startup.ConfigureServices` で、[services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) 呼び出しの一部として、または `services.Configure<RouteOptions>` を使って <xref:Microsoft.AspNetCore.Routing.RouteOptions> を直接構成することで、更新できます。 次に例を示します。
 
@@ -947,7 +947,7 @@ app.UseEndpoints(endpoints =>
 
 独自の <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> を作成することを **検討します**。 `EndpointDataSource` は、エンドポイントのコレクションを宣言および更新するための低レベルのプリミティブです。 `EndpointDataSource` は、コントローラーと Razor Pages によって使用される強力な API です。
 
-ルーティング テストには、更新されていないデータ ソースの[基本的な例](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17)があります。
+ルーティング テストには、更新されていないデータ ソースの[基本的な例](https://github.com/dotnet/AspNetCore/blob/main/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17)があります。
 
 既定では、`EndpointDataSource` の登録を **試行しないでください**。 <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> にフレームワークを登録するようユーザーに要求してください。 ルーティングの原理では、既定では何も含まれておらず、`UseEndpoints` がエンドポイントを登録する場所です。
 
@@ -1029,7 +1029,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
 > [!IMPORTANT]
 > 本文では、ASP.NET Core ルーティングについて詳しく取り上げます。 ASP.NET Core MVC ルーティングの詳細については、「<xref:mvc/controllers/routing>」を参照してください。 Razor Pages のルーティング規則については、「<xref:razor-pages/razor-pages-conventions>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="routing-basics"></a>ルーティングの基本
 
@@ -1565,7 +1565,7 @@ ASP.NET Core では、生成されたルートと共にパラメーター トラ
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_Dictionary)]
 
-上のサンプルの終わりで生成された <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> は `/package/create/123` です。 ディクショナリにより、"Track Package Route" テンプレート `package/{operation}/{id}` のルート値 `operation` と `id` が提供されます。 詳細については、「[ルーティング ミドルウェアの使用](#use-routing-middleware)」セクションのサンプル コードまたは[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples)を参照してください。
+上のサンプルの終わりで生成された <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> は `/package/create/123` です。 ディクショナリにより、"Track Package Route" テンプレート `package/{operation}/{id}` のルート値 `operation` と `id` が提供されます。 詳細については、「[ルーティング ミドルウェアの使用](#use-routing-middleware)」セクションのサンプル コードまたは[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples)を参照してください。
 
 <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> コンストラクターの 2 番目のパラメーターは *アンビエント値* の集合です。 アンビエント値は、開発者が要求コンテキスト内で指定する必要がある値の数が制限されるため、使用すると便利です。 現在の要求の現在のルート値は、リンク生成の場合、アンビエント値として見なされます。 ASP.NET Core MVC アプリの `HomeController` の `About` アクションでは、コントローラー ルート値を指定し、`Index` アクションにリンクする必要はありません。`Home` のアンビエント値が使用されます。
 
@@ -1611,7 +1611,7 @@ services.AddMvc()
 > [!IMPORTANT]
 > 本文では、ASP.NET Core ルーティングについて詳しく取り上げます。 ASP.NET Core MVC ルーティングの詳細については、「<xref:mvc/controllers/routing>」を参照してください。 Razor Pages のルーティング規則については、「<xref:razor-pages/razor-pages-conventions>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="routing-basics"></a>ルーティングの基本
 
@@ -1971,7 +1971,7 @@ public ActionResult<string> Get(string id)
 
 [!code-csharp[](routing/samples/2.x/RoutingSample/Startup.cs?name=snippet_Dictionary)]
 
-上のサンプルの終わりで生成された <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> は `/package/create/123` です。 ディクショナリにより、"Track Package Route" テンプレート `package/{operation}/{id}` のルート値 `operation` と `id` が提供されます。 詳細については、「[ルーティング ミドルウェアの使用](#use-routing-middleware)」セクションのサンプル コードまたは[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples)を参照してください。
+上のサンプルの終わりで生成された <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath> は `/package/create/123` です。 ディクショナリにより、"Track Package Route" テンプレート `package/{operation}/{id}` のルート値 `operation` と `id` が提供されます。 詳細については、「[ルーティング ミドルウェアの使用](#use-routing-middleware)」セクションのサンプル コードまたは[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples)を参照してください。
 
 <xref:Microsoft.AspNetCore.Routing.VirtualPathContext> コンストラクターの 2 番目のパラメーターは *アンビエント値* の集合です。 アンビエント値は、開発者が要求コンテキスト内で指定する必要がある値の数が制限されるため、使用すると便利です。 現在の要求の現在のルート値は、リンク生成の場合、アンビエント値として見なされます。 ASP.NET Core MVC アプリの `HomeController` の `About` アクションでは、コントローラー ルート値を指定し、`Index` アクションにリンクする必要はありません。`Home` のアンビエント値が使用されます。
 

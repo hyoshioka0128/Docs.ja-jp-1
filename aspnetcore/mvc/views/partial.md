@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 3a7b054adc50be57028dfa0364f80ae8733b02f7
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 0a8e4a4fdecd657840c6c02424ffffa64d4ab473
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252709"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586879"
 ---
 # <a name="partial-views-in-aspnet-core"></a>ASP.NET Core の部分ビュー
 
@@ -37,7 +37,7 @@ ms.locfileid: "98252709"
 
 ::: moniker-end
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/partial/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/partial/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="when-to-use-partial-views"></a>部分ビューを使用する状況
 
@@ -84,7 +84,7 @@ MVC ビューのレンダリングとは異なり、部分ビューは *_ViewSta
 
 ::: moniker range=">= aspnetcore-2.0"
 
-### <a name="use-a-partial-view-in-a-no-locrazor-pages-pagemodel"></a>PageModel ページで部分ビューを使用する Razor
+### <a name="use-a-partial-view-in-a-razor-pages-pagemodel"></a>PageModel ページで部分ビューを使用する Razor
 
 ASP.NET Core 2.0 または2.1 で、次のハンドラーメソッドは、 *\_ authorpartialrp. cshtml* 部分ビューを応答にレンダリングします。
 
@@ -353,7 +353,7 @@ HTML ヘルパーを使用している場合、ベスト プラクティスは <
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* [Razor ASP.NET Core の構文リファレンス](xref:mvc/views/razor)
+* [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor)
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
 * <xref:mvc/views/view-components>
@@ -363,7 +363,7 @@ HTML ヘルパーを使用している場合、ベスト プラクティスは <
 
 ::: moniker range="< aspnetcore-2.1"
 
-* [Razor ASP.NET Core の構文リファレンス](xref:mvc/views/razor)
+* [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor)
 * <xref:mvc/views/view-components>
 * <xref:mvc/controllers/areas>
 

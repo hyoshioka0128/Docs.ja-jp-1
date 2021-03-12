@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 5fa7bc15bac2609c89fea54f8a788aaf9f5ad055
-ms.sourcegitcommit: 3982ff9dabb5b12aeb0a61cde2686b5253364f5d
+ms.openlocfilehash: e3e176072032494f94f120efabb95d6c127fb5e6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102119033"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587815"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>ASP.NET Core Web API の応答データの書式設定
 
@@ -31,7 +31,7 @@ ms.locfileid: "102119033"
 
 ASP.NET Core MVC では、応答データの書式設定がサポートされます。 応答データは、特定の形式を使用して、またはクライアントが要求した形式に応じて書式設定できます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="format-specific-action-results"></a>書式固有アクションの結果
 
@@ -188,7 +188,7 @@ ASP.NET Core 3.0 より前、既定では、`Newtonsoft.Json` パッケージを
 
 一部の機能は `System.Text.Json` ベースのフォーマッタでうまく動作せず、`Newtonsoft.Json` ベースのフォーマッタの参照が必要となる場合があります。 アプリが以下の場合には、`Newtonsoft.Json` ベースのフォーマッタの使用を続けます。
 
-* `Newtonsoft.Json` 属性を使用する。  たとえば、`[JsonProperty]` または `[JsonIgnore]` です。
+* `Newtonsoft.Json` 属性を使用する。 たとえば、`[JsonProperty]` または `[JsonIgnore]` です。
 * シリアル化の設定をカスタマイズする。
 * `Newtonsoft.Json` で提供される機能に依存する。
 * `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings` を構成する。 ASP.NET Core 3.0 より前は、`JsonResult.SerializerSettings`が `Newtonsoft.Json` に固有の `JsonSerializerSettings` のインスタンスを受け入れます。

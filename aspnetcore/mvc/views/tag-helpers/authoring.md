@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: 306416db3d9ae0219f859c3cf459eb08a5b778cf
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e0c9f450e4eded49694cbbb0e9fa2614a221ab14
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060925"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586827"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>ASP.NET Core のタグ ヘルパー作成
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/authoring/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="get-started-with-tag-helpers"></a>タグ ヘルパーの概要
 
@@ -94,9 +94,9 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
     [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
-FQN を使用してタグ ヘルパーをビューに追加するには、最初に FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) を追加してから、 **アセンブリ名** ( *AuthoringTagHelpers* 。`namespace` は不要) を追加します。 ほとんどの開発者は、ワイルドカードの構文を使用する方を選びます。 [タグ ヘルパーの概要](intro.md)に関するページでは、タグ ヘルパーの追加、削除、階層、およびワイルドカードの構文について詳しく説明されています。
+FQN を使用してタグ ヘルパーをビューに追加するには、最初に FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) を追加してから、**アセンブリ名** (*AuthoringTagHelpers*。`namespace` は不要) を追加します。 ほとんどの開発者は、ワイルドカードの構文を使用する方を選びます。 [タグ ヘルパーの概要](intro.md)に関するページでは、タグ ヘルパーの追加、削除、階層、およびワイルドカードの構文について詳しく説明されています。
 
-1. これらの変更を加えて、 *Views/Home/Contact.cshtml* ファイル内のマークアップを更新します。
+1. これらの変更を加えて、*Views/Home/Contact.cshtml* ファイル内のマークアップを更新します。
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -120,7 +120,7 @@ FQN を使用してタグ ヘルパーをビューに追加するには、最初
 
 この方法は、属性 "href" が属性コレクションに現存していない場合に限り、属性 "href" に対して有効です。 `output.Attributes.Add` メソッドを使用してタグ ヘルパー属性をタグ属性のコレクションの末尾に追加することもできます。
 
-1. これらの変更を加えて、 *Views/Home/Contact.cshtml* ファイル内のマークアップを更新します。
+1. これらの変更を加えて、*Views/Home/Contact.cshtml* ファイル内のマークアップを更新します。
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 

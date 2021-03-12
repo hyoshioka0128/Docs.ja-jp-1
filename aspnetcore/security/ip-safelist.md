@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: dfc134b97bb0976bc682a53d536cd27785550c7d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f89191cff1faa5b55ee9031a6a6d0749a74e43c0
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059664"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587542"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>ASP.NET Core のクライアント IP セーフセーフ
 
@@ -43,7 +43,7 @@ By [Damien Bowden](https://twitter.com/damien_bod) および [Tom Dykstra](https
 
 配列に IP アドレスが含まれている場合、アクセスが許可されます。 それ以外の場合は、HTTP 403 の許可されていない状態コードが返されます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/ip-safelist/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="ip-address-safelist"></a>IP アドレスのセーフセーフ
 
@@ -103,7 +103,7 @@ By [Damien Bowden](https://twitter.com/damien_bod) および [Tom Dykstra](https
 
 * GET 以外の HTTP 要求動詞は、 `AdminSafeListMiddleware` クライアントの IP アドレスを検証します。
 
-## <a name="no-locrazor-pages-filter"></a>Razor ページフィルター
+## <a name="razor-pages-filter"></a>Razor ページフィルター
 
 ページアプリに対してセーフデマンドによるアクセス制御が必要な場合は Razor 、ページフィルターを使用し Razor ます。 次に例を示します。
 
@@ -130,7 +130,7 @@ dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
       Remote IpAddress: ::1
 ```
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:fundamentals/middleware/index>
 * [アクション フィルター](xref:mvc/controllers/filters#action-filters)

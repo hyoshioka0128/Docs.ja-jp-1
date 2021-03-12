@@ -19,24 +19,24 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 4a31c16eb44e2244574d0df49c30e7a44b2bba6e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 872b88cc3c87137365de8c50a37bf5dd5fd9fe10
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93050941"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587867"
 ---
-# <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>のハブを SignalR ASP.NET Core に使用する
+# <a name="use-hubs-in-signalr-for-aspnet-core"></a>のハブを SignalR ASP.NET Core に使用する
 
 [Rachel appel](https://twitter.com/rachelappel)および[加山 Griffin](https://twitter.com/1kevgriff)
 
-[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubs/sample/ ) ([ダウンロード方法](xref:index#how-to-download-a-sample))
+[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/sample/ ) ([ダウンロード方法](xref:index#how-to-download-a-sample))
 
-## <a name="what-is-a-no-locsignalr-hub"></a>ハブとは SignalR
+## <a name="what-is-a-signalr-hub"></a>ハブとは SignalR
 
 SignalRハブ API を使用すると、接続されているクライアント上のメソッドをサーバーから呼び出すことができます。 サーバーコードでは、クライアントによって呼び出されるメソッドを定義します。 クライアントコードでは、サーバーから呼び出されるメソッドを定義します。 SignalR は、クライアントとサーバー間のリアルタイム通信とサーバー間の通信を可能にする、バックグラウンドの背後にあるすべての処理を行います。
 
-## <a name="configure-no-locsignalr-hubs"></a>ハブの構成 SignalR
+## <a name="configure-signalr-hubs"></a>ハブの構成 SignalR
 
 ミドルウェアには SignalR 、を呼び出すことによって構成されるいくつかのサービスが必要です `services.AddSignalR` 。
 
@@ -90,7 +90,7 @@ C# のメソッドの場合と同様に、戻り値の型とパラメーター (
 
 `Hub`クラスには、 `Context` 接続に関する情報を含む次のプロパティを含むプロパティがあります。
 
-| プロパティ | [説明] |
+| プロパティ | 説明 |
 | ------ | ----------- |
 | `ConnectionId` | によって割り当てられる、接続の一意の ID を取得し SignalR ます。 接続ごとに1つの接続 ID があります。|
 | `UserIdentifier` | [ユーザー識別子](xref:signalr/groups)を取得します。 既定では、は、 SignalR `ClaimTypes.NameIdentifier` `ClaimsPrincipal` 接続に関連付けられているのをユーザー識別子として使用します。 |
@@ -110,7 +110,7 @@ C# のメソッドの場合と同様に、戻り値の型とパラメーター (
 
 `Hub`クラスには、 `Clients` サーバーとクライアント間の通信に関する次のプロパティを含むプロパティがあります。
 
-| プロパティ | [説明] |
+| プロパティ | 説明 |
 | ------ | ----------- |
 | `All` | 接続されているすべてのクライアントでメソッドを呼び出します |
 | `Caller` | ハブメソッドを呼び出したクライアントでメソッドを呼び出します。 |

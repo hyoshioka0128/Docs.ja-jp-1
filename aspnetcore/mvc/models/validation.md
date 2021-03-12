@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: d6fa7e4524a8afdc23d4ad46354d9d8b395656a3
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 412f95e67fa35e952a907db328395183f1698b9e
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530191"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587217"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>MVC とページ ASP.NET Core でのモデルの検証 Razor
 
@@ -33,7 +33,7 @@ ms.locfileid: "99530191"
 
 この記事では、ASP.NET Core MVC またはページアプリでユーザー入力を検証する方法について説明し Razor ます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="model-state"></a>モデルの状態
 
@@ -94,7 +94,7 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 
 ## <a name="non-nullable-reference-types-and-required-attribute"></a>Null 非許容の参照型と [Required] 属性
 
-検証システムは、属性を持っているかのように、null 非許容パラメーターまたはバインドされたプロパティを扱い `[Required]` ます。 [ `Nullable` コンテキストを有効にする](/dotnet/csharp/nullable-references#nullable-contexts)ことで、MVC は属性で属性が付けられているかのように、null 非許容のプロパティまたはパラメーターの検証を暗黙的に開始し `[Required]` ます。 次のコードについて考えてみます。
+検証システムは、属性を持っているかのように、null 非許容パラメーターまたはバインドされたプロパティを扱い `[Required]` ます。 [ `Nullable` コンテキストを有効にする](/dotnet/csharp/nullable-references#nullable-contexts)ことで、MVC は属性で属性が付けられているかのように、null 非許容のプロパティまたはパラメーターの検証を暗黙的に開始し `[Required]` ます。 次のコードがあるとします。
 
 ```csharp
 public class Person
@@ -419,7 +419,7 @@ HTML に `data-` 属性をレンダリングするこの方法は、サンプル
 
 この記事では、ASP.NET Core MVC またはページアプリでユーザー入力を検証する方法について説明し Razor ます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="model-state"></a>モデルの状態
 
@@ -439,7 +439,7 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 
 ## <a name="validation-attributes"></a>検証属性
 
-検証属性を使用して、モデルのプロパティの検証規則を指定できます。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample)の次の例では、検証属性で注釈されたモデル クラスが示されています。 `[ClassicMovie]` 属性はカスタム検証属性であり、その他は組み込み属性です。 `[ClassicMovie2]` は示されていませんが、カスタム属性を実装するもう 1 つの方法を示します。
+検証属性を使用して、モデルのプロパティの検証規則を指定できます。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample)の次の例では、検証属性で注釈されたモデル クラスが示されています。 `[ClassicMovie]` 属性はカスタム検証属性であり、その他は組み込み属性です。 `[ClassicMovie2]` は示されていませんが、カスタム属性を実装するもう 1 つの方法を示します。
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
 

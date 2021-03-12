@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: 16e5ead9898125c804da4d60322510474201d897
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c66c35e93991333229e367e9f371b125d8067131
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059443"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588218"
 ---
 # <a name="file-providers-in-aspnet-core"></a>ASP.NET Core でのファイル プロバイダー
 
@@ -39,7 +39,7 @@ ASP.NET Core は、ファイル プロバイダーを使用してファイル �
 * [Razor](xref:mvc/views/razor) では、ファイル プロバイダーを使用してページとビューを見つけます。
 * .NET Core Tooling では、ファイル プロバイダーと glob パターンを使用して、公開するファイルを指定します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="file-provider-interfaces"></a>ファイル プロバイダーのインターフェイス
 
@@ -190,7 +190,7 @@ ASP.NET Core は、ファイル プロバイダーを使用してファイル �
 * [Razor](xref:mvc/views/razor) では、ファイル プロバイダーを使用してページとビューを見つけます。
 * .NET Core Tooling では、ファイル プロバイダーと glob パターンを使用して、公開するファイルを指定します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="file-provider-interfaces"></a>ファイル プロバイダーのインターフェイス
 

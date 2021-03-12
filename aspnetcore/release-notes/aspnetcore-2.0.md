@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.0
-ms.openlocfilehash: f9fad5a63c76a3b21341a12fd40baafcdf2c9dac
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b7515bcd8b15199770a4245469d00d10da5566f8
+ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059729"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102605687"
 ---
 # <a name="whats-new-in-aspnet-core-20"></a>ASP.NET Core 2.0 の新機能
 
 この記事では、ASP.NET Core 2.0 の最も大きな変更点について説明します。また、その変更点のドキュメントへのリンクも示します。
 
-## <a name="no-locrazor-pages"></a>Razor Pages
+## <a name="razor-pages"></a>Razor Pages
 
 Razor Pages は、ページ コーディングに重点を置いたシナリオをより簡略化し、生産性を高める ASP.NET Core MVC の新機能です。
 
@@ -76,7 +76,7 @@ ASP.NET Core 2.0 には、既定で依存性の注入 (DI) システムにログ
 
 計画されているドキュメントの状態については、「[GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/3054)」 (GitHub の問題) を参照してください。
 
-## <a name="no-locidentity-update"></a>Identity の更新
+## <a name="identity-update"></a>Identity の更新
 
 ASP.NET Core 2.0 で Identity を使用し、簡単にセキュリティで保護された Web API をビルドできるようになりました。 [Microsoft 認証ライブラリ (MSAL)](https://www.nuget.org/packages/Microsoft.Identity.Client) を使用して Web API にアクセスするアクセス トークンを取得することができます。
 
@@ -140,7 +140,7 @@ Razor ビューのプリコンパイルは発行時に既定で有効になっ�
 
 詳細については、[ASP.NET Core での Razor ビューのコンパイルとプリコンパイル](xref:mvc/views/view-compilation)に関するページを参照してください。
 
-## <a name="no-locrazor-support-for-c-71"></a>C# 7.1 での Razor サポート
+## <a name="razor-support-for-c-71"></a>C# 7.1 での Razor サポート
 
 Razor ビュー エンジンが更新され、新しい Roslyn コンパイラで使用できるようになりました。 これには、既定の式、推定タプル名、およびジェネリック パターン マッチングのような C# 7.1 の機能のサポートが含まれています。 プロジェクトで C# 7.1 を使用する場合、プロジェクト ファイルに次のプロパティを追加し、ソリューションを再読み込みします。
 
@@ -148,7 +148,7 @@ Razor ビュー エンジンが更新され、新しい Roslyn コンパイラ�
 <LangVersion>latest</LangVersion>
 ```
 
-C# 7.1 機能の状態については、「[Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md)」 (Roslyn GitHub リポジトリ) を参照してください。
+C# 7.1 機能の状態については、「[Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/main/docs/Language%20Feature%20Status.md)」 (Roslyn GitHub リポジトリ) を参照してください。
 
 ## <a name="other-documentation-updates-for-20"></a>2\.0 のその他のドキュメントの更新
 

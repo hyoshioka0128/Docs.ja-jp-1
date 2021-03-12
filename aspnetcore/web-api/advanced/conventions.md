@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/conventions
-ms.openlocfilehash: 0c5ea8ba69e4c6287afce1771ac9cee65bb188a8
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1e6526f46fbd177add3699fb5b667021b741c6a4
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052540"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587841"
 ---
 # <a name="use-web-api-conventions"></a>Web API 規約を使用する
 
@@ -37,11 +37,11 @@ ASP.NET Core 2.2 以降では、一般的な [API ドキュメント](xref:tutor
 * 特定の型のアクションから返される最も一般的な戻り値の型と状態コードを定義する
 * 定義済みの標準から外れるアクションを識別する
 
-ASP.NET Core MVC 2.2 以降には、一連の既定の規約 <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName> が含まれています。 この規約は、ASP.NET Core **API** プロジェクト テンプレートで提供されるコントローラー ( *ValuesController.cs* ) に基づいています。 アクションがテンプレートのパターンに従う場合は、既定の規約を使用すると成功します。 既定の規約がニーズに合わない場合は、「[Web API 規約を作成する](#create-web-api-conventions)」を参照してください。
+ASP.NET Core MVC 2.2 以降には、一連の既定の規約 <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName> が含まれています。 この規約は、ASP.NET Core **API** プロジェクト テンプレートで提供されるコントローラー (*ValuesController.cs*) に基づいています。 アクションがテンプレートのパターンに従う場合は、既定の規約を使用すると成功します。 既定の規約がニーズに合わない場合は、「[Web API 規約を作成する](#create-web-api-conventions)」を参照してください。
 
 実行時に、<xref:Microsoft.AspNetCore.Mvc.ApiExplorer> は規約を理解します。 `ApiExplorer` は [OpenAPI](https://www.openapis.org/) (Swagger とも呼ばれている) ドキュメントのジェネレーターと通信するために MVC を抽象化したものです。 適用された規約の属性はアクションと関連付けられており、アクションの OpenAPI ドキュメントに含まれます。 [API アナライザー](xref:web-api/advanced/analyzers)でも、規約を理解します。 従来とは異なるアクションである場合 (適用されている規約で文書化されていない状態コードを返す場合など)、警告で状態コードの文書化が促されます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/conventions/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/conventions/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="apply-web-api-conventions"></a>Web API 規約を適用する
 
@@ -66,7 +66,7 @@ ASP.NET Core MVC 2.2 以降には、一連の既定の規約 <xref:Microsoft.Asp
 
 1. `Microsoft.AspNetCore.Mvc.ApiConventionTypeAttribute` (コントローラーに適用) &mdash; 指定した規約の種類がコントローラー上のすべてのアクションに適用されます。 規約のメソッドは、規約のメソッドが適用されるアクションを決定するヒントでマークされています。 ヒントの詳細については、「[Web API 規約を作成する](#create-web-api-conventions)」を参照してください。
 
-    次の例では、一連の既定の規約が、 *ContactsConventionController* のすべてのアクションに適用されます。
+    次の例では、一連の既定の規約が、*ContactsConventionController* のすべてのアクションに適用されます。
 
     [!code-csharp[](conventions/sample/Controllers/ContactsConventionController.cs?name=snippet_ApiConventionTypeAttribute&highlight=2)]
 

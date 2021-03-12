@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: a878a3485ecee0782b21ac69c5ec6ff832b9f06c
-ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
+ms.openlocfilehash: 88b3bae5d52e334dea7ffcfe245f49d2816047c3
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98571008"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588179"
 ---
-# <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>ASP.NET Core の Razor クラス ライブラリ プロジェクトを使用した再利用可能 UI の作成
+# <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>ASP.NET Core の Razor クラス ライブラリ プロジェクトを使用した再利用可能 UI の作成
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -33,9 +33,9 @@ ms.locfileid: "98571008"
 
 Razor ビュー、ページ、コントローラー、ページ モデル、[Razor コンポーネント](xref:blazor/components/class-libraries)、[ビュー コンポーネント](xref:mvc/views/view-components)、データ モデルは、Razor クラス ライブラリ (RCL) に組み込むことが可能です。 RCL はパッケージ化し、再利用できます。 アプリケーションには RCL を含めることができます。また、それに含まれるビューやページをオーバーライドできます。 Web アプリと RCL の両方にビュー、部分ビュー、Razor ページがあるとき、Web アプリの Razor マークアップ ( *.cshtml* ファイル) が優先されます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
-## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Razor UI を含むクラス ライブラリの作成
+## <a name="create-a-class-library-containing-razor-ui"></a>Razor UI を含むクラス ライブラリの作成
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -208,9 +208,9 @@ RCL がビルドされると、静的な Web アセットの場所を記述す�
 
 Razor ビュー、ページ、コントローラー、ページ モデル、[Razor コンポーネント](xref:blazor/components/class-libraries)、[ビュー コンポーネント](xref:mvc/views/view-components)、データ モデルは、Razor クラス ライブラリ (RCL) に組み込むことが可能です。 RCL はパッケージ化し、再利用できます。 アプリケーションには RCL を含めることができます。また、それに含まれるビューやページをオーバーライドできます。 Web アプリと RCL の両方にビュー、部分ビュー、Razor ページがあるとき、Web アプリの Razor マークアップ ( *.cshtml* ファイル) が優先されます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
-## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Razor UI を含むクラス ライブラリの作成
+## <a name="create-a-class-library-containing-razor-ui"></a>Razor UI を含むクラス ライブラリの作成
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -247,9 +247,9 @@ RCL は次によって参照できます。
 * NuGet パッケージ。 「[Creating NuGet packages](/nuget/create-packages/creating-a-package)」 (NuGet パッケージの作成)、「[dotnet add package](/dotnet/core/tools/dotnet-add-package)」、「[Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio)」 (NuGet パッケージの作成と公開) を参照してください。
 * *{ProjectName}.csproj*. 「[dotnet-add reference](/dotnet/core/tools/dotnet-add-reference)」を参照してください。
 
-## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>チュートリアル: RCL プロジェクトを作成し、Razor Pages プロジェクトから使用する
+## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>チュートリアル: RCL プロジェクトを作成し、Razor Pages プロジェクトから使用する
 
-作成しなくても、[完全なプロジェクト](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples)をダウンロードしてテストできます。 サンプル ダウンロードには、プロジェクトのテストを簡単にする追加のコードやリンクが含まれています。 GitHub の問題に関するフィードバックは[こちら](https://github.com/dotnet/AspNetCore.Docs/issues/6098)で扱っています。ダウンロード サンプルと段階的指示の違いについてコメントを投稿できます。
+作成しなくても、[完全なプロジェクト](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples)をダウンロードしてテストできます。 サンプル ダウンロードには、プロジェクトのテストを簡単にする追加のコードやリンクが含まれています。 GitHub の問題に関するフィードバックは[こちら](https://github.com/dotnet/AspNetCore.Docs/issues/6098)で扱っています。ダウンロード サンプルと段階的指示の違いについてコメントを投稿できます。
 
 ### <a name="test-the-download-app"></a>ダウンロード アプリをテストする
 
@@ -312,7 +312,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 ---
 
-### <a name="add-no-locrazor-files-and-folders-to-the-project"></a>Razor ファイルとフォルダーをプロジェクトに追加する
+### <a name="add-razor-files-and-folders-to-the-project"></a>Razor ファイルとフォルダーをプロジェクトに追加する
 
 * *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* のマークアップを次のコードに変更します。
 
@@ -338,7 +338,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 ビルド出力には、 *RazorUIClassLib.dll* と *RazorUIClassLib.Views.dll* が含まれています。 *RazorUIClassLib.Views.dll* には、コンパイル済みの Razor コンテンツが含まれています。
 
-### <a name="use-the-no-locrazor-ui-library-from-a-no-locrazor-pages-project"></a>Razor ページ プロジェクトから Razor UI ライブラリを使用します。
+### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Razor ページ プロジェクトから Razor UI ライブラリを使用します。
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

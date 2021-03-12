@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 4de34a75da932b41190caa8434ac5be8cc0710fd
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 5eaedf6dbe5df59848b9cf8a5bda67add48db2a6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981935"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586944"
 ---
 # <a name="model-binding-in-aspnet-core"></a>ASP.NET Core でのモデル バインド
 
@@ -31,7 +31,7 @@ ms.locfileid: "94981935"
 
 この記事では、モデル バインドとは何か、そのしくみ、その動作のカスタマイズ方法を説明します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/model-binding/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="what-is-model-binding"></a>モデル バインドとは何か
 
@@ -165,7 +165,7 @@ public class Pet
 * `IValueProviderFactory` を実装するクラスを作成します。
 * `Startup.ConfigureServices` 内のファクトリ クラスを登録します。
 
-サンプルアプリには、s から値を取得する [値プロバイダー](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) と [ファクトリ](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs) の例が含まれてい cookie ます。 `Startup.ConfigureServices` 内の登録コードを次に示します。
+サンプルアプリには、s から値を取得する [値プロバイダー](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) と [ファクトリ](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs) の例が含まれてい cookie ます。 `Startup.ConfigureServices` 内の登録コードを次に示します。
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=4)]
 
@@ -280,11 +280,11 @@ public IActionResult OnPost(
 * `[BindNever]`
 
 > [!WARNING]
-> ポストされたフォーム データが値のソースである場合、これらの属性はモデル バインドに影響します。 これらは、入力フォーマッタに影響を与え **ません**。これは、ポストされた JSON および XML 要求本文を処理します。 入力フォーマッタについては、[この記事で後ほど](#input-formatters)説明します。
+> ポストされたフォーム データが値のソースである場合、これらの属性はモデル バインドに影響します。 これらは、ポストされた JSON および XML 要求本文を処理する入力フォーマッタには影響し ***ません*** 。 入力フォーマッタについては、[この記事で後ほど](#input-formatters)説明します。
 
 ### <a name="bind-attribute"></a>[Bind] 属性
 
-クラスまたはメソッド パラメーターに適用できます。 モデルのどのプロパティをモデル バインドに含めるかを指定します。 `[Bind]` 入力フォーマッタには影響し _*_ません_*_ 。
+クラスまたはメソッド パラメーターに適用できます。 モデルのどのプロパティをモデル バインドに含めるかを指定します。 `[Bind]` 入力フォーマッタには影響し ***ません*** 。
 
 次の例では、任意のハンドラーまたはアクション メソッドが呼び出されると、`Instructor` モデルの指定されたプロパティのみがバインドされます。
 
@@ -300,7 +300,7 @@ public class Instructor
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-`[Bind]`属性を使用して、_create * シナリオで過剰ポストを防ぐことができます。 除外されたプロパティはそのままにしておくのではなく null または既定値に設定されるので、この属性は編集シナリオではうまく機能しません。 過剰ポスティングを防ぐ場合は、`[Bind]` 属性ではなくビュー モデルをお勧めします。 詳細については、「[過剰ポスティングに関するセキュリティの注意事項](xref:data/ef-mvc/crud#security-note-about-overposting)」を参照してください。
+`[Bind]` 属性を使用すれば、"*作成*" シナリオにおいて過剰ポスティングから保護することができます。 除外されたプロパティはそのままにしておくのではなく null または既定値に設定されるので、この属性は編集シナリオではうまく機能しません。 過剰ポスティングを防ぐ場合は、`[Bind]` 属性ではなくビュー モデルをお勧めします。 詳細については、「[過剰ポスティングに関するセキュリティの注意事項](xref:data/ef-mvc/crud#security-note-about-overposting)」を参照してください。
 
 ### <a name="modelbinder-attribute"></a>[ModelBinder] 属性
 
@@ -471,7 +471,7 @@ ASP.NET Core ルート値プロバイダーとクエリ文字列値プロバイ�
 ASP.NET Core ルート値プロバイダーとクエリ文字列値プロバイダーでカルチャ依存の変換が行われるようにするには、次のようにします。
 
 * <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory> から継承します
-* [QueryStringValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) または [RouteValueValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs) からコードをコピーします。
+* [QueryStringValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) または [RouteValueValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs) からコードをコピーします。
 * 値プロバイダー コンストラクターに渡された[カルチャ値](https://github.com/dotnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30)を [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture) に置き換えます。
 * MVC オプション内の既定値プロバイダー ファクトリを、新しいものに置き換えます。
 
@@ -580,7 +580,7 @@ ASP.NET Core では、[Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute
 
 この記事では、モデル バインドとは何か、そのしくみ、その動作のカスタマイズ方法を説明します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/model-binding/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="what-is-model-binding"></a>モデル バインドとは何か
 
@@ -714,7 +714,7 @@ public class Pet
 * `IValueProviderFactory` を実装するクラスを作成します。
 * `Startup.ConfigureServices` 内のファクトリ クラスを登録します。
 
-サンプルアプリには、s から値を取得する [値プロバイダー](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) と [ファクトリ](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs) の例が含まれてい cookie ます。 `Startup.ConfigureServices` 内の登録コードを次に示します。
+サンプルアプリには、s から値を取得する [値プロバイダー](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) と [ファクトリ](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs) の例が含まれてい cookie ます。 `Startup.ConfigureServices` 内の登録コードを次に示します。
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=3)]
 
@@ -958,7 +958,7 @@ ASP.NET Core ルート値プロバイダーとクエリ文字列値プロバイ�
 ASP.NET Core ルート値プロバイダーとクエリ文字列値プロバイダーでカルチャ依存の変換が行われるようにするには、次のようにします。
 
 * <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory> から継承します
-* [QueryStringValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) または [RouteValueValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs) からコードをコピーします。
+* [QueryStringValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) または [RouteValueValueProviderFactory](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs) からコードをコピーします。
 * 値プロバイダー コンストラクターに渡された[カルチャ値](https://github.com/dotnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30)を [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture) に置き換えます。
 * MVC オプション内の既定値プロバイダー ファクトリを、新しいものに置き換えます。
 

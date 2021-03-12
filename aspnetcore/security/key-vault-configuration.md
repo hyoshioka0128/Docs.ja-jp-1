@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 4b035fe59b8576eb387ddce67943386ccab55492
-ms.sourcegitcommit: 8dfcd2b4be936950c228b4d98430622a04254cd7
+ms.openlocfilehash: ab3a462a3e09113e96c6bdd0c034bff3e0bebdfa
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/26/2020
-ms.locfileid: "97792081"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588296"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>ASP.NET Core の構成プロバイダーの Azure Key Vault
 
@@ -37,7 +37,7 @@ By [Andrew Stanton-看護師](https://github.com/anurse)
 * 機密性の高い構成データへのアクセスを制御する。
 * 構成データを格納するときに、FIPS 140-2 Level 2 で検証されたハードウェアセキュリティモジュール (HSM) の要件を満たしている。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="packages"></a>パッケージ
 
@@ -331,7 +331,7 @@ JSON ファイルによって提供される次の [Serilog](https://serilog.net
 
 前の JSON ファイルに示されている構成は、二重ダッシュ ( `--` ) 表記と数値セグメントを使用して Azure Key Vault に格納されます。
 
-| Key | [値] |
+| キー | [値] |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -384,7 +384,7 @@ Configuration.Reload();
 * 機密性の高い構成データへのアクセスを制御する。
 * 構成データを格納するときに、FIPS 140-2 Level 2 で検証されたハードウェアセキュリティモジュール (HSM) の要件を満たしている。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="packages"></a>パッケージ
 
@@ -658,7 +658,7 @@ JSON ファイルによって提供される次の [Serilog](https://serilog.net
 
 前の JSON ファイルに示されている構成は、二重ダッシュ ( `--` ) 表記と数値セグメントを使用して Azure Key Vault に格納されます。
 
-| Key | [値] |
+| キー | [値] |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

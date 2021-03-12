@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: f1ce6a209ef3ca85abe0a6f1ac61d85bec52d17a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 47d204a0cde258fda8c9c9b78043046e719d8f18
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93050824"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588036"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>ASP.NET Core での統合テスト
 
@@ -36,7 +36,7 @@ ms.locfileid: "93050824"
 
 このトピックを読むには、単体テストの基本的な知識があることが前提となります。 テストの概念を理解していない場合は、「[.NET Core の単体テストと .NET Standard」](/dotnet/core/testing/) のトピックとリンクされたコンテンツを参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このサンプル アプリは Razor Pages アプリであり、Razor Pages の基本を理解していることを前提としています。 Razor Pages に慣れていない場合は、次のトピックを参照してください。
 
@@ -118,7 +118,7 @@ Razor Pages アプリと MVC アプリのテストの構成には、ほぼ違い
 * [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) パッケージを参照しています。
 * プロジェクト ファイル (`<Project Sdk="Microsoft.NET.Sdk.Web">`) で Web SDK を指定しています。
 
-これらの前提条件は、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)で確認できます。 *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* ファイルを調べます。 このサンプル アプリでは、[xUnit](https://xunit.github.io/) テスト フレームワークと [AngleSharp](https://anglesharp.github.io/) パーサー ライブラリを使用するので、サンプル アプリは以下も参照します。
+これらの前提条件は、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/)で確認できます。 *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* ファイルを調べます。 このサンプル アプリでは、[xUnit](https://xunit.github.io/) テスト フレームワークと [AngleSharp](https://anglesharp.github.io/) パーサー ライブラリを使用するので、サンプル アプリは以下も参照します。
 
 * [xunit](https://www.nuget.org/packages/xunit)
 * [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio)
@@ -158,7 +158,7 @@ Web ホストの構成は、`WebApplicationFactory` から継承して 1 つ以�
 
    [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
-   [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)でのデータベースのシード処理は、`InitializeDbForTests` メソッドによって実行されます。 このメソッドについては、[統合テストのサンプル: テスト アプリの構成](#test-app-organization)に関するセクションをご覧ください。
+   [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)でのデータベースのシード処理は、`InitializeDbForTests` メソッドによって実行されます。 このメソッドについては、[統合テストのサンプル: テスト アプリの構成](#test-app-organization)に関するセクションをご覧ください。
 
    SUT のデータベース コンテキストは、`Startup.ConfigureServices` メソッドに登録されます。 テスト アプリの `builder.ConfigureServices` コールバックは、アプリの `Startup.ConfigureServices` コードが実行された *後* に実行されます。 ASP.NET Core 3.0 リリースの[汎用ホスト](xref:fundamentals/host/generic-host)により、実行順序に関する互換性のない変更が行われています。 アプリのデータベースとは異なるデータベースをテストに使用するには、`builder.ConfigureServices` でアプリのデータベース コンテキストを置き換える必要があります。
 
@@ -195,7 +195,7 @@ SUT に対する POST 要求は、アプリの[偽造防止データ保護シス
 1. 応答の偽造防止 cookie と要求検証トークンを解析します。
 1. 偽造防止 cookie と要求検証トークンを使用して POST 要求を行います。
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)の `SendAsync` ヘルパー拡張メソッド (*Helpers/HttpClientExtensions.cs*) と `GetDocumentAsync` ヘルパー メソッド (*Helpers/HtmlHelpers.cs*) は、次のメソッドで [AngleSharp](https://anglesharp.github.io/) パーサーを使用して偽造防止チェック処理を行います。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/)の `SendAsync` ヘルパー拡張メソッド (*Helpers/HttpClientExtensions.cs*) と `GetDocumentAsync` ヘルパー メソッド (*Helpers/HtmlHelpers.cs*) は、次のメソッドで [AngleSharp](https://anglesharp.github.io/) パーサーを使用して偽造防止チェック処理を行います。
 
 * `GetDocumentAsync`:[HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) を受け取り、`IHtmlDocument` を返します。 `GetDocumentAsync` は、元の `HttpResponseMessage` に基づいて *仮想応答* を準備するファクトリを使用します。 詳しくは、[AngleSharp のドキュメント](https://github.com/AngleSharp/AngleSharp#documentation)をご覧ください。
 * `HttpClient` の `SendAsync` 拡張メソッドは、[HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) を作成し、[SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) を呼び出して、SUT に要求を送信します。 `SendAsync` のオーバーロードは、HTML フォーム (`IHtmlFormElement`) と次のものを受け入れます。
@@ -210,7 +210,7 @@ SUT に対する POST 要求は、アプリの[偽造防止データ保護シス
 
 テスト メソッド内で追加の構成が必要な場合は、[WithWebHostBuilder](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.withwebhostbuilder) が構成によってさらにカスタマイズされた [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) を使用して新しい `WebApplicationFactory` を作成します。
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) の `Post_DeleteMessageHandler_ReturnsRedirectToRoot` テスト メソッドは、`WithWebHostBuilder` の使用方法を示しています。 このテストでは、SUT からフォーム送信をトリガーすることによって、データベース内のレコードの削除を実行します。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) の `Post_DeleteMessageHandler_ReturnsRedirectToRoot` テスト メソッドは、`WithWebHostBuilder` の使用方法を示しています。 このテストでは、SUT からフォーム送信をトリガーすることによって、データベース内のレコードの削除を実行します。
 
 `IndexPageTests` クラス内の別のテストは、データベース内のすべてのレコードを削除する操作を実行します。この操作が `Post_DeleteMessageHandler_ReturnsRedirectToRoot` メソッドの前に実行される可能性があるため、このテスト メソッド内でデータベースの再シード処理を行い、確実に SUT が削除するレコードが存在するようにしています。 SUT に対する要求では、SUT の `messages` フォームの最初の [削除] ボタンの選択がシミュレートされます。
 
@@ -347,7 +347,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## <a name="disable-shadow-copying"></a>シャドウ コピーの無効化
 
-シャドウ コピーを行うと、テストが出力ディレクトリとは異なるディレクトリで実行されます。 テストが適切に機能するように、シャドウ コピーを無効化する必要があります。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)では、xUnit を使用して正しい構成設定の *xunit.runner.json* ファイルを含めることにより、xUnit のシャドウ コピーを無効化しています。 詳しくは、[JSON を使用した xUnit の構成](https://xunit.github.io/docs/configuring-with-json.html)に関するページをご覧ください。
+シャドウ コピーを行うと、テストが出力ディレクトリとは異なるディレクトリで実行されます。 テストが適切に機能するように、シャドウ コピーを無効化する必要があります。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)では、xUnit を使用して正しい構成設定の *xunit.runner.json* ファイルを含めることにより、xUnit のシャドウ コピーを無効化しています。 詳しくは、[JSON を使用した xUnit の構成](https://xunit.github.io/docs/configuring-with-json.html)に関するページをご覧ください。
 
 次の内容を使用して、テスト プロジェクトのルートに *xunit.runner.json* ファイルを追加します。
 
@@ -363,7 +363,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## <a name="integration-tests-sample"></a>統合テストのサンプル
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)は、次の 2 つのアプリで構成されています。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)は、次の 2 つのアプリで構成されています。
 
 | アプリ | プロジェクト ディレクトリ | 説明 |
 | --- | ----------------- | ----------- |
@@ -424,7 +424,7 @@ SUT のデータベース コンテキストは、`Startup.ConfigureServices` �
 
 このトピックを読むには、単体テストの基本的な知識があることが前提となります。 テストの概念を理解していない場合は、「[.NET Core の単体テストと .NET Standard」](/dotnet/core/testing/) のトピックとリンクされたコンテンツを参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このサンプル アプリは Razor Pages アプリであり、Razor Pages の基本を理解していることを前提としています。 Razor Pages に慣れていない場合は、次のトピックを参照してください。
 
@@ -508,7 +508,7 @@ Razor Pages アプリと MVC アプリのテストの構成には、ほぼ違い
   * [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing/)
 * プロジェクト ファイル (`<Project Sdk="Microsoft.NET.Sdk.Web">`) で Web SDK を指定しています。 [Microsoft.AspNetCore.App メタパッケージ](xref:fundamentals/metapackage-app)を参照する場合は、Web SDK が必要です。
 
-これらの前提条件は、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)で確認できます。 *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* ファイルを調べます。 このサンプル アプリでは、[xUnit](https://xunit.github.io/) テスト フレームワークと [AngleSharp](https://anglesharp.github.io/) パーサー ライブラリを使用するので、サンプル アプリは以下も参照します。
+これらの前提条件は、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/)で確認できます。 *tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj* ファイルを調べます。 このサンプル アプリでは、[xUnit](https://xunit.github.io/) テスト フレームワークと [AngleSharp](https://anglesharp.github.io/) パーサー ライブラリを使用するので、サンプル アプリは以下も参照します。
 
 * [xunit](https://www.nuget.org/packages/xunit/)
 * [xunit.runner.visualstudio](https://www.nuget.org/packages/xunit.runner.visualstudio/)
@@ -540,7 +540,7 @@ Web ホストの構成は、`WebApplicationFactory` から継承して 1 つ以�
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
-   [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)でのデータベースのシード処理は、`InitializeDbForTests` メソッドによって実行されます。 このメソッドについては、[統合テストのサンプル: テスト アプリの構成](#test-app-organization)に関するセクションをご覧ください。
+   [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)でのデータベースのシード処理は、`InitializeDbForTests` メソッドによって実行されます。 このメソッドについては、[統合テストのサンプル: テスト アプリの構成](#test-app-organization)に関するセクションをご覧ください。
 
 2. テスト クラスでカスタム `CustomWebApplicationFactory` を使用します。 次の例では、`IndexPageTests` クラスでファクトリを使用しています。
 
@@ -558,7 +558,7 @@ SUT に対する POST 要求は、アプリの[偽造防止データ保護シス
 1. 応答の偽造防止 cookie と要求検証トークンを解析します。
 1. 偽造防止 cookie と要求検証トークンを使用して POST 要求を行います。
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)の `SendAsync` ヘルパー拡張メソッド (*Helpers/HttpClientExtensions.cs*) と `GetDocumentAsync` ヘルパー メソッド (*Helpers/HtmlHelpers.cs*) は、次のメソッドで [AngleSharp](https://anglesharp.github.io/) パーサーを使用して偽造防止チェック処理を行います。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/)の `SendAsync` ヘルパー拡張メソッド (*Helpers/HttpClientExtensions.cs*) と `GetDocumentAsync` ヘルパー メソッド (*Helpers/HtmlHelpers.cs*) は、次のメソッドで [AngleSharp](https://anglesharp.github.io/) パーサーを使用して偽造防止チェック処理を行います。
 
 * `GetDocumentAsync`:[HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) を受け取り、`IHtmlDocument` を返します。 `GetDocumentAsync` は、元の `HttpResponseMessage` に基づいて *仮想応答* を準備するファクトリを使用します。 詳しくは、[AngleSharp のドキュメント](https://github.com/AngleSharp/AngleSharp#documentation)をご覧ください。
 * `HttpClient` の `SendAsync` 拡張メソッドは、[HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) を作成し、[SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) を呼び出して、SUT に要求を送信します。 `SendAsync` のオーバーロードは、HTML フォーム (`IHtmlFormElement`) と次のものを受け入れます。
@@ -573,7 +573,7 @@ SUT に対する POST 要求は、アプリの[偽造防止データ保護シス
 
 テスト メソッド内で追加の構成が必要な場合は、[WithWebHostBuilder](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.withwebhostbuilder) が構成によってさらにカスタマイズされた [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) を使用して新しい `WebApplicationFactory` を作成します。
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) の `Post_DeleteMessageHandler_ReturnsRedirectToRoot` テスト メソッドは、`WithWebHostBuilder` の使用方法を示しています。 このテストでは、SUT からフォーム送信をトリガーすることによって、データベース内のレコードの削除を実行します。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) の `Post_DeleteMessageHandler_ReturnsRedirectToRoot` テスト メソッドは、`WithWebHostBuilder` の使用方法を示しています。 このテストでは、SUT からフォーム送信をトリガーすることによって、データベース内のレコードの削除を実行します。
 
 `IndexPageTests` クラス内の別のテストは、データベース内のすべてのレコードを削除する操作を実行します。この操作が `Post_DeleteMessageHandler_ReturnsRedirectToRoot` メソッドの前に実行される可能性があるため、このテスト メソッド内でデータベースの再シード処理を行い、確実に SUT が削除するレコードが存在するようにしています。 SUT に対する要求では、SUT の `messages` フォームの最初の [削除] ボタンの選択がシミュレートされます。
 
@@ -728,7 +728,7 @@ public class CustomWebApplicationFactory<TStartup>
 
 ## <a name="disable-shadow-copying"></a>シャドウ コピーの無効化
 
-シャドウ コピーを行うと、テストが出力ディレクトリとは異なるディレクトリで実行されます。 テストが適切に機能するように、シャドウ コピーを無効化する必要があります。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)では、xUnit を使用して正しい構成設定の *xunit.runner.json* ファイルを含めることにより、xUnit のシャドウ コピーを無効化しています。 詳しくは、[JSON を使用した xUnit の構成](https://xunit.github.io/docs/configuring-with-json.html)に関するページをご覧ください。
+シャドウ コピーを行うと、テストが出力ディレクトリとは異なるディレクトリで実行されます。 テストが適切に機能するように、シャドウ コピーを無効化する必要があります。 [サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)では、xUnit を使用して正しい構成設定の *xunit.runner.json* ファイルを含めることにより、xUnit のシャドウ コピーを無効化しています。 詳しくは、[JSON を使用した xUnit の構成](https://xunit.github.io/docs/configuring-with-json.html)に関するページをご覧ください。
 
 次の内容を使用して、テスト プロジェクトのルートに *xunit.runner.json* ファイルを追加します。
 
@@ -754,7 +754,7 @@ Visual Studio を使用する場合は、ファイルの **[出力ディレク�
 
 ## <a name="integration-tests-sample"></a>統合テストのサンプル
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples)は、次の 2 つのアプリで構成されています。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples)は、次の 2 つのアプリで構成されています。
 
 | アプリ | プロジェクト ディレクトリ | 説明 |
 | --- | ----------------- | ----------- |

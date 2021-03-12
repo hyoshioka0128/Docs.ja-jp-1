@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: b4b1bc6131a6676710adbf2503efe3f304d89a58
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1b5c89c1beaf36912766b3e08b9f16c4d33945f8
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93050850"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588062"
 ---
-# <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.NET Core SignalR JavaScript クライアント
+# <a name="aspnet-core-signalr-javascript-client"></a>ASP.NET Core SignalR JavaScript クライアント
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -34,9 +34,9 @@ ms.locfileid: "93050850"
 
 ASP.NET Core SignalR JavaScript クライアントライブラリを使用すると、開発者はサーバー側のハブコードを呼び出すことができます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/javascript-client/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
-## <a name="install-the-no-locsignalr-client-package"></a>クライアントパッケージをインストールする SignalR
+## <a name="install-the-signalr-client-package"></a>クライアントパッケージをインストールする SignalR
 
 SignalRJavaScript クライアントライブラリは[npm](https://www.npmjs.com/)パッケージとして配信されます。 次のセクションでは、さまざまな方法でクライアントライブラリをインストールする方法について説明します。
 
@@ -152,7 +152,7 @@ SignalR とで定義されたメソッド名と引数を照合することによ
 
 ### <a name="automatically-reconnect"></a>自動的に再接続する
 
-の JavaScript クライアントは、 SignalR HubConnectionBuilder のメソッドを使用して自動的に再接続するように構成でき `withAutomaticReconnect` ます。 [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) 既定では、自動的に再接続されません。
+の JavaScript クライアントは、 SignalR HubConnectionBuilder のメソッドを使用して自動的に再接続するように構成でき `withAutomaticReconnect` ます。 [](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) 既定では、自動的に再接続されません。
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -282,7 +282,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 実際の実装では、指数バックオフを使用するか、指定された回数の再試行を行います。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [JavaScript API リファレンス](/javascript/api/?view=signalr-js-latest&preserve-view=true )
 * [JavaScript のチュートリアル](xref:tutorials/signalr)
@@ -302,9 +302,9 @@ const connection = new signalR.HubConnectionBuilder()
 
 ASP.NET Core SignalR JavaScript クライアントライブラリを使用すると、開発者はサーバー側のハブコードを呼び出すことができます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/javascript-client/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
-## <a name="install-the-no-locsignalr-client-package"></a>クライアントパッケージをインストールする SignalR
+## <a name="install-the-signalr-client-package"></a>クライアントパッケージをインストールする SignalR
 
 SignalRJavaScript クライアントライブラリは[npm](https://www.npmjs.com/)パッケージとして配信されます。 次のセクションでは、さまざまな方法でクライアントライブラリをインストールする方法について説明します。
 
@@ -427,7 +427,7 @@ SignalR とで定義されたメソッド名と引数を照合することによ
 
 実際の実装では、指数バックオフを使用するか、指定された回数の再試行を行います。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [JavaScript API リファレンス](/javascript/api/?view=signalr-js-latest)
 * [JavaScript のチュートリアル](xref:tutorials/signalr)

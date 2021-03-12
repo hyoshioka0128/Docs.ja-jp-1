@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/2fa
-ms.openlocfilehash: 1ee9e656c2e631c9b5588149e0a75e07108baff1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1f77f3f4b7e9dd558e9869992e2f1f4d185e5b10
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051266"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586853"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>ASP.NET Core での SMS による2要素認証
 
@@ -35,7 +35,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) および [スイス-開発�
 
 このチュートリアルでは、SMS を使用して2要素認証 (2FA) を設定する方法について説明します。 手順については、 [twilio](https://www.twilio.com/) と [aspsms](https://www.aspsms.com/asp.net/identity/core/testcredits/)を参照してください。ただし、他の sms プロバイダーを使用することもできます。 このチュートリアルを開始する前に [、アカウントの確認とパスワードの回復](xref:security/authentication/accconfirm) を完了することをお勧めします。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/2fa/sample/Web2FA)します。 [ダウンロード方法](xref:index#how-to-download-a-sample)。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/2fa/sample/Web2FA)します。 [ダウンロード方法](xref:index#how-to-download-a-sample)。
 
 ## <a name="create-a-new-aspnet-core-project"></a>新しい ASP.NET Core プロジェクトを作成する
 
@@ -100,7 +100,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ### <a name="configure-startup-to-use-smsoptions"></a>使用するスタートアップの構成 `SMSoptions`
 
-`SMSoptions`Startup.cs のメソッドで、サービスコンテナーにを追加し `ConfigureServices` ます。 *Startup.cs*
+`SMSoptions`Startup.cs のメソッドで、サービスコンテナーにを追加し `ConfigureServices` ます。 
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
 
@@ -118,11 +118,11 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ![[管理] の [追加] リンク](2fa/_static/login2fa2.png)
 
-* 確認コードを受信する電話番号を追加し、[ **確認コードの送信** ] をタップします。
+* 確認コードを受信する電話番号を追加し、[ **確認コードの送信**] をタップします。
 
 ![[電話番号の追加] ページ](2fa/_static/login2fa3.png)
 
-* 確認コードを含むテキストメッセージが表示されます。 入力し、[ **送信** ] をタップします。
+* 確認コードを含むテキストメッセージが表示されます。 入力し、[**送信**] をタップします。
 
 ![[電話番号の確認] ページ](2fa/_static/login2fa4.png)
 
@@ -142,7 +142,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 * ログインします。
 
-* ユーザーアカウントで2要素認証が有効になっているため、2番目の認証要素を指定する必要があります。 このチュートリアルでは、電話による検証を有効にしました。 組み込みのテンプレートでは、2番目の要素として電子メールを設定することもできます。 QR コードなどの認証については、さらに2つ目の要素を設定できます。 [ **Submit (送信** )」をタップします。
+* ユーザーアカウントで2要素認証が有効になっているため、2番目の認証要素を指定する必要があります。 このチュートリアルでは、電話による検証を有効にしました。 組み込みのテンプレートでは、2番目の要素として電子メールを設定することもできます。 QR コードなどの認証については、さらに2つ目の要素を設定できます。 [ **Submit (送信**)」をタップします。
 
 ![確認コードビューの送信](2fa/_static/login2fa7.png)
 

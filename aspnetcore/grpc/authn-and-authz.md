@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 833114a12c8c1ac67097b3592cf410d7a69bb628
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5120964459a81ef2d668877bb08ecde512c2389d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94673979"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587997"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>ASP.NET Core のための gRPC での認証と承認
 
 作成者: [James Newton-King](https://twitter.com/jamesnk)
 
-[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/grpc/authn-and-authz/sample/) ([ダウンロード方法](xref:index#how-to-download-a-sample))
+[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/authn-and-authz/sample/) ([ダウンロード方法](xref:index#how-to-download-a-sample))
 
 ## <a name="authenticate-users-calling-a-grpc-service"></a>gRPC サービスを呼び出しているユーザーを認証する
 

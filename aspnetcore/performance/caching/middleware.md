@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 3c28b6c736f07c0d0483152eeec4300a5a92224c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0f1f5dfcb9595270a9659a02141f7d1eba5c44ef
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052111"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587698"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>ASP.NET Core での応答キャッシュミドルウェア
 
@@ -34,7 +34,7 @@ ms.locfileid: "93052111"
 
 この記事では、ASP.NET Core アプリで応答キャッシュミドルウェアを構成する方法について説明します。 ミドルウェアは、応答をキャッシュ可能にするタイミングを決定し、応答を格納して、キャッシュからの応答を提供します。 HTTP キャッシュと属性の概要につい [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) ては、「 [応答キャッシュ](xref:performance/caching/response)」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="configuration"></a>構成
 
@@ -71,7 +71,7 @@ ms.locfileid: "93052111"
 
 応答キャッシュのオプションを次の表に示します。
 
-| オプション | [説明] |
+| オプション | 説明 |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | 応答本文の最大キャッシュ可能サイズ (バイト単位)。 既定値は `64 * 1024 * 1024` (64 MB) です。 |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | 応答キャッシュミドルウェアのサイズ制限 (バイト単位)。 既定値は `100 * 1024 * 1024` (100 MB) です。 |
@@ -164,7 +164,7 @@ if (responseCachingFeature != null)
 > [!NOTE]
 > クロスサイト要求偽造 (CSRF) 攻撃を防ぐために、セキュリティで保護されたトークンを生成するための偽造防止システムは、 `Cache-Control` `Pragma` 応答がキャッシュされないようにヘッダーとヘッダーをに設定し `no-cache` ます。 HTML フォーム要素の偽造防止トークンを無効にする方法については、「」を参照してください <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration> 。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -181,7 +181,7 @@ if (responseCachingFeature != null)
 
 この記事では、ASP.NET Core アプリで応答キャッシュミドルウェアを構成する方法について説明します。 ミドルウェアは、応答をキャッシュ可能にするタイミングを決定し、応答を格納して、キャッシュからの応答を提供します。 HTTP キャッシュと属性の概要につい [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) ては、「 [応答キャッシュ](xref:performance/caching/response)」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/middleware/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="configuration"></a>構成
 
@@ -215,7 +215,7 @@ if (responseCachingFeature != null)
 
 応答キャッシュのオプションを次の表に示します。
 
-| オプション | [説明] |
+| オプション | 説明 |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize> | 応答本文の最大キャッシュ可能サイズ (バイト単位)。 既定値は `64 * 1024 * 1024` (64 MB) です。 |
 | <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit> | 応答キャッシュミドルウェアのサイズ制限 (バイト単位)。 既定値は `100 * 1024 * 1024` (100 MB) です。 |

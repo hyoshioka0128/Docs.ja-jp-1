@@ -723,9 +723,9 @@
       displayName: 'signalr, specs'
       items:
         - name: ハブ プロトコル
-          href: 'https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md'
+          href: 'https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/HubProtocol.md'
         - name: トランスポート プロトコル
-          href: 'https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md'
+          href: 'https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/TransportProtocols.md'
 - name: リモート プロシージャ コール アプリ
   items:
     - name: gRPC サービスの概要
@@ -752,6 +752,8 @@
           uid: grpc/clientfactory
         - name: 期限とキャンセル
           uid: grpc/deadlines-cancellation
+        - name: 一時的な障害の処理
+          uid: grpc/retries
     - name: ASP.NET Core を使用した gRPC サービス
       uid: grpc/aspnetcore
     - name: サポートされているプラットフォーム
@@ -1028,7 +1030,7 @@
           href: /visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker
         - name: Docker イメージのサンプル
           displayName: 'deploy, publish, docker'
-          href: 'https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md'
+          href: 'https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md'
     - name: プロキシとロード バランサーの構成
       displayName: 'deploy, publish'
       uid: host-and-deploy/proxy-load-balancer
@@ -1418,4 +1420,4 @@
 - name: API リファレンス
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: 投稿
-  href: 'https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md'
+  href: 'https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md'

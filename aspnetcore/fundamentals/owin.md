@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/owin
-ms.openlocfilehash: c44803c6f67d8e03759a01f7aa71d82088be9a11
-ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
+ms.openlocfilehash: e476f3f62a250d960c809e5062b3bd8ca3a1940a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/09/2021
-ms.locfileid: "99975275"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587235"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>Open Web Interface for .NET (OWIN) と ASP.NET Core
 
@@ -46,7 +46,7 @@ OWIN には、さまざまなオブジェクト モデルを使用する 2 つ�
 > [!NOTE]
 > これらのアダプターを使用すると、パフォーマンスが低下します。 ASP.NET Core コンポーネントのみを使用するアプリケーションでは、`Microsoft.AspNetCore.Owin` パッケージまたはアダプターを使用しないでください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/owin/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="running-owin-middleware-in-the-aspnet-core-pipeline"></a>ASP.NET Core パイプラインで OWIN ミドルウェアを実行する
 

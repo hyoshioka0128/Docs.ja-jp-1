@@ -17,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: cb9ffab19062bf726dd519c782d502f76e372073
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: 60471232b3373039404b27c4afd1a1725d4d21eb
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058286"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586866"
 ---
-# <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor ASP.NET Core の構文リファレンス
+# <a name="razor-syntax-reference-for-aspnet-core"></a>ASP.NET Core の Razor 構文リファレンス
 
 [Rick Anderson](https://twitter.com/RickAndMSFT)、 [Taylor Mullen](https://twitter.com/ntaylormullen)、 [Dan Vicarel](https://github.com/Rabadash8820)
 
@@ -34,7 +34,7 @@ Razor は、web ページにサーバーベースのコードを埋め込むた�
 
 既定の Razor 言語は HTML です。 マークアップから html をレンダリング Razor することは、html ファイルから html をレンダリングする場合と同じです。 ファイル *内の* HTML マークアップ Razor は、サーバーによって変更されずに表示されます。
 
-## <a name="no-locrazor-syntax"></a>Razor の構文
+## <a name="razor-syntax"></a>Razor の構文
 
 Razor C# をサポートし、シンボルを使用して `@` HTML から c# に移行します。 Razor C# の式を評価し、HTML 出力に表示します。
 
@@ -58,7 +58,7 @@ HTML では、コードは 1 つの `@` 記号でレンダリングされます�
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
 ```
 
-## <a name="implicit-no-locrazor-expressions"></a>暗黙的な Razor 式
+## <a name="implicit-razor-expressions"></a>暗黙的な Razor 式
 
 暗黙的 Razor な式の先頭に `@` は、次の C# コードが続きます。
 
@@ -86,7 +86,7 @@ C# の `await` キーワードを除き、暗黙的な式にスペースを含�
 
 ジェネリックメソッドの呼び出しは、[明示的な Razor 式](#explicit-razor-expressions)または[ Razor コードブロック](#razor-code-blocks)でラップする必要があります。
 
-## <a name="explicit-no-locrazor-expressions"></a>明示的な Razor 式
+## <a name="explicit-razor-expressions"></a>明示的な Razor 式
 
 明示的な Razor 式は、 `@` 均衡かっこ付きの記号で構成されます。 先週の時間を表示するには、次の Razor マークアップを使用します。
 
@@ -157,7 +157,7 @@ HTML は、プレーンテキストとしてブラウザーに表示されます
 <span>Hello World</span>
 ```
 
-## <a name="no-locrazor-code-blocks"></a>Razor コードブロック
+## <a name="razor-code-blocks"></a>Razor コードブロック
 
 Razor コードブロックはで始まり `@` 、で囲まれて `{}` います。 式とは異なり、コード ブロック内の C# コードはレンダリングされません。 ビュー内のコード ブロックと式は同じスコープを共有し、次の順序で定義されます。
 
@@ -399,7 +399,7 @@ Razor には、次のように、重要なセクションを lock ステート�
 }
 ```
 
-### <a name="comments"></a>備考
+### <a name="comments"></a>コメント
 
 Razor C# および HTML コメントをサポートしています。
 
@@ -497,7 +497,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 
 ::: moniker-end
 
-例:
+次に例を示します。
 
 [!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
 
@@ -789,11 +789,11 @@ Razor コンポーネントのイベント処理機能を提供します。 詳�
 
 *このシナリオは、 Razor コンポーネント (razor) にのみ適用されます。*
 
-`@typeparam` ディレクティブによって、生成されるコンポーネント クラスのジェネリック型パラメーターを宣言します。 詳細については、「<xref:blazor/components/templated-components#generic-typed-components>」を参照してください。
+`@typeparam` ディレクティブによって、生成されるコンポーネント クラスのジェネリック型パラメーターを宣言します。 詳細については、「<xref:blazor/components/templated-components>」を参照してください。
 
 ::: moniker-end
 
-## <a name="templated-no-locrazor-delegates"></a>テンプレート化 Razor デリゲート
+## <a name="templated-razor-delegates"></a>テンプレート化 Razor デリゲート
 
 Razor テンプレートを使用すると、次の形式で UI スニペットを定義できます。
 
@@ -898,15 +898,15 @@ Razorメソッドの引数としてインラインテンプレートを指定す
 
 [タグ ヘルパー](xref:mvc/views/tag-helpers/intro)に関する 3 つのディレクティブがあります。
 
-| ディレクティブ | 関数 |
+| ディレクティブ | 機能 |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | ビューでタグ ヘルパーを使えるようにします。 |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | 前に追加したタグ ヘルパーをビューから削除します。 |
 | [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | タグ プレフィックスを指定して、タグ ヘルパーのサポートを有効にしたり、タグ ヘルパーの使用を明示的にしたりします。 |
 
-## <a name="no-locrazor-reserved-keywords"></a>Razor 予約済みキーワード
+## <a name="razor-reserved-keywords"></a>Razor 予約済みキーワード
 
-### <a name="no-locrazor-keywords"></a>Razor keywords
+### <a name="razor-keywords"></a>Razor keywords
 
 * `page` (ASP.NET Core 2.1 以降が必要)
 * `namespace`
@@ -918,7 +918,7 @@ Razorメソッドの引数としてインラインテンプレートを指定す
 
 Razor キーワードは、でエスケープされ `@(Razor Keyword)` ます (たとえば、 `@(functions)` )。
 
-### <a name="c-no-locrazor-keywords"></a>C# の Razor キーワード
+### <a name="c-razor-keywords"></a>C# の Razor キーワード
 
 * `case`
 * `do`
@@ -937,11 +937,11 @@ Razor キーワードは、でエスケープされ `@(Razor Keyword)` ます (�
 
 C# の Razor キーワードは、を使用してダブルエスケープする必要があり `@(@C# Razor Keyword)` ます (例: `@(@case)` )。 最初のは、 `@` パーサーをエスケープし Razor ます。 2 番目の `@` は、C# パーサーをエスケープします。
 
-### <a name="reserved-keywords-not-used-by-no-locrazor"></a>予約済みキーワードがで使用されていません Razor
+### <a name="reserved-keywords-not-used-by-razor"></a>予約済みキーワードがで使用されていません Razor
 
 * `class`
 
-## <a name="inspect-the-no-locrazor-c-class-generated-for-a-view"></a>Razorビューに対して生成された C# クラスを検査する
+## <a name="inspect-the-razor-c-class-generated-for-a-view"></a>Razorビューに対して生成された C# クラスを検査する
 
 ::: moniker range=">= aspnetcore-2.1"
 

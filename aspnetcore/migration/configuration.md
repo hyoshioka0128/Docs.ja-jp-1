@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/configuration
-ms.openlocfilehash: d84204c8c791bfaf36432462cde3a42c294c7966
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c3957bf45dddcead24f7bb0f2702bf1a08950bdd
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059794"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587945"
 ---
 # <a name="migrate-configuration-to-aspnet-core"></a>構成を ASP.NET Core に移行する
 
@@ -30,11 +30,11 @@ ms.locfileid: "93059794"
 
 前の記事では、 [ASP.NET mvc プロジェクトの ASP.NET CORE mvc への移行](xref:migration/mvc)を開始しました。 この記事では、構成を移行します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/configuration/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="setup-configuration"></a>セットアップの構成
 
-ASP.NET Core は、以前のバージョンの ASP.NET が使用されていた *global.asax および* *web.config* ファイルを使用しなくなりました。 以前のバージョンの ASP.NET では、アプリケーションのスタートアップロジックは global.asax 内のメソッドに配置されていま `Application_StartUp` した。 *Global.asax* その後、ASP.NET MVC では、 *Startup.cs* ファイルがプロジェクトのルートに含まれていました。また、アプリケーションの起動時に呼び出されました。 ASP.NET Core は、すべてのスタートアップロジックを *Startup.cs* ファイルに配置することによって、この方法を完全に採用しています。
+ASP.NET Core は、以前のバージョンの ASP.NET が使用されていた *global.asax および* *web.config* ファイルを使用しなくなりました。 以前のバージョンの ASP.NET では、アプリケーションのスタートアップロジックは global.asax 内のメソッドに配置されていま `Application_StartUp` した。  その後、ASP.NET MVC では、 *Startup.cs* ファイルがプロジェクトのルートに含まれていました。また、アプリケーションの起動時に呼び出されました。 ASP.NET Core は、すべてのスタートアップロジックを *Startup.cs* ファイルに配置することによって、この方法を完全に採用しています。
 
 *web.config* ファイルも ASP.NET Core で置き換えられました。 *Startup.cs* で説明されているアプリケーションのスタートアップ手順の一部として、構成自体を構成できるようになりました。 構成では引き続き XML ファイルを利用できますが、通常 ASP.NET Core プロジェクトは、などの JSON 形式のファイルに構成値を配置し *appsettings.json* ます。 ASP.NET Core の構成システムは、環境変数に簡単にアクセスすることもできます。これにより、環境固有の値に対して [より安全かつ堅牢な場所](xref:security/app-secrets) を提供できます。 これは、ソース管理にチェックインしない接続文字列や API キーなどのシークレットに特に当てはまります。 ASP.NET Core の構成の詳細については、「 [構成](xref:fundamentals/configuration/index) 」を参照してください。
 

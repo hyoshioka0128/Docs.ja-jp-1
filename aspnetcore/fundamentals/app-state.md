@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: c11b748f9d79235b14c9541019da6e1fb3428af6
-ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
+ms.openlocfilehash: ab09867a1b1aa73e423babbe295036e292fc733f
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "93051409"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586580"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>ASP.NET Core でのセッションと状態の管理
 
@@ -33,7 +33,7 @@ ms.locfileid: "93051409"
 
 HTTP はステートレス プロトコルです。 既定で、HTTP 要求は独立したメッセージであり、ユーザーの値は保持されません。 この記事では、要求間でユーザー データを保持するためのいくつかの方法について説明します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="state-management"></a>状態管理
 
@@ -303,7 +303,7 @@ SignalR アプリでは、セッション状態を使用して情報を格納す
 
 HTTP はステートレス プロトコルです。 手順を追加しないと、HTTP 要求は独立したメッセージであり、ユーザーの値やアプリの状態は保持されません。 この記事では、要求と要求の間でユーザー データとアプリの状態を保持するための複数の方法について説明します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="state-management"></a>状態管理
 

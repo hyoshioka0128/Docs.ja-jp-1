@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 852c26f89b229d89797d9ce6fce2983319defe9c
-ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
+ms.openlocfilehash: cd637507e19735f020b4c28e6f22de0e7e772040
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/18/2021
-ms.locfileid: "101101147"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588322"
 ---
 # <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>パート 7、ASP.NET Core で Razor ページでの新しいフィールドの追加
 
@@ -32,7 +32,7 @@ ms.locfileid: "101101147"
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このセクションでは [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations を次の目的で使用します。
 
@@ -62,7 +62,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 1. 次のページを更新します。
    1. [削除] と [詳細] ページに、`Rating` フィールドを追加します。
-   1. [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
+   1. [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
    1. [編集] ページに、`Rating` フィールドを追加します。
 
 データベースを更新して新しいフィールドが含まれるようになるまでアプリは動作しません。 データベースを更新せずにアプリを実行すると、次の `SqlException` がスローされます。
@@ -85,7 +85,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs)を参照してください。
+[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs)を参照してください。
 
 ソリューションをビルドします。
 
@@ -173,7 +173,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 ::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このセクションでは [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations を次の目的で使用します。
 
@@ -203,7 +203,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 1. 次のページを更新します。
    1. [削除] と [詳細] ページに、`Rating` フィールドを追加します。
-   1. [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
+   1. [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
    1. [編集] ページに、`Rating` フィールドを追加します。
 
 データベースを更新して新しいフィールドが含まれるようになるまでアプリは動作しません。 データベースを更新せずにアプリを実行すると、次の `SqlException` がスローされます。
@@ -226,7 +226,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs)を参照してください。
+[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs)を参照してください。
 
 ソリューションをビルドします。
 
@@ -314,7 +314,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 ::: moniker range="< aspnetcore-3.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このセクションでは [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations を次の目的で使用します。
 
@@ -343,7 +343,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 次のページを更新します。
 
 * [削除] と [詳細] ページに、`Rating` フィールドを追加します。
-* [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
+* [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) を `Rating` フィールドを使用して更新します。
 * [編集] ページに、`Rating` フィールドを追加します。
 
 データベースを更新して新しいフィールドが含まれるようになるまでアプリは動作しません。 ここでアプリが実行されると、アプリによって `SqlException` がスローされます。
@@ -366,7 +366,7 @@ EF Code First を使用してデータベースを自動的に作成する場合
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs)を参照してください。
+[完成した SeedData.cs ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs)を参照してください。
 
 ソリューションをビルドします。
 

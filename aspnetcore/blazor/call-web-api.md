@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: b3c783623252512621a0cee7a3607c69cb6d09bb
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 9ac17e7c22b23ced7a8f12a6ef0d456f6244318b
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280279"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586762"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>ASP.NET Core Blazor から Web API を呼び出す
 
@@ -33,7 +33,7 @@ ms.locfileid: "100280279"
 
 [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) アプリは、事前に構成された <xref:System.Net.Http.HttpClient> サービスを使用して Web API を呼び出します。 JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) オプションを含めることができる要求は、Blazor JSON ヘルパーまたは <xref:System.Net.Http.HttpRequestMessage> を使用して作成ます。 Blazor WebAssembly アプリの <xref:System.Net.Http.HttpClient> サービスは、発行元のサーバーに要求を戻すことに重点を置いています。 このトピックのガイダンスは、Blazor WebAssembly アプリにのみ関連します。
 
-[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([ダウンロード方法](xref:index#how-to-download-a-sample)):`BlazorWebAssemblySample` アプリを選択します。
+[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) ([ダウンロード方法](xref:index#how-to-download-a-sample)):`BlazorWebAssemblySample` アプリを選択します。
 
 `BlazorWebAssemblySample` サンプル アプリで次のコンポーネントを確認します。
 
@@ -153,7 +153,7 @@ JSON のヘルパー メソッドは、要求を URI (次の例では Web API) �
       }
 
       private async Task SaveItem() =>
-          await Http.PutAsJsonAsync($"api/TodoItems/{editItem.Id}, editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{editItem.Id}", editItem);
   }
   ```
   
@@ -401,7 +401,7 @@ protected override async Task OnInitializedAsync()
 
 Web ページでは、ブラウザーのセキュリティにより、その Web ページを提供したドメインと異なるドメインに対して要求を行うことはできません。 この制限は、*同一オリジン ポリシー* と呼ばれます。 同一オリジン ポリシーにより、悪意のあるサイトが別のサイトから機密データを読み取れないようになっています。 オリジンが異なるエンドポイントへの要求をブラウザーから行うには、*エンドポイント* で [クロス オリジン リソース共有 (CORS)](https://www.w3.org/TR/cors/) を有効にする必要があります。
 
-[Blazor WebAssembly サンプル アプリ (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) では、呼び出し Web API コンポーネント (`Pages/CallWebAPI.razor`) で CORS を使用する方法が示されています。
+[Blazor WebAssembly サンプル アプリ (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) では、呼び出し Web API コンポーネント (`Pages/CallWebAPI.razor`) で CORS を使用する方法が示されています。
 
 Blazor アプリにおけるセキュリティ保護された要求での CORS の詳細については、「<xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>」を参照してください。
 

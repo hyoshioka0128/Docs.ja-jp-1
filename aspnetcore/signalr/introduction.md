@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/introduction
-ms.openlocfilehash: 1810fef903362addcef4a6c9ec53264604f58d2b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5e3a96d38424b895fa8f34897a4f0a1d818ff479
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051474"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588088"
 ---
-# <a name="introduction-to-aspnet-core-no-locsignalr"></a>ASP.NET Core SignalR の概要
+# <a name="introduction-to-aspnet-core-signalr"></a>ASP.NET Core SignalR の概要
 
-## <a name="what-is-no-locsignalr"></a>SignalR の概要
+## <a name="what-is-signalr"></a>SignalR の概要
 
 ASP.NET Core SignalR は、リアルタイムの web 機能をアプリに簡単に追加できるオープンソースライブラリです。 リアルタイム web 機能を使用すると、サーバー側のコードでクライアントにコンテンツを瞬時にプッシュできます。
 
@@ -48,7 +48,7 @@ ASP.NET Core のの一部の機能を次に示し SignalR ます。
 * 特定のクライアントまたはクライアントグループにメッセージを送信します。
 * 増加するトラフィックを処理するようにスケーリングします。
 
-ソースは、 [ SignalR GitHub のリポジトリ](https://github.com/dotnet/AspNetCore/tree/master/src/SignalR)でホストされています。
+ソースは、 [ SignalR GitHub のリポジトリ](https://github.com/dotnet/AspNetCore/tree/main/src/SignalR)でホストされています。
 
 ## <a name="transports"></a>トランスポート
 
@@ -68,7 +68,7 @@ SignalR は、 *ハブ* を使用してクライアントとサーバー間の�
 
 ハブは、クライアント側のメソッドの名前とパラメーターを含むメッセージを送信することによって、クライアント側のコードを呼び出します。 メソッドパラメーターとして送信されるオブジェクトは、構成されたプロトコルを使用して逆シリアル化されます。 クライアントは、クライアント側コードのメソッドと名前を一致させようとします。 クライアントが一致を検出すると、メソッドを呼び出し、逆シリアル化されたパラメーターデータに渡します。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [For ASP.NET Core を使ってみる SignalR](xref:tutorials/signalr)
 * [サポートされているプラットフォーム](xref:signalr/supported-platforms)

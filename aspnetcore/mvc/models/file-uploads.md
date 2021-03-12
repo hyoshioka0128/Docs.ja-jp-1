@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: c32d20d4616650db004c78fb4d8ea9a4d5a3beab
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 90bde63ac94ba3fd29a067962989cf773ec613db
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252800"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587241"
 ---
 # <a name="upload-files-in-aspnet-core"></a>ASP.NET Core でファイルをアップロードする
 
@@ -34,7 +34,7 @@ ms.locfileid: "98252800"
 
 ASP.NET Core では、小さいファイルの場合はバッファー モデル バインドを使用し、大きいファイルの場合は非バッファー ストリーミングを使用して、1 つ以上のファイルのアップロードがサポートされています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="security-considerations"></a>セキュリティに関する考慮事項
 
@@ -238,7 +238,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)
@@ -254,7 +254,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > [!NOTE]
 > バインドでは、名前でフォーム ファイルが照合されます。 たとえば、HTML の `<input type="file" name="formFile">` の `name` の値は、バインドされた C# のパラメーター/プロパティと一致する必要があります (`FormFile`)。 詳細については、「[name 属性の値を POST メソッドのパラメーター名に一致させる](#match-name-attribute-value-to-parameter-name-of-post-method)」を参照してください。
 
-次に例を示します。
+次のような例です。
 
 * アップロードされた 1 つ以上のファイルをループします。
 * [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) 使用して、ファイル名を含むファイルの完全なパスを返します。 
@@ -409,7 +409,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 >
 > 検証を行わずに <xref:Microsoft.AspNetCore.Http.IFormFile> の `FileName` プロパティに依存したり、信頼したりしないでください。 `FileName` プロパティは、表示目的でのみ、HTML エンコードした後でだけ、使用する必要があります。
 >
-> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)
@@ -758,7 +758,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 ASP.NET Core では、小さいファイルの場合はバッファー モデル バインドを使用し、大きいファイルの場合は非バッファー ストリーミングを使用して、1 つ以上のファイルのアップロードがサポートされています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="security-considerations"></a>セキュリティに関する考慮事項
 
@@ -962,7 +962,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)
@@ -978,7 +978,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > [!NOTE]
 > バインドでは、名前でフォーム ファイルが照合されます。 たとえば、HTML の `<input type="file" name="formFile">` の `name` の値は、バインドされた C# のパラメーター/プロパティと一致する必要があります (`FormFile`)。 詳細については、「[name 属性の値を POST メソッドのパラメーター名に一致させる](#match-name-attribute-value-to-parameter-name-of-post-method)」を参照してください。
 
-次に例を示します。
+次のような例です。
 
 * アップロードされた 1 つ以上のファイルをループします。
 * [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) 使用して、ファイル名を含むファイルの完全なパスを返します。 
@@ -1133,7 +1133,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 >
 > 検証を行わずに <xref:Microsoft.AspNetCore.Http.IFormFile> の `FileName` プロパティに依存したり、信頼したりしないでください。 `FileName` プロパティは、表示目的でのみ、HTML エンコードした後でだけ、使用する必要があります。
 >
-> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)
@@ -1493,7 +1493,7 @@ The request filtering module is configured to deny a request that exceeds the re
 
 ASP.NET Core では、小さいファイルの場合はバッファー モデル バインドを使用し、大きいファイルの場合は非バッファー ストリーミングを使用して、1 つ以上のファイルのアップロードがサポートされています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="security-considerations"></a>セキュリティに関する考慮事項
 
@@ -1697,7 +1697,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> これまでに示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)
@@ -1713,7 +1713,7 @@ ASP.NET Core では、小さいファイルの場合はバッファー モデル
 > [!NOTE]
 > バインドでは、名前でフォーム ファイルが照合されます。 たとえば、HTML の `<input type="file" name="formFile">` の `name` の値は、バインドされた C# のパラメーター/プロパティと一致する必要があります (`FormFile`)。 詳細については、「[name 属性の値を POST メソッドのパラメーター名に一致させる](#match-name-attribute-value-to-parameter-name-of-post-method)」を参照してください。
 
-次に例を示します。
+次のような例です。
 
 * アップロードされた 1 つ以上のファイルをループします。
 * [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) 使用して、ファイル名を含むファイルの完全なパスを返します。 
@@ -1868,7 +1868,7 @@ public async Task<IActionResult> OnPostUploadAsync()
 >
 > 検証を行わずに <xref:Microsoft.AspNetCore.Http.IFormFile> の `FileName` プロパティに依存したり、信頼したりしないでください。 `FileName` プロパティは、表示目的でのみ、HTML エンコードした後でだけ、使用する必要があります。
 >
-> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
+> 示した例では、セキュリティ上の考慮事項については考えられていません。 以下のセクションおよび[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/)で、追加の情報が提供されています。
 >
 > * [セキュリティに関する考慮事項](#security-considerations)
 > * [検証](#validation)

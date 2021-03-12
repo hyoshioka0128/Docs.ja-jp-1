@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: 086418c161677f585b08ed360555c93d8575e701
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 44211ac7fa2acc7a7a9471ef362cff02f94fa2b6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059456"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588270"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core と Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -30,7 +30,7 @@ ms.locfileid: "93059456"
 
 ## <a name="using-entity-framework-6-with-aspnet-core"></a>ASP.NET Core での Entity Framework 6 の使用
 
-新しい開発には、[Entity Framework Core](/ef/) を使用する必要があります。 この[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/3.xsample)では [Entity Framework 6 (EF6)](/ef/ef6) を使用します。これを使用すると、既存のアプリを ASP.NET Core に移行できます。
+新しい開発には、[Entity Framework Core](/ef/) を使用する必要があります。 この[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/entity-framework-6/3.xsample)では [Entity Framework 6 (EF6)](/ef/ef6) を使用します。これを使用すると、既存のアプリを ASP.NET Core に移行できます。
 
 ## <a name="additional-resources"></a>その他の技術情報
 
@@ -48,7 +48,7 @@ ms.locfileid: "93059456"
 
 Entity Framework 6 は .NET Core をサポートしていないので、Entity Framework 6 を使用するには、プロジェクトが .NET Framework に対してコンパイルする必要があります。 クロスプラットフォーム機能が必要な場合は、[Entity Framework Core](/ef/) にアップグレードする必要があります。  
 
-ASP.NET Core アプリケーションで Entity Framework 6 を使用するための推奨方法は、EF6 コンテキストとモデル クラスを、.NET Framework を対象とするクラス ライブラリ プロジェクト内に配置することです。 ASP.NET Core プロジェクトから、クラス ライブラリに参照を追加します。 [EF6 と ASP.NET Core プロジェクトを使用した Visual Studio ソリューション](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/)のサンプルを参照してください。  
+ASP.NET Core アプリケーションで Entity Framework 6 を使用するための推奨方法は、EF6 コンテキストとモデル クラスを、.NET Framework を対象とするクラス ライブラリ プロジェクト内に配置することです。 ASP.NET Core プロジェクトから、クラス ライブラリに参照を追加します。 [EF6 と ASP.NET Core プロジェクトを使用した Visual Studio ソリューション](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/entity-framework-6/sample/)のサンプルを参照してください。    
 
 .NET Core プロジェクトは、*Enable-Migrations* などの EF6 コマンドが必要とするすべての機能をサポートしていないため、EF6 コンテキストを ASP.NET Core プロジェクトに配置することはできません。    
 
@@ -86,7 +86,7 @@ Core プロジェクトの *Startup.cs* ファイルで、`ConfigureServices` �
 
 ## <a name="sample-application"></a>サンプル アプリケーション   
 
-実際に動作するサンプル アプリケーションについては、この記事に付属している[Visual Studio のサンプル ソリューション](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/)を参照してください。  
+実際に動作するサンプル アプリケーションについては、この記事に付属している[Visual Studio のサンプル ソリューション](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/entity-framework-6/sample/)を参照してください。    
 
 このサンプルは、次の手順に従って、Visual Studio でゼロから作成することができます。    
 
