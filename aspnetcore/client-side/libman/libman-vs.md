@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 1c97f5d7fbf64c5043e6d2277091b9a477833bf1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ae2bc34edaea2df6f329e47b00c7c02cc59d03bd
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054711"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589271"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Visual Studio の ASP.NET Core で LibMan を使用する
 
@@ -36,7 +36,7 @@ Visual Studio には、ASP.NET Core プロジェクトでの [LibMan](xref:clien
 * ライブラリを検索し、プロジェクトにファイルを追加するための検索ダイアログ。
 * LibMan マニフェスト ファイル &mdash; *libman.json* の編集サポート。
 
-[サンプル コードを表示またはダウンロードします](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(ダウンロード方法)](xref:index#how-to-download-a-sample)。
+[サンプル コードを表示またはダウンロードします](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/client-side/libman/samples/) [(ダウンロード方法)](xref:index#how-to-download-a-sample)。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 

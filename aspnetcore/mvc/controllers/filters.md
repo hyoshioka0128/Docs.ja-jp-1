@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 416fc292d82cf841b2134e23a8e494e3e8d945ca
-ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.openlocfilehash: b53b017e63ada62438e352a6c5112b7584ff0b26
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100563980"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589102"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core フィルター
 
@@ -45,7 +45,7 @@ ASP.NET Core で *フィルター* を使用すると、要求処理パイプラ
 * コンポーネントがページまたはビューに埋め込まれている。
 * ページまたはコントローラー/ビューでフィルターが使用されている。
 
-[サンプルを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプルを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="how-filters-work"></a>フィルターのしくみ
 
@@ -88,9 +88,9 @@ ASP.NET Core で *フィルター* を使用すると、要求処理パイプラ
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
-上記のコードでは、 [Mydebug](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs) は [サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs)のユーティリティ関数です。
+上記のコードでは、 [Mydebug](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs) は [サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs)のユーティリティ関数です。
 
-非同期フィルターでは、`On-Stage-ExecutionAsync` メソッドが定義されます。 <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*> の例を次に示します。
+非同期フィルターでは、`On-Stage-ExecutionAsync` メソッドが定義されます。 例: <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/SampleAsyncActionFilter.cs?name=snippet)]
 
@@ -232,7 +232,7 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
 
-コントローラー レベルのフィルターでは、[Order](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) プロパティが `int.MinValue` に設定されます。 コントローラー レベルのフィルターは、メソッドにフィルターが適用された後に実行されるように設定することは **できません**。 順序については、次のセクションで説明します。
+コントローラー レベルのフィルターでは、[Order](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) プロパティが `int.MinValue` に設定されます。 コントローラー レベルのフィルターは、メソッドにフィルターが適用された後に実行されるように設定することは **できません**。 順序については、次のセクションで説明します。
 
 ページについて Razor は、「 [ Razor フィルターメソッドをオーバーライドしてページフィルターを実装](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods)する」を参照してください。
 
@@ -265,7 +265,7 @@ ASP.NET Core には、サブクラスを作成したり、カスタマイズし�
   * `MySampleActionFilter.OnActionExecuted`
 * `Test2Controller.OnActionExecuted`
 
-フィルターの実行順序を決定するときに、`Order` プロパティによりスコープがオーバーライドされます。 最初に順序でフィルターが並べ替えられ、次に同じ順位の優先度を決めるためにスコープが使用されます。 組み込みのフィルターはすべて `IOrderedFilter` を実装し、既定の `Order` 値を 0 に設定します。 既に説明したように、コントローラー レベルのフィルターでは、[Order](https://github.com/dotnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) プロパティが `int.MinValue` に設定されます。組み込みのフィルターの場合は、`Order` が 0 以外の値に設定されている場合を除き、スコープによって順序が決定されます。
+フィルターの実行順序を決定するときに、`Order` プロパティによりスコープがオーバーライドされます。 最初に順序でフィルターが並べ替えられ、次に同じ順位の優先度を決めるためにスコープが使用されます。 組み込みのフィルターはすべて `IOrderedFilter` を実装し、既定の `Order` 値を 0 に設定します。 既に説明したように、コントローラー レベルのフィルターでは、[Order](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) プロパティが `int.MinValue` に設定されます。組み込みのフィルターの場合は、`Order` が 0 以外の値に設定されている場合を除き、スコープによって順序が決定されます。
 
 上記のコードにおいて、`MySampleActionFilter` にはグローバル スコープがあるため、コントローラー スコープを持つ `MyAction2FilterAttribute` の前で実行されます。 `MyAction2FilterAttribute` を最初に実行するようにするには、`int.MinValue` に対して順序を設定します。
 
@@ -576,7 +576,7 @@ ASP.NET Core ランタイムで保証されないこと:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet3&highlight=21)]
 
-[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample)を実行することで、上記のコードをテストします。
+[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample)を実行することで、上記のコードをテストします。
 
 * F12 開発者ツールを呼び出します。
 * `https://localhost:5001/Sample/HeaderWithFactory` に移動します。
@@ -628,7 +628,7 @@ What's a non-named attribute?
 ## <a name="next-actions"></a>次の操作
 
 * 「 [ Razor ページのフィルターメソッド」を](xref:razor-pages/filter)参照してください。
-* フィルターを試してみるには、 [GitHub サンプルをダウンロードし、テスト](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample)して、変更します。
+* フィルターを試してみるには、 [GitHub サンプルをダウンロードし、テスト](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample)して、変更します。
 
 ::: moniker-end
 
@@ -647,7 +647,7 @@ ASP.NET Core で *フィルター* を使用すると、要求処理パイプラ
 
 このドキュメントは、 Razor ビューがあるページ、API コントローラー、およびコントローラーに適用されます。
 
-[サンプルを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプルを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="how-filters-work"></a>フィルターのしくみ
 
@@ -1099,7 +1099,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
 
-[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample)を実行することで、前のコードをテストできます。
+[ダウンロード サンプル](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/sample)を実行することで、前のコードをテストできます。
 
 * F12 開発者ツールを呼び出します。
 * `https://localhost:5001/Sample/HeaderWithFactory` に移動します。
@@ -1151,6 +1151,6 @@ What's a non-named attribute?
 ## <a name="next-actions"></a>次の操作
 
 * 「 [ Razor ページのフィルターメソッド」を](xref:razor-pages/filter)参照してください。
-* フィルターを試してみるには、 [GitHub サンプルをダウンロードし、テスト](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample)して、変更します。
+* フィルターを試してみるには、 [GitHub サンプルをダウンロードし、テスト](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/sample)して、変更します。
 
 ::: moniker-end

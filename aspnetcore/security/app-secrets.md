@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 63032895ce45ad096612a8c39a2709628c12790f
-ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
+ms.openlocfilehash: b309b834bc7156b901447c8697e6d2b0156a30f1
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97486201"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585813"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>ASP.NET Core での開発におけるアプリシークレットの安全な保存
 
@@ -31,7 +31,7 @@ ms.locfileid: "97486201"
 
 [Rick Anderson](https://twitter.com/RickAndMSFT)、 [Kirk Larkin](https://twitter.com/serpent5)、 [Daniel Roth](https://github.com/danroth27)、 [Scott addie](https://github.com/scottaddie)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このドキュメントでは、開発用コンピューターで ASP.NET Core アプリの機密データを管理する方法について説明します。 パスワードやその他の機密データをソースコードに格納しないでください。 運用環境のシークレットは、開発またはテストには使用しないでください。 シークレットはアプリと一緒にデプロイしないでください。 代わりに、運用環境のシークレットには、環境変数や Azure Key Vault などの制御された手段を使用してアクセスする必要があります。 [Azure Key Vault 構成プロバイダー](xref:security/key-vault-configuration)により、Azure テストと運用のシークレットを格納し、保護することが可能です。
 
@@ -57,7 +57,7 @@ Secret Manager ツールは、ASP.NET Core プロジェクトの開発中に機�
 
 Secret Manager ツールは、値の格納場所や方法などの実装の詳細を非表示にします。 このツールは、実装の詳細を把握していなくても使用できます。 値は、ローカルコンピューターのユーザープロファイルフォルダー内の JSON ファイルに格納されます。
 
-# <a name="windows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>"[Windows](#tab/windows)"
 
 ファイルシステムのパス:
 
@@ -132,7 +132,7 @@ JSON 構造体は、またはを使用した変更後にフラット化され `d
 
 シークレットのバッチは、JSON をコマンドにパイプすることによって設定でき `set` ます。 次の例では、ファイルの内容の *input.js* がコマンドにパイプされてい `set` ます。
 
-# <a name="windows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>"[Windows](#tab/windows)"
 
 コマンドシェルを開き、次のコマンドを実行します。
 
@@ -296,7 +296,7 @@ No secrets configured for this application.
 
 [Rick Anderson](https://twitter.com/RickAndMSFT)、 [Daniel Roth](https://github.com/danroth27)、 [Scott addie](https://github.com/scottaddie)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このドキュメントでは、開発用コンピューターで ASP.NET Core アプリの機密データを管理する方法について説明します。 パスワードやその他の機密データをソースコードに格納しないでください。 運用環境のシークレットは、開発またはテストには使用しないでください。 シークレットはアプリと一緒にデプロイしないでください。 代わりに、運用環境のシークレットには、環境変数や Azure Key Vault などの制御された手段を使用してアクセスする必要があります。 [Azure Key Vault 構成プロバイダー](xref:security/key-vault-configuration)により、Azure テストと運用のシークレットを格納し、保護することが可能です。
 
@@ -322,7 +322,7 @@ Secret Manager ツールは、ASP.NET Core プロジェクトの開発中に機�
 
 Secret Manager ツールは、値の格納場所や方法などの実装の詳細を非表示にします。 このツールは、実装の詳細を把握していなくても使用できます。 値は、ローカルコンピューターのユーザープロファイルフォルダー内の JSON ファイルに格納されます。
 
-# <a name="windows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>"[Windows](#tab/windows)"
 
 ファイルシステムのパス:
 
@@ -392,7 +392,7 @@ JSON 構造体は、またはを使用した変更後にフラット化され `d
 
 シークレットのバッチは、JSON をコマンドにパイプすることによって設定でき `set` ます。 次の例では、ファイルの内容の *input.js* がコマンドにパイプされてい `set` ます。
 
-# <a name="windows"></a>[Windows](#tab/windows)
+# <a name="windows"></a>"[Windows](#tab/windows)"
 
 コマンドシェルを開き、次のコマンドを実行します。
 

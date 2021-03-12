@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 1027887738740d50c30e24e800c0402b1ce4ad02
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: aeff3fd06719095660d1b3bb794ef74a8549f761
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854666"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585761"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>HttpRepl を使用して Web API をテストする
 
@@ -46,7 +46,7 @@ HTTP Read-Eval-Print Loop (REPL) は:
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-先に進むには、[サンプル ASP.NET Core Web API を表示またはダウンロードします](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+先に進むには、[サンプル ASP.NET Core Web API を表示またはダウンロードします](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/http-repl/samples) ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 

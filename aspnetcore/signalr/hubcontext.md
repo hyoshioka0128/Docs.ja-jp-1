@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - IHubContext
 uid: signalr/hubcontext
-ms.openlocfilehash: 0b1940dc85634051e8a566c6859f51c130b69269
-ms.sourcegitcommit: 1b7f2e1aabf43fa93b920cad36515d7336bfc2df
+ms.openlocfilehash: 2b2939a7692a195c6dc1b8421433a723310b4bd6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93066734"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589206"
 ---
 # <a name="send-messages-from-outside-a-hub"></a>ハブの外部からメッセージを送信する
 
@@ -33,16 +33,16 @@ ms.locfileid: "93066734"
 
 SignalRハブは、サーバーに接続されたクライアントにメッセージを送信するための中核的な抽象化です SignalR 。 また、サービスを使用して、アプリ内の他の場所からメッセージを送信することもでき `IHubContext` ます。 この記事では、にアクセスして、 SignalR `IHubContext` ハブの外部からクライアントに通知を送信する方法について説明します。
 
-[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) ([ダウンロード方法](xref:index#how-to-download-a-sample))
+[サンプル コードを表示またはダウンロードする](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/sample/) ([ダウンロード方法](xref:index#how-to-download-a-sample))
 
-## <a name="get-an-instance-of-no-locihubcontext"></a>のインスタンスを取得する IHubContext
+## <a name="get-an-instance-of-ihubcontext"></a>のインスタンスを取得する IHubContext
 
 ASP.NET Core では SignalR 、依存関係の挿入によってのインスタンスにアクセスでき `IHubContext` ます。 のインスタンスは、 `IHubContext` コントローラー、ミドルウェア、またはその他の DI サービスに挿入できます。 インスタンスを使用して、クライアントにメッセージを送信します。
 
 > [!NOTE]
 > これ SignalR は、GlobalHost を使用してへのアクセスを提供する ASP.NET 4.x とは異なり `IHubContext` ます。 ASP.NET Core には、このグローバルシングルトンの必要性を排除する依存関係挿入フレームワークがあります。
 
-### <a name="inject-an-instance-of-no-locihubcontext-in-a-controller"></a>コントローラーにのインスタンスを挿入する IHubContext
+### <a name="inject-an-instance-of-ihubcontext-in-a-controller"></a>コントローラーにのインスタンスを挿入する IHubContext
 
 のインスタンス `IHubContext` を、コンストラクターに追加することによって、コントローラーに挿入できます。
 
@@ -52,7 +52,7 @@ ASP.NET Core では SignalR 、依存関係の挿入によってのインスタ�
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
-### <a name="get-an-instance-of-no-locihubcontext-in-middleware"></a>ミドルウェア内ののインスタンスを取得する IHubContext
+### <a name="get-an-instance-of-ihubcontext-in-middleware"></a>ミドルウェア内ののインスタンスを取得する IHubContext
 
 次のよう `IHubContext` にミドルウェアパイプライン内のにアクセスします。
 
@@ -73,7 +73,7 @@ app.Use(async (context, next) =>
 > [!NOTE]
 > ハブメソッドがクラスの外部から呼び出された場合 `Hub` 、呼び出しに関連付けられている呼び出し元はありません。 そのため、、、およびの各プロパティにアクセスすることはできません `ConnectionId` `Caller` `Others` 。
 
-### <a name="get-an-instance-of-no-locihubcontext-from-ihost"></a>IHost からインスタンスを取得する IHubContext
+### <a name="get-an-instance-of-ihubcontext-from-ihost"></a>IHost からインスタンスを取得する IHubContext
 
 `IHubContext`Web ホストからへのアクセスは、サードパーティの依存関係挿入フレームワークを使用するなど、ASP.NET Core 外部の領域と統合する場合に役立ちます。
 

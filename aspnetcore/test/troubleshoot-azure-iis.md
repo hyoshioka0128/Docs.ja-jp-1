@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: a8bb659a72e8370c31cc9c213689399e74f11b5c
-ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.openlocfilehash: 3f6b74ee9621529943d9f685d803837e7df10cfc
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100564061"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589570"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Azure App Service および IIS での ASP.NET Core のトラブルシューティング
 
@@ -513,7 +513,7 @@ ASP.NET Core モジュールのデバッグ ログを有効にするには、次
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。 アプリ プールには、そのフォルダーへの書き込みアクセス権が必要です。
-1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
+1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console
@@ -527,7 +527,7 @@ ASP.NET Core モジュールのデバッグ ログを有効にするには、次
      ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console
@@ -1006,7 +1006,7 @@ ASP.NET Core モジュールのデバッグ ログを有効にするには、次
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。 アプリ プールには、そのフォルダーへの書き込みアクセス権が必要です。
-1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
+1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console
@@ -1020,7 +1020,7 @@ ASP.NET Core モジュールのデバッグ ログを有効にするには、次
      ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console
@@ -1437,7 +1437,7 @@ stdout ログを有効にして表示するには:
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。 アプリ プールには、そのフォルダーへの書き込みアクセス権が必要です。
-1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
+1. [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1) を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console
@@ -1451,7 +1451,7 @@ stdout ログを有効にして表示するには:
      ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1)を実行します。
    * アプリで [インプロセス ホスティング モデル](xref:host-and-deploy/iis/index#in-process-hosting-model)が使われている場合は、*w3wp.exe* に対するスクリプトを実行します。
 
      ```console

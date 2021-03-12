@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: c180580ec56313e444f2daf2b7d08c4d909b498a
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: b725a60a310be23f7ceb626d4c543d0df6fadf62
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280523"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394760"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-app-roles"></a>Azure Active Directory (AAD) グループ、管理者ロール、およびアプリ ロール
 
@@ -46,8 +46,8 @@ Azure Active Directory (AAD) には、ASP.NET Core Identity と組み合わせ�
 
 この記事のガイダンスでは、クライアントとサーバーのアプリについて説明します。
 
-* **クライアント**:スタンドアロン Blazor WebAssembly アプリ、またはホストされた Blazor ソリューションの *`Client`* アプリ。
-* **サーバー**:スタンドアロン ASP.NET Core サーバー API または Web API アプリ、またはホストされた Blazor ソリューションの *`Server`* アプリ。
+* **クライアント**:スタンドアロン Blazor WebAssembly アプリ、またはホストされた Blazor ソリューションの **`Client`** アプリ。
+* **サーバー**:スタンドアロン ASP.NET Core サーバー API または Web API アプリ、またはホストされた Blazor ソリューションの **`Server`** アプリ。
 
 ## <a name="scopes"></a>スコープ
 

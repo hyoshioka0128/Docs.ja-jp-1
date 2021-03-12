@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 92bfda330399b43871b3ae0e6b609726f7ad4a91
-ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.openlocfilehash: 3677cd6fe5c2ff901a17c9dccdc749d8eb2709f2
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100564043"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588667"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
 
@@ -38,7 +38,7 @@ ms.locfileid: "100564043"
 
 モデル クラスは EF Core に対する依存関係がないため、**P** lain-**O** ld **C** LR **O** bjects (単純な従来の CLR) の頭文字を取って POCO クラスと呼ばれます。 これらは、データベースに格納されるデータのプロパティを定義します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="add-a-data-model"></a>データ モデルの追加
 
@@ -397,7 +397,7 @@ ASP.NET Core には、[依存関係挿入](xref:fundamentals/dependency-injectio
 
 このモデル クラスは、EF Core に対する依存関係がないために、POCO クラス (plain-old CLR オブジェクト、つまり単純な従来の CLR) と呼ばれます。 これらは、データベースに格納されるデータのプロパティを定義します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="add-a-data-model"></a>データ モデルの追加
 
@@ -769,7 +769,7 @@ Login failed for user 'User-name'.
 
 このモデル クラスは、EF Core に対する依存関係がないために、POCO クラス (plain-old CLR オブジェクト、つまり単純な従来の CLR) と呼ばれます。 これらは、データベースに格納されるデータのプロパティを定義します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="add-a-data-model"></a>データ モデルの追加
 

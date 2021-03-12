@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: 37a0142dac1e26afd26dbf2aad46bee20693652e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 69c449527a64ec928d436245e9e971ec49303489
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051643"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588758"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>HTTPS 経由の Docker Compose を使用した ASP.NET Core イメージのホスト
 
@@ -33,11 +33,11 @@ ms.locfileid: "93051643"
 
 このドキュメントでは、HTTPS で事前に構築されたコンテナーイメージを実行する方法について説明します。
 
-開発シナリオについては、「 [HTTPS 経由の Docker を使用した ASP.NET Core アプリケーションの開発](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) 」を参照してください。
+開発シナリオについては、「 [HTTPS 経由の Docker を使用した ASP.NET Core アプリケーションの開発](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md) 」を参照してください。
 
-このサンプルでは、docker [17.06](https://docs.docker.com/release-notes/docker-ce) 以降の [docker クライアント](https://www.docker.com/products/docker)が必要です。
+このサンプルには、[Docker 17.06](https://docs.docker.com/release-notes/docker-ce) 以降の [Docker クライアント](https://www.docker.com/products/docker)が必要です。
 
-## <a name="prerequisites"></a>[前提条件]
+## <a name="prerequisites"></a>前提条件
 
 このドキュメントの一部の手順では、 [.Net Core 2.2 SDK](https://dotnet.microsoft.com/download) 以降が必要です。
 
@@ -52,7 +52,7 @@ ms.locfileid: "93051643"
 * `dotnet dev-certs`ツールは必要ありません。
 * 手順で使用した場所に証明書を保存する必要はありません。 サイトディレクトリの外部にある任意の場所に証明書を格納します。
 
-次のセクションに記載されている手順では、 `volumes` *docker-compose.yml* のプロパティを使用して、証明書をコンテナーにマウントします。 Dockerfile でコマンドを使用してコンテナーイメージに証明書を追加することもでき `COPY` ますが、この方法はお勧めしません。 *Dockerfile* 証明書をイメージにコピーすることは、次の理由から推奨されません。
+次のセクションに記載されている手順では、 `volumes` *docker-compose.yml* のプロパティを使用して、証明書をコンテナーにマウントします。 Dockerfile でコマンドを使用してコンテナーイメージに証明書を追加することもでき `COPY` ますが、この方法はお勧めしません。  証明書をイメージにコピーすることは、次の理由から推奨されません。
 
 * これにより、開発者証明書でのテストに同じイメージを使用することが難しくなります。
 * これにより、運用証明書でのホストに同じイメージを使用することが難しくなります。

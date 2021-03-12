@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/razor-pages-conventions
-ms.openlocfilehash: 2947bf0b697ca01f17d260b9f31aa3cc79d457b6
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c75e2f1de522f80f4d8e13cf3f60c99cc6b7196a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059872"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589414"
 ---
-# <a name="no-locrazor-pages-route-and-app-conventions-in-aspnet-core"></a>ASP.NET Core での Razor ページのルートとアプリの規則
+# <a name="razor-pages-route-and-app-conventions-in-aspnet-core"></a>ASP.NET Core での Razor ページのルートとアプリの規則
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -38,7 +38,7 @@ ms.locfileid: "93059872"
 
 ルート セグメントやパラメーター名として使用できない予約語がいくつかあります。 詳しくは、[ルーティング: ルーティングの予約名](xref:mvc/controllers/routing#reserved-routing-names)に関するページをご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 | シナリオ | このサンプルでは、次のデモを実行します。 |
 | -------- | --------------------------- |
@@ -110,7 +110,7 @@ Razor Pages ルーティングと MVC コントローラー ルーティング�
 
 可能な限り、`Order` を設定しないでください。これにより、`Order = 0` が生じます。 正しいルートの選択には、ルーティングを使用してください。
 
-Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、Razor Pages が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
+Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、Razor Pages が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
 
 [!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -319,7 +319,7 @@ Razor Pages はハンドラー メソッドを使用するため、MVC [アク�
 
 ルート セグメントやパラメーター名として使用できない予約語がいくつかあります。 詳しくは、[ルーティング: ルーティングの予約名](xref:fundamentals/routing#reserved-routing-names)に関するページをご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 | シナリオ | このサンプルでは、次のデモを実行します。 |
 | -------- | --------------------------- |
@@ -392,7 +392,7 @@ Razor Pages ルーティングと MVC コントローラー ルーティング�
 
 可能な限り、`Order` を設定しないでください。これにより、`Order = 0` が生じます。 正しいルートの選択には、ルーティングを使用してください。
 
-Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、MVC が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
+Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、MVC が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 
@@ -609,7 +609,7 @@ Razor Pages はハンドラー メソッドを使用するため、MVC [アク�
 
 ルート セグメントやパラメーター名として使用できない予約語がいくつかあります。 詳しくは、[ルーティング: ルーティングの予約名](xref:fundamentals/routing#reserved-routing-names)に関するページをご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 | シナリオ | このサンプルでは、次のデモを実行します。 |
 | -------- | --------------------------- |
@@ -682,7 +682,7 @@ Razor Pages ルーティングと MVC コントローラー ルーティング�
 
 可能な限り、`Order` を設定しないでください。これにより、`Order = 0` が生じます。 正しいルートの選択には、ルーティングを使用してください。
 
-Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、MVC が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
+Razor Pages のオプション (<xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> の追加など) は、MVC が `Startup.ConfigureServices` のサービス コレクションに追加されたときに追加されます。 例については、[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/)を参照してください。
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: 63267bf938c6d16b8a1b13940a4b3f8a02d1a1e4
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: e5c7dd0e52f1246d3ac6ad9622573db4c276654b
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252748"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588816"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Windows サービスでの ASP.NET Core のホスト
 
@@ -32,7 +32,7 @@ ms.locfileid: "98252748"
 
 ASP.NET Core アプリは、IIS を 使用せずに、[Windows サービス](/dotnet/framework/windows-services/introduction-to-windows-service-applications)として Windows にホストできます。 Windows サービスとしてホストされている場合、サーバーの再起動後にアプリが自動的に起動します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -332,14 +332,14 @@ Windows サービス アプリのトラブルシューティングについて�
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。
-1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1)を実行します。
+1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1)を実行します。
 
    ```powershell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1)を実行します。
 
    ```powershell
    .\DisableDumps {APPLICATION EXE}
@@ -379,7 +379,7 @@ Windows サービス アプリのトラブルシューティングについて�
 
 ASP.NET Core アプリは、IIS を 使用せずに、[Windows サービス](/dotnet/framework/windows-services/introduction-to-windows-service-applications)として Windows にホストできます。 Windows サービスとしてホストされている場合、サーバーの再起動後にアプリが自動的に起動します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -675,14 +675,14 @@ Windows サービス アプリのトラブルシューティングについて�
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。
-1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1)を実行します。
+1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1)を実行します。
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1)を実行します。
 
    ```console
    .\DisableDumps {APPLICATION EXE}
@@ -713,7 +713,7 @@ Windows サービス アプリのトラブルシューティングについて�
 
 ASP.NET Core アプリは、IIS を 使用せずに、[Windows サービス](/dotnet/framework/windows-services/introduction-to-windows-service-applications)として Windows にホストできます。 Windows サービスとしてホストされている場合、サーバーの再起動後にアプリが自動的に起動します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -1012,14 +1012,14 @@ Windows サービス アプリのトラブルシューティングについて�
 [Windows エラー報告 (WER)](/windows/desktop/wer/windows-error-reporting) からダンプを取得して分析します。
 
 1. `c:\dumps` にクラッシュ ダンプ ファイルを保持するフォルダーを作成します。
-1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1)を実行します。
+1. 次のアプリケーションの実行可能ファイル名で [EnableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/scripts/EnableDumps.ps1)を実行します。
 
    ```console
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. クラッシュが発生する条件の下でアプリを実行します。
-1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1)を実行します。
+1. クラッシュが発生した後、[DisableDumps PowerShell スクリプト](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/scripts/DisableDumps.ps1)を実行します。
 
    ```console
    .\DisableDumps {APPLICATION EXE}

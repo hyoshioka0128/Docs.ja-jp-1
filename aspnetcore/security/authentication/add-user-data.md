@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: a4e1fd780947cfa5f09fb1e03964595fa09f0f18
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 2d921a0c72fb7c03cd88966077e2d33e4b19ffa1
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061419"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585917"
 ---
-# <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>カスタムユーザーデータを Identity ASP.NET Core プロジェクトに追加、ダウンロード、および削除する
+# <a name="add-download-and-delete-custom-user-data-to-identity-in-an-aspnet-core-project"></a>カスタムユーザーデータを Identity ASP.NET Core プロジェクトに追加、ダウンロード、および削除する
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -36,7 +36,7 @@ ms.locfileid: "93061419"
 
 プロジェクトサンプルは、ページ web アプリから作成され Razor ますが、手順は ASP.NET CORE MVC web アプリの場合と似ています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -52,13 +52,13 @@ ms.locfileid: "93061419"
 
 ::: moniker-end
 
-## <a name="create-a-no-locrazor-web-app"></a>Web アプリを作成する Razor
+## <a name="create-a-razor-web-app"></a>Web アプリを作成する Razor
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Visual Studio の **[ファイル]** メニューから、 **[新規作成]** > **[プロジェクト]** の順に選択します。 [ダウンロードするサンプル](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data)コードの名前空間と一致させる場合は、プロジェクトに **WebApp1** という名前を付けます。
+* Visual Studio の **[ファイル]** メニューから、**[新規作成]** > **[プロジェクト]** の順に選択します。 [ダウンロードするサンプル](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data)コードの名前空間と一致させる場合は、プロジェクトに **WebApp1** という名前を付けます。
 * **ASP.NET Core Web アプリケーション** の選択- > **OK**
 * ドロップダウンで **ASP.NET Core 3.0** を選択します。
 * **Web アプリケーション** の選択- > **OK**
@@ -68,7 +68,7 @@ ms.locfileid: "93061419"
 
 ::: moniker range="< aspnetcore-3.0"
 
-* Visual Studio の **[ファイル]** メニューから、 **[新規作成]** > **[プロジェクト]** の順に選択します。 [ダウンロードするサンプル](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data)コードの名前空間と一致させる場合は、プロジェクトに **WebApp1** という名前を付けます。
+* Visual Studio の **[ファイル]** メニューから、**[新規作成]** > **[プロジェクト]** の順に選択します。 [ダウンロードするサンプル](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data)コードの名前空間と一致させる場合は、プロジェクトに **WebApp1** という名前を付けます。
 * **ASP.NET Core Web アプリケーション** の選択- > **OK**
 * ドロップダウンで **ASP.NET Core 2.2** を選択します。
 * **Web アプリケーション** の選択- > **OK**
@@ -85,19 +85,19 @@ dotnet new webapp -o WebApp1
 
 ---
 
-## <a name="run-the-no-locidentity-scaffolder"></a>Scaffolder を実行します。 Identity
+## <a name="run-the-identity-scaffolder"></a>Scaffolder を実行します。 Identity
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* **ソリューションエクスプローラー** で、プロジェクトを右クリックし、[ **Add**  >  **New スキャフォールディング Item** ] > ます。
-* [ **スキャフォールディングの追加** ] ダイアログボックスの左ペインで、[追加] を選択し **Identity**  >  **Add** ます。
-* [ **追加 Identity** ] ダイアログで、次のオプションを選択します。
+* **ソリューションエクスプローラー** で、プロジェクトを右クリックし、[ **Add**  >  **New スキャフォールディング Item**] > ます。
+* [**スキャフォールディングの追加**] ダイアログボックスの左ペインで、[追加] を選択し **Identity**  >  ます。
+* [**追加 Identity** ] ダイアログで、次のオプションを選択します。
   * 既存のレイアウト _Layout ファイルを選択し  *ます。*
   * 上書きする以下のファイルを選択してください:
     * **アカウント/登録**
     * **アカウント/管理/インデックス**
   * **+** 新しい **データコンテキストクラス** を作成するには、このボタンをクリックします。 型 (プロジェクトの名前が **WebApp1** の場合は **WebApp1Context** ) をそのまま使用します。
-  * **+** 新しい **ユーザークラス** を作成するには、このボタンを選択します。 型を受け入れます (プロジェクトの名前が **WebApp1** の場合は **WebApp1User** ) > **追加** ] を使用します。
+  * **+** 新しい **ユーザークラス** を作成するには、このボタンを選択します。 型を受け入れます (プロジェクトの名前が **WebApp1** の場合は **WebApp1User** ) >**追加**] を使用します。
 * **[追加]** を選択します。
 
 # <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli)
@@ -141,7 +141,7 @@ dotnet aspnet-codegenerator identity -u WebApp1User -fi Account.Register;Account
   * [ **ダウンロード** ] ボタンを選択し、ファイルの *PersonalData.js* を調べます。
   * [ **削除** ] ボタンをテストします。これにより、ログオンしているユーザーが削除されます。
 
-## <a name="add-custom-user-data-to-the-no-locidentity-db"></a>DB にカスタムユーザーデータを追加する Identity
+## <a name="add-custom-user-data-to-the-identity-db"></a>DB にカスタムユーザーデータを追加する Identity
 
 `IdentityUser`カスタムプロパティを使用して、派生クラスを更新します。 プロジェクトに WebApp1 という名前を付けた場合、ファイルの名前は *Areas/ Identity /Data/WebApp1User.cs* になります。 次のコードを使用して、ファイルを更新します。
 
@@ -241,7 +241,7 @@ dotnet ef database update
 * ページ上のカスタムユーザーデータを表示し `/Identity/Account/Manage` ます。
 * ページからユーザーの個人データをダウンロードして表示し `/Identity/Account/Manage/PersonalData` ます。
 
-## <a name="add-claims-to-no-locidentity-using-iuserclaimsprincipalfactoryapplicationuser"></a>IdentityIUserClaimsPrincipalFactory を使用してにクレームを追加する<ApplicationUser>
+## <a name="add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser"></a>IdentityIUserClaimsPrincipalFactory を使用してにクレームを追加する<ApplicationUser>
 
 > [!NOTE]
 > このセクションは、前のチュートリアルの拡張機能ではありません。 チュートリアルを使用してビルドされたアプリに次の手順を適用するには、 [GitHub の問題](https://github.com/dotnet/AspNetCore.Docs/issues/18797)を参照してください。

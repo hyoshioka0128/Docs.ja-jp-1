@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/resourcebased
-ms.openlocfilehash: 202ca681a66ddf7f729d8835e2f77da846583df1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 61c97be03709f63f57a6383ab0c51ca9a511fbbb
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060171"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585774"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>ASP.NET Core でのリソースベースの承認
 
@@ -32,15 +32,15 @@ ms.locfileid: "93060171"
 属性の評価は、データバインディングの前、およびドキュメントを読み込むページハンドラーまたはアクションの実行前に行われます。 このような理由から、属性を使用した宣言型の承認は十分では `[Authorize]` ありません。 代わりに、カスタム承認メソッドを、命令型 &mdash; *認証* と呼ばれるスタイルとして呼び出すことができます。
 
 ::: moniker range=">= aspnetcore-3.0"
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/3_0)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/3_0)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 ::: moniker-end
 
  ::: moniker range=">= aspnetcore-2.0 < aspnetcore-3.0"
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/2_2)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/2_2)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/1_1)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/1_1)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 ::: moniker-end
 
 [承認によって保護されたユーザーデータを含む ASP.NET Core アプリを作成](xref:security/authorization/secure-data) するには、リソースベースの承認を使用するサンプルアプリが含まれています。

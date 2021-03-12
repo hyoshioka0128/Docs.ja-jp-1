@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 91148c67d5dc0bf97e2f926f50dcff5dd0708f4b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f71ae5e619b875c03401fa78320582c406875401
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052319"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586112"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>ASP.NET Core でのアカウントの確認とパスワードの回復
 
@@ -38,7 +38,7 @@ ms.locfileid: "93052319"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>[前提条件]
+## <a name="prerequisites"></a>前提条件
 
 [.NET Core 3.0 SDK 以降](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -57,7 +57,7 @@ dotnet run
 * リンクを選択し `Click here to confirm your account` ます。
 * **ログイン** リンクを選択し、同じ資格情報でサインインします。
 * リンクを選択 `Hello YourEmail@provider.com!` すると、ページにリダイレクトされ `/Identity/Account/Manage/PersonalData` ます。
-* 左側の [ **Personal data** ] タブを選択し、[ **削除** ] を選択します。
+* 左側の [ **Personal data** ] タブを選択し、[ **削除**] を選択します。
 
 ### <a name="configure-an-email-provider"></a>電子メールプロバイダーを構成する
 
@@ -65,7 +65,7 @@ dotnet run
 
 SendGrid アカウントでは、 [送信者の追加](https://sendgrid.com/docs/ui/sending-email/senders/)が必要になる場合があります。
 
-セキュリティで保護された電子メールキーを取得するクラスを作成します。 このサンプルでは、 *サービス/認証の Enderoptions を作成します。*
+セキュリティで保護された電子メールキーを取得するクラスを作成します。 このサンプルでは、*サービス/認証の Enderoptions を作成します。*
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
@@ -127,7 +127,7 @@ dotnet add package SendGrid
 
 ### <a name="configure-startup-to-support-email"></a>電子メールをサポートするスタートアップの構成
 
-Startup.cs ファイルのメソッドに次のコードを追加し `ConfigureServices` ます。 *Startup.cs*
+Startup.cs ファイルのメソッドに次のコードを追加し `ConfigureServices` ます。 
 
 * `EmailSender`を一時サービスとして追加します。
 * `AuthMessageSenderOptions`構成インスタンスを登録します。
@@ -139,7 +139,7 @@ Startup.cs ファイルのメソッドに次のコードを追加し `ConfigureS
 [ Identity スキャフォールディング](xref:security/authentication/scaffold-identity)とスキャフォールディングの手順に従い `RegisterConfirmation` ます。
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 
 [!INCLUDE[](~/includes/disableVer.md)]
@@ -156,7 +156,7 @@ Web アプリを実行し、アカウントの確認とパスワードの回復�
 
 ### <a name="test-password-reset"></a>パスワードリセットのテスト
 
-* サインインしている場合は、[ **ログアウト** ] を選択します。
+* サインインしている場合は、[ **ログアウト**] を選択します。
 * [ **ログイン** ] リンクを選択し、[ **パスワードを忘れ** た場合] リンクを選択します。
 * アカウントの登録に使用した電子メールを入力します。
 * パスワードをリセットするためのリンクを含む電子メールが送信されます。 メールを確認し、リンクをクリックしてパスワードをリセットします。 パスワードが正常にリセットされたら、電子メールと新しいパスワードでサインインできます。
@@ -165,7 +165,7 @@ Web アプリを実行し、アカウントの確認とパスワードの回復�
 
 ## <a name="resend-email-confirmation"></a>電子メールの再送信の確認
 
-ASP.NET Core 5.0 以降では、 **ログイン** ページの [ **電子メールの再送信** ] リンクを選択します。
+ASP.NET Core 5.0 以降では、**ログイン** ページの [**電子メールの再送信**] リンクを選択します。
 
 ### <a name="change-email-and-activity-timeout"></a>電子メールとアクティビティのタイムアウトを変更する
 
@@ -237,11 +237,11 @@ ASP.NET Core 5.0 以降では、 **ログイン** ページの [ **電子メー�
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="prerequisites"></a>[前提条件]
+## <a name="prerequisites"></a>前提条件
 
 [.NET Core 2.2 SDK 以降](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>Web アプリとスキャフォールディングを作成する Identity
+## <a name="create-a-web--app-and-scaffold-identity"></a>Web アプリとスキャフォールディングを作成する Identity
 
 認証を使用して web アプリを作成するには、次のコマンドを実行します。
 
@@ -267,7 +267,7 @@ dotnet run
 
 テーブルの `EmailConfirmed` フィールドがであることに注意 `False` してください。
 
-アプリが確認の電子メールを送信するときに、次の手順でもう一度このメールを使用することもできます。 行を右クリックし、[ **削除** ] をクリックします。 電子メールエイリアスを削除すると、次の手順が簡単になります。
+アプリが確認の電子メールを送信するときに、次の手順でもう一度このメールを使用することもできます。 行を右クリックし、[ **削除**] をクリックします。 電子メールエイリアスを削除すると、次の手順が簡単になります。
 
 <a name="prevent-login-at-registration"></a>
 
@@ -287,7 +287,7 @@ dotnet run
 
 このチュートリアルでは、 [Sendgrid](https://sendgrid.com) を使用して電子メールを送信します。 電子メールを送信するには、SendGrid アカウントとキーが必要です。 他の電子メールプロバイダーを使用することもできます。 ASP.NET Core 2.x `System.Net.Mail` には、アプリから電子メールを送信できるようにするが含まれています。 SendGrid または別の電子メールサービスを使用して電子メールを送信することをお勧めします。 SMTP のセキュリティを保護し、正しく設定することは困難です。
 
-セキュリティで保護された電子メールキーを取得するクラスを作成します。 このサンプルでは、 *サービス/認証の Enderoptions を作成します。*
+セキュリティで保護された電子メールキーを取得するクラスを作成します。 このサンプルでは、*サービス/認証の Enderoptions を作成します。*
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
@@ -347,7 +347,7 @@ dotnet add package SendGrid
 
 ### <a name="configure-startup-to-support-email"></a>電子メールをサポートするスタートアップの構成
 
-Startup.cs ファイルのメソッドに次のコードを追加し `ConfigureServices` ます。 *Startup.cs*
+Startup.cs ファイルのメソッドに次のコードを追加し `ConfigureServices` ます。 
 
 * `EmailSender`を一時サービスとして追加します。
 * `AuthMessageSenderOptions`構成インスタンスを登録します。
@@ -386,7 +386,7 @@ Web アプリを実行し、アカウントの確認とパスワードの回復�
 
 ### <a name="test-password-reset"></a>パスワードリセットのテスト
 
-* サインインしている場合は、[ **ログアウト** ] を選択します。
+* サインインしている場合は、[ **ログアウト**] を選択します。
 * [ **ログイン** ] リンクを選択し、[ **パスワードを忘れ** た場合] リンクを選択します。
 * アカウントの登録に使用した電子メールを入力します。
 * パスワードをリセットするためのリンクを含む電子メールが送信されます。 メールを確認し、リンクをクリックしてパスワードをリセットします。 パスワードが正常にリセットされたら、電子メールと新しいパスワードでサインインできます。

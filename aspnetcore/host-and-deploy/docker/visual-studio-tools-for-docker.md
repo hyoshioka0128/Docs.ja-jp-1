@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: 2cfd200c44290a0931cdeb2f68e99b90c11aa612
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c11261fef84234a9caaf872ae9871932d02617fa
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059820"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585995"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Visual Studio コンテナー ツールと ASP.NET Core
 
 Visual Studio 2017 以降のバージョンでは、.NET Core をターゲットとするコンテナー化された ASP.NET Core アプリのビルド、デバッグ、実行がサポートされています。 Windows と Linux の両方のコンテナーがサポートされます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 

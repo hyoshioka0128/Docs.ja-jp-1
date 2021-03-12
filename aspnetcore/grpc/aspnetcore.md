@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 1a5510364ee46165e275d07073ab087d79d65313
-ms.sourcegitcommit: 50d3e939a90c5480df480f651dda032901468dd5
+ms.openlocfilehash: aeeb3d23adbdebc35ea2d2671fb04dea57451b5b
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/08/2021
-ms.locfileid: "99819043"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588985"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>ASP.NET Core を使用した gRPC サービス
 
@@ -49,7 +49,7 @@ ms.locfileid: "99819043"
 
 ## <a name="get-started-with-grpc-service-in-aspnet-core"></a>ASP.NET Core の gRPC サービスの概要
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

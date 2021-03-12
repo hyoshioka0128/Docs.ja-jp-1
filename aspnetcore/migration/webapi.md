@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 320805c0d40bf06cee384e6d98caea5c420d45bc
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 3bd34f677271ddfc00e6e65ddf3a5e3c10eec863
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061471"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588784"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>ASP.NET Web API から ASP.NET Core への移行
 
@@ -31,7 +31,7 @@ ms.locfileid: "93061471"
 
 ASP.NET 4.x Web API は、ブラウザーやモバイルデバイスを含む広範なクライアントに到達する HTTP サービスです。 ASP.NET Core は、ASP.NET 4.x の MVC と Web API アプリのモデルを、ASP.NET Core MVC と呼ばれる単一のプログラミングモデルに統合します。 この記事では、ASP.NET 4.x Web API から ASP.NET Core MVC に移行するために必要な手順について説明します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -64,14 +64,14 @@ ASP.NET 4.x Web API は、ブラウザーやモバイルデバイスを含む広
 Visual Studio で新しい空のソリューションを作成し、移行する ASP.NET 4.x Web API プロジェクトを追加します。
 
 1. **[ファイル]** メニューで、 **[新規作成]** > **[プロジェクト]** の順に選択します。
-1. 空の **ソリューション** テンプレートを選択し、[ **次へ** ] を選択します。
+1. 空の **ソリューション** テンプレートを選択し、[ **次へ**] を選択します。
 1. ソリューションに *WebAPIMigration* という名前を指定します。 **［作成］** を選択します
 1. 既存の製品 *アプリ* プロジェクトをソリューションに追加します。
 
 移行先の新しい API プロジェクトを追加します。
 
 1. 新しい **ASP.NET Core Web アプリケーション** プロジェクトをソリューションに追加します。
-1. [ **新しいプロジェクトの構成** ] ダイアログで、プロジェクトに *Productscore* という名前を付け、[ **作成** ] を選択します。
+1. [ **新しいプロジェクトの構成** ] ダイアログで、プロジェクトに *Productscore* という名前を付け、[ **作成**] を選択します。
 1. **[新しい ASP.NET Core Web アプリケーションを作成する]** ダイアログで、 **[.NET Core]** と **[ASP.NET Core 3.1]** が選択されていることを確認します。 **[API]** プロジェクト テンプレートを選択し、 **[作成]** を選択します。
 1. 新しい *Productscore* プロジェクトから *WeatherForecast.cs* と *Controllers/WeatherForecastController* サンプルファイルを削除します。
 
@@ -146,9 +146,9 @@ ASP.NET Core *API* プロジェクトテンプレートには、生成された�
     * [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)アクションに属性を適用し `GetAllProducts` ます。
     * `[HttpGet("{id}")]`アクションに属性を適用し `GetProduct` ます。
 
-移行したプロジェクトを実行し、に移動し `/api/products` ます。 3つの製品の完全な一覧が表示されます。 [https://www.microsoft.com](`/api/products/1`) を参照します。 最初の製品が表示されます。
+移行したプロジェクトを実行し、に移動し `/api/products` ます。 3つの製品の完全な一覧が表示されます。 `/api/products/1` を参照します。 最初の製品が表示されます。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
@@ -157,7 +157,7 @@ ASP.NET Core *API* プロジェクトテンプレートには、生成された�
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
-## <a name="prerequisites"></a>[前提条件]
+## <a name="prerequisites"></a>前提条件
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 
@@ -181,7 +181,7 @@ ASP.NET Core *API* プロジェクトテンプレートには、生成された�
 
 Visual Studio で次の手順を実行します。
 
-* [ **ファイル** ] [  >  **新しい**  >  **プロジェクト** ] [  >  **その他のプロジェクト** ] [  >  **Visual Studio ソリューション** ] にアクセスします。 [ **空のソリューション** ] を選択し、ソリューションに *WebAPIMigration* という名前を指定します。 **[OK]** をクリックします。
+* [**ファイル**] [  >  **新しい**  >  **プロジェクト**] [  >  **その他のプロジェクト**] [  >  **Visual Studio ソリューション**] にアクセスします。 [ **空のソリューション**] を選択し、ソリューションに *WebAPIMigration* という名前を指定します。 **[OK]** をクリックします。
 * 既存の製品 *アプリ* プロジェクトをソリューションに追加します。
 * 新しい **ASP.NET Core Web アプリケーション** プロジェクトをソリューションに追加します。 ドロップダウンから **.Net Core** ターゲットフレームワークを選択し、[ **API** プロジェクト] テンプレートを選択します。 プロジェクトに *Productscore* という名前を付け、[ **OK** ] ボタンをクリックします。
 
@@ -259,7 +259,7 @@ ASP.NET Core には、次のコンポーネントは存在しません。
     * [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)アクションに属性を適用し `GetAllProducts` ます。
     * `[HttpGet("{id}")]`アクションに属性を適用し `GetProduct` ます。
 
-移行したプロジェクトを実行し、に移動し `/api/products` ます。 3つの製品の完全な一覧が表示されます。 [https://www.microsoft.com](`/api/products/1`) を参照します。 最初の製品が表示されます。
+移行したプロジェクトを実行し、に移動し `/api/products` ます。 3つの製品の完全な一覧が表示されます。 `/api/products/1` を参照します。 最初の製品が表示されます。
 
 ## <a name="compatibility-shim"></a>互換性 shim
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 24b4d5fc11d21dce4d9e0fd2f8f0dd2d45e82baa
-ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
+ms.openlocfilehash: fa7fbf1ae88b28cd36c5aece626240d849669a96
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102110080"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586346"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core の構成
 
@@ -45,7 +45,7 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 
 このトピックでは ASP.NET Core の構成について説明します。 コンソール アプリでの構成の使用方法について詳しくは、[.NET 構成](/dotnet/core/extensions/configuration)に関する記事をご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 <a name="default"></a>
 
@@ -78,7 +78,7 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -138,7 +138,7 @@ ASP.NET Core の構成は、1つまたは複数の[構成プロバイダー](#cp
 次の `set` コマンドは：
 
 * Windows で[ 上記の例 ](#appsettingsjson)の環境キーと値を設定します。
-* [サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)を使用する際に、設定をテストします。 `dotnet run` コマンドは、プロジェクト ディレクトリで実行する必要があります。
+* [サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)を使用する際に、設定をテストします。 `dotnet run` コマンドは、プロジェクト ディレクトリで実行する必要があります。
 
 ```dotnetcli
 set MyKey="My key from Environment"
@@ -329,11 +329,11 @@ dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 
 
 構成 API では、構成キーの区切り記号を使用して階層データをフラット化することにより、階層型の構成データの読み取りが行われます。
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *appsettings.json* ファイルが含まれます:
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *appsettings.json* ファイルが含まれます:
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、構成設定のいくつかが表示されます：
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、構成設定のいくつかが表示されます：
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -442,11 +442,11 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
 * [環境変数構成プロバイダー](#evcp)
 * [コマンドライン構成プロバイダー](#clcp)。
 
-[サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *MyIniConfig* ファイルが含まれます：
+[サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *MyIniConfig* ファイルが含まれます：
 
 [!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -483,11 +483,11 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
 * *appsettings.json* および *appsettings*.`Environment`.*json* ファイル内の設定をオーバーライドします。
 * [環境変数の構成プロバイダー](#evcp)と[コマンドライン構成プロバイダー](#clcp)の設定によってオーバーライドされます。
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)には、次の *MyConfig.json* ファイルが含まれます：
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)には、次の *MyConfig.json* ファイルが含まれます：
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -504,11 +504,11 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
 * [環境変数構成プロバイダー](#evcp)
 * [コマンドライン構成プロバイダー](#clcp)。
 
-[サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *MyXMLFile.xml* ファイルが含まれます：
+[サンプルダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) には、次の *MyXMLFile.xml* ファイルが含まれます：
 
 [!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の次のコードでは、上記の構成設定のいくつかが表示されます:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -571,7 +571,7 @@ ASP.NET Core アプリで使用できる構成プロバイダーを次の表に�
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet6)]
 
-[サンプルのダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の以下のコードでは、上記の構成設定のいくつかが表示されます：
+[サンプルのダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) の以下のコードでは、上記の構成設定のいくつかが表示されます：
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -659,7 +659,7 @@ Kestrel は、`https://localhost:7777` ではなく、 *appsettings.json* ファ
 
 [ConfigurationBinder. Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) は、構成キーの配列インデックスを使用して、オブジェクトに対する配列のバインドをサポートしています。 数値のキー セグメントを公開する配列形式は、すべて [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) クラスの配列にバインドできます。
 
-[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)の *MyArray.json* について考えます：
+[サンプル ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample)の *MyArray.json* について考えます：
 
 [!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
 
@@ -860,7 +860,7 @@ Index: 5  Value: value5
 
 ## <a name="additional-resources"></a>その他の技術情報
 
-* [構成のソースコード](https://github.com/dotnet/runtime/tree/master/src/libraries/Microsoft.Extensions.Configuration)
+* [構成のソースコード](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
@@ -889,7 +889,7 @@ using Microsoft.Extensions.Configuration;
 
 "*オプション パターン*" は、このトピックで説明する構成の概念を拡張したものです。 オプションでは、クラスを使用して関連する設定のグループを表します。 詳細については、「<xref:fundamentals/configuration/options>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="host-versus-app-configuration"></a>ホストとアプリの構成
 
@@ -1203,7 +1203,7 @@ public static readonly Dictionary<string, string> _switchMappings =
 
 スイッチ マッピング ディクショナリが作成されると、以下の表に示すデータが含まれます。
 
-| Key       | [値]             |
+| Key       | 値             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1780,7 +1780,7 @@ config.AddJsonFile(
 
 表に示すキーと値のペアが構成に読み込まれます。
 
-| Key             | [値]  |
+| Key             | 値  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1803,7 +1803,7 @@ JSON ファイルに配列が含まれる場合、配列要素の構成キーは
 
 JSON 構成プロバイダーは、次のキーと値のペアに構成データを読み取ります。
 
-| Key                     | [値]  |
+| Key                     | 値  |
 | ----------------------- | :----: |
 | json_array:key          | valueA |
 | json_array:subsection:0 | valueB |

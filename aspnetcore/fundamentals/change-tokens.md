@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/change-tokens
-ms.openlocfilehash: f20d44c7767b284f727ce19a46224dae0cf6a5e1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: df2be1b89ad9681ff70dd71cb3026786f59c8b2a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93053775"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589388"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>ASP.NET Core で変更トークンを使用して変更を検出する
 
@@ -31,7 +31,7 @@ ms.locfileid: "93053775"
 
 "*変更トークン*" は、状態の変更を追跡するために使用される汎用の低レベル構成ブロックです。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="ichangetoken-interface"></a>IChangeToken インターフェイス
 
@@ -229,7 +229,7 @@ var compositeChangeToken =
 
 "*変更トークン*" は、状態の変更を追跡するために使用される汎用の低レベル構成ブロックです。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="ichangetoken-interface"></a>IChangeToken インターフェイス
 

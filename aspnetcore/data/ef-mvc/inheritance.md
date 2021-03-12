@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 581a31bad4069523699fbbac63862c9dff12034d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 299e00b223d287c4e2ece3d1e250581e2a7565e5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054217"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586372"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>チュートリアル: 継承を実装する - ASP.NET MVC と EF Core
 
@@ -165,7 +165,7 @@ Person テーブルを右クリックし、 **[テーブル データの表示]*
 
 ## <a name="get-the-code"></a>コードを取得する
 
-[完成したアプリケーションをダウンロードまたは表示する。](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[完成したアプリケーションをダウンロードまたは表示する。](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## <a name="additional-resources"></a>その他の技術情報
 

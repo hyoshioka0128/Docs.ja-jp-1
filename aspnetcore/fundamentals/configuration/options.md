@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: dedc17d7d793a6fd2eac1c8017b704d98a86f1cb
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: cb78147050ebdafc7de4ad150ae2644689d6efbc
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061094"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586216"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>ASP.NET Core のオプション パターン
 
@@ -41,7 +41,7 @@ ms.locfileid: "93061094"
 
 このトピックでは、ASP.NET Core でのオプションのパターンについて説明します。 コンソール アプリでオプションのパターンを使用する方法の詳細については、「[.NET でのオプションのパターン](/dotnet/core/extensions/options)」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 <a name="optpat"></a>
 
@@ -55,7 +55,8 @@ ms.locfileid: "93061094"
 
 <xref:Microsoft.Extensions.Options.IOptions%601>:
 
-* 以下はサポート "***されません** _": アプリが開始された後の構成データの読み取り。
+* サポートされて "***いません***"。
+  * アプリが開始された後の構成データの読み取り。
   * [名前付きオプション](#named)
 * [シングルトン](xref:fundamentals/dependency-injection#singleton)として登録されており、任意の[サービスの有効期間](xref:fundamentals/dependency-injection#service-lifetimes)に挿入できます。
 
@@ -291,7 +292,7 @@ ASP.NET Core アプリでは、[Microsoft.Extensions.Options.ConfigurationExtens
 
 構成データを検証するメカニズムもオプションによって提供されます。 詳しくは、「[オプションの検証](#options-validation)」セクションをご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -713,7 +714,7 @@ public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> option
 
 構成データを検証するメカニズムもオプションによって提供されます。 詳しくは、「[オプションの検証](#options-validation)」セクションをご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/options/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 

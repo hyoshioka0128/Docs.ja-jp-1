@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 3bb3c059eafa8e948fe2e719207927c009902e59
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: 5d6f2915dd9b27142ac7d8ac55e68c6a26e41f81
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057448"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585787"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>ASP.NET Core でのクロスサイト要求偽造 (XSRF/CSRF) 攻撃を防ぐ
 
@@ -85,7 +85,7 @@ cookie次の理由により、認証にを使用する web アプリに対して
 
 Cookieベースの認証は、一般的な認証形式です。 特にシングルページアプリケーション (spa) では、トークンベースの認証システムの普及が高まっています。
 
-### <a name="no-loccookie-based-authentication"></a>Cookieベースの認証
+### <a name="cookie-based-authentication"></a>Cookieベースの認証
 
 ユーザー名とパスワードを使用して認証を行うと、認証と承認に使用できる認証チケットを含むトークンが発行されます。 トークンは、 cookie クライアントが行うすべての要求に付随するとして格納されます。 これ cookie は、認証ミドルウェアによって生成および検証され Cookie ます。 [ミドルウェア](xref:fundamentals/middleware/index)は、ユーザープリンシパルを暗号化されたにシリアル化し cookie ます。 後続の要求では、ミドルウェアはを検証し、 cookie プリンシパルを再作成して、そのプリンシパルを[HttpContext](/dotnet/api/microsoft.aspnetcore.http.httpcontext)の[User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user)プロパティに割り当てます。
 
@@ -487,9 +487,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/anti-request-forgery/sample/AngularSample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
-## <a name="windows-authentication-and-antiforgery-no-loccookies"></a>Windows 認証 cookie と偽造防止
+## <a name="windows-authentication-and-antiforgery-cookies"></a>Windows 認証 cookie と偽造防止
 
 Windows 認証を使用する場合、アプリケーションエンドポイントは、の場合と同じように CSRF 攻撃に対して保護する必要があり cookie ます。  ブラウザーは認証コンテキストをサーバーに暗黙的に送信するため、エンドポイントは CSRF 攻撃に対して保護する必要があります。
 
@@ -497,7 +497,7 @@ Windows 認証を使用する場合、アプリケーションエンドポイン
 
 [Iアンチ Forgeryadditionaldataprovider](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgeryadditionaldataprovider)型を使用すると、開発者は各トークンの追加データをラウンドトリップさせることで、csrf システムの動作を拡張できます。 [Getadditionaldata](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgeryadditionaldataprovider.getadditionaldata)メソッドは、フィールドトークンが生成されるたびに呼び出され、戻り値は生成されたトークン内に埋め込まれます。 実装者は、タイムスタンプ、nonce、またはその他の値を返し、 [Validateadditionaldata](/dotnet/api/microsoft.aspnetcore.antiforgery.iantiforgeryadditionaldataprovider.validateadditionaldata) を呼び出して、トークンが検証されたときにこのデータを検証することができます。 クライアントのユーザー名は、生成されたトークンに既に埋め込まれているため、この情報を含める必要はありません。 トークンに追加データが含まれていても構成されていない場合 `IAntiForgeryAdditionalDataProvider` 、補足データは検証されません。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (owasp) での[csrf](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) 。
 * <xref:host-and-deploy/web-farm>

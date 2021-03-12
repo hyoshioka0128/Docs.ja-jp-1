@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: ebd3c0dc9baa63b30f142773d7a3d621ce4082d9
-ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
+ms.openlocfilehash: 662456af59c453df66ca48139a6de40d0e2cbf0d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/22/2021
-ms.locfileid: "98689306"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589193"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>認証によって保護されたユーザーデータを使用して ASP.NET Core web アプリを作成する
 
@@ -80,18 +80,18 @@ ms.locfileid: "98689306"
 このチュートリアルは高度です。 次のことを理解している必要があります。
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/identity)
+* [認証](xref:security/authentication/identity)
 * [アカウントの確認とパスワードの回復](xref:security/authentication/accconfirm)
 * [承認](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## <a name="the-starter-and-completed-app"></a>スターターおよび完成したアプリ
 
-完成し[た](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。 完成したアプリを[テスト](#test-the-completed-app)して、セキュリティ機能に慣れるようにします。
+完成し[た](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。 完成したアプリを[テスト](#test-the-completed-app)して、セキュリティ機能に慣れるようにします。
 
 ### <a name="the-starter-app"></a>スターターアプリ
 
-[スターター](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。
+[スターター](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。
 
 アプリを実行し、[ **Contactmanager** ] リンクをタップして、連絡先を作成、編集、および削除できることを確認します。 スターターアプリを作成するには、「 [スターターアプリを作成](#create-the-starter-app)する」を参照してください。
 
@@ -114,7 +114,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>役割サービスの追加先 Identity
+### <a name="add-role-services-to-identity"></a>役割サービスの追加先 Identity
 
 役割サービスを追加するには、 [Addroles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) を追加します。
 
@@ -128,13 +128,13 @@ dotnet ef database update
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-前の強調表示されたコードは、 [フォールバック認証ポリシー](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)を設定します。 フォールバック認証ポリシーでは、** Razor 認証属性を持つページ、コントローラー、またはアクションメソッドを除き、* すべての _ ユーザーを認証する必要があります。 たとえば、 Razor ページ、コントローラー、アクションメソッド `[AllowAnonymous]` は、 `[Authorize(PolicyName="MyPolicy")]` フォールバック認証ポリシーではなく、適用された認証属性を使用します。
+前の強調表示されたコードは、 [フォールバック認証ポリシー](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)を設定します。 フォールバック認証ポリシーでは 、 Razor ページ、コントローラー、または認証属性を持つアクションメソッドを除き、すべてのユーザーの認証が必要です。 たとえば、 Razor ページ、コントローラー、アクションメソッド `[AllowAnonymous]` は、 `[Authorize(PolicyName="MyPolicy")]` フォールバック認証ポリシーではなく、適用された認証属性を使用します。
 
-<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> 現在のインスタンスにを追加し <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> 、現在のユーザーが認証されるようにします。
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> により、現在のインスタンスに <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> が追加されます。これにより、現在のユーザーが認証されます。
 
 フォールバック認証ポリシー:
 
-_ は、認証ポリシーを明示的に指定しないすべての要求に適用されます。 エンドポイントのルーティングによって提供される要求の場合、これには承認属性を指定しないエンドポイントが含まれます。 [静的ファイル](xref:fundamentals/static-files)など、承認ミドルウェアの後に他のミドルウェアによって提供される要求の場合、ポリシーがすべての要求に適用されます。
+* は、認証ポリシーを明示的に指定しないすべての要求に適用されます。 エンドポイントのルーティングによって提供される要求の場合、これには承認属性を指定しないエンドポイントが含まれます。 [静的ファイル](xref:fundamentals/static-files)など、承認ミドルウェアの後に他のミドルウェアによって提供される要求の場合、ポリシーがすべての要求に適用されます。
 
 代替認証ポリシーを設定して、ユーザーが認証を要求するようにすると、新しく追加されたページとコントローラーが保護され Razor ます。 既定で認証が必要になることは、新しいコントローラーやページを利用して属性を含めるよりも安全です Razor `[Authorize]` 。
 
@@ -221,7 +221,7 @@ Entity Framework Core を使用するサービスは、 [Addscoped](/dotnet/api/
 
 [!code-csharp[](secure-data/samples/final3/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-no-locrazor-pages"></a>連絡先ページの基本クラスを作成する Razor
+### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>連絡先ページの基本クラスを作成する Razor
 
 [連絡先] ページで使用されるサービスを含む基本クラスを作成 Razor します。 基本クラスは、初期化コードを1つの場所に配置します。
 
@@ -306,7 +306,7 @@ Create page model コンストラクターを更新して、 `DI_BasePageModel` 
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
-上記のコードにより、次のことが行われます。
+上のコードでは以下の操作が行われます。
 
 * ユーザーが認証 **されていない** 場合は、 `ChallengeResult` が返されます。 が返されると、 `ChallengeResult` ユーザーはサインインページにリダイレクトされます。
 * ユーザーが認証されているが承認されていない場合は、 `ForbidResult` が返されます。 が返されると、ユーザーは [ `ForbidResult` アクセス拒否] ページにリダイレクトされます。
@@ -381,7 +381,7 @@ dotnet ef database update
 
 ### <a name="seed-the-database"></a>データベースのシード
 
-[SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs)クラスを *Data* フォルダーに追加します。
+[SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/starter3/Data/SeedData.cs)クラスを *Data* フォルダーに追加します。
 
 [!code-csharp[](secure-data/samples/starter3/Data/SeedData.cs)]
 
@@ -436,18 +436,18 @@ dotnet ef database update
 このチュートリアルは高度です。 次のことを理解している必要があります。
 
 * [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
-* [Authentication](xref:security/authentication/identity)
+* [認証](xref:security/authentication/identity)
 * [アカウントの確認とパスワードの回復](xref:security/authentication/accconfirm)
 * [承認](xref:security/authorization/introduction)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 ## <a name="the-starter-and-completed-app"></a>スターターおよび完成したアプリ
 
-完成し[た](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。 完成したアプリを[テスト](#test-the-completed-app)して、セキュリティ機能に慣れるようにします。
+完成し[た](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。 完成したアプリを[テスト](#test-the-completed-app)して、セキュリティ機能に慣れるようにします。
 
 ### <a name="the-starter-app"></a>スターターアプリ
 
-[スターター](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。
+[スターター](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/)アプリを[ダウンロード](xref:index#how-to-download-a-sample)します。
 
 アプリを実行し、[ **Contactmanager** ] リンクをタップして、連絡先を作成、編集、および削除できることを確認します。
 
@@ -470,7 +470,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>役割サービスの追加先 Identity
+### <a name="add-role-services-to-identity"></a>役割サービスの追加先 Identity
 
 役割サービスを追加するには、 [Addroles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) を追加します。
 
@@ -557,7 +557,7 @@ Entity Framework Core を使用するサービスは、 [Addscoped](/dotnet/api/
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactOperations.cs)]
 
-### <a name="create-a-base-class-for-the-contacts-no-locrazor-pages"></a>連絡先ページの基本クラスを作成する Razor
+### <a name="create-a-base-class-for-the-contacts-razor-pages"></a>連絡先ページの基本クラスを作成する Razor
 
 [連絡先] ページで使用されるサービスを含む基本クラスを作成 Razor します。 基本クラスは、初期化コードを1つの場所に配置します。
 
@@ -704,7 +704,7 @@ Create page model コンストラクターを更新して、 `DI_BasePageModel` 
 
 ### <a name="seed-the-database"></a>データベースのシード
 
-[SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs)クラスを *Data* フォルダーに追加します。
+[SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/starter2.1/Data/SeedData.cs)クラスを *Data* フォルダーに追加します。
 
 呼び出し `SeedData.Initialize` 元 `Main` :
 

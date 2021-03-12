@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 03a49c827a1f70e6b721adf293857bb33475ed36
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 6e9d2c3180fb9e4c3e5ccc0b6d8e17183f78d698
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100107078"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109846"
 ---
 # <a name="aspnet-core-blazor-lifecycle"></a>ASP.NET Core Blazor ライフサイクル
 
@@ -253,11 +253,21 @@ Blazor テンプレートの `FetchData` コンポーネントでは、予測デ
 
 Blazor Server テンプレートの `Pages/FetchData.razor` は以下のようになります。
 
-[!code-razor[](lifecycle/samples_snapshot/FetchData.razor?highlight=9,21,25)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+
+::: moniker-end
 
 ## <a name="handle-errors"></a>エラーの処理
 
-ライフサイクル メソッド実行中のエラー処理の詳細については、「<xref:blazor/fundamentals/handle-errors#lifecycle-methods>」を参照してください。
+ライフサイクル メソッド実行中のエラー処理の詳細については、「<xref:blazor/fundamentals/handle-errors>」を参照してください。
 
 ## <a name="stateful-reconnection-after-prerendering"></a>プリレンダリング後のステートフル再接続
 
@@ -395,11 +405,31 @@ public async ValueTask DisposeAsync()
 
 * プライベート フィールドとラムダのアプローチ
 
-  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-1.razor?highlight=23,28)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+
+  ::: moniker-end
 
 * プライベート メソッドのアプローチ
 
-  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+
+  ::: moniker-end
 
 [匿名関数](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions)、メソッド、または式が使用されている場合、<xref:System.IDisposable> の実装やデリゲートの登録解除を行う必要はありません。 しかし、デリゲートの登録解除に失敗することは、**イベントを公開するオブジェクトが、デリゲートを登録するコンポーネントの有効期間を超えている場合** に問題になります。 この場合、登録されたデリゲートによって元のオブジェクトが保持されているため、メモリ リークが発生します。 そのため、イベント デリゲートがすぐに破棄されることがわかっている場合にのみ、次のアプローチを使用してください。 破棄が必要なオブジェクトの有効期間が不明な場合は、前の例で示したように、デリゲート メソッドを登録し、そのデリゲートを適切に破棄します。
 

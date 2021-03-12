@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: a6d25c1b88e09560c1aad9aefd9148f7fe293909
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 178e6348d2d50dae34feea6a0ed261de01037136
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93056830"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586138"
 ---
-# <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>ASP.NET Core の Razor Pages のフィルター メソッド
+# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>ASP.NET Core の Razor Pages のフィルター メソッド
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -44,7 +44,7 @@ Razor ページ フィルター
 
 ページ コンストラクターとミドルウェアにより、ハンドラー メソッドが実行される前にカスタム コードの実行が可能になりますが、<xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> とページへのアクセスを可能にするのは Razor ページ フィルターのみです。 ミドルウェアは `HttpContext` にアクセスできますが、"ページ コンテキスト" にはアクセスできません。 フィルターには、`HttpContext` へのアクセスを提供する派生型のパラメーター <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> があります。 ページ フィルターの例を次に示します。応答にヘッダーが追加する[フィルター属性を実装する](#ifa)。これは、コンストラクターやミドルウェアでは実行できません。 ページとそのモデルのインスタンスへのアクセスを含む、ページ コンテキストへのアクセスは、フィルター、ハンドラー、Razor ページの本文を実行するときにのみ利用できます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/3.1sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 Razor ページ フィルターには、グローバルまたはページ レベルで適用できる次のメソッドがあります。
 
@@ -61,7 +61,7 @@ Razor ページ フィルターには、グローバルまたはページ レベ
 
 フィルター インターフェイスの同期と非同期バージョンの **両方ではなく**、**いずれか** を実装します。 フレームワークは、最初にフィルターが非同期インターフェイスを実装しているかどうかをチェックして、している場合はそれを呼び出します。 していない場合は、同期インターフェイスのメソッドを呼び出します。 両方のインターフェイスを実装した場合、非同期メソッドのみが呼び出されます。 ページのオーバーライドでもこの規則は同じです。オーバーライドの同期バージョンまたは非同期バージョンを実装でき、両方はできません。
 
-## <a name="implement-no-locrazor-page-filters-globally"></a>Razor ページにフィルターをグローバルに実装する
+## <a name="implement-razor-page-filters-globally"></a>Razor ページにフィルターをグローバルに実装する
 
 `IAsyncPageFilter` は、次のコードによって実装されます。
 
@@ -85,7 +85,7 @@ Razor ページ フィルターには、グローバルまたはページ レベ
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>フィルター メソッドをオーバーライドして Razor ページにフィルターを実装する
+## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>フィルター メソッドをオーバーライドして Razor ページにフィルターを実装する
 
 次のコードでは、非同期 Razor ページ フィルターをオーバーライドしています。
 
@@ -135,7 +135,7 @@ Razor ページ フィルター
 
 コードは、ページ コンストラクターまたはミドルウェアを使用してハンドラー メソッドの実行前に実行できますが、[HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext) にアクセスできるのは Razor ページ フィルターのみです。 フィルターには、`HttpContext` へのアクセスを提供する [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) 派生のパラメーターがあります。 たとえば、「[フィルター属性を実装する](#ifa)」のサンプルでは、応答にヘッダーが追加されます。これは、コンストラクターやミドルウェアでは実行できません。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/sample/PageFilter)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/sample/PageFilter)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 Razor ページ フィルターには、グローバルまたはページ レベルで適用できる次のメソッドがあります。
 
@@ -153,7 +153,7 @@ Razor ページ フィルターには、グローバルまたはページ レベ
 > [!NOTE]
 > フィルター インターフェイスの同期と非同期バージョンの両方ではなく、**いずれか** を実装します。 フレームワークは、最初にフィルターが非同期インターフェイスを実装しているかどうかをチェックして、している場合はそれを呼び出します。 していない場合は、同期インターフェイスのメソッドを呼び出します。 両方のインターフェイスを実装した場合、非同期メソッドのみが呼び出されます。 ページのオーバーライドでもこの規則は同じです。オーバーライドの同期バージョンまたは非同期バージョンを実装でき、両方はできません。
 
-## <a name="implement-no-locrazor-page-filters-globally"></a>Razor ページにフィルターをグローバルに実装する
+## <a name="implement-razor-page-filters-globally"></a>Razor ページにフィルターをグローバルに実装する
 
 `IAsyncPageFilter` は、次のコードによって実装されます。
 
@@ -181,7 +181,7 @@ Razor ページ フィルターには、グローバルまたはページ レベ
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>フィルター メソッドをオーバーライドして Razor ページにフィルターを実装する
+## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>フィルター メソッドをオーバーライドして Razor ページにフィルターを実装する
 
 次のコードでは、同期 Razor ページ フィルターをオーバーライドしています。
 

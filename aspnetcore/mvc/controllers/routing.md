@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 0863b5758f33b720636f3b927fcb9014cd106c21
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: c90ac92cf0866b78bcdb11663e76c116d714ca5d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217545"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589063"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>ASP.NET Core でのコントローラー アクションへのルーティング
 
@@ -220,7 +220,7 @@ ASP.NET Core 3.0 以降でのエンドポイントのルーティング:
 * 最適な候補を選択します。
 * 例外をスローします。
 
-例:
+次に例を示します。
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -434,7 +434,7 @@ REST Api では、属性ルーティングを使用して、アプリの機能�
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | はい | `"Home"` |
 | `[Route("Index")]` | はい | `"Home/Index"` |
-| `[Route("/")]` | **いいえ** | `""` |
+| `[Route("/")]` | "**いいえ**" | `""` |
 | `[Route("About")]` | はい | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -757,7 +757,7 @@ result: /UrlGeneration/Destination
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-no-locrazor"></a>HTML およびでの Url の生成 Razor
+### <a name="generate-urls-in-html-and-razor"></a>HTML およびでの Url の生成 Razor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper>メソッドを使用して、 <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> 要素と要素をそれぞれ生成するように[Html.actionlink と html](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*)を[提供します](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*)。 `<form>` `<a>` これらのメソッドは、Url を生成するために [url. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) メソッドを使用し、同様の引数を受け取ります。 `HtmlHelper` の `Url.RouteUrl` コンパニオンは、同様の機能を持つ `Html.BeginRouteForm` と `Html.RouteLink` です。
 
@@ -853,7 +853,7 @@ TagHelper は、`form` TagHelper と `<a>` TagHelper を使って URL を生成�
 ## <a name="sample-code"></a>サンプル コード
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+* [サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
@@ -1008,7 +1008,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>アクションの明確化
 
-2 つのアクションがルーティングで一致する場合、MVC はあいまいさを解消して "最善の" 候補を選ぶか、または例外をスローする必要があります。 例:
+2 つのアクションがルーティングで一致する場合、MVC はあいまいさを解消して "最善の" 候補を選ぶか、または例外をスローする必要があります。 次に例を示します。
 
 ```csharp
 public class ProductsController : Controller

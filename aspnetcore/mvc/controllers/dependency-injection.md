@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: 1282cd984584be423fba755e64e5d2f1afd2af89
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f3654e008733c57b4cd4cd34a52b747af2258be1
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060613"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589076"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>ASP.NET Core でのコントローラーへの依存関係の挿入
 
@@ -32,7 +32,7 @@ ms.locfileid: "93060613"
 
 ASP.NET Core の MVC コントローラーは、コンストラクターを使用して明示的に依存関係を要求します。 ASP.NET Core には、[依存関係の挿入 (DI)](xref:fundamentals/dependency-injection) の組み込みのサポートがあります。 DI を利用すれば、アプリのテストと保守管理が簡単になります。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="constructor-injection"></a>コンストラクターの挿入
 
@@ -82,7 +82,7 @@ JSON 形式ファイルから設定を読み込むようにアプリを構成し
 
 [!code-csharp[](dependency-injection/3.1sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * コントローラーで依存関係を明示的に要求することによってコードをテストしやすくする方法については、「<xref:mvc/controllers/testing>」を参照してください。
 
@@ -96,7 +96,7 @@ JSON 形式ファイルから設定を読み込むようにアプリを構成し
 
 ASP.NET Core の MVC コントローラーは、コンストラクターを使用して明示的に依存関係を要求します。 ASP.NET Core には、[依存関係の挿入 (DI)](xref:fundamentals/dependency-injection) の組み込みのサポートがあります。 DI を利用すれば、アプリのテストと保守管理が簡単になります。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="constructor-injection"></a>コンストラクターの挿入
 
@@ -146,7 +146,7 @@ JSON 形式ファイルから設定を読み込むようにアプリを構成し
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * コントローラーで依存関係を明示的に要求することによってコードをテストしやすくする方法については、「<xref:mvc/controllers/testing>」を参照してください。
 

@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 61fcc07aeb30db15014fb716194328d366f27859
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: 1d0e0da3a5d047d7457e7ca7587c81029e33cb69
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058338"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586008"
 ---
 # <a name="view-components-in-aspnet-core"></a>ASP.NET Core のビュー コンポーネント
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="view-components"></a>ビュー コンポーネント
 
@@ -167,7 +167,7 @@ ASP.NET Core 1.1 以降の場合は、[タグ ヘルパー](xref:mvc/views/tag-h
 
 ## <a name="walkthrough-creating-a-simple-view-component"></a>チュートリアル: 単純なビュー コンポーネントの作成
 
-スタート コードを[ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample)、ビルド、およびテストします。 これは、 `ToDo` *ToDo* 項目の一覧を表示するコントローラーを持つ単純なプロジェクトです。
+スタート コードを[ダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample)、ビルド、およびテストします。 これは、 `ToDo` *ToDo* 項目の一覧を表示するコントローラーを持つ単純なプロジェクトです。
 
 ![[ToDo] のリスト](view-components/_static/2dos.png)
 
@@ -193,7 +193,7 @@ ASP.NET Core 1.1 以降の場合は、[タグ ヘルパー](xref:mvc/views/tag-h
 * `InvokeAsync` ではビューから呼び出すことができるメソッドを表示し、任意の数の引数を取得できます。
 * `InvokeAsync` メソッドでは、`isDone` と `maxPriority` パラメーターを満たす `ToDo` 項目のセットを返します。
 
-### <a name="create-the-view-component-no-locrazor-view"></a>ビューコンポーネントビューを作成する Razor
+### <a name="create-the-view-component-razor-view"></a>ビューコンポーネントビューを作成する Razor
 
 * *Views/Shared/Components* フォルダーを作成します。 このフォルダーは、*Components* という名前にする **必要があります**。
 

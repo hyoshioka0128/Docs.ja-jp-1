@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: a5ead59e467da331b585e8daefb1d7d259c7edba
-ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
+ms.openlocfilehash: 86484fe2e2ce8e20e397a78f118d8b1bbe0cc88a
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/18/2021
-ms.locfileid: "101101049"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395111"
 ---
 # <a name="aspnet-core-blazor-environments"></a>ASP.NET Core Blazor の環境
 
@@ -33,7 +33,7 @@ ms.locfileid: "101101049"
 
 アプリをローカルで実行する場合、環境は既定で開発に設定されます。 アプリが発行されると、環境は既定で実稼働になります。
 
-ホストされている Blazor WebAssembly ソリューションのクライアント側 Blazor アプリ ( *`Client`* ) によって、環境をブラウザーに伝えるミドルウェアを介するソリューションの *`Server`* アプリからの環境が決まります。 *`Server`* アプリによって、ヘッダーの値として "environment" (環境) を含む `blazor-environment` という名前のヘッダーが追加されます。 *`Client`* アプリによってそのヘッダーが読み取られます。 ソリューションの *`Server`* アプリは ASP.NET Core アプリであるため、環境の構成方法の詳細については「<xref:fundamentals/environments>」を参照してください。
+ホストされている Blazor WebAssembly ソリューションのクライアント側 Blazor アプリ ( **`Client`** ) によって、環境をブラウザーに伝えるミドルウェアを介するソリューションの **`Server`** アプリからの環境が決まります。 **`Server`** アプリによって、ヘッダーの値として "environment" (環境) を含む `blazor-environment` という名前のヘッダーが追加されます。 **`Client`** アプリによってそのヘッダーが読み取られます。 ソリューションの **`Server`** アプリは ASP.NET Core アプリであるため、環境の構成方法の詳細については「<xref:fundamentals/environments>」を参照してください。
 
 ローカルで実行されているスタンドアロン Blazor WebAssembly アプリの場合、開発サーバーによって `blazor-environment` ヘッダーが追加され、開発環境が指定されます。 他のホスト環境の環境を指定するには、`blazor-environment` ヘッダーを追加します。
 

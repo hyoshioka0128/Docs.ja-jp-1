@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 04469e0e75c433b40b364873a7e72e30421936f4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5b1f1bb3de7126c401a81b89b99a45c7e45f8f8d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061354"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586294"
 ---
-# <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>認証を使用 cookie しない ASP.NET Core Identity
+# <a name="use-cookie-authentication-without-aspnet-core-identity"></a>認証を使用 cookie しない ASP.NET Core Identity
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -33,7 +33,7 @@ ms.locfileid: "93061354"
 
 ASP.NET Core Identity は、ログインを作成および管理するための完全な機能を備えた完全な認証プロバイダーです。 ただし、を cookie 使用しないベースの認証プロバイダーを ASP.NET Core Identity 使用することはできません。 詳細については、「<xref:security/authentication/identity>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/cookie/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプルアプリでのデモンストレーションのために、架空のユーザーであるマリア Rodriguez のユーザーアカウントは、アプリにハードコードされています。 **電子メール** アドレスと任意のパスワードを使用して、 `maria.rodriguez@contoso.com` ユーザーにサインインします。 ユーザーは、 `AuthenticateUser` *Pages/Account/Login. cshtml. .cs* ファイルのメソッドで認証されます。 実際の例では、ユーザーはデータベースに対して認証されます。
 
@@ -65,7 +65,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>Cookie ポリシーミドルウェア
+## <a name="cookie-policy-middleware"></a>Cookie ポリシーミドルウェア
 
 ポリシー [ Cookie ミドルウェア](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware)は cookie 、ポリシー機能を有効にします。 アプリ処理パイプラインへのミドルウェアの追加は順序に依存しており、 &mdash; パイプラインに登録されている下流コンポーネントにのみ影響します。
 
@@ -92,7 +92,7 @@ Cookieのポリシーミドルウェア設定は、次の表 `MinimumSameSitePol
 | SameSiteMode 厳密でない      | SameSiteMode なし<br>SameSiteMode 厳密でない<br>SameSiteMode Strict | SameSiteMode 厳密でない<br>SameSiteMode 厳密でない<br>SameSiteMode Strict |
 | SameSiteMode Strict   | SameSiteMode なし<br>SameSiteMode 厳密でない<br>SameSiteMode Strict | SameSiteMode Strict<br>SameSiteMode Strict<br>SameSiteMode Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>認証を作成する cookie
+## <a name="create-an-authentication-cookie"></a>認証を作成する cookie
 
 保持しているユーザー情報を作成するに cookie は、を構築 <xref:System.Security.Claims.ClaimsPrincipal> します。 ユーザー情報はにシリアル化され、に格納され cookie ます。 
 
@@ -209,7 +209,7 @@ services.AddScoped<CustomCookieAuthenticationEvents>();
 > [!WARNING]
 > ここで説明する方法は、すべての要求でトリガーされます。 cookieすべての要求に対して認証を検証すると、アプリケーションのパフォーマンスが大幅に低下する可能性があります。
 
-## <a name="persistent-no-loccookies"></a>永続的な cookie s
+## <a name="persistent-cookies"></a>永続的な cookie s
 
 cookieをブラウザーセッション間で永続化することをお勧めします。 この永続化を有効にする必要があるのは、サインイン時に [忘れずに保存] チェックボックスをオンにして、明示的なユーザーの同意を有効にすることだけです。 
 
@@ -229,7 +229,7 @@ await HttpContext.SignInAsync(
     });
 ```
 
-## <a name="absolute-no-loccookie-expiration"></a>絶対 cookie 有効期限
+## <a name="absolute-cookie-expiration"></a>絶対 cookie 有効期限
 
 絶対有効期限は、で設定でき <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> ます。 永続的なを作成するには cookie 、 `IsPersistent` も設定する必要があります。 それ以外の場合、は cookie セッションベースの有効期間で作成され、保持する認証チケットの前または後に期限切れになる可能性があります。 を設定すると、 `ExpiresUtc` のオプションの値がオーバーライドされ <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.ExpireTimeSpan> <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> ます (設定されている場合)。
 
@@ -254,7 +254,7 @@ await HttpContext.SignInAsync(
 
 ASP.NET Core Identity は、ログインを作成および管理するための完全な機能を備えた完全な認証プロバイダーです。 ただし、を cookie 使用しないベースの認証プロバイダーを ASP.NET Core Identity 使用することはできません。 詳細については、「<xref:security/authentication/identity>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/cookie/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプルアプリでのデモンストレーションのために、架空のユーザーであるマリア Rodriguez のユーザーアカウントは、アプリにハードコードされています。 **電子メール** アドレスと任意のパスワードを使用して、 `maria.rodriguez@contoso.com` ユーザーにサインインします。 ユーザーは、 `AuthenticateUser` *Pages/Account/Login. cshtml. .cs* ファイルのメソッドで認証されます。 実際の例では、ユーザーはデータベースに対して認証されます。
 
@@ -288,7 +288,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>Cookie ポリシーミドルウェア
+## <a name="cookie-policy-middleware"></a>Cookie ポリシーミドルウェア
 
 ポリシー [ Cookie ミドルウェア](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware)は cookie 、ポリシー機能を有効にします。 アプリ処理パイプラインへのミドルウェアの追加は順序に依存しており、 &mdash; パイプラインに登録されている下流コンポーネントにのみ影響します。
 
@@ -315,7 +315,7 @@ Cookieのポリシーミドルウェア設定は、次の表 `MinimumSameSitePol
 | SameSiteMode 厳密でない      | SameSiteMode なし<br>SameSiteMode 厳密でない<br>SameSiteMode Strict | SameSiteMode 厳密でない<br>SameSiteMode 厳密でない<br>SameSiteMode Strict |
 | SameSiteMode Strict   | SameSiteMode なし<br>SameSiteMode 厳密でない<br>SameSiteMode Strict | SameSiteMode Strict<br>SameSiteMode Strict<br>SameSiteMode Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>認証を作成する cookie
+## <a name="create-an-authentication-cookie"></a>認証を作成する cookie
 
 保持しているユーザー情報を作成するに cookie は、を構築 <xref:System.Security.Claims.ClaimsPrincipal> します。 ユーザー情報はにシリアル化され、に格納され cookie ます。 
 
@@ -426,7 +426,7 @@ services.AddScoped<CustomCookieAuthenticationEvents>();
 > [!WARNING]
 > ここで説明する方法は、すべての要求でトリガーされます。 cookieすべての要求に対して認証を検証すると、アプリケーションのパフォーマンスが大幅に低下する可能性があります。
 
-## <a name="persistent-no-loccookies"></a>永続的な cookie s
+## <a name="persistent-cookies"></a>永続的な cookie s
 
 cookieをブラウザーセッション間で永続化することをお勧めします。 この永続化を有効にする必要があるのは、サインイン時に [忘れずに保存] チェックボックスをオンにして、明示的なユーザーの同意を有効にすることだけです。 
 
@@ -446,7 +446,7 @@ await HttpContext.SignInAsync(
     });
 ```
 
-## <a name="absolute-no-loccookie-expiration"></a>絶対 cookie 有効期限
+## <a name="absolute-cookie-expiration"></a>絶対 cookie 有効期限
 
 絶対有効期限は、で設定でき <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.ExpiresUtc> ます。 永続的なを作成するには cookie 、 `IsPersistent` も設定する必要があります。 それ以外の場合、は cookie セッションベースの有効期間で作成され、保持する認証チケットの前または後に期限切れになる可能性があります。 を設定すると、 `ExpiresUtc` のオプションの値がオーバーライドされ <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan> <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions> ます (設定されている場合)。
 
@@ -467,7 +467,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authorization/claims>

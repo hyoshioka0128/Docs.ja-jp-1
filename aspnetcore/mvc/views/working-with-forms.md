@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/working-with-forms
-ms.openlocfilehash: a568ad481eb09587e2ddce8e84d0ac3eff01e990
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 51e5f2f74493e7f4c18273c8589ed0424a1f2cac
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060899"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585982"
 ---
 # <a name="tag-helpers-in-forms-in-aspnet-core"></a>ASP.NET Core のフォームのタグ ヘルパー
 
@@ -68,7 +68,7 @@ MVC ランタイムで、フォーム タグ ヘルパーの属性 `asp-controll
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
-*Views/Account* フォルダー ( *個々のユーザー アカウント* を使用して新しい Web アプリケーションを作成するときに生成されるフォルダー) のビューの多くには、 [asp-route-returnurl](xref:mvc/views/working-with-forms) 属性が含まれています。
+*Views/Account* フォルダー (*個々のユーザー アカウント* を使用して新しい Web アプリケーションを作成するときに生成されるフォルダー) のビューの多くには、[asp-route-returnurl](xref:mvc/views/working-with-forms) 属性が含まれています。
 
 ```cshtml
 <form asp-controller="Account" asp-action="Login"
@@ -85,7 +85,7 @@ MVC ランタイムで、フォーム タグ ヘルパーの属性 `asp-controll
 
 `formaction` の値を制御するためにサポートされている [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) 属性:
 
-|属性|[説明]|
+|属性|説明|
 |---|---|
 |[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|コントローラーの名前。|
 |[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|アクション メソッドの名前です。|
@@ -191,7 +191,7 @@ public class HomeController : Controller
 
 * モデル プロパティに適用された[データ注釈](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter)属性から [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) 検証属性を生成します
 
-* `Html.TextBoxFor` および `Html.EditorFor` と重複する HTML ヘルパー機能があります。 詳細については、「 **入力タグ ヘルパーの代替となる HTML ヘルパー** 」セクションを参照してください。
+* `Html.TextBoxFor` および `Html.EditorFor` と重複する HTML ヘルパー機能があります。 詳細については、「**入力タグ ヘルパーの代替となる HTML ヘルパー**」セクションを参照してください。
 
 * 厳密な型指定を提供します。 プロパティの名前が変更され、タグ ヘルパーを更新しない場合は、次のようなエラーが表示されます。
 
@@ -214,7 +214,7 @@ public class HomeController : Controller
 |String|type="text"|
 |DateTime|type=["datetime-local"](https://developer.mozilla.org/docs/Web/HTML/Element/input/datetime-local)|
 |Byte|type="number"|
-|Int|type="number"|
+|int|type="number"|
 |Single、Double|type="number"|
 
 次の表は、入力タグ ヘルパーが特定の入力の型にマップする一般的な[データ注釈](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter)属性の一部をまとめたものです (すべての検証属性を網羅した一覧ではありません)。
@@ -674,7 +674,7 @@ HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) 要素の追加�
  </form>
  ```
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:mvc/views/tag-helpers/intro>
 * [HTML の Form 要素](https://www.w3.org/TR/html401/interact/forms.html)
@@ -682,4 +682,4 @@ HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) 要素の追加�
 * <xref:mvc/models/model-binding>
 * <xref:mvc/models/validation>
 * [IAttributeAdapter インターフェイス](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
-* [このドキュメントのコード スニペット](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)
+* [このドキュメントのコード スニペット](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/working-with-forms/sample/final)

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: fad569ab06735600299d8051a258651e329db8ce
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 807cffb2f9b3bf89ff06c62e76d51d4040b8d91a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100107182"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589011"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core の静的ファイル
 
@@ -31,7 +31,7 @@ ms.locfileid: "100107182"
 
 HTML、CSS、画像、JavaScript などの静的ファイルは、既定では ASP.NET Core アプリにより直接クライアントに提供される資産です。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="serve-static-files"></a>静的ファイルの提供
 
@@ -123,7 +123,7 @@ ASP.NET Core テンプレートでは、<xref:Microsoft.AspNetCore.Builder.Autho
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> により、現在のインスタンスに <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> が追加されます。これにより、現在のユーザーが認証されます。
 
-  `UseAuthentication` の前に既定の静的ファイル ミドルウェア (`app.UseStaticFiles();`) が呼び出されるため、`wwwroot` 下の静的資産にはパブリックにアクセスできます。 *MyStaticFiles* フォルダー内の静的資産には認証が必要です。 これは[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)で示されています。
+  `UseAuthentication` の前に既定の静的ファイル ミドルウェア (`app.UseStaticFiles();`) が呼び出されるため、`wwwroot` 下の静的資産にはパブリックにアクセスできます。 *MyStaticFiles* フォルダー内の静的資産には認証が必要です。 これは[サンプル コード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples)で示されています。
 
 認可に基づいてファイルを提供する別の方法:
 
@@ -289,7 +289,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 HTML、CSS、画像、JavaScript などの静的ファイルは、ASP.NET Core アプリにより直接クライアントに提供される資産です。 これらのファイルを提供するには、いくつかの構成が必要です。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="serve-static-files"></a>静的ファイルの提供
 

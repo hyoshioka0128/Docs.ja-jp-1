@@ -19,22 +19,22 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/dotnet-client
-ms.openlocfilehash: 7849322e50aeceda0850d94f9c9bcda79a6051c8
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: db2bfa6d3aa440615c5a9c17ae843dbe22755c97
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061224"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589245"
 ---
-# <a name="aspnet-core-no-locsignalr-net-client"></a>ASP.NET Core SignalR .Net クライアント
+# <a name="aspnet-core-signalr-net-client"></a>ASP.NET Core SignalR .Net クライアント
 
 ASP.NET Core SignalR .net クライアントライブラリを使用すると、 SignalR .net アプリからハブと通信できます。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/dotnet-client/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/dotnet-client/sample)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 この記事のコードサンプルは、ASP.NET Core .Net クライアントを使用する WPF アプリです SignalR 。
 
-## <a name="install-the-no-locsignalr-net-client-package"></a>SignalR.Net クライアントパッケージをインストールする
+## <a name="install-the-signalr-net-client-package"></a>SignalR.Net クライアントパッケージをインストールする
 
 [AspNetCore. SignalR .クライアント](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client)パッケージは、.net クライアントがハブに接続するために必要です SignalR 。
 
@@ -266,7 +266,7 @@ Try-catch ステートメントを使用してエラーを処理します。 オ
 
 [!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [ハブ](xref:signalr/hubs)
 * [JavaScript クライアント](xref:signalr/javascript-client)

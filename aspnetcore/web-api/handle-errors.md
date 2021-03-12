@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: 92e9350a7892f8f38f64d4ebd68d54a97ec7e994
-ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
+ms.openlocfilehash: f9cc38f444bd3db826595b7de64db05792915a23
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/09/2021
-ms.locfileid: "98058377"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102585722"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>ASP.NET Core Web API のエラーを処理する
 
 この記事では、ASP.NET Core Web API を使用したエラーの処理方法とエラー処理のカスタマイズ方法について説明します。
 
-[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples)[する (ダウンロードする方法](xref:index#how-to-download-a-sample))
+[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/handle-errors/samples)[する (ダウンロードする方法](xref:index#how-to-download-a-sample))
 
 ## <a name="developer-exception-page"></a>開発者例外ページ
 
@@ -80,7 +80,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-代わりに HTML 形式の応答を表示するには、`Accept` HTTP 要求ヘッダーを `text/html` のメディアの種類に設定します。 例:
+代わりに HTML 形式の応答を表示するには、`Accept` HTTP 要求ヘッダーを `text/html` のメディアの種類に設定します。 次に例を示します。
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/advanced
-ms.openlocfilehash: 9f14929a7d298d6f4d66abcc88665db34fc072bf
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: de3abb7b5f89e3b84da38a8eabb183f9551cc1f9
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058614"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588920"
 ---
 # <a name="advanced-configuration-of-the-aspnet-core-module-and-iis"></a>ASP.NET Core モジュールと IIS の詳細な構成
 
@@ -89,7 +89,7 @@ dotnet-hosting-{VERSION}.exe OPT_NO_SHARED_CONFIG_CHECK=1
 
   ASP.NET Core アプリで使用されるデータ保護キーは、アプリの外部のレジストリに格納されます。 特定のアプリのキーを保持するには、アプリ プール用のレジストリ キーを作成する必要があります。
 
-  非 Web ファーム IIS のスタンドアロン インストールの場合、ASP.NET Core アプリで使用するアプリ プールごとに、[データ保護の PowerShell スクリプト Provision-AutoGenKeys.ps1](https://github.com/dotnet/AspNetCore/blob/master/src/DataProtection/Provision-AutoGenKeys.ps1) を使用できます。 このスクリプトを使用すると、HKLM レジストリに、アプリのアプリ プールのワーカー プロセス アカウントのみがアクセスできるレジストリ キーが作成されます。 キーは保存時に、DPAPI を使用して、コンピューター全体に適用するキーによって暗号化されます。
+  非 Web ファーム IIS のスタンドアロン インストールの場合、ASP.NET Core アプリで使用するアプリ プールごとに、[データ保護の PowerShell スクリプト Provision-AutoGenKeys.ps1](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) を使用できます。 このスクリプトを使用すると、HKLM レジストリに、アプリのアプリ プールのワーカー プロセス アカウントのみがアクセスできるレジストリ キーが作成されます。 キーは保存時に、DPAPI を使用して、コンピューター全体に適用するキーによって暗号化されます。
 
   Web ファームのシナリオの場合は、UNC パスを使用してデータ保護キー リングを格納するようにアプリを構成できます。 既定では、キーは暗号化されません。 ネットワーク共有に対するファイルのアクセス許可が、アプリが実行される Windows アカウントに確実に限定されているようにしてください。 保存時のキーを保護するために、X509 証明書を使用することができます。 ユーザーが証明書をアップロードできるメカニズムを検討します。 ユーザーの信頼できる証明書ストアに証明書を配置し、ユーザーのアプリが実行されるすべてのコンピューターで証明書を利用できるようにします。 詳細については、「<xref:security/data-protection/configuration/overview>」を参照してください。
 
@@ -198,7 +198,7 @@ ASP.NET Core アプリは [IIS サブアプリケーション (サブアプリ)]
 
 IIS の **[Web サイトの追加]** ダイアログの既定では、アプリケーションごとに 1 つのアプリケーション プールです。 **[サイト名]** を指定すると、入力したテキストが自動的に **[アプリケーション プール]** テキストボックスに設定されます。 サイトが追加されるときに、そのサイト名を使用して新しいアプリ プールが作成されます。
 
-## <a name="application-pool-no-locidentity"></a>アプリケーション プール Identity
+## <a name="application-pool-identity"></a>アプリケーション プール Identity
 
 アプリ プール ID アカウントを使用すると、ドメインやローカル アカウントを作成して管理する必要なく、一意のアカウントでアプリを実行できます。 IIS 8.0 以降の IIS 管理者ワーカー プロセス (WAS) は、新しいアプリ プールの名前で仮想アカウントを作成し、既定によってアプリ プールのワーカー プロセスをこのアカウントで実行します。 IIS 管理コンソールの、アプリ プールに対する **[詳細設定]** で、確実に **Identity** で `ApplicationPoolIdentity` が使用されるように設定します。
 

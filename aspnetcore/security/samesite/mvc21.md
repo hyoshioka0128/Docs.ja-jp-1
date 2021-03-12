@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 8f819d283e136a63ad9f82d6432a93866210b36b
-ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
+ms.openlocfilehash: a7b7ce0d0fff2953097f29a2b6d2c5a539cac3a5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102110106"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586528"
 ---
 # <a name="aspnet-core-21-mvc-samesite-cookie-sample"></a>ASP.NET Core 2.1 MVC SameSite cookie サンプル
 
@@ -154,7 +154,7 @@ private void CheckSameSite(HttpContext httpContext, CookieOptions options)
 
 * は、が要求に追加されたとき、または要求から削除されたときに呼び出され cookie ます。
 * プロパティがに設定されているかどうかを確認し `SameSite` `None` ます。
-* `SameSite`がに設定され `None` ていて、現在のユーザーエージェントが none 属性値をサポートしていないことがわかっている場合。 このチェックは、 [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) クラスを使用して行います。
+* `SameSite`がに設定され `None` ていて、現在のユーザーエージェントが none 属性値をサポートしていないことがわかっている場合。 このチェックは、 [SameSiteSupport](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/samesite/sample/snippets/SameSiteSupport.cs) クラスを使用して行います。
   * `SameSite`プロパティをに設定して値を出力しないように設定します。`(SameSiteMode)(-1)`
 
 ## <a name="targeting-net-framework"></a>.NET Framework のターゲット設定
@@ -170,7 +170,7 @@ ASP.NET Core と System.web (ASP.NET 4.x) には、SameSite の独立した実�
 <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.14" />
 ```
 
-### <a name="more-information"></a>詳細情報
+### <a name="more-information"></a>説明
  
 [Chrome の更新](https://www.chromium.org/updates/same-site) 
 [ASP.NET Core SameSite のドキュメント](../samesite.md?view=aspnetcore-2.1) 

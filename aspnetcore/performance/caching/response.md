@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 2864de5b9931ed255569cb087c67c71004c4df92
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 539ddb118279adb3a53394cdb0c2e5169092ebc0
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059014"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589232"
 ---
 # <a name="response-caching-in-aspnet-core"></a>ASP.NET Core での応答のキャッシュ
 
 By [John Luo](https://github.com/JunTaoLuo)、 [Rick Anderson](https://twitter.com/RickAndMSFT)、および [上田 Smith](https://ardalis.com/)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/response/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/response/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 応答キャッシュを使用すると、クライアントまたはプロキシが web サーバーに対して行う要求の数を減らすことができます。 応答キャッシュを使用すると、web サーバーが応答を生成するために実行する作業量も少なくなります。 応答のキャッシュは、クライアント、プロキシ、およびミドルウェアが応答をキャッシュする方法を指定するヘッダーによって制御されます。
 
@@ -48,8 +48,8 @@ HTTP 1.1 キャッシュ仕様に従ったサーバー側キャッシュの場�
 | [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | キャッシュは応答を格納できます。 |
 | [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | 応答は、共有キャッシュによって格納されていない必要があります。 プライベートキャッシュは、応答を格納して再利用できます。 |
 | [最長有効期間](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | クライアントは、指定された秒数よりも有効期間が長い応答を受け入れません。 例: `max-age=60` (60 秒)、 `max-age=2592000` (1 か月) |
-| [キャッシュなし](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **要求時** : キャッシュは、要求を満たすために格納された応答を使用することはできません。 配信元サーバーはクライアントの応答を再生成し、ミドルウェアはキャッシュに格納されている応答を更新します。<br><br>**応答時** : 配信元サーバーで検証を行わずに、後続の要求に応答を使用することはできません。 |
-| [ストアなし](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **要求時** : キャッシュは要求を格納できません。<br><br>**応答** の場合: キャッシュは、応答の一部を格納することはできません。 |
+| [キャッシュなし](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **要求時**: キャッシュは、要求を満たすために格納された応答を使用することはできません。 配信元サーバーはクライアントの応答を再生成し、ミドルウェアはキャッシュに格納されている応答を更新します。<br><br>**応答時**: 配信元サーバーで検証を行わずに、後続の要求に応答を使用することはできません。 |
+| [ストアなし](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **要求時**: キャッシュは要求を格納できません。<br><br>**応答** の場合: キャッシュは、応答の一部を格納することはできません。 |
 
 キャッシュでロールを果たすその他のキャッシュヘッダーを次の表に示します。
 
@@ -105,7 +105,7 @@ HTTP 1.1 キャッシュ仕様に従ったサーバー側キャッシュの場�
 
 プロパティを設定するには、[応答キャッシュミドルウェア](xref:performance/caching/middleware)を有効にする必要があり <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> ます。 それ以外の場合は、ランタイム例外がスローされます。 プロパティに対応する HTTP ヘッダーがありません <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> 。 プロパティは、応答キャッシュミドルウェアによって処理される HTTP 機能です。 ミドルウェアがキャッシュされた応答を提供するには、クエリ文字列とクエリ文字列の値が以前の要求と一致している必要があります。 たとえば、次の表に示すような一連の要求と結果を考えてみましょう。
 
-| 要求                          | 結果                    |
+| Request                          | 結果                    |
 | -------------------------------- | ------------------------- |
 | `http://example.com?key1=value1` | サーバーから返されます。 |
 | `http://example.com?key1=value1` | ミドルウェアから返されます。 |
@@ -208,10 +208,10 @@ Cache-Control: public,max-age=10
 Cache-Control: public,max-age=30
 ```
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [キャッシュへの応答の格納](https://tools.ietf.org/html/rfc7234#section-3)
-* [Cache-control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
