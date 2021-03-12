@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 4d4e50f8acea73859f5e839616f13f90a42291c4
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 61ff4edfaedb22ea88d6bb0be2390ff734879942
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486227"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588439"
 ---
-# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>チュートリアル: ASP.NET Core の Razor Pages の概要
+# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>チュートリアル: ASP.NET Core の Razor Pages の概要
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -37,7 +37,7 @@ ms.locfileid: "97486227"
 
 シリーズの最後には、映画のデータベースを管理できるアプリができあがります。  
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このチュートリアルでは、次の作業を行いました。
 
@@ -66,7 +66,7 @@ ms.locfileid: "97486227"
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>Razor Pages Web アプリを作成する
+## <a name="create-a-razor-pages-web-app"></a>Razor Pages Web アプリを作成する
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -185,7 +185,7 @@ HTML ファイル、JavaScript ファイル、CSS ファイルなどの静的ア
 
 シリーズの最後には、映画のデータベースを管理できるアプリができあがります。  
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このチュートリアルでは、次の作業を行いました。
 
@@ -214,7 +214,7 @@ HTML ファイル、JavaScript ファイル、CSS ファイルなどの静的ア
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>Razor Pages Web アプリを作成する
+## <a name="create-a-razor-pages-web-app"></a>Razor Pages Web アプリを作成する
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -327,7 +327,7 @@ HTML ファイル、JavaScript ファイル、CSS ファイルなどの静的フ
 
 シリーズの最後には、映画のデータベースを管理できるアプリができあがります。  
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このチュートリアルでは、次の作業を行いました。
 
@@ -356,7 +356,7 @@ HTML ファイル、JavaScript ファイル、CSS ファイルなどの静的フ
 
 ---
 
-## <a name="create-a-no-locrazor-pages-web-app"></a>Razor Pages Web アプリを作成する
+## <a name="create-a-razor-pages-web-app"></a>Razor Pages Web アプリを作成する
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 

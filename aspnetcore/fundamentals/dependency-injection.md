@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 3f7cce475b5c7b0fcbb93644b2c39acd637a6f9d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ce6804a58c5b17b57732713acc3aeca15042da0a
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94595481"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589713"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>ASP.NET Core での依存関係の挿入
 
@@ -40,7 +40,7 @@ Web アプリ以外のアプリケーションで依存関係の挿入を使用�
 
 このトピックでは、ASP.NET Core での依存関係の挿入について説明します。 依存関係の挿入の使用に関する主なドキュメントは、「[.NET での依存関係の挿入](/dotnet/core/extensions/dependency-injection)」に含まれています。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="overview-of-dependency-injection"></a>依存関係の挿入の概要
 
@@ -82,7 +82,7 @@ public class IndexModel : PageModel
 * サービス コンテナー内の依存関係の登録。 ASP.NET Core には、組み込みのサービス コンテナー <xref:System.IServiceProvider> が用意されています。 サービスは通常、アプリの `Startup.ConfigureServices` メソッドに登録されています。
 * サービスを使用するクラスのコンストラクターへの、サービスの "*挿入*"。 依存関係のインスタンスの作成、およびインスタンスが不要になったときの廃棄の役割を、フレームワークが担当します。
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples)では、`IMyDependency` インターフェイスは、`WriteMessage` メソッドを定義します。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples)では、`IMyDependency` インターフェイスは、`WriteMessage` メソッドを定義します。
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
 
@@ -427,7 +427,7 @@ ASP.NET Core では依存関係の挿入 (DI) ソフトウェア設計パター�
 
 MVC コントローラー内部における依存関係の挿入に固有の情報については、<xref:mvc/controllers/dependency-injection> をご覧ください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="overview-of-dependency-injection"></a>依存関係の挿入の概要
 
@@ -477,7 +477,7 @@ public class IndexModel : PageModel
 * サービス コンテナー内の依存関係の登録。 ASP.NET Core には、組み込みのサービス コンテナー <xref:System.IServiceProvider> が用意されています。 サービスはアプリの `Startup.ConfigureServices` メソッドに登録されています。
 * サービスを使用するクラスのコンストラクターへの、サービスの "*挿入*"。 依存関係のインスタンスの作成、およびインスタンスが不要になったときの廃棄の役割を、フレームワークが担当します。
 
-[サンプル アプリ](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples)では、サービスがアプリに提供するメソッドが `IMyDependency` インターフェイスによって定義されます。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples)では、サービスがアプリに提供するメソッドが `IMyDependency` インターフェイスによって定義されます。
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
 

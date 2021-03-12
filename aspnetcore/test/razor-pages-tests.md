@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: 2486eb8c9fd0fc33ea77b0fedd99795218d7f4ca
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a67f51561d0a165db04418f2040ffe68e3ebe8ce
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058039"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588491"
 ---
-# <a name="no-locrazor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core での Razor Pages の単体テスト
+# <a name="razor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core での Razor Pages の単体テスト
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -43,7 +43,7 @@ ASP.NET Core では Razor Pages アプリの単体テストをサポートして
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [dotnet テストと xUnit を使用した .NET Core での単体テスト C#](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプル プロジェクトは、次の 2 つのアプリで構成されています。
 
@@ -227,7 +227,7 @@ ASP.NET Core では Razor Pages アプリの単体テストをサポートして
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [dotnet テストと xUnit を使用した .NET Core での単体テスト C#](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 サンプル プロジェクトは、次の 2 つのアプリで構成されています。
 

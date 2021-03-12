@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 412f95e67fa35e952a907db328395183f1698b9e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 21f2a65bd93c08f16de988381e648768debde438
+ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587217"
+ms.locfileid: "102605595"
 ---
 # <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>MVC とページ ASP.NET Core でのモデルの検証 Razor
 
@@ -90,7 +90,7 @@ Web API コントローラーでは、`[ApiController]` 属性が設定されて
 
 `Name` プロパティに適用すると、上記のコードによって作成されるエラー メッセージは "Name length must be between 6 and 8" になります。
 
-特定の属性のエラー メッセージに対して `String.Format` に渡されるパラメーターを確認するには、[DataAnnotations のソース コード](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations)をご覧ください。
+特定の属性のエラー メッセージに対して `String.Format` に渡されるパラメーターを確認するには、[DataAnnotations のソース コード](https://github.com/dotnet/runtime/tree/main/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations)をご覧ください。
 
 ## <a name="non-nullable-reference-types-and-required-attribute"></a>Null 非許容の参照型と [Required] 属性
 

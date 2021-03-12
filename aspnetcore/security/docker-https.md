@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: a4aac2ce06fee20bdef157efc361f3099a217b1a
-ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
+ms.openlocfilehash: 3af2aff477604eb19ac211753f848d08d0c67c72
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96332155"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588641"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>HTTPS 経由で Docker を使用して ASP.NET Core イメージをホストする
 
@@ -33,9 +33,9 @@ ms.locfileid: "96332155"
 
 このドキュメントでは、HTTPS で事前に構築されたコンテナーイメージを実行する方法について説明します。
 
-開発シナリオについては、「 [HTTPS 経由の Docker を使用した ASP.NET Core アプリケーションの開発](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) 」を参照してください。
+開発シナリオについては、「 [HTTPS 経由の Docker を使用した ASP.NET Core アプリケーションの開発](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md) 」を参照してください。
 
-このサンプルでは、docker [17.06](https://docs.docker.com/release-notes/docker-ce) 以降の [docker クライアント](https://www.docker.com/products/docker)が必要です。
+このサンプルには、[Docker 17.06](https://docs.docker.com/release-notes/docker-ce) 以降の [Docker クライアント](https://www.docker.com/products/docker)が必要です。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -54,7 +54,7 @@ ms.locfileid: "96332155"
 * `dotnet dev-certs`ツールは必要ありません。
 * 手順で使用した場所に証明書を保存する必要はありません。 任意の場所を使用できますが、証明書をサイトディレクトリ内に格納することはお勧めしません。
 
-次のセクションに記載されている手順では、Docker のコマンドラインオプションを使用して証明書をコンテナーにマウントし `-v` ます。 Dockerfile でコマンドを使用してコンテナーイメージに証明書を追加することもでき `COPY` ますが、この方法はお勧めしません。 *Dockerfile* 証明書をイメージにコピーすることは、次の理由から推奨されません。
+次のセクションに記載されている手順では、Docker のコマンドラインオプションを使用して証明書をコンテナーにマウントし `-v` ます。 Dockerfile でコマンドを使用してコンテナーイメージに証明書を追加することもでき `COPY` ますが、この方法はお勧めしません。  証明書をイメージにコピーすることは、次の理由から推奨されません。
 
 * 開発者の証明書を使用したテストで同じイメージを使用するのは困難です。
 * 実稼働証明書を使用してホストする場合、同じイメージを使用するのは困難です。
@@ -102,7 +102,7 @@ dotnet dev-certs https --trust
 
 上記のコマンドで、を `{ password here }` パスワードに置き換えます。
 
-HTTPS 用に構成された ASP.NET Core でコンテナーイメージを実行します。
+HTTPS 用に構成された ASP.NET Core を使用してコンテナー イメージを実行します。
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
@@ -122,7 +122,7 @@ dotnet dev-certs https --trust
 
 上記のコマンドで、を `{ password here }` パスワードに置き換えます。 [PowerShell](/powershell/scripting/overview)を使用する場合は、を `%USERPROFILE%` に置き換え `$env:USERPROFILE` ます。
 
-HTTPS 用に構成された ASP.NET Core でコンテナーイメージを実行します。
+HTTPS 用に構成された ASP.NET Core を使用してコンテナー イメージを実行します。
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp

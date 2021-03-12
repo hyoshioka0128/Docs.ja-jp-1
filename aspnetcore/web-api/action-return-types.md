@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/action-return-types
-ms.openlocfilehash: 62c8227ca770a3a9adbe780685b140bc0e86841e
-ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
+ms.openlocfilehash: b377025a843f82a57fd0aac4961ddcedc67ff3b9
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/22/2021
-ms.locfileid: "98710699"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589726"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>ASP.NET Core Web API のコントローラー アクションの戻り値の型
 
 作成者: [Scott Addie](https://github.com/scottaddie)
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/action-return-types/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ASP.NET Core では、Web API コントローラー アクションの戻り値の型に次のオプションを提供しています。
 

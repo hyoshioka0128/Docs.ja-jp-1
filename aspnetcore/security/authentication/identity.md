@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 4fa49f795b78b88e00bd32d04f74acd8689383b2
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 7141808b3190db2c882d562d753cd68fe3f985ff
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394474"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589739"
 ---
 # <a name="introduction-to-identity-on-aspnet-core"></a>IdentityASP.NET Core の概要
 
@@ -52,7 +52,7 @@ Identity は、通常、ユーザー名、パスワード、およびプロフ�
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample) します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 <a name="adi"></a>
 
@@ -183,7 +183,7 @@ PowerShell では、コマンドの区切り記号としてセミコロンを使
 [!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 [!INCLUDE[](~/includes/disableVer.md)]
 
@@ -273,7 +273,7 @@ Post は *Pages/Shared/_LoginPartial* に指定されています。
 
 ## <a name="next-steps"></a>次の手順
 
-* [ASP.NET Core Identity ソース コード](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
+* [ASP.NET Core Identity ソース コード](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
 * SQLite を使用したの構成の詳細については、こちらの [GitHub の問題](https://github.com/dotnet/AspNetCore.Docs/issues/5131) を参照してください Identity 。
 * [Identity を構成する](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
@@ -294,7 +294,7 @@ ASP.NET Core Identity は、ASP.NET Core アプリにログイン機能を追加
 
 Identity SQL Server データベースを使用して、ユーザー名、パスワード、およびプロファイルデータを格納するように構成できます。 別の永続ストアを使用することもできます (たとえば、Azure Table Storage)。
 
-[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプルコードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 このトピックでは、を使用し Identity てユーザーを登録、ログイン、ログアウトする方法について説明します。 を使用するアプリを作成する方法の詳細については Identity 、この記事の最後にある「次のステップ」を参照してください。
 

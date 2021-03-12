@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/url-rewriting
-ms.openlocfilehash: 55993f951bfe910fb179fdb25b8d04f81d4ee2c9
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: 44e6570090de9c5f3550d18a30fcde758fb16f85
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057461"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588524"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>ASP.NET Core の URL リライト ミドルウェア
 
@@ -47,7 +47,7 @@ URL の書き換えは、1 つまたは複数の事前定義された規則に�
 > [!NOTE]
 > URL の書き換えによってアプリのパフォーマンスが低下することがあります。 可能であれば、ルールの複雑さと数を制限します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="url-redirect-and-url-rewrite"></a>URL リダイレクトと URL 書き換え
 
@@ -77,7 +77,7 @@ URL の書き換えは、1 つまたは複数の事前定義された規則に�
 
 ## <a name="url-rewriting-sample-app"></a>URL リライト サンプル アプリ
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)を使用して、URL リライト ミドルウェアの機能を調べることができます。 そのアプリは、リダイレクトと書き換えのルールを適用し、複数のシナリオについて、リダイレクトされた URL または書き換えられた URL を表示します。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)を使用して、URL リライト ミドルウェアの機能を調べることができます。 そのアプリは、リダイレクトと書き換えのルールを適用し、複数のシナリオについて、リダイレクトされた URL または書き換えられた URL を表示します。
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>URL リライト ミドルウェアを使用する状況
 
@@ -399,7 +399,7 @@ URL の書き換えは、1 つまたは複数の事前定義された規則に�
 > [!NOTE]
 > URL の書き換えによってアプリのパフォーマンスが低下することがあります。 可能であれば、ルールの複雑さと数を制限します。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ## <a name="url-redirect-and-url-rewrite"></a>URL リダイレクトと URL 書き換え
 
@@ -429,7 +429,7 @@ URL の書き換えは、1 つまたは複数の事前定義された規則に�
 
 ## <a name="url-rewriting-sample-app"></a>URL リライト サンプル アプリ
 
-[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/)を使用して、URL リライト ミドルウェアの機能を調べることができます。 そのアプリは、リダイレクトと書き換えのルールを適用し、複数のシナリオについて、リダイレクトされた URL または書き換えられた URL を表示します。
+[サンプル アプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/)を使用して、URL リライト ミドルウェアの機能を調べることができます。 そのアプリは、リダイレクトと書き換えのルールを適用し、複数のシナリオについて、リダイレクトされた URL または書き換えられた URL を表示します。
 
 ## <a name="when-to-use-url-rewriting-middleware"></a>URL リライト ミドルウェアを使用する状況
 
