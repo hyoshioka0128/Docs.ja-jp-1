@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 0f1f5dfcb9595270a9659a02141f7d1eba5c44ef
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 11473bbf8b4e2d67d15798a5d87ee01761682f9a
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587698"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413471"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>ASP.NET Core での応答キャッシュミドルウェア
 
@@ -49,7 +49,7 @@ ms.locfileid: "102587698"
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A><xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> [CORS ミドルウェア](xref:security/cors)を使用する場合は、前にを呼び出す必要があります。
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A><xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> [CORS ミドルウェア](xref:security/cors)を使用する場合は、前にを呼び出す必要があります。
 
 サンプルアプリでは、後続の要求でキャッシュを制御するためのヘッダーを追加します。
 
@@ -67,7 +67,7 @@ ms.locfileid: "102587698"
 > [!WARNING]
 > 認証されたクライアントのコンテンツを含む応答は、ミドルウェアがそれらの応答を格納してサービスを提供しないように、キャッシュ不可能としてマークする必要があります。 応答がキャッシュ可能かどうかをミドルウェアが決定する方法の詳細については、「 [キャッシュの条件](#conditions-for-caching) 」を参照してください。
 
-## <a name="options"></a>オプション
+## <a name="options"></a>Options
 
 応答キャッシュのオプションを次の表に示します。
 
@@ -111,7 +111,7 @@ if (responseCachingFeature != null)
 
 次の表は、応答のキャッシュに影響を与える HTTP ヘッダーに関する情報を示しています。
 
-| ヘッダー | 詳細 |
+| ヘッダー | 詳細情報 |
 | ------ | ------- |
 | `Authorization` | ヘッダーが存在する場合、応答はキャッシュされません。 |
 | `Cache-Control` | ミドルウェアは、cache ディレクティブでマークされたキャッシュ応答のみを考慮し `public` ます。 次のパラメーターを使用してキャッシュを制御します。<ul><li>最長有効期間</li><li>最大-古い&#8224;</li><li>最小-新規</li><li>must-revalidate</li><li>no-cache</li><li>ストアなし</li><li>-if-キャッシュ済み</li><li>プライベート</li><li>public</li><li>s-maxage</li><li>プロキシ再検証&#8225;</li></ul>&#8224;に制限が指定されていない場合 `max-stale` 、ミドルウェアは何も実行しません。<br>&#8225;`proxy-revalidate` はと同じ効果があり `must-revalidate` ます。<br><br>詳細については、「 [RFC 7231: Request Cache-Control ディレクティブ](https://tools.ietf.org/html/rfc7234#section-5.2.1)」を参照してください。 |
@@ -211,7 +211,7 @@ if (responseCachingFeature != null)
 > [!WARNING]
 > 認証されたクライアントのコンテンツを含む応答は、ミドルウェアがそれらの応答を格納してサービスを提供しないように、キャッシュ不可能としてマークする必要があります。 応答がキャッシュ可能かどうかをミドルウェアが決定する方法の詳細については、「 [キャッシュの条件](#conditions-for-caching) 」を参照してください。
 
-## <a name="options"></a>オプション
+## <a name="options"></a>Options
 
 応答キャッシュのオプションを次の表に示します。
 
@@ -255,7 +255,7 @@ if (responseCachingFeature != null)
 
 次の表は、応答のキャッシュに影響を与える HTTP ヘッダーに関する情報を示しています。
 
-| ヘッダー | 詳細 |
+| ヘッダー | 詳細情報 |
 | ------ | ------- |
 | `Authorization` | ヘッダーが存在する場合、応答はキャッシュされません。 |
 | `Cache-Control` | ミドルウェアは、cache ディレクティブでマークされたキャッシュ応答のみを考慮し `public` ます。 次のパラメーターを使用してキャッシュを制御します。<ul><li>最長有効期間</li><li>最大-古い&#8224;</li><li>最小-新規</li><li>must-revalidate</li><li>no-cache</li><li>ストアなし</li><li>-if-キャッシュ済み</li><li>プライベート</li><li>public</li><li>s-maxage</li><li>プロキシ再検証&#8225;</li></ul>&#8224;に制限が指定されていない場合 `max-stale` 、ミドルウェアは何も実行しません。<br>&#8225;`proxy-revalidate` はと同じ効果があり `must-revalidate` ます。<br><br>詳細については、「 [RFC 7231: Request Cache-Control ディレクティブ](https://tools.ietf.org/html/rfc7234#section-5.2.1)」を参照してください。 |

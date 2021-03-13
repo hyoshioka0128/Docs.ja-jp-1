@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cors
-ms.openlocfilehash: 7afa8105e0ab007153d5c3e8238765d4e9f22641
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: b057e5e08b8a4d0f9bcd68f92102cad309655acc
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586801"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413510"
 ---
 # <a name="enable-cross-origin-requests-cors-in-aspnet-core"></a>ASP.NET Core でのクロスオリジン要求 (CORS) を有効にする
 
@@ -71,7 +71,7 @@ CORS を有効にするには、次の3つの方法があります。
 名前付きポリシーで [[Enablecors]](#attr) 属性を使用すると、CORS をサポートするエンドポイントを制限するための最も細かい制御が可能になります。
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A> を使用する場合は、前にを呼び出す必要があり <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> `UseResponseCaching` ます。
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> は正しい順序で呼び出す必要があります。 詳細については、「 [ミドルウェアの順序](xref:fundamentals/middleware/index#middleware-order)」を参照してください。 たとえば、を使用する場合は、の `UseCors` 前にを呼び出す必要があり <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> `UseResponseCaching` ます。
 
 各方法の詳細については、次のセクションで説明します。
 
@@ -83,13 +83,13 @@ CORS ミドルウェアは、クロスオリジン要求を処理します。 �
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=3,9,32)]
 
-上記のコードでは次の操作が行われます。
+上記のコードでは、次のことが行われます。
 
 * ポリシー名をに設定 `_myAllowSpecificOrigins` します。 ポリシー名は任意です。
 * 拡張メソッドを呼び出し、 <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> CORS ポリシーを指定し  `_myAllowSpecificOrigins` ます。 `UseCors` CORS ミドルウェアを追加します。 への呼び出しは `UseCors` `UseRouting` 、の後、の前に配置する必要があり `UseAuthorization` ます。 詳細については、「 [ミドルウェアの順序](xref:fundamentals/middleware/index#middleware-order)」を参照してください。
 * <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*>[ラムダ式](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)を使用してを呼び出します。 ラムダはオブジェクトを受け取り <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> ます。 などの[構成オプション](#cors-policy-options)に `WithOrigins` ついては、この記事の後半で説明します。
 * `_myAllowSpecificOrigins`すべてのコントローラーエンドポイントに対して CORS ポリシーを有効にします。 特定のエンドポイントに CORS ポリシーを適用するには、「 [エンドポイントルーティング](#ecors) 」を参照してください。
-* [応答キャッシュミドルウェア](xref:performance/caching/middleware)を使用する場合は、の <xref:Owin.CorsExtensions.UseCors%2A> 前にを呼び出し <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> ます。
+* [応答キャッシュミドルウェア](xref:performance/caching/middleware)を使用する場合は、の <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> 前にを呼び出し <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> ます。
 
 エンドポイントルーティングでは、CORS ミドルウェアをとの呼び出しの間で実行するように構成する **必要があり** `UseRouting` `UseEndpoints` ます。
 
@@ -188,7 +188,7 @@ CORS 要求を制限する最も細かい制御:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
 
-上記のコードでは次の操作が行われます。
+上記のコードでは、次のことが行われます。
 
 * [エンドポイントルーティング](#ecors)で CORS を有効にしません。
 * [既定の CORS ポリシー](#dp)は定義されていません。
@@ -669,7 +669,7 @@ CORS ミドルウェアは、クロスオリジン要求を処理します。 �
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
 
-上記のコードでは次の操作が行われます。
+上記のコードでは、次のことが行われます。
 
 * ポリシー名を " \_ myallow固有のオリジン" に設定します。 ポリシー名は任意です。
 * <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>CORS を有効にする拡張メソッドを呼び出します。
