@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: c90ac92cf0866b78bcdb11663e76c116d714ca5d
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: eeae0ef44fc9b8a92da40481f5dbc7422ed8d43c
+ms.sourcegitcommit: d5fa39765959738eed4bcf5ee0b207cefddb4873
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589063"
+ms.lasthandoff: 03/14/2021
+ms.locfileid: "103460444"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>ASP.NET Core でのコントローラー アクションへのルーティング
 
@@ -434,7 +434,7 @@ REST Api では、属性ルーティングを使用して、アプリの機能�
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | はい | `"Home"` |
 | `[Route("Index")]` | はい | `"Home/Index"` |
-| `[Route("/")]` | "**いいえ**" | `""` |
+| `[Route("/")]` | **いいえ** | `""` |
 | `[Route("About")]` | はい | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -509,10 +509,6 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 `[Route("[controller]/[action]", Name="[controller]_[action]")]`では、アクションごとに一意のルート名が生成されます。
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
-
-トークンの置換は、属性ルートで定義されているルート名にも適用されます。
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
- では、アクションごとに一意のルート名が生成されます。
 
 リテラル トークン置換区切り文字 `[` または `]` と一致させるためには、その文字を繰り返すことでエスケープします (`[[` または `]]`)。
 
