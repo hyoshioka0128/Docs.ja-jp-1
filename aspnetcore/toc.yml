@@ -754,6 +754,8 @@
           uid: grpc/deadlines-cancellation
         - name: 一時的な障害の処理
           uid: grpc/retries
+        - name: .NET Standard 2.0 のサポート
+          uid: grpc/netstandard
     - name: ASP.NET Core を使用した gRPC サービス
       uid: grpc/aspnetcore
     - name: サポートされているプラットフォーム

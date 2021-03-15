@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: bdeccf81a3bb620c2e1fe15a798d5a83375842c8
-ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
+ms.openlocfilehash: 15d011e88ab291173668a0b6dc5f46e97fdfeff0
+ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/03/2020
-ms.locfileid: "96556542"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102605712"
 ---
 # <a name="aspnet-core-middleware"></a>ASP.NET Core のミドルウェア
 
@@ -258,7 +258,7 @@ app.Map("/level1", level1App => {
 | 要求                       | 応答                     |
 | ----------------------------- | ---------------------------- |
 | localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=master | Branch used = master         |
+| localhost:1234/?branch=main | Branch used = main         |
 
 また <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> では、指定された述語の結果に基づいて、要求パイプラインが分岐されます。 `MapWhen` とは異なり、この分岐は、ショートしたり、ターミナル ミドルウェアが含まれたりしなければ、メイン パイプラインに再参加します。
 
@@ -455,7 +455,7 @@ HTTP パイプラインを構成するには、<xref:Microsoft.AspNetCore.Builde
 | 要求                       | 応答                     |
 | ----------------------------- | ---------------------------- |
 | localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=master | Branch used = master         |
+| localhost:1234/?branch=main | Branch used = main         |
 
 `Map` は入れ子をサポートします。次にその例を示します。
 

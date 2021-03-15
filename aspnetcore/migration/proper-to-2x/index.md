@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 059ddc18d0c531efaba8aab916ddbb27b42b5e2c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7961890becc8f4513e0750f28341c9d4cf94e7ad
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053554"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413336"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>ASP.NET から ASP.NET Core への移行
 
 著者: [Isaac Levin](https://isaaclevin.com)
 
-この記事は、ASP.NET アプリを ASP.NET Core に移行するための参考ガイドです。
+この記事は、ASP.NET アプリを ASP.NET Core に移行するための参考ガイドです。 包括的な移植のガイドについては、「[既存の ASP.NET アプリを .NET Core に移植する](https://aka.ms/aspnet-porting-ebook)」の電子書籍版を参照してください。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -62,11 +62,11 @@ ASP.NET Core プロジェクトを使うと、開発者は、.NET Core と .NET 
 
 ## <a name="globalasax-file-replacement"></a>Global.asax ファイルの置換
 
-ASP.NET Core では、アプリをブートストラップする新しいメカニズムが導入されました。 ASP.NET アプリケーションのエントリ ポイントは、 *Global.asax* ファイルです。 ルート構成、フィルター、領域の登録などのタスクは、 *Global.asax* ファイルで処理されます。
+ASP.NET Core では、アプリをブートストラップする新しいメカニズムが導入されました。 ASP.NET アプリケーションのエントリ ポイントは、*Global.asax* ファイルです。 ルート構成、フィルター、領域の登録などのタスクは、*Global.asax* ファイルで処理されます。
 
 [!code-csharp[](samples/globalasax-sample.cs)]
 
-このアプローチでは、アプリケーションとその展開先のサーバーが、実装を妨げるような方法で結合されます。 結合を切り離すため、複数のフレームワークを一緒に使うさらにクリーンな方法を提供する [OWIN](https://owin.org/) が導入されました。 OWIN は、必要なモジュールのみを追加するためのパイプラインを提供します。 ホスティング環境は、[Startup](xref:fundamentals/startup) 関数を取得して、サービスとアプリの要求パイプラインを構成します。 `Startup` は、ミドルウェアのセットをアプリケーションに登録します。 アプリケーションは、要求ごとに、既存のハンドラーのセットに対するリンク リストのヘッド ポインターを指定して、各ミドルウェア コンポーネントを呼び出します。 各ミドルウェア コンポーネントは、要求処理パイプラインに 1 つ以上のハンドラーを追加できます。 これは、新しいリストのヘッドであるハンドラーへの参照を返すことによって行われます。 各ハンドラーは、リスト内の次のハンドラーを記憶して呼び出します。 ASP.NET Core では、アプリケーションへのエントリ ポイントは `Startup` であり、 *Global.asax* に依存する必要はなくなりました。 .NET Framework で OWIN を使うときは、パイプラインとして次のようなものを使います。
+このアプローチでは、アプリケーションとその展開先のサーバーが、実装を妨げるような方法で結合されます。 結合を切り離すため、複数のフレームワークを一緒に使うさらにクリーンな方法を提供する [OWIN](https://owin.org/) が導入されました。 OWIN は、必要なモジュールのみを追加するためのパイプラインを提供します。 ホスティング環境は、[Startup](xref:fundamentals/startup) 関数を取得して、サービスとアプリの要求パイプラインを構成します。 `Startup` は、ミドルウェアのセットをアプリケーションに登録します。 アプリケーションは、要求ごとに、既存のハンドラーのセットに対するリンク リストのヘッド ポインターを指定して、各ミドルウェア コンポーネントを呼び出します。 各ミドルウェア コンポーネントは、要求処理パイプラインに 1 つ以上のハンドラーを追加できます。 これは、新しいリストのヘッドであるハンドラーへの参照を返すことによって行われます。 各ハンドラーは、リスト内の次のハンドラーを記憶して呼び出します。 ASP.NET Core では、アプリケーションへのエントリ ポイントは `Startup` であり、*Global.asax* に依存する必要はなくなりました。 .NET Framework で OWIN を使うときは、パイプラインとして次のようなものを使います。
 
 [!code-csharp[](samples/webapi-owin.cs)]
 
@@ -92,7 +92,7 @@ ASP.NET Core は同様のアプローチを使いますが、エントリを処�
 
 ## <a name="store-configurations"></a>構成を保存する
 
-ASP.NET では保存の設定がサポートされています。 これらの設定は、たとえば、アプリケーションが展開された環境のサポートに使われます。 一般的な方法は、すべてのカスタム キー/値ペアを、 *Web.config* ファイルの `<appSettings>` セクションに保存するというものでした。
+ASP.NET では保存の設定がサポートされています。 これらの設定は、たとえば、アプリケーションが展開された環境のサポートに使われます。 一般的な方法は、すべてのカスタム キー/値ペアを、*Web.config* ファイルの `<appSettings>` セクションに保存するというものでした。
 
 [!code-xml[](samples/webconfig-sample.xml)]
 
@@ -104,7 +104,7 @@ ASP.NET Core では、アプリケーションの構成データを任意のフ�
 
 [!code-json[](samples/appsettings-sample.json)]
 
-アプリケーション内部の `IConfiguration` のインスタンスにこのファイルを読み込むには、 *Startup.cs* が使われます。
+アプリケーション内部の `IConfiguration` のインスタンスにこのファイルを読み込むには、*Startup.cs* が使われます。
 
 [!code-csharp[](samples/startup-builder.cs)]
 
@@ -140,7 +140,7 @@ Unity で依存性の注入を設定する例は、`UnityContainer` をラップ
 
 [!code-csharp[](samples/sample5.cs)]
 
-依存性の注入は ASP.NET Core の一部であるため、 *Startup.cs* の `ConfigureServices` メソッドに独自のサービスを追加できます。
+依存性の注入は ASP.NET Core の一部であるため、*Startup.cs* の `ConfigureServices` メソッドに独自のサービスを追加できます。
 
 [!code-csharp[](samples/configure-services.cs)]
 
@@ -155,25 +155,29 @@ Web 開発の重要な部分は、静的なクライアント側アセットを�
 
 ASP.NET では、静的ファイルはさまざまなディレクトリに保存され、ビューで参照されます。
 
-ASP.NET Core では、構成が変更されていない限り、静的ファイルは "Web ルート" ( *&lt;コンテンツ ルート&gt;/wwwroot* ) に保存されます。 ファイルは、`Startup.Configure` から `UseStaticFiles` 拡張メソッドを呼び出すことによって、要求パイプラインに読み込まれます。
+ASP.NET Core では、構成が変更されていない限り、静的ファイルは "Web ルート" ( *&lt;コンテンツ ルート&gt;/wwwroot*) に保存されます。 ファイルは、`Startup.Configure` から `UseStaticFiles` 拡張メソッドを呼び出すことによって、要求パイプラインに読み込まれます。
 
 [!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > .NET Framework を対象にする場合は、NuGet パッケージ `Microsoft.AspNetCore.StaticFiles` をインストールします。
 
-たとえば、 *wwwroot/images* フォルダー内のイメージ アセットには、ブラウザーから `http://<app>/images/<imageFileName>` などの場所でアクセスできます。
+たとえば、*wwwroot/images* フォルダー内のイメージ アセットには、ブラウザーから `http://<app>/images/<imageFileName>` などの場所でアクセスできます。
 
 > [!NOTE]
 > ASP.NET Core での静的ファイルの提供について詳しくは、[静的ファイル](xref:fundamentals/static-files)に関するページをご覧ください。
 
-## <a name="multi-value-no-loccookies"></a>複数値の cookie
+## <a name="multi-value-cookies"></a>複数値の cookie
 
 [複数値の cookie](xref:System.Web.HttpCookie.Values) は ASP.NET Core ではサポートされていません。 値ごとに cookie を 1 つ作成します。
 
+## <a name="authentication-cookies-are-not-compressed-in-aspnet-core"></a>認証 cookie は ASP.NET Core では圧縮されません
+
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
+
 ## <a name="partial-app-migration"></a>部分的なアプリの移行
 
-部分的にアプリを移行する方法の 1 つは、IIS サブアプリケーションを作成し、アプリの URL 構造を維持しながら ASP.NET 4.x から ASP.NET Core に特定のルートのみを移動することです。 たとえば、 *applicationHost.config* ファイルからのアプリの URL 構造について考えてみます。
+部分的にアプリを移行する方法の 1 つは、IIS サブアプリケーションを作成し、アプリの URL 構造を維持しながら ASP.NET 4.x から ASP.NET Core に特定のルートのみを移動することです。 たとえば、*applicationHost.config* ファイルからのアプリの URL 構造について考えてみます。
 
 ```xml
 <sites>
