@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3
-ms.openlocfilehash: 47bb9b96bd5565a3a67f3cbdf9a4b6bc1f987447
-ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
+ms.openlocfilehash: 4afee8c09a3eb1030bf68e7591e1686b18d5f7e9
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/09/2021
-ms.locfileid: "99975262"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394448"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>パート 2: ASP.NET Core MVC アプリにコントローラーを追加する
 
@@ -44,8 +44,8 @@ MVC ベースのアプリには以下が含まれます。
 
 MVC アプリでは、ビューに情報のみが表示されます。 コントローラーによってユーザーの入力と操作が処理され応答が返されます。 たとえば、コントローラーによって URL セグメントとクエリ文字列の値が処理され、それらの値がモデルに渡されます。 モデルはこれらの値を使用して、データベースを照会する場合があります。 例:
 
-* `Https://localhost:5001/Home/Privacy`: `Home` コントローラーと `Privacy` アクションを指定します。
-* `Https://localhost:5001/Movies/Edit/5`: `Movies` コントローラーと `Edit` アクションを使用して ID = 5 のムービーを編集するための要求です。これについては、このチュートリアルで後ほど詳しく説明します。
+* `https://localhost:5001/Home/Privacy`: `Home` コントローラーと `Privacy` アクションを指定します。
+* `https://localhost:5001/Movies/Edit/5`: `Movies` コントローラーと `Edit` アクションを使用して ID = 5 のムービーを編集するための要求です。これについては、このチュートリアルで後ほど詳しく説明します。
 
 ルート データについては、このチュートリアルで後ほど説明します。
 
@@ -166,7 +166,7 @@ URL の `name` と `numtimes` に違う値を指定してみてください。 M
 
 * 3 番目の URL セグメントがルート パラメーター `id` と一致しました。 
 * `Welcome` メソッドには、`MapControllerRoute` メソッドの URL テンプレートと一致したパラメーター `id` が含まれます。
-* 末尾の `?` (`id?`) は、`id` パラメーターが省略可能であることを示します。
+* 末尾に `?` を指定すると、[クエリ文字列](https://wikipedia.org/wiki/Query_string)が開始します。
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Startup.cs?name=snippet_route&highlight=5)]
 

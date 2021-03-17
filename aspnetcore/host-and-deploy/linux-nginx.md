@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 6a8fd8e3498dda9b7c10834791e64df6276e2823
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 8a593654fa31e643e7c239f361f035589c75ce98
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253021"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395254"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Nginx 搭載の Linux で ASP.NET Core をホストする
 
@@ -46,13 +46,9 @@ ASP.NET Core でサポートされている他の Linux ディストリビュー
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
-1. Ubuntu 16.04 サーバーへのアクセスと sudo 特権が与えられた標準ユーザー アカウント。
-1. サーバーへの .NET Core ランタイムのインストール。
-   1. 「[.NET Core のダウンロード](https://dotnet.microsoft.com/download/dotnet-core)」ページにアクセスします。
-   1. プレビューでない最新の .NET Core バージョンを選択します。
-   1. **[Run apps - Runtime]\(アプリの実行 - ランタイム\)** の下の表でプレビューでない最新のランタイムをダウンロードします。
-   1. Linux の 「**パッケージ マネージャーの手順**」 リンクを選択し、ご利用の Ubuntu バージョン用の Ubuntu 手順に従います。
-1. 既存の ASP.NET Core アプリ。
+* Ubuntu 16.04 サーバーへのアクセスと sudo 特権が与えられた標準ユーザー アカウント。
+* サーバーに[インストールされている .NET ランタイム](/dotnet/core/install/linux)のプレビュー以外の最新バージョン。
+* 既存の ASP.NET Core アプリ。
 
 共有フレームワークをアップグレードした後の任意の時点で、サーバーによってホストされている ASP.NET Core アプリを再起動します。
 

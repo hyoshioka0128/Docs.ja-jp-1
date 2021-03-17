@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 780161090d376f08b849fadb47127810d6661d0c
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 8dd11251358bbeea444661970fadf19cb1390fd3
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279759"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394929"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor のホスティング モデル
 
@@ -36,7 +36,7 @@ Blazor のプライマリ ホスティング モデルは、WebAssembly 上の�
 
 ![Blazor WebAssembly:Blazor アプリは、ブラウザー内の UI スレッドで実行されます。](hosting-models/_static/blazor-webassembly.png)
 
-Blazor WebAssembly アプリは、該当するファイルを提供するバックエンド ASP.NET Core アプリなしの展開用として作成されると、"*スタンドアロン*" Blazor WebAssembly アプリと呼ばれます。 そのアプリが、バックエンド アプリを使用して該当するファイルを提供する展開用として作成されると、"*ホストされている*" Blazor WebAssembly アプリと呼ばれます。 ホストされている Blazor WebAssembly アプリとサーバーとのやりとりは、通常、Web API 呼び出しまたは [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>) を使用してネットワーク経由で行われます。
+Blazor WebAssembly アプリは、該当するファイルを提供するバックエンド ASP.NET Core アプリなしの展開用として作成されると、"*スタンドアロン*" Blazor WebAssembly アプリと呼ばれます。 そのアプリが、バックエンド アプリを使用して該当するファイルを提供する展開用として作成されると、"*ホストされている*" Blazor WebAssembly アプリと呼ばれます。 ホストされている Blazor WebAssembly **`Client`** アプリは、通常、Web API 呼び出し、または [SignalR](xref:signalr/introduction) を使用するネットワークを経由して、バックエンド **`Server`** アプリとのやり取りを行います (「<xref:tutorials/signalr-blazor>」を参照)。
 
 `blazor.webassembly.js` スクリプトは、フレームワークによって提供され、次の処理を行います。
 
@@ -59,7 +59,7 @@ Blazor WebAssembly ホスティング モデルには、次の制限がありま
 
 Blazor WebAssembly アプリを作成するには、「<xref:blazor/tooling>」を参照してください。
 
-ホストされている Blazor アプリ モデルでは、[Docker コンテナー](/dotnet/standard/microservices-architecture/container-docker-introduction/index)がサポートされています。 Visual Studio での Docker のサポートについては、ホストされている Blazor WebAssembly ソリューションの `Server` プロジェクトを右クリックし、 **[追加]**  >  **[Docker のサポート]** の順に選択します。
+ホストされている Blazor アプリ モデルでは、[Docker コンテナー](/dotnet/standard/microservices-architecture/container-docker-introduction/index)がサポートされています。 Visual Studio での Docker のサポートについては、ホストされている Blazor WebAssembly ソリューションの **`Server`** プロジェクトを右クリックして、 **[追加]**  >  **[Docker のサポート]** の順に選択します。
 
 ## Blazor Server
 
@@ -157,6 +157,7 @@ IIS を使用すると、スティッキー セッションは "*アプリケー
 ## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:blazor/tooling>
+* <xref:blazor/project-structure>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/signalr>
 * <xref:tutorials/signalr-blazor>

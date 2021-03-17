@@ -19,20 +19,22 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/project-structure
-ms.openlocfilehash: 94b5a3d8c0f5b94ecac32e6fc5f94efeb8337f37
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: fe42c2d43b79ea959bb0ba8e5b96e6c865b2a416
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280355"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394877"
 ---
 # <a name="aspnet-core-blazor-project-structure"></a>ASP.NET Core Blazor プロジェクトの構造
 
-この記事では、Blazor プロジェクト テンプレートから生成された Blazor アプリを構成するファイルとフォルダーについて説明します。
+この記事では、Blazor フレームワークのいずれかのプロジェクト テンプレートから生成された Blazor アプリを構成するファイルとフォルダーについて説明します。 ツールを使用して Blazor プロジェクト テンプレートから Blazor アプリを作成する方法については、「<xref:blazor/tooling>」を参照してください。 Blazor のホスティング モデルである Blazor WebAssembly と Blazor Server の詳細については、「<xref:blazor/hosting-models>」を参照してください。
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly テンプレート (`blazorwasm`) によって、Blazor WebAssembly アプリの初期ファイルおよびディレクトリ構造が作成されます。 このアプリには、静的資産からデータを読み込む `FetchData` コンポーネント、`weather.json`、および `Counter` コンポーネントとのユーザーの対話のためのデモンストレーション コードが設定されます。
+Blazor WebAssembly プロジェクト テンプレート: `blazorwasm`
+
+Blazor WebAssembly テンプレートによって、Blazor WebAssembly アプリの初期ファイルとディレクトリの構造が作成されます。 このアプリには、静的資産からデータを読み込む `FetchData` コンポーネント、`weather.json`、および `Counter` コンポーネントとのユーザーの対話のためのデモンストレーション コードが設定されます。
 
 * `Pages` フォルダー:Blazor アプリを構成するルーティング可能なコンポーネントまたはページ (`.razor`) が含まれています。 各ページのルートは、[`@page`](xref:mvc/views/razor#page) ディレクティブを使用して指定します。 テンプレートには、以下のコンポーネントが含まれています。
   * `Counter` コンポーネント (`Counter.razor`): カウンター ページを実装します。
@@ -104,7 +106,9 @@ Blazor WebAssembly テンプレート (`blazorwasm`) によって、Blazor WebAs
 
 ## Blazor Server
 
-Blazor Server テンプレート (`blazorserver`) によって、Blazor Server アプリの初期ファイルおよびディレクトリ構造が作成されます。 このアプリには、登録済みサービスからデータを読み込む `FetchData` コンポーネント、`WeatherForecastService`、および `Counter` コンポーネントとのユーザーの対話のためのデモンストレーション コードが設定されます。
+Blazor Server プロジェクト テンプレート: `blazorserver`
+
+Blazor Server テンプレートによって、Blazor Server アプリの初期ファイルとディレクトリの構造が作成されます。 このアプリには、登録済みサービスからデータを読み込む `FetchData` コンポーネント、`WeatherForecastService`、および `Counter` コンポーネントとのユーザーの対話のためのデモンストレーション コードが設定されます。
 
 * `Data` フォルダー:アプリの `FetchData` コンポーネントに気象データの例を提供する、`WeatherForecast` クラスと `WeatherForecastService` の実装が含まれます。
 
@@ -158,3 +162,8 @@ Blazor Server テンプレート (`blazorserver`) によって、Blazor Server �
   * `Configure`:アプリの要求処理パイプラインを構成します。
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> は、ブラウザーとのリアルタイム接続用のエンドポイントを設定するために呼び出されます。 この接続は [SignalR](xref:signalr/introduction) で作成されます。これは、アプリにリアルタイム Web 機能を追加するためのフレームワークです。
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) は、アプリ (`Pages/_Host.cshtml`) のルート ページを設定し、ナビゲーションを有効にするために呼び出されます。
+
+## <a name="additional-resources"></a>その他のリソース
+
+* <xref:blazor/tooling>
+* <xref:blazor/hosting-models>

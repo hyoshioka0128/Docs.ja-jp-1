@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 161d6aeefe1882b86ce97cdcfa7e5b23048693f0
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: fe68c54ff16751058a3eeee3880a11657344c40a
+ms.sourcegitcommit: acfe51c35497a204f75c2a61125c9408c04493e6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217506"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102605673"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>ASP.NET Core 3.0 の新機能
 
@@ -407,7 +407,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 Web UI テンプレート (Razor Pages、コントローラーとビューを含む MVC) では、以下が削除されています。
 
 * cookie 同意 UI は含まれなくなりました。 ASP.NET Core 3.0 テンプレートで生成されるアプリで cookie 同意機能を有効にするには、「<xref:security/gdpr>」を参照してください。
-* スクリプトと関連する静的アセットは、CDN を使用する代わりに、ローカル ファイルとして参照されるようになりました。 詳細については、「[現在、スクリプトと関連する静的アセットは、現在の環境に基づいた CDN を使用する代わりに、ローカル ファイルとして参照される (aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350)」を参照してください。
+* スクリプトと関連する静的アセットは、CDN を使用する代わりに、ローカル ファイルとして参照されるようになりました。 詳細については、「[スクリプトおよび関連する静的アセットが、現在の環境に基づいた CDN を使用するのではなく、ローカル ファイルとして参照されるようになりました (dotnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350)」を参照してください。
 
 Angular テンプレートは、Angular 8 を使用するように更新されました。
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/test
-ms.openlocfilehash: 67ebfcd322ae08acf2fddae9bd6101f13fa77e7e
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 1a7b1114934f4fe7006d60bdbd0f06792d2c6935
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280706"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394552"
 ---
 # <a name="test-components-in-aspnet-core-blazor"></a>ASP.NET Core Blazor のコンポーネントをテストする
 
@@ -100,7 +100,7 @@ bUnit は、[MSTest](/dotnet/core/testing/unit-testing-with-mstest)、[NUnit](ht
 > [!NOTE]
 > テストの概念とテストの実装は、異なるテスト フレームワークでも類似していますが、同一ではありません。 ガイダンスについては、テスト フレームワークのドキュメントを参照してください。
 
-次の例は、Blazor プロジェクト テンプレートに基づくアプリ内の `Counter` コンポーネントに対する bUnit テストの構造を示します。 `Counter` コンポーネントでは、ユーザーがページで選択するボタンに基づいてカウンターを表示し、増分します。
+次の例は、[Blazor プロジェクト テンプレート](xref:blazor/project-structure)に基づくアプリ内の `Counter` コンポーネントに対する bUnit テストの構造を示しています。 `Counter` コンポーネントでは、ユーザーがページで選択するボタンに基づいてカウンターを表示し、増分します。
 
 ```razor
 @page "/counter"

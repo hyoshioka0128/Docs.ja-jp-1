@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 6b61d9a4645d273b0c78fae0388d569771c43a2d
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: 19270bb74326dccfee9466b7c1fa61daeab805a2
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100536247"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394461"
 ---
 # <a name="tooling-for-aspnet-core-blazor"></a>ASP.NET Core Blazor 用のツール
 
@@ -125,7 +125,7 @@ ASP.NET Core HTTPS 開発証明書の信頼の詳細については、「<xref:s
    前の引数は次のとおりです。
 
    * `{SERVER APP FOLDER}` プレースホルダーは **`Server`** プロジェクトのフォルダーです (通常は "`Server`")。
-   * `{PROJECT NAME}` プレースホルダーはアプリの名前です。通常、この名前は、Blazor プロジェクト テンプレートから生成されたアプリ内のソリューションの名前とそれに続く "`.Server`" から付けられます。
+   * `{PROJECT NAME}` プレースホルダーはアプリの名前です。通常、[Blazor プロジェクト テンプレート](xref:blazor/project-structure)から生成されたアプリ内のソリューションの名前の後に "`.Server`" が付けられた名前となっています。
 
    [Blazor WebAssembly アプリでの SignalR の使用に関するチュートリアル](xref:tutorials/signalr-blazor)の次の例では、`Server` のプロジェクト フォルダー名と `BlazorWebAssemblySignalRApp.Server` のプロジェクト名を使用します。
 
@@ -191,7 +191,7 @@ Blazor フレームワークには、Blazor ホスティング モデルのそ�
 * Blazor WebAssembly プロジェクト テンプレート: `blazorwasm`
 * Blazor Server プロジェクト テンプレート: `blazorserver`
 
-Blazor のホスティング モデルの詳細については、「<xref:blazor/hosting-models>」を参照してください。
+Blazor のホスティング モデルの詳細については、「<xref:blazor/hosting-models>」を参照してください。 Blazor プロジェクト テンプレートの詳細については、「<xref:blazor/project-structure>」を参照してください。
 
 テンプレート オプションを使用するには、コマンド シェルで [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI コマンドにヘルプ オプション (`-h` または `--help`) を渡します。
 
@@ -199,3 +199,8 @@ Blazor のホスティング モデルの詳細については、「<xref:blazor
 dotnet new blazorwasm -h
 dotnet new blazorserver -h
 ```
+
+## <a name="additional-resources"></a>その他のリソース
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/project-structure>

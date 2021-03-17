@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: f6a93eb9d95182d29a60cc1a5c48122b9166aa84
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 4c574a630176010ab30006b53c42e5cad7f93a54
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280146"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395189"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor のイベント処理
 
@@ -128,7 +128,10 @@ private void ShowMessage(MouseEventArgs e)
 
 詳細については、次のリソースを参照してください。
 
-* [`EventArgs`ASP.NET Core 参照ソースのクラス (dotnet/aspnetcore `master` ブランチ)](https://github.com/dotnet/aspnetcore/tree/master/src/Components/Web/src/Web)。 `master` ブランチは、"*次の*" ASP.NET Core リリース用に開発される API を表します。 現在のリリースでは、適切な GitHub リポジトリ ブランチ (たとえば、`release/3.1`) を選択します。
+* ASP.NET Core 参照ソース内の [`EventArgs` クラス (dotnet/aspnetcore `main` ブランチ)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
+
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+
 * [MDN Web ドキュメント:GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers):各 DOM イベントをサポートする HTML 要素に関する情報が含まれています。
 
 ## <a name="lambda-expressions"></a>ラムダ式
@@ -174,7 +177,7 @@ private void ShowMessage(MouseEventArgs e)
 
 サンプル アプリの `ChildComponent` (`Components/ChildComponent.razor`) は、ボタンの `onclick` ハンドラーがどのように、サンプルの `ParentComponent` から <xref:Microsoft.AspNetCore.Components.EventCallback> デリゲートを受け取るように設定されているかを示しています。 <xref:Microsoft.AspNetCore.Components.EventCallback> は `MouseEventArgs` によって型指定されます。これは、周辺機器の `onclick` イベントに適しています。
 
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 `ParentComponent` では、子の <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) を `ShowMessage` メソッドに設定しています。
 

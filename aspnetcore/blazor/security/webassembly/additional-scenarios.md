@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 6c3d2f93e43cf3660a12f1c8cef1d381b587f5ea
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: c2b2a6f049846dc2e4894b4cab8b0a1aa34762f9
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280537"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394851"
 ---
 # <a name="aspnet-core-blazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly のセキュリティに関するその他のシナリオ
 
@@ -57,7 +57,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("ServerAPI"));
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、要求 URI は既定ではアプリのベース URI 内にあります。 したがって、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) は、プロジェクト テンプレートから生成されたアプリ内の <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、要求 URI はアプリのベース URI 内にあります。 したがって、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) は、プロジェクト テンプレートから生成されたアプリ内の <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
 
 構成された <xref:System.Net.Http.HttpClient> を使用し、[`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) パターンを使用して、承認された要求を行います。
 
@@ -118,7 +118,7 @@ builder.Services.AddHttpClient("ServerAPI",
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) は既定では <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) が <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
 
 構成が行われた <xref:System.Net.Http.HttpClient> を使用し、[`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) パターンを使用して、承認された要求を行います。 <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) パッケージ) を使用してクライアントが作成される場合にサーバー API への要求を行うと、アクセス トークンが含まれるインスタンスが <xref:System.Net.Http.HttpClient> に提供されます。 要求 URI が次の例 (`ExampleAPIMethod`) のように相対 URI である場合、それは、クライアント アプリから要求があったときに <xref:System.Net.Http.HttpClient.BaseAddress> に結合されます。
 
@@ -169,7 +169,7 @@ builder.Services.AddScoped(sp => new HttpClient(
     });
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> は既定では以下に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> が以下に割り当てられます。
 
 * <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`)。
 * `authorizedUrls` 配列の URL。
@@ -230,7 +230,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) は既定では <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) が <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
 
 `FetchData` コンポーネント (`Pages/FetchData.razor`):
 
@@ -260,7 +260,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
         scopes: new[] { "example.read", "example.write" }));
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> は既定では以下に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> が以下に割り当てられます。
 
 * <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`)。
 * `authorizedUrls` 配列の URL。
@@ -276,7 +276,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
     client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
 
-Blazor WebAssembly のホストされたプロジェクト テンプレートに基づく Blazor アプリの場合、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) は既定では <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションの場合、既定では、<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) が <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> に割り当てられます。
 
 前述の登録は、セキュリティで保護された既定の <xref:System.Net.Http.HttpClient> 登録に追加されます。
 
@@ -373,7 +373,7 @@ app.UseCors(policy =>
     .AllowCredentials());
 ```
 
-Blazor のホストされたプロジェクト テンプレートに基づくホスト型 Blazor ソリューションでは、クライアントおよびサーバー アプリ用に同じベース アドレスが使用されます。 クライアント アプリの <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> は、既定では `builder.HostEnvironment.BaseAddress` の URI に設定されます。 Blazor のホストされたプロジェクト テンプレートから作成されるホスト型アプリの既定の構成では、CORS 構成は **必須ではありません**。 サーバー プロジェクトでホストされておらず、サーバー アプリのベース アドレスを共有していない追加のクライアント アプリでは、サーバー プロジェクト内の CORS 構成は **必須です**。
+[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)に基づいてホストされている Blazor ソリューションを使用すると、クライアント アプリとサーバー アプリに同じベース アドレスが使用されます。 クライアント アプリの <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> は、既定では `builder.HostEnvironment.BaseAddress` の URI に設定されます。 ホストされている Blazor ソリューションの既定の構成では、CORS 構成は必須では **ありません**。 サーバー プロジェクトでホストされておらず、サーバー アプリのベース アドレスを共有していない追加のクライアント アプリでは、サーバー プロジェクト内の CORS 構成は **必須です**。
 
 詳細については、「<xref:security/cors>」と、サンプル アプリの HTTP 要求テスター コンポーネント (`Components/HTTPRequestTester.razor`) を参照してください。
 
@@ -476,7 +476,7 @@ Blazor のホストされたプロジェクト テンプレートに基づくホ
 
 認証操作中に、ブラウザーが IP にリダイレクトされる前に、アプリの状態を保存することが必要になる場合があります。 状態コンテナーを使用していて、認証が成功した後に状態を復元する場合には、このようなことが起こる可能性があります。 カスタム認証状態オブジェクトを使用して、アプリ固有の状態、またはその参照を保持し、認証操作が正常に完了した後で、その状態を復元することができます。 このアプローチの例を次に示します。
 
-状態コンテナー クラスは、アプリの状態値を保持するプロパティを使用して、アプリ内に作成されます。 次の例では、コンテナーを使用して、既定のプロジェクト テンプレートの `Counter` コンポーネント (`Pages/Counter.razor`) のカウンター値を維持します。 コンテナーをシリアル化および逆シリアル化するためのメソッドは、<xref:System.Text.Json> に基づいています。
+状態コンテナー クラスは、アプリの状態値を保持するプロパティを使用して、アプリ内に作成されます。 次の例では、コンテナーを使用して、既定の [Blazor プロジェクト テンプレート](xref:blazor/project-structure)の `Counter` コンポーネント (`Pages/Counter.razor`) のカウンター値を維持します。 コンテナーをシリアル化および逆シリアル化するためのメソッドは、<xref:System.Text.Json> に基づいています。
 
 ```csharp
 using System.Text.Json;
@@ -819,12 +819,12 @@ AAD セキュリティ グループと AAD 管理者ロール、およびカス�
 
 ## <a name="support-prerendering-with-authentication"></a>認証を使用したプリレンダリングのサポート
 
-ホストされている Blazor WebAssembly アプリのトピックのいずれかのガイダンスを実行した後は、この後の手順に従って次のようなアプリを作成できます。
+Blazor WebAssembly セキュリティ アプリのトピックのいずれかのガイダンスを実行した後は、この後の手順に従って次のようなアプリを作成できます。
 
 * 承認が不要なパスをプリレンダリングする。
 * 承認が必要なパスをプリレンダリングしない。
 
-*`Client`* アプリの `Program` クラス (`Program.cs`) で、共通のサービスの登録を別のメソッド (たとえば、`ConfigureCommonServices`) に組み入れます。
+**`Client`** アプリの `Program` クラス (`Program.cs`) で、共通のサービスの登録を別のメソッド (たとえば、`ConfigureCommonServices`) に組み入れます。
 
 ```csharp
 public class Program
@@ -880,7 +880,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-サーバー アプリで、`Pages` フォルダーが存在しない場合は作成します。 サーバー アプリの `Pages` フォルダー内に `_Host.cshtml` ページを作成します。 *`Client`* アプリの `wwwroot/index.html` ファイルの内容を `Pages/_Host.cshtml` ファイルに貼り付けます。 ファイルの内容を更新します。
+サーバー アプリで、`Pages` フォルダーが存在しない場合は作成します。 サーバー アプリの `Pages` フォルダー内に `_Host.cshtml` ページを作成します。 **`Client`** アプリの `wwwroot/index.html` ファイルの内容を `Pages/_Host.cshtml` ファイルに貼り付けます。 ファイルの内容を更新します。
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -974,7 +974,7 @@ app.UseEndpoints(endpoints =>
 
 ## <a name="use-openid-connect-oidc-v20-endpoints"></a>OpenID Connect (OIDC) v2.0 エンドポイントを使用する
 
-認証ライブラリと Blazor プロジェクト テンプレートでは、Open ID Connect (OIDC) v1.0 エンドポイントが使用されます。 v2.0 エンドポイントを使用するには、JWT ベアラー <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> オプションの構成を行います。 次の例では、<xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> プロパティに `v2.0` セグメントを追加することで、v2.0 に対して AAD の構成が行われます。
+認証ライブラリと [Blazor プロジェクト テンプレート](xref:blazor/project-structure)により、OpenID Connect (OIDC) v1.0 エンドポイントが使用されます。 v2.0 エンドポイントを使用するには、JWT ベアラー <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> オプションの構成を行います。 次の例では、<xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> プロパティに `v2.0` セグメントを追加することで、v2.0 に対して AAD の構成が行われます。
 
 ```csharp
 builder.Services.Configure<JwtBearerOptions>(

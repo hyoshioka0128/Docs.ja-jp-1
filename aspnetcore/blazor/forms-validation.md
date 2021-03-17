@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 012c8794b3d239ce93ac942000c7ec4f71d06cbf
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: eb72810a5b65232aa778daa556a9b2d406807e87
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279998"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395137"
 ---
 # <a name="aspnet-core-blazor-forms-and-validation"></a>ASP.NET Core Blazor のフォームと検証
 
@@ -454,7 +454,7 @@ public class CustomValidator : ComponentBase
 
 次の例は、以下のものに基づいています。
 
-* [Blazorホストされているプロジェクト テンプレート](xref:blazor/hosting-models#blazor-webassembly)によって作成された、ホストされている Blazor ソリューション。 この例は、[セキュリティと Identity のドキュメント](xref:blazor/security/webassembly/index#implementation-guidance)で説明されている、安全でホストされている Blazor ソリューションのいずれかで使用できます。
+* [Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)から作成された、ホストされている Blazor WebAssembly ソリューション。 この例は、[セキュリティと Identity のドキュメント](xref:blazor/security/webassembly/index#implementation-guidance)で説明されている、安全でホストされている Blazor ソリューションのいずれかで使用できます。
 * 前述の「[組み込みフォームのコンポーネント](#built-in-forms-components)」セクションの *Starfleet Starship Database* フォーム例。
 * Blazor フレームワークの <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネント。
 * 「[検証コンポーネント](#validator-components)」セクションで示した `CustomValidator` コンポーネント。
@@ -966,7 +966,9 @@ Blazor フレームワークでは、`<select>` の値への双方向バイン�
 
 ## <a name="validation-support"></a>検証のサポート
 
-<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネントは、データ注釈を使用した検証サポートをカスケードされた <xref:Microsoft.AspNetCore.Components.Forms.EditContext> にアタッチします。 データ注釈を使用した検証のサポートを有効にするには、この明示的なジェスチャが必要です。 データ注釈と異なる検証システムを使用するには、<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> をカスタム実装に置き換えます。 参照ソース [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs) での検査に、ASP.NET Core 実装を使用できます。 上記の参照ソースへのリンクからは、リポジトリの `master` ブランチが提供されます。このブランチは、ASP.NET Core の次回リリースのための製品単位の現行開発を表します。 別のリリースのブランチを選択するには、GitHub ブランチ セレクターを使用します (`release/3.1` など)。
+<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> コンポーネントは、データ注釈を使用した検証サポートをカスケードされた <xref:Microsoft.AspNetCore.Components.Forms.EditContext> にアタッチします。 データ注釈を使用した検証のサポートを有効にするには、この明示的なジェスチャが必要です。 データ注釈と異なる検証システムを使用するには、<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> をカスタム実装に置き換えます。 参照ソース [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs) での検査に、ASP.NET Core 実装を使用できます。
+
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor は 2 種類の検証を実行します。
 
@@ -1011,7 +1013,7 @@ Blazor は 2 種類の検証を実行します。
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class CustomValidator : ValidationAttribute
+public class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -1031,22 +1033,84 @@ private class CustomValidator : ValidationAttribute
 
 ## <a name="custom-validation-class-attributes"></a>カスタム検証クラス属性
 
-カスタム検証クラス名は、[Bootstrap](https://getbootstrap.com/) などの CSS フレームワークと統合する場合に便利です。 カスタム検証クラス名を指定するには、`FieldCssClassProvider` から派生したクラスを作成し、そのクラスを <xref:Microsoft.AspNetCore.Components.Forms.EditContext> インスタンスに設定します。
+カスタム検証クラス名は、[Bootstrap](https://getbootstrap.com/) などの CSS フレームワークと統合する場合に便利です。
+
+カスタム検証クラス名を指定するには、次の手順を行います。
+
+* カスタム検証の CSS スタイルを指定します。 次の例では、有効なスタイルと無効なスタイルが指定されています。
+
+```css
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+* フィールド検証メッセージをチェックし、有効なスタイルと無効なスタイルを適切に適用する `FieldCssClassProvider` から派生したクラスを作成します。
 
 ```csharp
-var editContext = new EditContext(model);
-editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
 
-...
-
-private class MyFieldClassProvider : FieldCssClassProvider
+public class MyFieldClassProvider : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
     {
         var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 
-        return isValid ? "good field" : "bad field";
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+* フォームの <xref:Microsoft.AspNetCore.Components.Forms.EditContext> インスタンスでクラスを設定します。
+
+```razor
+...
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    ...
+</EditForm>
+
+...
+
+@code {
+    private EditContext editContext;
+    private Model model = new Model();
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+    }
+
+    private void HandleValidSubmit()
+    {
+        ...
+    }
+}
+```
+
+前の例では、すべてのフォーム フィールドの有効性をチェックし、各フィールドにスタイルを適用しています。 フォームを使用してフィールドのサブセットにのみカスタム スタイルを適用する場合は、スタイルが `MyFieldClassProvider` によって条件的に適用されるようにします。 次の例では、スタイルが `Identifier` フィールドに適用されるだけです。
+
+```csharp
+public class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Identifier")
+        {
+            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
     }
 }
 ```

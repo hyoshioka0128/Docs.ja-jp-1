@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: 75682171a59a610a24364778616774c49257d2ad
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: bac6f4a6595558f32779286bcc09c266663a2d24
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279844"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394981"
 ---
 # <a name="host-and-deploy-blazor-server"></a>Blazor Server のホストと展開
 
@@ -36,7 +36,7 @@ ms.locfileid: "100279844"
 
 [Blazor Server のホスティング モデル](xref:blazor/hosting-models#blazor-server)を使用する場合、Blazor はサーバー上で ASP.NET Core アプリ内から実行されます。 UI の更新、イベント処理、JavaScript の呼び出しは、[SignalR](xref:signalr/introduction) 接続経由で処理されます。
 
-ASP.NET Core アプリをホストできる Web サーバーが必要です。 Visual Studio には **Blazor Server アプリ** プロジェクト テンプレートが含まれています ([`dotnet new`](/dotnet/core/tools/dotnet-new) コマンドを使用する場合は `blazorserverside` テンプレート)。
+ASP.NET Core アプリをホストできる Web サーバーが必要です。 Visual Studio には **Blazor Server アプリ** プロジェクト テンプレートが含まれています ([`dotnet new`](/dotnet/core/tools/dotnet-new) コマンドを使用する場合は `blazorserverside` テンプレート)。 Blazor プロジェクト テンプレートの詳細については、「<xref:blazor/project-structure>」を参照してください。
 
 ## <a name="scalability"></a>スケーラビリティ
 

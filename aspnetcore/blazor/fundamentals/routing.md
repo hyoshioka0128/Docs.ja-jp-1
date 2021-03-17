@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 55e2cbc01af7352facad7121c05c754e9d438ae3
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: ee6de9a13a69154eef6b677663091667d391452f
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279886"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395059"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor のルーティング
 
@@ -59,7 +59,7 @@ ms.locfileid: "100279886"
 * <xref:Microsoft.AspNetCore.Components.Routing.Router> から、ルート パラメーターと共に <xref:Microsoft.AspNetCore.Components.RouteData> を受け取ります。
 * さらに入れ子になったレイアウトを含め、指定されたコンポーネントをその[レイアウト](xref:blazor/layouts)でレンダリングします。
 
-必要に応じて、[`@layout` ディレクティブ](xref:blazor/layouts#specify-a-layout-in-a-component) を使用してレイアウトを指定しないコンポーネントに対して、レイアウト クラスで <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> パラメーターを指定します。 フレームワークの Blazor プロジェクト テンプレートでは、アプリの既定のレイアウトとして `MainLayout` コンポーネント (`Shared/MainLayout.razor`) を指定します。 レイアウトの詳細については、「<xref:blazor/layouts>」を参照してください。
+必要に応じて、[`@layout` ディレクティブ](xref:blazor/layouts#apply-a-layout-to-a-component) を使用してレイアウトを指定しないコンポーネントに対して、レイアウト クラスで <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> パラメーターを指定します。 フレームワークの [Blazor プロジェクト テンプレート](xref:blazor/project-structure)によって、`MainLayout` コンポーネント (`Shared/MainLayout.razor`) が、アプリの既定のレイアウトとして指定されます。 レイアウトの詳細については、「<xref:blazor/layouts>」を参照してください。
 
 コンポーネントにより、複数の [`@page` ディレクティブ](xref:mvc/views/razor#page) を使用する複数のルート テンプレートがサポートされます。 次のコンポーネントの例では、`/BlazorRoute` と `/DifferentBlazorRoute` に対する要求を読み込みます。
 
@@ -102,7 +102,7 @@ ms.locfileid: "100279886"
 
 ::: moniker-end
 
-他の対話型コンポーネントなど、`<NotFound>` タグのコンテンツとして任意の項目がサポートされます。 <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> コンテンツに既定のレイアウトを適用するには、「<xref:blazor/layouts#default-layout>」を参照してください。
+他の対話型コンポーネントなど、`<NotFound>` タグのコンテンツとして任意の項目がサポートされます。 <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> コンテンツに既定のレイアウトを適用するには、「<xref:blazor/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>」を参照してください。
 
 ## <a name="route-to-components-from-multiple-assemblies"></a>複数のアセンブリからコンポーネントにルーティングする
 
@@ -230,7 +230,7 @@ URL の最後のセグメントからルート パラメーターを受け取る
 
 ::: moniker-end
 
-ホストされている Blazor WebAssembly ソリューションの *`Server`* アプリで、`param` ルート パラメーターのドットを使って要求をルーティングできるようにするには、`Startup.Configure` で省略可能なパラメーターを指定してフォールバック ファイル ルート テンプレートを追加します。
+ホストされている Blazor WebAssembly ソリューションの **`Server`** アプリで、`param` ルート パラメーターのドットを使って要求をルーティングできるようにするには、`Startup.Configure` で省略可能なパラメーターを指定してフォールバック ファイル ルート テンプレートを追加します。
 
 `Startup.cs`:
 
@@ -371,7 +371,7 @@ var query = new Uri(NavigationManager.Uri).Query;
 ::: moniker-end
 
 > [!NOTE]
-> `NavMenu` コンポーネント (`NavMenu.razor`) は、Blazor プロジェクト テンプレートから生成されたアプリの `Shared` フォルダーにあります。
+> `NavMenu` コンポーネント (`NavMenu.razor`) は、[Blazor プロジェクト テンプレート](xref:blazor/project-structure)から生成されたアプリの `Shared` フォルダーにあります。
 
 `<NavLink>` 要素の `Match` 属性に割り当てられる 2 つの <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> オプションがあります。
 

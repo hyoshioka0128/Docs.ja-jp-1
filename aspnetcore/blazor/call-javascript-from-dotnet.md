@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 5b28ad594567e7bfc87e15eed419bea520125654
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: ab342f6bdc5da68f2a2ee8d9aee29911a050056d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280306"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586619"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>ASP.NET Core Blazor で .NET メソッドから JavaScript 関数を呼び出す
 
@@ -32,7 +32,7 @@ Blazor アプリでは、.NET メソッドから JavaScript 関数を呼び出�
 
 この記事では、.NET から JavaScript 関数を呼び出す方法について説明します。 JavaScript から .NET メソッドを呼び出す方法については、「<xref:blazor/call-dotnet-from-javascript>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 > [!NOTE]
 > `wwwroot/index.html` ファイル (Blazor WebAssembly) または `Pages/_Host.cshtml` ファイル (Blazor Server) では、終了タグ `</body>` の前に JS ファイル (`<script>` タグ) を追加します。 JS 相互運用メソッドを含む JS ファイルは、Blazor フレームワークの JS ファイルよりも先に含めるようにします。
@@ -96,17 +96,17 @@ JavaScript コードでは、前の例で示したコードのように、スク
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
 JavaScript ファイルを参照する `<script>` タグを `wwwroot/index.html` ファイル (Blazor WebAssembly) または `Pages/_Host.cshtml` ファイル (Blazor Server) に配置します。
 
 `wwwroot/index.html` (Blazor WebAssembly):
 
-[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=23)]
+[!code-html[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
 `Pages/_Host.cshtml` (Blazor Server):
 
-[!code-cshtml[](./common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=34)]
+[!code-cshtml[](~/blazor/common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=33)]
 
 `<script>` タグを動的に更新できないため、`<script>` タグをコンポーネント ファイル内に配置しないでください。
 
@@ -819,4 +819,4 @@ window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
 ## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:blazor/call-dotnet-from-javascript>
-* [InteropComponent.razor の例 (dotnet/AspNetCore GitHub リポジトリ、3.1 リリース ブランチ)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` の例 (dotnet/AspNetCore GitHub リポジトリの `main` ブランチ)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): `main` ブランチは、ASP.NET Core の製品単位の現在の開発を表します。 別のリリース (`release/5.0`) のブランチを選択するには、 **[Switch branches or tags]\(ブランチまたはタグの切り替え\)** ドロップダウン リストを使用して、そのブランチを選択します。

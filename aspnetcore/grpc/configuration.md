@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/configuration
-ms.openlocfilehash: 617c042c628dc431391f39c2ecb2d2f9c9463fa5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 3f03d774a2223dc1fc08adcbc85cdc9a2b63dea0
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "95417592"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588894"
 ---
 # <a name="grpc-for-net-configuration"></a>.NET 構成のための gRPC
 
@@ -62,10 +62,14 @@ gRPC のクライアント構成は `GrpcChannelOptions` で設定されます�
 | DisposeHttpClient | `false` | `true` に設定し、`HttpMessageHandler` または `HttpClient` が指定されている場合、`GrpcChannel` が廃棄されたときに (該当する) `HttpHandler` または `HttpClient` が廃棄されます。 |
 | LoggerFactory | `null` | gRPC 呼び出しに関する情報をログに記録するため、クライアントによって使用される `LoggerFactory`。 `LoggerFactory` インスタンスは、依存関係の挿入から解決することも、`LoggerFactory.Create` を使用して作成することもできます。 ログ記録を構成する例については、「<xref:grpc/diagnostics#grpc-client-logging>」を参照してください。 |
 | MaxSendMessageSize | `null` | クライアントから送信できる最大メッセージ サイズ (バイト単位)。 構成された最大メッセージ サイズを超えるメッセージを送信しようとすると、例外が発生します。 `null` に設定する場合、メッセージ サイズは制限されません。 |
-| <span style="word-break:normal;word-wrap:normal">MaxReceiveMessageSize</span> | 4 MB | クライアントで受信できる最大メッセージ サイズ (バイト単位)。 クライアントでこの制限を超えるメッセージを受信すると、例外がスローされます。 この値を大きくすると、クライアントはより大きなメッセージを受け取れますが、メモリの消費に悪影響を与える可能性があります。 `null` に設定する場合、メッセージ サイズは制限されません。 |
+| MaxReceiveMessageSize | 4 MB | クライアントで受信できる最大メッセージ サイズ (バイト単位)。 クライアントでこの制限を超えるメッセージを受信すると、例外がスローされます。 この値を大きくすると、クライアントはより大きなメッセージを受け取れますが、メモリの消費に悪影響を与える可能性があります。 `null` に設定する場合、メッセージ サイズは制限されません。 |
 | 資格情報: | `null` | `ChannelCredentials` のインスタンス。 資格情報は、認証メタデータを gRPC 呼び出しに追加するために使用します。 |
 | CompressionProviders | gzip | メッセージの圧縮と圧縮解除に使用される圧縮プロバイダーのコレクション。 カスタム圧縮プロバイダーを作成し、コレクションに追加することができます。 既定で構成されているプロバイダーは、**gzip** 圧縮をサポートしています。 |
 | ThrowOperationCanceledOnCancellation | `false` | `true` に設定されている場合、呼び出しが取り消されたとき、または期限を超えたときに、クライアントから <xref:System.OperationCanceledException> がスローされます。 |
+| MaxRetryAttempts | 5 | 最大再試行回数。 サービス構成で指定されている再試行回数と Hedging 試行回数が、この値によって制限されます。この値のみを設定しても、再試行は行われません。 再試行は、サービス構成で有効となり、`ServiceConfig` を使用して実行されます。 `null` 値を指定すると、最大再試行回数の制限が解除されます。 再試行の詳細については、「<xref:grpc/retries>」を参照してください。 |
+| MaxRetryBufferSize | 16 MB | 再試行、または Hedging 呼び出しを実行するときに、送信済みメッセージを格納するために使用することができる、バイト単位の最大バッファー サイズ。 バッファーの制限を超過した場合、再試行はそれ以上実行されず、すべての Hedging 呼び出しは 1 回を除いてすべてキャンセルされます。 この制限は、チャネルを使用して実行されるすべての呼び出しに対して適用されます。 `null` 値を指定すると、再試行の最大バッファー サイズの制限が解除されます。 |
+| <span style="word-break:normal;word-wrap:normal">MaxRetryBufferPerCallSize</span> | 1 MB | 再試行、または Hedging 呼び出しを実行するときに、送信済みメッセージを格納するために使用することができる、バイト単位の最大バッファー サイズ。 バッファーの制限を超過した場合、再試行はそれ以上実行されず、すべての Hedging 呼び出しは 1 回を除いてすべてキャンセルされます。 この制限は、1 回の呼び出しに適用されます。 `null` 値を指定すると、呼び出し 1 回あたりの、再試行の最大バッファー サイズの制限が解除されます。 |
+| ServiceConfig | `null` | gRPC チャネルのサービス構成。 サービス構成を使用すると、[gRPC の再試行](xref:grpc/retries)を構成することができます。 |
 
 コード例を次に示します。
 

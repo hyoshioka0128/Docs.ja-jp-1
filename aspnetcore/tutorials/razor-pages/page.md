@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: a6efbb22f8b6280bd636cd1575d8a4a2bca0bb06
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 049e7764766a4d5d535f7d7959a3554b040607c5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486175"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588504"
 ---
-# <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>パート 3、ASP.NET Core でスキャフォールディングされた Razor ページ
+# <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>パート 3、ASP.NET Core でスキャフォールディングされた Razor ページ
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -34,13 +34,13 @@ ms.locfileid: "97486175"
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ::: moniker-end
 
@@ -118,9 +118,9 @@ Razor では、HTML から C# または Razor 固有のマークアップに移�
 
 上の強調表示されたマークアップは、Razor の C# への移行例です。 `{` 文字と `}` 文字で C# コードのブロックを囲みます。
 
-`PageModel` 基底クラスには `ViewData` 辞書プロパティが含まれており、これを使用してビューにデータを渡すことができます。 オブジェクトは、***キー/値** _ のパターンを使用して `ViewData` 辞書に追加されます。 上のサンプルでは、`Title` プロパティが `ViewData` 辞書に追加されます。
+`PageModel` 基底クラスには `ViewData` 辞書プロパティが含まれており、これを使用してビューにデータを渡すことができます。 オブジェクトは、****キー値**** のパターンを使用して、`ViewData` 辞書に追加されます。 上のサンプルでは、`Title` プロパティが `ViewData` 辞書に追加されます。
 
-`Title` プロパティは _Pages/Shared/_Layout.cshtml* ファイルで使用されます。 次のマークアップは、 *_Layout.cshtml* ファイルの最初の数行を示しています。
+`Title` プロパティは *Pages/Shared/_Layout.cshtml* ファイルで使用されます。 次のマークアップは、 *_Layout.cshtml* ファイルの最初の数行を示しています。
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -148,7 +148,7 @@ Razor では、HTML から C# または Razor 固有のマークアップに移�
 
    上のアンカー要素は[タグ ヘルパー](xref:mvc/views/tag-helpers/intro)です。 この場合は、[アンカー タグ ヘルパー](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)です。 `asp-page="/Movies/Index"` タグ ヘルパー属性と値で、`/Movies/Index` Razor ページへのリンクが作成されます。 `asp-area` 属性の値が空なので、リンクではこの区分が使用されていません。 詳細については、[区分](xref:mvc/controllers/areas)に関する記事を参照してください。
 
-1. 変更内容を保存し、**RpMovie** リンクを選択してアプリをテストします。 問題がある場合は、GitHub の [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) ファイルを参照してください。
+1. 変更内容を保存し、**RpMovie** リンクを選択してアプリをテストします。 問題がある場合は、GitHub の [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) ファイルを参照してください。
 
 1. **[Home]\(ホーム\)** 、 **[RpMovie]** 、 **[Create]/(作成/)** 、 **[Edit]\(編集\)** 、 **[Delete]\(削除\)** のリンクをテストします。 各ページで、ブラウザー タブで表示できるタイトルを設定します。ページをブックマークすると、ブックマークでタイトルが使用されます。
 
@@ -182,7 +182,7 @@ Razor では、HTML から C# または Razor 固有のマークアップに移�
 * データが保存されます。
 * ブラウザーは [Index] ページにリダイレクトされます。
 
-### <a name="the-create-no-locrazor-page"></a>Razor の作成ページ
+### <a name="the-create-razor-page"></a>Razor の作成ページ
 
 次のように、*Pages/Movies/Create.cshtml* Razor ページ ファイルを確認します。
 
@@ -323,7 +323,7 @@ Razor では、HTML から C# または Razor 固有のマークアップに移�
 
 上のアンカー要素は[タグ ヘルパー](xref:mvc/views/tag-helpers/intro)です。 この場合は、[アンカー タグ ヘルパー](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)です。 `asp-page="/Movies/Index"` タグ ヘルパー属性と値で、`/Movies/Index` Razor ページへのリンクが作成されます。 `asp-area` 属性の値が空なので、リンクではこの区分が使用されていません。 詳細については、[区分](xref:mvc/controllers/areas)に関する記事を参照してください。
 
-変更内容を保存し、**RpMovie** リンクをクリックしてアプリをテストします。 問題がある場合は、GitHub の [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) ファイルを参照してください。
+変更内容を保存し、**RpMovie** リンクをクリックしてアプリをテストします。 問題がある場合は、GitHub の [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) ファイルを参照してください。
 
 その他のリンク ( **[Home]** 、 **[RpMovie]** 、 **[Create]** 、 **[Edit]** 、および **[Delete]** ) をテストします。 各ページで、ブラウザー タブで表示できるタイトルを設定します。ページをブックマークすると、ブックマークでタイトルが使用されます。
 
@@ -354,7 +354,7 @@ Razor では、HTML から C# または Razor 固有のマークアップに移�
 
 モデル エラーがない場合、データは保存され、ブラウザーは [Index] ページにリダイレクトされます。
 
-### <a name="the-create-no-locrazor-page"></a>Razor の作成ページ
+### <a name="the-create-razor-page"></a>Razor の作成ページ
 
 次のように、*Pages/Movies/Create.cshtml* Razor ページ ファイルを確認します。
 

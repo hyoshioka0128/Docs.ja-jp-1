@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: f1c7acba0b7fb7dc07da576b188e580328ff4b89
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 6d82611eb2176126652d0d6c8db3779cde70dab5
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96901159"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586242"
 ---
 # <a name="deploy-an-app-to-app-service"></a>App Service にアプリをデプロイする
 
@@ -141,10 +141,10 @@ ms.locfileid: "96901159"
     git remote add azure-prod GIT_DEPLOYMENT_URL
     ```
 
-    b. ローカルの既定のブランチ (*master*) を *azure-prod* のリモートの既定のブランチ (*master*) にプッシュします。
+    b. ローカルの既定のブランチ (*main*) を *azure-prod* リモートの既定のブランチ (*main*) にプッシュします。
 
     ```console
-    git push azure-prod master
+    git push azure-prod main
     ```
 
     前に作成したデプロイ資格情報の入力を求められます。 コマンド シェルで出力を確認します。 Azure によって、ASP.NET Core アプリがリモートでビルドされます。
@@ -214,10 +214,10 @@ Visual Studio によってアプリがビルドされ、Azure にデプロイさ
     git remote add azure-staging <Git_staging_deployment_URL>
     ```
 
-    b. ローカルの既定のブランチ (*master*) を *azure-staging* のリモートの既定のブランチ (*master*) にプッシュします。
+    b. ローカルの既定のブランチ (*main*) を *azure-staging* リモートの既定のブランチ (*main*) にプッシュします。
 
     ```console
-    git push azure-staging master
+    git push azure-staging main
     ```
 
     Azure によってアプリがビルドされてデプロイされるまで待ちます。

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: index
-ms.openlocfilehash: 4301e0d59364573767ab4cae25a4818ff84b9abc
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 3e41336d084e25319f8b1ab4c4ab3175b758d23d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93052228"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102588803"
 ---
 # <a name="introduction-to-aspnet-core"></a>ASP.NET Core の概要
 
@@ -198,8 +198,8 @@ ASP.NET アプリを ASP.NET Core に移行するためのリファレンス ガ
 
 多くの記事やチュートリアルにサンプル コードへのリンクが含まれています。
 
-1. [ASP.NET リポジトリの zip ファイルをダウンロード](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master)します。
-1. *Docs-master.zip* ファイルを解凍します。
+1. [ASP.NET リポジトリの zip ファイルをダウンロード](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main)します。
+1. *Docs-main.zip* ファイルを解凍します。
 1. サンプル リンクの URL を使って、サンプル ディレクトリに移動します。
 
 ### <a name="preprocessor-directives-in-sample-code"></a>サンプル コードのプリプロセッサ ディレクティブ
@@ -244,7 +244,7 @@ Host.CreateDefaultBuilder(args)
 
 コードを囲む `#region` と `#endregion` のディレクティブは安全に無視 (または削除) することができます。 トピックで説明されているサンプル シナリオを実行する予定がある場合は、これらのディレクティブ内のコードを変更しないでください。 他のシナリオを試す場合は、自由にコードを変更できます。
 
-詳細については、「[Contribute to the ASP.NET documentation: Code snippets (ASP.NET に貢献する: コード スニペット)](https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets)」を参照してください。
+詳細については、「[Contribute to the ASP.NET documentation: Code snippets (ASP.NET に貢献する: コード スニペット)](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets)」を参照してください。
 
 ## <a name="next-steps"></a>次の手順
 

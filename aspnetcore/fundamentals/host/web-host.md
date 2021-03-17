@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 98be96bf60441cf09a315dbd1c60e109a7a08afe
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: fa9b1941d6dcda30855a4729dfa1cd78f897d9b6
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253112"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109976"
 ---
 # <a name="aspnet-core-web-host"></a>ASP.NET Core の Web ホスト
 
@@ -32,7 +32,7 @@ ASP.NET Core アプリは *ホスト* を構成して起動します。 ホス�
 
 ::: moniker range=">= aspnetcore-3.0"
 
-この記事では、Web ホストについて説明します。これは、下位互換性のためだけに引き続き使用可能となっています。 すべての種類のアプリに対して、[汎用ホスト](xref:fundamentals/host/generic-host)をお勧めします。
+この記事では、Web ホストについて説明します。これは、下位互換性のためだけに引き続き使用可能となっています。 ASP.NET Core テンプレートを使用すると、すべての種類のアプリに推奨されている [.NET での汎用ホスト](<xref:fundamentals/host/generic-host>)が作成されます。
 
 ::: moniker-end
 

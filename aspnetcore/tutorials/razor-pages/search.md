@@ -19,26 +19,26 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: d852766c9706941a1a5f4f3af2c9293ffc4e6a26
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 0ffe4ed251eed551b2799c1a66424ba31137dc18
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486214"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589518"
 ---
-# <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>パート 6、ASP.NET Core Razor ページへの検索の追加
+# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>パート 6、ASP.NET Core Razor ページへの検索の追加
 
 作成者: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 ::: moniker-end
 
@@ -71,7 +71,7 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-このクエリはこの時点では "***定義される** _" だけで、データベースに対して実行されて "_*_いません_*_"。
+このクエリは、この時点では "**定義される**" のみであり、データベースに対して実行されているわけでは "*_ありません_*"。
 
 `SearchString` プロパティが null でも空でもない場合、検索文字列で絞り込むようにムービークエリが変更されます。
 
@@ -96,11 +96,11 @@ var movies = from m in _context.Movie
 
 ![ghost という単語が URL に追加されたIndexビュー。Ghostbusters と Ghostbusters 2 という 2 本のムービーからなるムービー リストが返されています。](search/_static/g2.png)
 
-ASP.NET Core ランタイムでは[モデル バインド](xref:mvc/models/model-binding)を使用し、クエリ文字列 (`?searchString=Ghost`) またはルート データ (`https://localhost:5001/Movies/Ghost`) から `SearchString` プロパティの値が設定されます。 モデル バインドでは、大文字と小文字が区別 "_*_されません_*_"。
+ASP.NET Core ランタイムでは[モデル バインド](xref:mvc/models/model-binding)を使用し、クエリ文字列 (`?searchString=Ghost`) またはルート データ (`https://localhost:5001/Movies/Ghost`) から `SearchString` プロパティの値が設定されます。 モデル バインドでは、大文字と小文字は区別 "***されません***"。
 
 ただし、URL を変更してムービーを検索することをユーザーに求めることはできません。 この手順では、ムービーを絞り込むための UI を追加します。 ルート制約 `"{searchString?}"` を追加した場合、それを削除します。
 
-_Pages/Movies/Index.cshtml* ファイルを開き、次のコードで強調表示されているマークアップを追加します。
+*Pages/Movies/Index.cshtml* ファイルを開き、次のコードで強調表示されているマークアップを追加します。
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
@@ -127,7 +127,7 @@ Index ページの `OnGetAsync` メソッドを次のコードで更新します
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>ジャンル検索を Razor ページに追加する
+### <a name="add-search-by-genre-to-the-razor-page"></a>ジャンル検索を Razor ページに追加する
 
 1. 次のマークアップで強調表示されているように、 *Index.cshtml* [`<form>` 要素] (https://developer.mozilla.org/docs/Web/HTML/Element/form) ) を更新します。
 
@@ -145,7 +145,7 @@ Index ページの `OnGetAsync` メソッドを次のコードで更新します
 
 ::: moniker range="< aspnetcore-3.0"
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 次のセクションでは、*ジャンル* または *名前* による映画検索が追加されます。
 
@@ -196,11 +196,11 @@ var movies = from m in _context.Movie
 
 ![ghost という単語が URL に追加されたIndexビュー。Ghostbusters と Ghostbusters 2 という 2 本のムービーからなるムービー リストが返されています。](search/_static/g2.png)
 
-ASP.NET Core ランタイムでは[モデル バインド](xref:mvc/models/model-binding)を使用し、クエリ文字列 (`?searchString=Ghost`) またはルート データ (`https://localhost:5001/Movies/Ghost`) から `SearchString` プロパティの値が設定されます。 モデル バインドでは、**_大文字と小文字が区別されません_*。
+ASP.NET Core ランタイムでは[モデル バインド](xref:mvc/models/model-binding)を使用し、クエリ文字列 (`?searchString=Ghost`) またはルート データ (`https://localhost:5001/Movies/Ghost`) から `SearchString` プロパティの値が設定されます。 モデル バインドでは、大文字と小文字は区別 "***されません***"。
 
 ただし、URL を変更してムービーを検索することをユーザーに求めることはできません。 この手順では、ムービーを絞り込むための UI を追加します。 ルート制約 `"{searchString?}"` を追加した場合、それを削除します。
 
-_Pages/Movies/Index.cshtml* ファイルを開き、次のコードで強調表示されている `<form>` マークアップを追加します。
+*Pages/Movies/Index.cshtml* ファイルを開き、次のコードで強調表示されている `<form>` マークアップを追加します。
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
 
@@ -227,7 +227,7 @@ HTML `<form>` タグでは、次の[タグ ヘルパー](xref:mvc/views/tag-help
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>ジャンル検索を Razor ページに追加する
+### <a name="add-search-by-genre-to-the-razor-page"></a>ジャンル検索を Razor ページに追加する
 
 次のマークアップで強調表示されているように、 *Index.cshtml* [`<form>` 要素] (https://developer.mozilla.org/docs/Web/HTML/Element/form) ) を更新します。
 

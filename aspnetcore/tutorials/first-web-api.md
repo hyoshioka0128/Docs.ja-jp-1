@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 1f7c7db857090ff0a174d37b86e1265bab40b4fd
-ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
+ms.openlocfilehash: 789cd1a867bc8c17401bbac5c02951b4bd2999b6
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/17/2021
-ms.locfileid: "100564094"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587659"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>チュートリアル: ASP.NET Core で Web API を作成する
 
@@ -268,8 +268,8 @@ Swagger が削除されているため、上記のマークアップにより、
 ### <a name="add-nuget-packages"></a>NuGet パッケージを追加する
 
 * **[ツール]** メニューで **[NuGet パッケージ マネージャー]、[ソリューションの NuGet パッケージの管理]** の順に選択します。
-* **[参照]** タブを選択し、検索ボックスに「**Microsoft.EntityFrameworkCore.InMemory**」と入力します。
-* 左側のウィンドウで、 **[Microsoft.EntityFrameworkCore.InMemory]** を選択します。
+* **[参照]** タブを選択し、検索ボックスに「`Microsoft.EntityFrameworkCore.InMemory`」と入力します。
+* 左側のウィンドウで `Microsoft.EntityFrameworkCore.InMemory` を選択します。
 * 右側のウィンドウで **[プロジェクト]** チェックボックスをオンにして、 **[インストール]** を選択します。
 
 ![NuGet パッケージ マネージャー](first-web-api/_static/5/vsNuGet.png)
@@ -323,8 +323,8 @@ ASP.NET Core で、サービス (DB コンテキストなど) を[依存関係�
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -1489,7 +1489,7 @@ To Do アイテムを削除するには、`DELETE` への AJAX 呼び出しで `
 
 ## <a name="additional-resources-21"></a>その他のリソース 2.1
 
-[このチュートリアルのサンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples)します。 [ダウンロード方法](xref:index#how-to-download-a-sample)に関するページを参照してください。
+[このチュートリアルのサンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples)します。 [ダウンロード方法](xref:index#how-to-download-a-sample)に関するページを参照してください。
 
 詳細については、次のリソースを参照してください。
 
@@ -1501,3 +1501,4 @@ To Do アイテムを削除するには、`DELETE` への AJAX 呼び出しで `
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [このチュートリアルの YouTube バージョン](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [Microsoft Learn:ASP.NET Core で Web API を作成する](/learn/modules/build-web-api-aspnet-core/)

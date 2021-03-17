@@ -12,7 +12,7 @@
 
 * 既存の記事の変更や新しい記事の作成など、行いたいことを説明した[問題](https://github.com/dotnet/AspNetCore.Docs/issues/new)を開きます。 多くの場合、GitHub は新しいトピックの提案のアウトラインを要求します。 多くの時間を費やす前に、チームの承認を待ちます。
 * [Aspnet/docs](https://github.com/dotnet/AspNetCore.Docs/) リポジトリにフォークして、変更のブランチを作成します。
-* 変更内容の PR をマスターに送信します。
+* 変更が含まれる *main* ブランチに、PR を送信します。
 * PR にラベル "cla-required" が割り当てられた場合、[貢献者使用許諾契約書 (CLA) を作成します](https://cla.dotnetfoundation.org/)。
 * PR のフィードバックに対応します。
 
@@ -24,11 +24,11 @@ Visual Studio Code を使用して ASP.NET ドキュメントに貢献する場�
 
 ## <a name="markdown-syntax"></a>マークダウンの構文
 
-記事は [DocFX Flavored Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html) で書かれています。これは [GitHub flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/) のスーパーセットです。 ASP.NET ドキュメントでよく使用される UI 機能についての DFM 構文の例については、.NET Docs リポジトリ スタイル ガイドの「[Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md)」(メタデータと Markdown テンプレート) を参照してください。 
+記事は [DocFX Flavored Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html) で書かれています。これは [GitHub flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/) のスーパーセットです。 ASP.NET ドキュメントでよく使用される UI 機能についての DFM 構文の例については、.NET Docs リポジトリ スタイル ガイドの「[Metadata and Markdown Template](https://github.com/dotnet/docs/blob/main/styleguide/template.md)」(メタデータと Markdown テンプレート) を参照してください。 
 
 ## <a name="folder-structure-conventions"></a>フォルダー構造の規則
 
-マークダウン ファイルごとに、画像用のフォルダーとサンプル コード用のフォルダーが存在する場合があります。 記事が [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/configuration/index.md) の場合、画像は [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) にあり、サンプル アプリのプロジェクト ファイルは [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample) にあります。 *fundamentals/configuration/index.md* ファイル内の画像は、次の Markdown によってレンダリングされます。
+マークダウン ファイルごとに、画像用のフォルダーとサンプル コード用のフォルダーが存在する場合があります。 記事が [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md) の場合、画像は [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static) にあり、サンプル アプリのプロジェクト ファイルは [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/sample) にあります。 *fundamentals/configuration/index.md* ファイル内の画像は、次の Markdown によってレンダリングされます。
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
@@ -149,7 +149,7 @@ DocFX には次のものが必要です。
 
 ## <a name="voice-and-tone"></a>ボイスとトーン
 
-目標は、できるかぎり幅広いユーザーにわかりやすいドキュメントを作成することです。 そのため、寄稿者に従っていただきたい書き方のガイドラインが設けられています。 詳細については、.NET リポジトリの「[Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md)」(スタイルとトーンのガイドライン) を参照してください。
+目標は、できるかぎり幅広いユーザーにわかりやすいドキュメントを作成することです。 そのため、寄稿者に従っていただきたい書き方のガイドラインが設けられています。 詳細については、.NET リポジトリの「[Voice and tone guidelines](https://github.com/dotnet/docs/blob/main/styleguide/voice-tone.md)」(スタイルとトーンのガイドライン) を参照してください。
 
 ## <a name="microsoft-writing-style-guide"></a>Microsoft 文書作成スタイル ガイド
 
@@ -157,4 +157,4 @@ DocFX には次のものが必要です。
 
 ## <a name="redirects"></a>リダイレクト
 
-記事を削除する、記事のファイル名を変更する、または記事を別のフォルダーに移動する場合は、記事にブックマークを設定している人が *404 Not Found* エラーを受け取らないように、リダイレクトを作成します。 [マスター リダイレクト ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/master/.openpublishing.redirection.json)にリダイレクトを追加してください。
+記事を削除する、記事のファイル名を変更する、または記事を別のフォルダーに移動する場合は、記事にブックマークを設定している人が *404 Not Found* エラーを受け取らないように、リダイレクトを作成します。 [マスター リダイレクト ファイル](https://github.com/dotnet/AspNetCore.Docs/blob/main/.openpublishing.redirection.json)にリダイレクトを追加します。

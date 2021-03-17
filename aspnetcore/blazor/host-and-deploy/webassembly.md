@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 04eba2e004e920e9ca799b316781857f0b0b4ca3
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: bb45b763fb24b5270c92b3ffd18f3fbc3ba1093b
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279775"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102589427"
 ---
 # <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly のホストと展開
 
@@ -53,7 +53,13 @@ Blazor は、適切な圧縮ファイルにサービスを提供するため、�
   * [google/brotli GitHub リポジトリ](https://github.com/google/brotli)から、JavaScript Brotli デコーダーを入手します。 デコーダー ファイルは、`decode.js` という名前で、リポジトリの [`js` フォルダー](https://github.com/google/brotli/tree/master/js)にあります。
   
     > [!NOTE]
-    > 以前のバージョンは [google/brotli GitHub リポジトリ](https://github.com/google/brotli)の `decode.js` スクリプト (`decode.min.js`) の縮小バージョンにあります。 独自にスクリプトを縮小するか (例については、[BuildBundlerMinifier のバンドルと縮小](xref:client-side/bundling-and-minification#configure-bundling-and-minification)に関するページを参照してください)、[decode.min.js の TypeError (google/brotli #881)](https://github.com/google/brotli/issues/881) の問題が解決されるまで [npm package](https://www.npmjs.com/package/brotli) を使用します。 このセクションのサンプル コードでは、スクリプトの **未縮小** バージョンを使用しています。
+    > 以前のバージョンは [google/brotli GitHub リポジトリ](https://github.com/google/brotli)の `decode.js` スクリプト (`decode.min.js`) の縮小バージョンにあります。 イシュー [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) が解決されるまでは、次のいずれかの方法を取ります。
+    >
+    > * 一時的に、スクリプトの未縮小バージョンを使用します。
+    > * ASP.NET Core に対応する、サードパーティの縮小ツールを使用して、ビルド時にスクリプトを自動的に縮小します。
+    > * [npm パッケージ](https://www.npmjs.com/package/brotli)を使用します。
+    >
+    > このセクションのサンプル コードでは、スクリプト (`decode.js`) の **未縮小** バージョンを使用しています。
 
   * そのデコーダーを使用するようにアプリを更新します。 `wwwroot/index.html` の終了タグ `<body>` に含まれるマークアップを次のように変更します。
   
@@ -125,9 +131,11 @@ IIS サーバーに展開する場合は、アプリで発行される `web.conf
 
 クライアント Blazor WebAssembly アプリは、サーバー アプリの他の静的な Web アセットと共に、サーバー アプリの `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` フォルダーに発行されます。 2 つのアプリが一緒に展開されます。 ASP.NET Core アプリをホストできる Web サーバーが必要です。 ホストされている展開の場合、Visual Studio には **Blazor WebAssembly アプリ** プロジェクト テンプレートが含まれており ([`dotnet new`](/dotnet/core/tools/dotnet-new) コマンドを使用する場合は `blazorwasm` テンプレート)、 **`Hosted`** オプションが選択されています (`dotnet new` コマンドを使用する場合は `-ho|--hosted`)。
 
-ASP.NET Core アプリでのホストと展開の詳細については、「<xref:host-and-deploy/index>」を参照してください。
+詳細については、次の記事を参照してください。
 
-Azure App Service の展開については、「<xref:tutorials/publish-to-azure-webapp-using-vs>」を参照してください。
+* ASP.NET Core アプリのホスティングと展開: <xref:host-and-deploy/index>
+* Azure App Service への展開: <xref:tutorials/publish-to-azure-webapp-using-vs>
+* Blazor プロジェクト テンプレート: <xref:blazor/project-structure>
 
 ## <a name="hosted-deployment-with-multiple-blazor-webassembly-apps"></a>複数の Blazor WebAssembly アプリによるホストされた展開
 
@@ -163,7 +171,7 @@ Azure App Service の展開については、「<xref:tutorials/publish-to-azure
     * `Server` (フォルダー)
     * `Shared` (フォルダー)
     * `{SOLUTION NAME}.sln` (ファイル)
-    
+
     プレースホルダー `{SOLUTION NAME}` は、ソリューションの名前です。
 
   * Blazor WebAssembly プロジェクト テンプレートから `SecondClient` フォルダーに `SecondBlazorApp.Client` という名前の Blazor WebAssembly アプリを作成します。
@@ -544,7 +552,7 @@ Web サイトの **物理パス** をアプリのフォルダーに設定しま�
 
 *このセクションは、スタンドアロンの Blazor WebAssembly アプリにのみ適用されます。ホストされている Blazor アプリでは、このセクションにリンクされているファイルではなく、既定の ASP.NET Core アプリ `web.config` ファイルが使用されます。*
 
-`web.config` を使用して、スタンドアロンの Blazor WebAssembly 用に Brotli または Gzip で圧縮された Blazor アセットを提供するように IIS を構成できます。 構成ファイルの例については、[`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true) をご覧ください。
+`web.config` を使用して、スタンドアロンの Blazor WebAssembly 用に Brotli または Gzip で圧縮された Blazor アセットを提供するように IIS を構成できます。 構成ファイルの例については、[`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true) をご覧ください。
 
 次のシナリオでは、サンプル `web.config` ファイルを追加で構成することが必要になる場合があります。
 
@@ -948,7 +956,7 @@ Blazor WebAssembly によってアプリのスタートアップ ファイルが
 
 ### <a name="troubleshoot-integrity-powershell-script"></a>整合性 PowerShell スクリプトのトラブルシューティング
 
-[`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell スクリプトを使用して、発行および展開された Blazor アプリを検証します。 このスクリプトは、アプリに Blazor フレームワークでは特定できない整合性の問題がある場合の出発点として提供されています。 使用するアプリに対してスクリプトのカスタマイズが必要になる場合があります。
+[`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell スクリプトを使用して、発行および展開された Blazor アプリを検証します。 このスクリプトは、アプリに Blazor フレームワークでは特定できない整合性の問題がある場合の出発点として提供されています。 使用するアプリに対してスクリプトのカスタマイズが必要になる場合があります。
 
 スクリプトを実行すると、`publish` フォルダー内のファイルと展開されたアプリからダウンロードしたファイルがチェックされ、整合性ハッシュを含むさまざまなマニフェストの問題が検出されます。 これらのチェックにより、最も一般的な問題が検出されます。
 

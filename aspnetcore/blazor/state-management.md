@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 811ec08eb457fcf0697a64dc4990d29082454f73
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: fee4473aede3fd213314c51a18284b4e4ad95b2b
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280856"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102394669"
 ---
 # <a name="aspnet-core-blazor-state-management"></a>ASP.NET Core Blazor 状態管理
 
@@ -254,7 +254,7 @@ ASP.NET Core で保護されたブラウザー ストレージでは、[`localSt
 
 `@using` ディレクティブは、コンポーネントの代わりに、アプリの `_Imports.razor` ファイルに配置できます。 `_Imports.razor` ファイルを使用すると、アプリの中の大きなセグメントで、あるいはアプリ全体で名前空間を利用できます。
 
-Blazor Server プロジェクト テンプレートに基づいてアプリの `Counter` コンポーネントに `currentCount` の値を保持するには、`ProtectedSessionStore.SetAsync` を使用するように `IncrementCount` メソッドを変更します。
+[Blazor Server プロジェクト テンプレート](xref:blazor/project-structure)に基づいてアプリの `Counter` コンポーネントに `currentCount` の値を保持するには、`ProtectedSessionStore.SetAsync` を使用するように `IncrementCount` メソッドを変更します。
 
 ```csharp
 private async Task IncrementCount()
@@ -502,7 +502,7 @@ ASP.NET Core で保護されたブラウザー ストレージでは、[`localSt
 
 `@using` ステートメントは、コンポーネントの代わりに、`_Imports.razor` ファイルに入れることができます。 `_Imports.razor` ファイルを使用すると、アプリの中の大きなセグメントで、あるいはアプリ全体で名前空間を利用できます。
 
-Blazor Server プロジェクト テンプレートに基づいてアプリの `Counter` コンポーネントに `currentCount` の値を保持するには、`ProtectedSessionStore.SetAsync` を使用するように `IncrementCount` メソッドを変更します。
+[Blazor Server プロジェクト テンプレート](xref:blazor/project-structure)に基づいてアプリの `Counter` コンポーネントに `currentCount` の値を保持するには、`ProtectedSessionStore.SetAsync` を使用するように `IncrementCount` メソッドを変更します。
 
 ```csharp
 private async Task IncrementCount()

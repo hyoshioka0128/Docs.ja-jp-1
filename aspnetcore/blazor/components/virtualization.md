@@ -5,7 +5,7 @@ description: ASP.NET Core Blazor アプリでコンポーネントの仮想化�
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/02/2020
+ms.date: 02/26/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,24 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: d9fc767a4b5160c616053b075ba92194bcffa275
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: c81732c29b262e9134a4ff7dab077a4f31db96af
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280012"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109820"
 ---
 # <a name="aspnet-core-blazor-component-virtualization"></a>ASP.NET Core Blazor コンポーネントの仮想化
 
-Blazor フレームワークに組み込まれている仮想化サポートを使用して、コンポーネント レンダリングの認識されるパフォーマンスを向上させます。 仮想化は、UI レンダリングを現在表示されている部分のみに制限するための手法です。 たとえば、仮想化が有用なのは、アプリで項目の長いリストや項目の一部のみをレンダリングする必要があるが、表示する必要があるのはどんなときでも項目のサブセットのみである場合です。 Blazor には、仮想化をアプリのコンポーネントに追加するために使用できる [`Virtualize` コンポーネント](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)が用意されています。
+[`Virtualize` コンポーネント](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) で Blazor フレームワークに組み込まれている仮想化サポートを使用して、コンポーネント レンダリングの体感パフォーマンスを向上させます。 仮想化は、UI レンダリングを現在表示されている部分のみに制限するための手法です。 たとえば、仮想化が有用なのは、アプリで項目の長いリストや項目の一部のみをレンダリングする必要があるが、表示する必要があるのはどんなときでも項目のサブセットのみである場合です。
 
-`Virtualize` コンポーネントは、次の場合に使用できます。
+`Virtualize` コンポーネントを使用する場合:
 
 * ループ内の一連のデータ項目をレンダリングする。
 * スクロールが原因でほとんどの項目が表示されない。
-* レンダリングされる項目のサイズはまったく同じ。 ユーザーが任意の点にスクロールすると、コンポーネントでは表示する項目を計算できます。
+* レンダリングされる項目のサイズが同じ。
 
-仮想化を使用しない場合は、一般的なリストで、C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ループを使用してリストの各項目を表示できます。
+`Virtualize` コンポーネントの項目リスト内の任意のポイントにユーザーがスクロールすると、コンポーネントによって表示可能な項目が計算されます。 非表示の項目はレンダリングされません。
+
+仮想化を使用しない場合は、一般的なリストで、C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ループを使用してリストの各項目を表示できます。 次に例を示します。
+
+* `allFlights` は、飛行機のフライトのコレクションです。
+* `FlightSummary` コンポーネントには各フライトの詳細が表示されます。
+* [`@key` ディレクティブ属性](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components)によって、フライトの `FlightId` ごとにレンダリングされたフライトに対する各 `FlightSummary` コンポーネントの関係が保持されます。
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -47,9 +53,12 @@ Blazor フレームワークに組み込まれている仮想化サポートを�
 </div>
 ```
 
-リストに何千もの項目が含まれている場合は、リストの表示に時間がかかることがあります。 UI の表示が明らかに遅いとユーザーが感じる場合があります。
+コレクションに数千のフライトが含まれている場合、フライトのレンダリングに時間がかかり、ユーザーは UI の表示が明らかに遅いと感じます。 ほとんどのフライトは、`<div>` 要素の高さから外れているため、レンダリングされません。
 
-リスト内の各項目を一度に表示するのではなく、[`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ループを `Virtualize` コンポーネントに置き換え、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType> を使用して固定の項目ソースを指定します。 現在表示される項目のみがレンダリングされます。
+フライトのリスト全体を一度にレンダリングするのではなく、前の例の [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) ループを `Virtualize` コンポーネントに置き換えます。
+
+* <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType> の固定項目ソースとして `allFlights` を指定します。 現在表示されているフライトだけが、`Virtualize` コンポーネントによってレンダリングされます。
+* `Context` パラメーターを使用して、各フライトのコンテキストを指定します。 次の例では、`flight` がコンテキストとして使用されています。これにより、各フライトのメンバーへのアクセスを提供します。
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -59,7 +68,7 @@ Blazor フレームワークに組み込まれている仮想化サポートを�
 </div>
 ```
 
-`Context` を使用してコンポーネントにコンテキストを指定しない場合は、項目コンテンツ テンプレートで `context` 値を使用します。
+コンテキストが `Context` パラメーターを使用して指定されていない場合は、項目コンテンツ テンプレート内の `context` の値を使用して、各フライトのメンバーにアクセスします。
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -69,18 +78,10 @@ Blazor フレームワークに組み込まれている仮想化サポートを�
 </div>
 ```
 
-> [!NOTE]
-> 要素およびコンポーネントへのモデル オブジェクトのマッピング プロセスは、[`@key`](xref:mvc/views/razor#key) ディレクティブ属性を使用して制御できます。 `@key` により、比較アルゴリズムで、キーの値に基づいて要素またはコンポーネントが確実に保持されます。
->
-> 詳細については、次の記事を参照してください。
->
-> * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> * [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor#key)
-
 `Virtualize` コンポーネント:
 
 * コンテナーの高さとレンダリングする項目のサイズに基づいて、レンダリングする項目の数を計算します。
-* ユーザーがスクロールするときに項目を再計算し、再レンダリングします。
+* ユーザーがスクロールすると、項目が再計算され、再レンダリングされます。
 * コレクションからすべてのデータをダウンロードするのでなく、現在の表示領域に対応するレコードの一部だけを外部 API からフェッチします。
 
 `Virtualize` コンポーネントの項目コンテンツには次を含めることができます。
@@ -120,7 +121,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> にデータを再要求するように、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> からコンポーネントに指示が出されます。 これは、外部データが変更される場合に便利です。 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> を使用する場合、これを呼び出す必要はありません。
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A> にデータを再要求するように、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> からコンポーネントに指示が出されます。 これは、外部データが変更される場合に便利です。 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> を使用する場合、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> を呼び出す必要はありません。
 
 ## <a name="placeholder"></a>プレースホルダー
 
@@ -147,7 +148,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 
 ## <a name="item-size"></a>アイテムのサイズ
 
-各項目の高さ (ピクセル単位) は <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> で設定できます (既定値: 50):
+各項目の高さ (ピクセル単位) は <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> で設定できます (既定値: 50)。 次の例では、各項目の高さを既定値の 50 ピクセルから 25 ピクセルに変更します。
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
@@ -155,11 +156,11 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 </Virtualize>
 ```
 
-既定では、初期レンダリングが行われた "*後*" に、`Virtualize` コンポーネントによって実際のレンダリング サイズが測定されます。 正確な初期レンダリングのパフォーマンスを支援し、ページを再読み込みするための正しいスクロール位置を確保するために、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> を使用して事前に正確な項目のサイズを提供します。 既定の <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> によって一部の項目が現在表示されているビューの外側にレンダーされる場合、2 回目の再レンダリングがトリガーされます。 仮想化されたリストでブラウザーのスクロール位置を正しく維持するには、最初のレンダリングが正しいことが必要です。 そうでない場合、間違った項目がユーザーに表示されるおそれがあります。 
+既定では、初期レンダリングが行われた "*後*" に、`Virtualize` コンポーネントによって個々の項目のレンダリング サイズ (高さ) が測定されます。 正確な初期レンダリングのパフォーマンスを支援し、ページを再読み込みするための正しいスクロール位置を確保するために、<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> を使用して事前に正確な項目のサイズを提供します。 既定の <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> によって一部の項目が現在表示されているビューの外側にレンダーされる場合、2 回目の再レンダリングがトリガーされます。 仮想化されたリストでブラウザーのスクロール位置を正しく維持するには、最初のレンダリングが正しいことが必要です。 そうでない場合、間違った項目がユーザーに表示されるおそれがあります。
 
 ## <a name="overscan-count"></a>オーバースキャン数
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> を使用して、表示領域の前後にレンダリングされる追加項目の数を指定します。 この設定は、スクロール中のレンダリングの頻度を減らすのに利用できます。 ただし、値を大きくすると、ページにレンダリングされる要素が多くなります (既定値:3)。
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> を使用して、表示領域の前後にレンダリングされる追加項目の数を指定します。 この設定は、スクロール中のレンダリングの頻度を減らすのに利用できます。 ただし、値を大きくすると、ページにレンダリングされる要素が多くなります (既定値: 3)。 次の例では、オーバースキャン数を既定の 3 項目から 4 項目に変更します。
 
 ```razor
 <Virtualize Context="employee" Items="@employees" OverscanCount="4">

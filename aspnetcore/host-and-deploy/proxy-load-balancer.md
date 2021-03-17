@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: e63821743dad565b51d5c2360dcc2fbf0632754f
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 28a802414fd59f684a56e2b735140438d33be740
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530048"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109950"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>プロキシ サーバーとロード バランサーを使用するために ASP.NET Core を構成する
 
@@ -56,6 +56,8 @@ Forwarded Headers Middleware (<xref:Microsoft.AspNetCore.HttpOverrides.Forwarded
 * [HttpContext.Connection.RemoteIpAddress](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress):`X-Forwarded-For` ヘッダー値を使用して設定します。 追加の設定は、ミドルウェアが `RemoteIpAddress` を設定する方法に影響を与えます。 詳しくは、「[Forwarded Headers Middleware のオプション](#forwarded-headers-middleware-options)」をご覧ください。
 * [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme):`X-Forwarded-Proto` ヘッダー値を使用して設定します。
 * [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host):`X-Forwarded-Host` ヘッダー値を使用して設定します。
+
+上記に関する詳細については、[こちらの GitHub イシュー](https://github.com/dotnet/AspNetCore.Docs/issues/21615)を参照してください。
 
 Forwarded Headers Middleware の[既定の設定](#forwarded-headers-middleware-options)は構成できます。 既定の設定は次のとおりです。
 

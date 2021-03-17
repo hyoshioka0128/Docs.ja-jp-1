@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 45ddcc9e006df2c5e86a7859efc76882b269a496
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: bca4035d625d5b6e51f2e51c194713014ccd5e90
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280398"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102586541"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>ASP.NET Core Blazor で JavaScript 関数から .NET メソッドを呼び出す
 
@@ -32,7 +32,7 @@ Blazor アプリでは、.NET メソッドから JavaScript 関数を呼び出�
 
 この記事では、JavaScript から .NET メソッドを呼び出す方法について説明します。 .NET から JavaScript 関数を呼び出す方法については、「<xref:blazor/call-javascript-from-dotnet>」を参照してください。
 
-[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
+[サンプル コードを表示またはダウンロード](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/)します ([ダウンロード方法](xref:index#how-to-download-a-sample))。
 
 > [!NOTE]
 > `wwwroot/index.html` ファイル (Blazor WebAssembly) または `Pages/_Host.cshtml` ファイル (Blazor Server) では、終了タグ `</body>` の前に JS ファイル (`<script>` タグ) を追加します。 JS 相互運用メソッドを含む JS ファイルは、Blazor フレームワークの JS ファイルよりも先に含めるようにします。
@@ -64,7 +64,7 @@ JavaScript から静的 .NET メソッドを呼び出すには、`DotNet.invokeM
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 **`Trigger .NET static method ReturnArrayAsync`** ボタンが選択されている場合は、ブラウザーの Web 開発者ツールでコンソール出力を確認します。
 
@@ -136,17 +136,17 @@ JavaScript から .NET インスタンス メソッドを呼び出すことも�
 
 `JsInteropClasses/ExampleJsInterop.cs`:
 
-[!code-csharp[](./common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 名前は `HelloHelper` のコンストラクターに渡されます。これにより、`HelloHelper.Name` プロパティが設定されます。 JavaScript 関数 `sayHello` が実行されると、`HelloHelper.SayHello` によって `Hello, {Name}!` メッセージが返されます。これは、JavaScript 関数によってコンソールに書き込まれます。
 
 `JsInteropClasses/HelloHelper.cs`:
 
-[!code-csharp[](./common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
 ブラウザーの Web 開発者ツールでのコンソール出力
 
@@ -519,4 +519,4 @@ JS の分離では、JS 相互運用は、ブラウザーで [EcmaScript モジ�
 ## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:blazor/call-javascript-from-dotnet>
-* [`InteropComponent.razor` の例 (dotnet/AspNetCore GitHub リポジトリ、3.1 リリース ブランチ)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` の例 (dotnet/AspNetCore GitHub リポジトリの `main` ブランチ)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): `main` ブランチは、ASP.NET Core の製品単位の現在の開発を表します。 別のリリース (`release/5.0`) のブランチを選択するには、 **[Switch branches or tags]\(ブランチまたはタグの切り替え\)** ドロップダウン リストを使用して、そのブランチを選択します。

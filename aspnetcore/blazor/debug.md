@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 9214fa10a2bf7d53a4cb12263a3fa69bded84b29
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: adf22001e7d9b8ee4f36456cd4b07d2791a7331f
+ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100536234"
+ms.lasthandoff: 03/06/2021
+ms.locfileid: "102395151"
 ---
 # <a name="debug-aspnet-core-blazor-webassembly"></a>ASP.NET Core Blazor WebAssembly をデバッグする
 
@@ -48,7 +48,7 @@ Blazor WebAssembly アプリは、Chromium ベースのブラウザー (Edge/Chr
 * 未処理の例外の発生時に中断する。
 * デバッグ プロキシが実行される前に、アプリの起動中にブレークポイントにヒットします。 これには、`Program.Main` (`Program.cs`) のブレークポイントと、アプリから要求された最初のページによって読み込まれるコンポーネントの [`OnInitialized{Async}` メソッド](xref:blazor/components/lifecycle#component-initialization-methods)のブレークポイントが含まれます。
 * ローカル以外のシナリオ (たとえば、[Linux 用 Windows サブシステム (WSL)](/windows/wsl/) や [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)) でデバッグします。
-* [`dotnet watch run`](xref:tutorials/dotnet-watch) を使用してアプリを実行するなどして、デバッグ中にホステッド Blazor ソリューションのバックエンド `*Server*` アプリを自動的に再構築します。
+* [`dotnet watch run`](xref:tutorials/dotnet-watch) を使用してアプリを実行するなどして、デバッグ中にホステッド Blazor WebAssembly ソリューションのバックエンド `*Server*` アプリを自動的に再構築します。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
@@ -58,6 +58,13 @@ Blazor WebAssembly アプリは、Chromium ベースのブラウザー (Edge/Chr
 * Microsoft Edge (バージョン 80 以降)
 
 ファイアウォールまたはプロキシでデバッグ プロキシ (`NodeJS` プロセス) との通信がブロックされていないことを確認します。 詳細については、「[ファイアウォールの構成](#firewall-configuration)」セクションをご覧ください。
+
+Visual Studio Code ユーザーには、次の拡張機能が必要です。
+
+* [C# for Visual Studio Code 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Blazor WASM デバッグ拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) (C# for Visual Studio Code 拡張機能のバージョン 1.23.9 以降を使用する場合)
+
+VS コードでプロジェクトを開いた後に、デバッグを有効にするために追加の設定が必要であることを示す通知が表示される場合があります。 要求された場合は、Visual Studio Marketplace から必要な拡張機能をインストールします。 インストールされている拡張機能を確認するには、メニュー バーから **[表示]**  >  **[拡張機能]** を開くか、**アクティビティ** サイド バーにある **拡張機能** アイコンを選択します。
 
 Visual Studio for Mac のバージョン 8.8 (ビルド 1532) 以降が必要です。
 
@@ -90,7 +97,7 @@ Visual Studio for Mac のバージョン 8.8 (ビルド 1532) 以降が必要で
 
 Visual Studio で Blazor WebAssembly アプリをデバッグするには、次のようにします。
 
-1. 新しい ASP.NET Core でホストされる Blazor WebAssembly アプリを作成します。
+1. ホステッド Blazor WebAssembly ソリューションを新規作成します。
 1. <kbd>F5</kbd> キーを押して、デバッガーでアプリを実行します。
 
    > [!NOTE]
@@ -173,7 +180,8 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
    通知を受信した場合:
 
    * 最新の [C# for Visual Studio Code 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)がインストールされていることを確認します。 インストールされている拡張機能を確認するには、メニュー バーから **[表示]**  >  **[拡張機能]** を開くか、**アクティビティ** サイド バーにある **拡張機能** アイコンを選択します。
-   * JavaScript のプレビュー デバッグが有効になっていることを確認します。 メニュー バーから設定を開きます ( **[ファイル]**  >  **[ユーザー設定]**  >  **[設定]** )。 キーワード「`debug preview`」を使用して検索します。 検索結果で、 **[デバッグ] > [JavaScript:Use Preview]\(JavaScript: 使用プレビュー\)** のチェック ボックスがオンになっていることを確認します。 プレビュー デバッグを有効にするオプションがない場合、VS Code の最新版にアップグレードするか、[JavaScript デバッガー拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code バージョン 1.46 以前) をインストールしてください。
+   * [C# for Visual Studio Code 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)の **バージョン 1.23.9 以降** を使用する場合は、最新の [Blazor WASM デバッグ拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion)がインストールされていることをご確認ください。 インストールされている拡張機能を確認するには、メニュー バーから **[表示]**  >  **[拡張機能]** を開くか、**アクティビティ** サイド バーにある **拡張機能** アイコンを選択します。
+   * JavaScript のプレビュー デバッグが有効になっていることを確認します。 メニュー バーから設定を開きます ( **[ファイル]**  >  **[ユーザー設定]**  >  **[設定]** )。 キーワード「`debug preview`」を使用して検索します。 検索結果で、 **[デバッグ] > [JavaScript: プレビューの使用]** のチェック ボックスがオンになっていることを確認します。 プレビュー デバッグを有効にするオプションがない場合、VS Code の最新版にアップグレードするか、[JavaScript デバッガー拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code バージョン 1.46 以前) をインストールしてください。
    * ウィンドウを再度読み込みます。
 
 1. <kbd>F5</kbd> キーボード ショートカットまたはメニュー項目を使用してデバッグを開始します。
@@ -194,7 +202,7 @@ Blazor WebAssembly アプリにカスタム アプリ ベース パスを使用�
 
 ## <a name="debug-hosted-blazor-webassembly"></a>ホストされた Blazor WebAssembly のデバッグ
 
-1. VS Code で、ホストされた Blazor WebAssembly アプリのソリューション フォルダーを開きます。
+1. VS Code でホストされている Blazor ソリューション フォルダーの **`Client`** プロジェクト フォルダーを開きます。
 
 1. プロジェクトの起動構成が設定されていない場合は、次の通知が表示されます。 **[はい]** を選択します。
 

@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: d120440c292d15b7741260ed31af92d60db2261c
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: a0c5cc0bdc78f2ea70b8c128616ad09328ccf87d
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280075"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102587386"
 ---
 # <a name="prerender-and-integrate-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントのプリレンダリングと統合を行う
 
@@ -39,7 +39,7 @@ ms.locfileid: "100280075"
 
 Blazor WebAssembly アプリのプリレンダリングを設定するには:
 
-1. ASP.NET Core アプリで Blazor WebAssembly をホストします。 スタンドアロンの Blazor WebAssembly アプリを ASP.NET Core ソリューションに追加することも、Blazor ホスト プロジェクト テンプレートから作成されたホスト型の Blazor WebAssembly アプリを使用することもできます。
+1. ASP.NET Core アプリで Blazor WebAssembly をホストします。 スタンドアロンの Blazor WebAssembly アプリは、ASP.NET Core に追加することができます。または、[Blazor WebAssembly プロジェクト テンプレート](xref:blazor/project-structure)から作成された、ホストされている Blazor WebAssembly アプリを使用することもできます。
 
 1. 既定の静的な `wwwroot/index.html` ファイルを Blazor WebAssembly クライアント プロジェクトから削除します。
 
@@ -76,7 +76,7 @@ Blazor WebAssembly アプリのプリレンダリングを設定するには:
 
    * 開発環境で、アプリ ビルダーで `UseDeveloperExceptionPage` を呼び出します。
    * アプリ ビルダーで `UseBlazorFrameworkFiles` を呼び出します。
-   * フォールバックを、`index.html` ページ (`endpoints.MapFallbackToFile("index.html");`) から `_Host.cshtml` ページに変更します。
+   * フォールバックを `index.html` ファイル (`endpoints.MapFallbackToFile("index.html");`) から `_Host.cshtml` ページ (`endpoints.MapFallbackToPage("/_Host");`) に変更します。
 
    ```csharp
    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -205,6 +205,10 @@ builder.RootComponents.Add<Counter>("#my-counter");
     <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
 </head>
 ```
+
+## <a name="additional-resources"></a>その他のリソース
+
+* [認証を使用したプリレンダリングのサポート](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 
 ::: moniker-end
 

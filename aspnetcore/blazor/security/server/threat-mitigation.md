@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 524a1f85838d083ed2f01afd96601bcd5e6ce12b
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 2a5add79d60ddcbb1afdb9489fa16da692a7d6bd
+ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280979"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "102109664"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>ASP.NET Core Blazor Server の脅威の緩和のガイダンス
 
@@ -139,7 +139,7 @@ Blazor クライアントは、セッションごとに 1 つの接続を確立�
 
 上記のシナリオを防止するために、次の予防措置を講じてください。
 
-* 呼び出し中に発生する可能性のあるエラーを考慮するために、[`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) ステートメント内に JS 相互運用呼び出しをラップします。 詳細については、「<xref:blazor/fundamentals/handle-errors#javascript-interop>」を参照してください。
+* 呼び出し中に発生する可能性のあるエラーを考慮するために、[`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) ステートメント内に JS 相互運用呼び出しをラップします。 詳細については、「<xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>」を参照してください。
 * アクションを実行する前に、JS 相互運用の呼び出しから返されたデータ (エラー メッセージを含む) を検証します。
 
 ### <a name="net-methods-invoked-from-the-browser"></a>ブラウザーから呼び出される .NET メソッド
@@ -302,7 +302,7 @@ ASP.NET Core アプリをセキュリティで保護するためのガイダン�
 
 サーバーでエラーが発生すると、フレームワークによってクライアントに通知され、セッションが破棄されます。 既定では、クライアントは、ブラウザーの開発者ツールで見られる一般的なエラー メッセージを受け取ります。
 
-クライアント側のエラーには、呼び出し履歴は含まれず、エラーの原因についての詳細は提供されませんが、サーバー ログにはこのような情報が含まれています。 開発目的で、[詳細なエラーを有効にする](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors)ことによって、機密性の高いエラー情報をクライアントが利用できるようにすることができます。
+クライアント側のエラーによって、呼び出し履歴が含まれることはなく、エラーの原因についての詳細も提供されませんが、サーバー ログにはそのような情報が含まれます。 開発目的で、[詳細なエラーを有効にする](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors)ことによって、機密性の高いエラー情報をクライアントが利用できるようにすることができます。
 
 > [!WARNING]
 > インターネット上でクライアントにエラー情報を公開することは、常に回避すべきセキュリティ リスクです。
