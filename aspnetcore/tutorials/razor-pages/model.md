@@ -3,7 +3,7 @@ title: 'パート 2: モデルを追加する'
 author: rick-anderson
 description: Razor ページのチュートリアル シリーズのパート 2。 このセクションでは、モデル クラスを追加します。
 ms.author: riande
-ms.date: 11/11/2020
+ms.date: 03/10/2021
 ms.custom: contperf-fy21q2
 no-loc:
 - Index
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 3677cd6fe5c2ff901a17c9dccdc749d8eb2709f2
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: defbc73d0c1d6aac30360cd7b83cc518a407bf98
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588667"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413445"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
 
@@ -80,38 +80,6 @@ ms.locfileid: "102588667"
 ### <a name="add-nuget-packages-and-ef-tools"></a>NuGet パッケージと EF ツールを追加します。
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
-
-### <a name="add-a-database-context-class"></a>データベース コンテキスト クラスの追加
-
-1. *RazorPagesMovie* プロジェクト内に、*Data* という名前のフォルダーを作成します。
-1. *Data* フォルダーに、次のコードを使用して *RazorPagesMovieContext.cs* という名前のファイルを追加します。
-
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
-
-   上記のコードによって、エンティティ セットの `DbSet` プロパティが作成されます。 Entity Framework の用語では、エンティティ セットは通常はデータベース テーブルに対応し、エンティティはテーブルの行に対応します。 このコードは、後の手順で依存関係が追加されるまでコンパイルされません。
-
-<a name="cs"></a>
-
-### <a name="add-a-database-connection-string"></a>データベース接続文字列の追加
-
-次の強調表示されたコードに示されているように、 *appsettings.json* ファイルに接続文字列を追加します。
-
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings_SQLite.json?highlight=10-12)]
-
-<a name="reg"></a>
-
-### <a name="register-the-database-context"></a>データベース コンテキストの登録
-
-1. *Startup.cs* の先頭に次の `using` ステートメントを追加します。
-
-   ```csharp
-   using RazorPagesMovie.Data;
-   using Microsoft.EntityFrameworkCore;
-   ```
-
-1. データベース コンテキストを `Startup.ConfigureServices` の[依存関係の挿入](xref:fundamentals/dependency-injection)コンテナーに登録します。
-
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
