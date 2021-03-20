@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core の razor 構文リファレンス
+title: ASP.NET Core の Razor 構文リファレンス
 author: rick-anderson
 description: RazorWeb ページにサーバーベースのコードを埋め込むためのマークアップ構文について説明します。
 ms.author: riande
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 60471232b3373039404b27c4afd1a1725d4d21eb
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 395d6b623cfd9310d8b92f822ddb82db8b38cdd8
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586866"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711673"
 ---
 # <a name="razor-syntax-reference-for-aspnet-core"></a>ASP.NET Core の Razor 構文リファレンス
 
@@ -399,7 +399,7 @@ Razor には、次のように、重要なセクションを lock ステート�
 }
 ```
 
-### <a name="comments"></a>コメント
+### <a name="comments"></a>説明
 
 Razor C# および HTML コメントをサポートしています。
 
@@ -898,7 +898,7 @@ Razorメソッドの引数としてインラインテンプレートを指定す
 
 [タグ ヘルパー](xref:mvc/views/tag-helpers/intro)に関する 3 つのディレクティブがあります。
 
-| ディレクティブ | 機能 |
+| ディレクティブ | 関数 |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | ビューでタグ ヘルパーを使えるようにします。 |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | 前に追加したタグ ヘルパーをビューから削除します。 |
