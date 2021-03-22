@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/index
-ms.openlocfilehash: 78b192cb2240046d16b1b766954ed4ca5229d888
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bd22407862aa5b785a838d40e33c98743f0d810a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586710"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711517"
 ---
 # <a name="introduction-to-razor-pages-in-aspnet-core"></a>ASP.NET Core での Razor ページの概要
 
@@ -632,7 +632,7 @@ Razor Pages のルートは既定で */Pages* ディレクトリです。 <xref:
 * [属性と Razor ページを承認する](xref:security/authorization/simple#aarp)
 * [サンプル コードのダウンロードまたは表示](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
-* [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
 * <xref:security/authorization/razor-pages-authorization>
@@ -1143,7 +1143,7 @@ services.AddMvc()
 
 * [属性と Razor ページを承認する](xref:security/authorization/simple#aarp)
 * <xref:index>
-* [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
 * <xref:security/authorization/razor-pages-authorization>

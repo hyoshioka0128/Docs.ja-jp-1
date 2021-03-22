@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 560fead9868bab9888c0d6a69cf09f135bbf39cc
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: cf2768f2345470f2f4918761b45a1d75b4d5d65a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100279738"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711322"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>ASP.NET Core Blazor の概要
 
@@ -174,6 +174,6 @@ Web ブラウザー内で使用できない API (たとえば、ファイル シ
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 * [C# のガイド](/dotnet/csharp/)
-* [ASP.NET Core の Razor 構文リファレンス](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
 * [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) コミュニティへのリンク
