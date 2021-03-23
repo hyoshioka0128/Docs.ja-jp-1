@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 789cd1a867bc8c17401bbac5c02951b4bd2999b6
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: f80c574ddb85c50713e36c7a2cceb826863c7321
+ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587659"
+ms.lasthandoff: 03/16/2021
+ms.locfileid: "103557843"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>チュートリアル: ASP.NET Core で Web API を作成する
 
@@ -82,7 +82,7 @@ ms.locfileid: "102587659"
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **[ファイル]** メニューで、 **[新規作成]** > **[プロジェクト]** の順に選択します。
-* **[ASP.NET Core Web アプリケーション]** テンプレートを選択して、 **[次へ]** をクリックします。
+* **[ASP.NET Core Web API]** テンプレートを選択し、 **[次へ]** をクリックします。
 * プロジェクトに「*TodoApi*」という名前を付け、 **[作成]** をクリックします。
 * **[新しい ASP.NET Core Web アプリケーションを作成する]** ダイアログで、 **[.NET Core]** と **[ASP.NET Core 5.0]** が選択されていることを確認します。 **API** テンプレートを選択し、 **[作成]** をクリックします。
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: 48d78f40e9254bac182ffbc534550157664bcc5b
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: fd2a9784e92b132d679b2065b37cb37b7dd89cde
+ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100106935"
+ms.lasthandoff: 03/12/2021
+ms.locfileid: "103413406"
 ---
 # <a name="aspnet-core-blazor-configuration"></a>ASP.NET Core Blazor の構成
 
@@ -199,7 +199,15 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## <a name="logging-configuration"></a>ログの構成
 
-アプリのプロジェクト ファイルに、[`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) のパッケージ参照を追加します。 アプリ設定ファイルで、ログ構成を指定します。 ログ構成は `Program.Main` に読み込まれます。
+アプリのプロジェクト ファイルに、[`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) のパッケージ参照を追加します。
+
+```xml
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERION}" />
+```
+
+前の例では、プレースホルダー `{VERSION}` はパッケージのバージョンです。 パッケージのバージョンについては [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) を参照してください。
+
+アプリ設定ファイルで、ログ構成を指定します。 ログ構成は `Program.Main` に読み込まれます。
 
 `wwwroot/appsettings.json`:
 
