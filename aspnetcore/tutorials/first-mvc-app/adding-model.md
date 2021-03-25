@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: bfda45afeea67a11ad775996d94a06125df08bc6
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8b3e88ef42914c409a7c3319945e6bc086e6b85a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97854588"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711633"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>パート 4、ASP.NET Core MVC アプリにモデルを追加する
 
@@ -349,6 +349,8 @@ dotnet ef database update
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 コンストラクターでは、[依存性の注入](xref:fundamentals/dependency-injection)を使ってデータベース コンテキスト (`MvcMovieContext`) がコントローラーに挿入されています。 データベース コンテキストは、コントローラーの各 [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) メソッドで使用されます。
+
+<a name="sqlite-dev"></a>
 
 ### <a name="use-sqlite-for-development-sql-server-for-production"></a>開発用に SQLite を、運用環境に SQL Server を使用する
 

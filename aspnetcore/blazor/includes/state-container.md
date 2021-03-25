@@ -11,12 +11,12 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 76dbf3cae1c264fa474101bc4398da28f45a1c10
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 342cbccc5f9a61c0695d501ea2376403bfd459ca
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100254390"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104719956"
 ---
 入れ子になったコンポーネントは通常、「ASP.NET Core Blazor データ バインディング<xref:blazor/components/data-binding>」で説明されているように、"*チェーン バインド*" を使用してデータをバインドします。 入れ子になったコンポーネントと入れ子になっていないコンポーネントは、登録済みのメモリ内状態コンテナーを使用してデータへのアクセスを共有できます。 カスタムの状態コンテナー クラスでは、割り当て可能な <xref:System.Action> を使用して、状態変更のアプリのさまざまな部分でコンポーネントに通知できます。 次に例を示します。
 
@@ -51,7 +51,7 @@ builder.Services.AddSingleton<StateContainer>();
 `Startup.ConfigureServices` (Blazor Server):
 
 ```csharp
-services.AddSingleton<StateContainer>();
+services.AddScoped<StateContainer>();
 ```
 
 `Pages/Component1.razor`:

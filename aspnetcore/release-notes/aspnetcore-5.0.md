@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: 64e068194744d6c5495d8ecaf31076c7a1c1f349
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 75f4a49777f610a2486279c946968c300a740b52
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585800"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711030"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>ASP.NET Core 5.0 の新機能
 
@@ -152,7 +152,7 @@ Blazor フレームワークに組み込まれている仮想化サポートを�
 
 ### <a name="ontoggle-event-support"></a>`ontoggle` イベントのサポート
 
-Blazor イベントで `ontoggle` DOM イベントがサポートされるようになりました。 詳細については、 <xref:blazor/components/event-handling#event-argument-types> を参照してください。
+Blazor イベントで `ontoggle` DOM イベントがサポートされるようになりました。 詳細については、 <xref:blazor/components/event-handling#event-arguments> を参照してください。
 
 ### <a name="set-ui-focus-in-blazor-apps"></a>Blazor アプリで UI フォーカスを設定する
 

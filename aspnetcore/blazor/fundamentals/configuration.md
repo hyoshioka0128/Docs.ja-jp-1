@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: fd2a9784e92b132d679b2065b37cb37b7dd89cde
-ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
+ms.openlocfilehash: 9714cdd09e090bfc890561c8bbf8a720aa298812
+ms.sourcegitcommit: bc757e46ca6150a220aa29867fffd3845f4ad002
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/12/2021
-ms.locfileid: "103413406"
+ms.lasthandoff: 03/21/2021
+ms.locfileid: "104761318"
 ---
 # <a name="aspnet-core-blazor-configuration"></a>ASP.NET Core Blazor の構成
 
@@ -202,7 +202,7 @@ builder.Services.AddOidcAuthentication(options =>
 アプリのプロジェクト ファイルに、[`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) のパッケージ参照を追加します。
 
 ```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERION}" />
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
 前の例では、プレースホルダー `{VERSION}` はパッケージのバージョンです。 パッケージのバージョンについては [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) を参照してください。

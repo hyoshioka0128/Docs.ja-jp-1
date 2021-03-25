@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 8dd11251358bbeea444661970fadf19cb1390fd3
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: ea39235e51fc430dc2c67b4f2cf281c416705c0b
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102394929"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711075"
 ---
 # <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor のホスティング モデル
 
@@ -129,7 +129,7 @@ Blazor Server アプリに接続されている各ブラウザー画面 (ブラ�
 
 Blazor では、ブラウザー タブを閉じるか、または外部 URL に移動して "*正常に終了*" することが検討されます。 正常な終了が行われた場合は、回線と関連リソースが直ちに解放されます。 ネットワークの中断などにより、クライアントが正常に切断されないこともあります。 Blazor Server では、クライアントが再接続できるように、切断された回線が格納されます (その間隔は設定できます)。
 
-Blazor Server を使用すると、コードで "*回線ハンドラー*" を定義できます。これにより、ユーザーの回線の状態の変更時にコードを実行できます。 詳細については、「<xref:blazor/advanced-scenarios#blazor-server-circuit-handler>」を参照してください。
+Blazor Server を使用すると、コードで "*回線ハンドラー*" を定義できます。これにより、ユーザーの回線の状態の変更時にコードを実行できます。 詳細については、「<xref:blazor/fundamentals/signalr?pivots=server#blazor-server-circuit-handler>」を参照してください。
 
 ### <a name="ui-latency"></a>UI 遅延時間
 

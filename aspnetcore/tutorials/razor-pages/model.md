@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: defbc73d0c1d6aac30360cd7b83cc518a407bf98
-ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
+ms.openlocfilehash: 1173113b8bb035212cb9b84e7763970b9d5092a3
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/12/2021
-ms.locfileid: "103413445"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711619"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
 
@@ -173,11 +173,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 詳細については、「[dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator)」を参照してください。
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>開発用に SQLite を、運用環境に SQL Server を使用する
-
-SQLite が選択されている場合、テンプレートで生成されたコードは開発の準備ができています。 次のコードは、`Startup` に <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> を挿入する方法を示しています。 `IWebHostEnvironment` が挿入されているので、アプリでは、開発で SQLite を、運用環境で SQL Server を使用できます。
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -201,11 +197,7 @@ SQLite が選択されている場合、テンプレートで生成されたコ�
 
 *appsettings.json* ファイルは、ローカル データベースへの接続に使用される接続文字列を使用して更新されます。
 
-### <a name="use-sqlite-for-development-sql-server-for-production"></a>開発用に SQLite を、運用環境に SQL Server を使用する
-
-SQLite が選択されている場合、テンプレートで生成されたコードは開発の準備ができています。 次のコードは、`Startup` に <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> を挿入する方法を示しています。 `IWebHostEnvironment` が挿入されているので、アプリでは、開発で SQLite を、運用環境で SQL Server を使用できます。
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 ---
 
@@ -348,6 +340,7 @@ ASP.NET Core には、[依存関係挿入](xref:fundamentals/dependency-injectio
 次のチュートリアルでは、スキャフォールディングによって作成されるファイルについて説明します。
 
 ## <a name="additional-resources"></a>その他の技術情報
+
 
 > [!div class="step-by-step"]
 > [前へ:はじめに](xref:tutorials/razor-pages/razor-pages-start)
