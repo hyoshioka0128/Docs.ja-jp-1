@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/index
-ms.openlocfilehash: 10a6bae73743d3063ad2e1ab49fc418ad1d63756
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c49ecde1ab93f37a80ff604c7be00fa309d55ea7
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052293"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105050959"
 ---
 # <a name="devops-with-aspnet-core-and-azure"></a>ASP.NET Core および Azure を使用した DevOps
 
@@ -31,7 +31,7 @@ ms.locfileid: "93052293"
 
 [Cam Soper](https://twitter.com/camsoper) および [Scott Addie](https://twitter.com/scottaddie) 著
 
-このガイドは、[ダウンロード可能 PDF 電子ブック](https://aka.ms/devopsbook)として入手できます。
+このガイドは、[ダウンロード可能 PDF 電子ブック](https://github.com/dotnet-architecture/eBooks/blob/master/current/devops-aspnet-core/DevOps-with-ASP.NET-Core-and-Azure.pdf)として入手できます。
 
 ## <a name="welcome"></a>ようこそ 
 
