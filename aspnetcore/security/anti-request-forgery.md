@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 5d6f2915dd9b27142ac7d8ac55e68c6a26e41f81
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 08414bb4c4d168b672eed2cb7e6a490511ec93d4
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585787"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555059"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>ASP.NET Core でのクロスサイト要求偽造 (XSRF/CSRF) 攻撃を防ぐ
 
@@ -174,11 +174,11 @@ CSRF 攻撃を防ぐための最も一般的な方法は、 *シンクロナイ�
 トークンは一意で、予測できません。 このトークンは、一連の要求を適切にシーケンス処理するためにも使用できます (たとえば、ページ 1 > ページ 2 > ページ 3)。 ASP.NET Core MVC およびページテンプレートのすべてのフォームで、 Razor 偽造防止トークンが生成されます。 次の2つのビュー例では、偽造偽造トークンが生成されます。
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangePassword" method="post">
+<form asp-controller="Manage" asp-action="ChangeCode" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangePassword", "Manage"))
+@using (Html.BeginForm("ChangeCode", "Manage"))
 {
     ...
 }
@@ -251,7 +251,7 @@ services.AddAntiforgery(options =>
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | アンチ偽造を作成するために使用する設定を決定し cookie ます。 |
 | [CookieDomain](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | のドメイン cookie 。 既定値は `null` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。領域. |
 | [Cookie名前](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie の名前。 設定しない場合、システムは [既定の Cookie プレフィックス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ("を使用して、一意の名前を生成します。AspNetCore。 ")。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。指定. |
-| [Cookieパス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | に設定されたパス cookie 。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。道. |
+| [CookiePath](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | に設定されたパス cookie 。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。道. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | アンチ偽造システムがビューで偽造防止トークンをレンダリングするために使用する非表示フォームフィールドの名前。 |
 | [HeaderName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.headername) | アンチ偽造システムによって使用されるヘッダーの名前。 の場合 `null` 、システムはフォームデータのみを考慮します。 |
 | [RequireSsl](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.requiressl) | 偽造防止システムによって HTTPS が要求されるかどうかを指定します。 `true`の場合、HTTPS 以外の要求は失敗します。 既定値は `false` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法として、を設定することをお勧めし Cookie ます。SecurePolicy。 |
@@ -443,10 +443,10 @@ xhttp.onreadystatechange = function() {
         }
     }
 };
-xhttp.open('POST', '/api/password/changepassword', true);
+xhttp.open('POST', '/api/token/changeCode', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newPassword": "ReallySecurePassword999$$$" }));
+xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
 ```
 
 ### <a name="angularjs"></a>AngularJS

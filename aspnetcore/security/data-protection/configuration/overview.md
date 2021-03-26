@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: 048f6d6d57d3cc5d64004e18b18a3347ee92e450
-ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+ms.openlocfilehash: 8c00deb49709bd2ec2a5824c841fa3600f99b204
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93234570"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105554669"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>ASP.NET Core データ保護の構成
 
@@ -121,7 +121,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-        .ProtectKeysWithCertificate("thumbprint");
+        .ProtectKeysWithCertificate(Configuration["Thumbprint"]);
 }
 ```
 
@@ -135,7 +135,7 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
         .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", "password"));
+            new X509Certificate2("certificate.pfx", Configuration["Thumbprint"]));
 }
 ```
 
@@ -155,10 +155,10 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
         .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", "password"));
+            new X509Certificate2("certificate.pfx", Configuration["MyPasswordKey"));
         .UnprotectKeysWithAnyCertificate(
-            new X509Certificate2("certificate_old_1.pfx", "password_1"),
-            new X509Certificate2("certificate_old_2.pfx", "password_2"));
+            new X509Certificate2("certificate_old_1.pfx", Configuration["MyPasswordKey_1"),
+            new X509Certificate2("certificate_old_2.pfx", Configuration["MyPasswordKey_2"));
 }
 ```
 
@@ -184,7 +184,7 @@ public void ConfigureServices(IServiceCollection services)
 
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>各アプリで同じ値を使用してを構成します。
 * アプリ全体で同じバージョンのデータ保護 API スタックを使用します。 アプリのプロジェクトファイルで、次の **いずれか** を実行します。
-  * [AspNetCore メタパッケージ](xref:fundamentals/metapackage-app)を介して、同じ共有フレームワークのバージョンを参照します。
+  * [Microsoft.AspNetCore.App メタパッケージ](xref:fundamentals/metapackage-app)を介して、同じ共有フレームワークのバージョンを参照します。
   * 同じ [データ保護パッケージ](xref:security/data-protection/introduction#package-layout) のバージョンを参照します。
 
 ```csharp
@@ -423,9 +423,9 @@ services.AddDataProtection()
 
 ## <a name="persisting-keys-with-redis"></a>Redis でのキーの永続化
 
-キーを格納するには、 [Redis データの永続](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) 化をサポートする redis のバージョンのみを使用する必要があります。 [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) は永続的で、キーを格納するために使用できます。 詳細については、[こちらの GitHub の問題](https://github.com/dotnet/AspNetCore/issues/13476)のページを参照してください。
+キーを格納するには、 [Redis データの永続](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) 化をサポートする redis のバージョンのみを使用する必要があります。 [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) は永続的で、キーを格納するために使用できます。 詳細については、次を参照してください。[この GitHub の問題](https://github.com/dotnet/AspNetCore/issues/13476)します。
 
-## <a name="additional-resources"></a>その他のリソース
+## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:security/data-protection/configuration/non-di-scenarios>
 * <xref:security/data-protection/configuration/machine-wide-policy>
