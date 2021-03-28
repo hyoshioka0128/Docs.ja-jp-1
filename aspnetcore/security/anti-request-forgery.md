@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 08414bb4c4d168b672eed2cb7e6a490511ec93d4
-ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
+ms.openlocfilehash: a46fb997719acd95204470c14a4e9eb8546d88dc
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105555059"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638784"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>ASP.NET Core でのクロスサイト要求偽造 (XSRF/CSRF) 攻撃を防ぐ
 
-[Rick Anderson](https://twitter.com/RickAndMSFT)、 [Fiyaz Hasan](https://twitter.com/FiyazBinHasan)、[上田 Smith](https://ardalis.com/)
+( [Fiyaz Hasan](https://twitter.com/FiyazBinHasan)、 [Rick Anderson](https://twitter.com/RickAndMSFT)、[上田 Smith](https://ardalis.com/) )
 
 クロスサイト要求偽造 (XSRF または CSRF とも呼ばれます) は、web ホストアプリに対する攻撃であり、悪意のある web アプリがクライアントブラウザーとそのブラウザーを信頼する web アプリとの間の対話に影響を与える可能性があります。 これらの攻撃は、web ブラウザーがすべての要求を web サイトに自動的に送信するために発生する可能性があります。 この形式の悪用は、 *ワンクリック攻撃* または *セッション* によっても知られています。これは、攻撃がユーザーの以前に認証されたセッションを利用しているためです。
 
@@ -174,11 +174,11 @@ CSRF 攻撃を防ぐための最も一般的な方法は、 *シンクロナイ�
 トークンは一意で、予測できません。 このトークンは、一連の要求を適切にシーケンス処理するためにも使用できます (たとえば、ページ 1 > ページ 2 > ページ 3)。 ASP.NET Core MVC およびページテンプレートのすべてのフォームで、 Razor 偽造防止トークンが生成されます。 次の2つのビュー例では、偽造偽造トークンが生成されます。
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangeCode" method="post">
+<form asp-controller="Todo" asp-action="Create" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangeCode", "Manage"))
+@using (Html.BeginForm("Create", "Todo"))
 {
     ...
 }
@@ -249,7 +249,7 @@ services.AddAntiforgery(options =>
 | オプション | 説明 |
 | ------ | ----------- |
 | [Cookie](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookie) | アンチ偽造を作成するために使用する設定を決定し cookie ます。 |
-| [CookieDomain](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | のドメイン cookie 。 既定値は `null` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。領域. |
+| [Cookieドメイン](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiedomain) | のドメイン cookie 。 既定値は `null` です。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。領域. |
 | [Cookie名前](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiename) | cookie の名前。 設定しない場合、システムは [既定の Cookie プレフィックス](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.defaultcookieprefix) ("を使用して、一意の名前を生成します。AspNetCore。 ")。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。指定. |
 | [CookiePath](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.cookiepath) | に設定されたパス cookie 。 このプロパティは互換性のために残されていますが、今後のバージョンでは削除される予定です。 別の方法をお勧めし Cookie ます。道. |
 | [FormFieldName](/dotnet/api/microsoft.aspnetcore.antiforgery.antiforgeryoptions.formfieldname) | アンチ偽造システムがビューで偽造防止トークンをレンダリングするために使用する非表示フォームフィールドの名前。 |
@@ -419,12 +419,12 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -434,19 +434,19 @@ function getCookie(cname) {
 var csrfToken = getCookie("CSRF-TOKEN");
 
 var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == XMLHttpRequest.DONE) {
-        if (xhttp.status == 200) {
-            alert(xhttp.responseText);
+xhttp.onreadystatechange = function () {
+    if (xhttp.readyState === XMLHttpRequest.DONE) {
+        if (xhttp.status === 204) {
+            alert('Todo item is created successfully.');
         } else {
             alert('There was an error processing the AJAX request.');
         }
     }
 };
-xhttp.open('POST', '/api/token/changeCode', true);
+xhttp.open('POST', '/api/items', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
+xhttp.send(JSON.stringify({ "name": "Learn C#" }));
 ```
 
 ### <a name="angularjs"></a>AngularJS

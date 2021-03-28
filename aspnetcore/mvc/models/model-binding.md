@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 5eaedf6dbe5df59848b9cf8a5bda67add48db2a6
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 5b3892a13da5c72f9ac76428febc73afaaa9fc06
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586944"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638732"
 ---
 # <a name="model-binding-in-aspnet-core"></a>ASP.NET Core でのモデル バインド
 
@@ -212,7 +212,7 @@ public class Pet
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter)、[Int32](xref:System.ComponentModel.Int32Converter)、[Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
@@ -427,7 +427,7 @@ public class Instructor
 C# 9 では、レコードの種類が導入されています。これは、ネットワーク上でデータを簡潔に表現するための優れた方法です。 ASP.NET Core は、1つのコンストラクターを使用して、モデルバインドとレコードの種類の検証のサポートを追加します。
 
 ```csharp
-public record Person([Required] string Name, [Range(0, 150)] int Age);
+public record Person([Required] string Name, [Range(0, 150)] int Age, [BindNever] int Id);
 
 public class PersonController
 {
@@ -451,7 +451,7 @@ Name: <input asp-for="Name" />
 Age: <input asp-for="Age" />
 ```
 
-レコードの種類を検証するとき、ランタイムは、プロパティではなく、パラメーターに対して明示的に検証メタデータを検索します。
+レコードの種類を検証するとき、ランタイムは、プロパティではなく、パラメーターに対して明示的にバインドおよび検証メタデータを検索します。
 
 ::: moniker-end
 
@@ -761,7 +761,7 @@ public class Pet
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter)、[Int32](xref:System.ComponentModel.Int32Converter)、[Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)

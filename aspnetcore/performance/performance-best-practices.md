@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 09d3c555570a9e0ebb78275e73d64e2553fd04cf
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061003"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638797"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>ASP.NET Core パフォーマンスのベストプラクティス
 
@@ -51,7 +51,7 @@ ASP.NET Core アプリのパフォーマンスに関する一般的な問題は�
 * 共通コードパスのロックを取得します。 ASP.NET Core アプリは、コードを並列実行するように設計されている場合に最もパフォーマンスが高くなります。
 * タスクを呼び出し [ます。実行](/dotnet/api/system.threading.tasks.task.run) してすぐに待機します。 ASP.NET Core は、通常のスレッドプールのスレッドで既にアプリコードを実行しているため、タスクを呼び出すと、余分な不要なスレッドプールスケジュールが生成されます。 スケジュールされたコードがスレッドをブロックする場合でも、タスクを実行しても、そのようなことはできません。
 
-**操作** :
+**操作**:
 
 * [ホットコードパス](#understand-hot-code-paths)を非同期にします。
 * 非同期 API が使用可能な場合は、データアクセス、i/o、長時間実行される操作 Api を非同期に呼び出します。 同期 API を非同期にするには、Run **を使用しないでください** [。](/dotnet/api/system.threading.tasks.task.run)
@@ -89,11 +89,11 @@ ASP.NET Core 3.0 以降では、を `IAsyncEnumerable<T>` 非同期的に列挙�
 
 推奨事項:
 
-* すべてのデータアクセス Api を非同期 **に呼び出します** 。
+* すべてのデータアクセス Api を非同期 **に呼び出します**。
 * 必要以上に多くのデータを取得 **しないで** ください。 現在の HTTP 要求に必要なデータだけを返すクエリを記述します。
 * 少し古いデータが許容される場合は、データベースまたはリモートサービスから取得した頻繁にアクセスされるデータをキャッシュすること **を検討してください。** シナリオに応じて、 [Memorycache](xref:performance/caching/memory) または [microsoft.web.distributedcache](xref:performance/caching/distributed)を使用します。 詳細については、「<xref:performance/caching/response>」を参照してください。
 * ネットワークラウンドトリップ **を最小限に** 抑えます。 目的は、複数の呼び出しではなく、1回の呼び出しで必要なデータを取得することです。
-* 読み取り専用の目的でデータにアクセスする場合 **は** 、Entity Framework Core で [追跡なしのクエリ](/ef/core/querying/tracking#no-tracking-queries)を使用します。 EF Core は、追跡しないクエリの結果をより効率的に返すことができます。
+* 読み取り専用の目的でデータにアクセスする場合 **は**、Entity Framework Core で [追跡なしのクエリ](/ef/core/querying/tracking#no-tracking-queries)を使用します。 EF Core は、追跡しないクエリの結果をより効率的に返すことができます。
 * (、、またはステートメントを使用して) LINQ クエリのフィルター処理と集計を **実行** し、 `.Where` `.Select` `.Sum` データベースによってフィルター処理が実行されるようにします。
 * EF Core に **よってクライアント** 上の一部のクエリ演算子が解決されるため、クエリの実行効率が悪くなることがあります。 詳細については、「 [クライアント評価のパフォーマンスの問題](/ef/core/querying/client-eval#client-evaluation-performance-issues)」を参照してください。
 * コレクションに対してプロジェクションクエリを使用しないでください。これにより、"N + 1" 個の SQL クエリが実行される可能性が **あり** ます。 詳細については、「 [相関サブクエリの最適化](/ef/core/what-is-new/ef-core-2.1#optimization-of-correlated-subqueries)」を参照してください。
@@ -114,7 +114,7 @@ ASP.NET Core 3.0 以降では、を `IAsyncEnumerable<T>` 非同期的に列挙�
 推奨事項:
 
 * インスタンスを直接作成して破棄 **しないで** ください `HttpClient` 。
-* インスタンスを取得するに **は** 、 [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)を使用し `HttpClient` ます。 詳細については、「[HttpClientFactory を使用して回復力の高い HTTP 要求を実装する](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)」を参照してください。
+* インスタンスを取得するに **は**、 [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)を使用し `HttpClient` ます。 詳細については、「[HttpClientFactory を使用して回復力の高い HTTP 要求を実装する](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)」を参照してください。
 
 ## <a name="keep-common-code-paths-fast"></a>共通コードパスを高速に保つ
 
@@ -147,7 +147,7 @@ ASP.NET Core アプリに対するほとんどの要求は、必要なサービ�
 
 推奨事項:
 
-* クライアント資産のバンドルと縮小には ASP.NET Core の [組み込みサポート](xref:client-side/bundling-and-minification)**を使用し** ます。
+* 互換性のあるツールを紹介し、ASP.NET Core のタグを使用してとの両方の環境を処理する方法については、[バンドルと縮小のガイドライン](xref:client-side/bundling-and-minification)を使用してください `environment` `Development` `Production` 。
 * 複雑なクライアント資産管理には、 [Webpack](https://webpack.js.org/)などの他のサードパーティ製ツールを使用すること **を検討してください。**
 
 ## <a name="compress-responses"></a>応答を圧縮する
@@ -165,7 +165,7 @@ ASP.NET Core の新しいリリースにはそれぞれ、パフォーマンス�
 推奨事項:
 
 * 特に [ホットコードパス](#understand-hot-code-paths)では、通常のプログラムフローの手段として例外をスローまたはキャッチし **ない** ようにします。
-* 例外を発生させる条件を検出して処理するには、アプリにロジック **を含めます** 。
+* 例外を発生させる条件を検出して処理するには、アプリにロジック **を含めます**。
 * 例外的または予期しない条件の例外 **をスローまた** はキャッチします。
 
 Application Insights などのアプリ診断ツールを使用すると、アプリケーションでのパフォーマンスに影響する可能性のある一般的な例外を識別できます。
