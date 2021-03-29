@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 5bb1a05f5e81730d0785c1d6a69a8cafb68f85ab
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 804ca260fd77f130499283d52a6034b9634a9c27
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586684"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711127"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>チュートリアル: ASP.NET MVC Web アプリでの EF Core の概要
 
@@ -343,7 +343,7 @@ Visual Studio でデータベースを表示するには、**SQL Server オブ�
 * データベースを削除します。
 * アプリを停止してから開始します。 変更に合わせてデータベースが自動的に再作成されます。
 
-たとえば、`Student` クラスに `EmailAddress` プロパティが追加された場合、再作成されたテーブルには新しい `EmailAddress` 列が含まれます。 ビュー クラスには、新しい `EmailAddress` プロパティは表示されません。
+たとえば、`Student` クラスに `EmailAddress` プロパティが追加された場合、再作成されたテーブルには新しい `EmailAddress` 列が含まれます。 ビューには、新しい `EmailAddress` プロパティは表示されません。
 
 ## <a name="conventions"></a>規約
 
@@ -383,7 +383,7 @@ EF を使用する非同期コードを記述するときに注意すべき点:
 
 ## <a name="limit-entities-fetched"></a>フェッチされるエンティティを制限する
 
-クエリから返される数値またはエンティティの制限については、「[パフォーマンスに関する考慮事項](xref:data/ef-rp/intro)」を参照してください。
+クエリから返される数値またはエンティティの制限については、「[パフォーマンスに関する考慮事項](xref:data/ef-rp/intro#performance-considerations)」を参照してください。
 
 基本的な CRUD (作成、読み取り、更新、削除) 操作の実行方法を学習するには、次のチュートリアルに進んでください。
 

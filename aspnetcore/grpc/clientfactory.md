@@ -1,10 +1,10 @@
 ---
-title: .NET Core での gRPC クライアント ファクトリの統合
+title: .NET での gRPC クライアント ファクトリの統合
 author: jamesnk
 description: クライアント ファクトリを使用して gRPC クライアントを作成する方法について説明します。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 05/26/2020
+ms.date: 03/19/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,14 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/clientfactory
-ms.openlocfilehash: c63bf495f558237ed801881d378953119791b8ce
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ea5181bd44a5deafdc6634b31b9efeda2884b58c
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060951"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711504"
 ---
-# <a name="grpc-client-factory-integration-in-net-core"></a>.NET Core での gRPC クライアント ファクトリの統合
+# <a name="grpc-client-factory-integration-in-net"></a>.NET での gRPC クライアント ファクトリの統合
+
+作成者: [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC と `HttpClientFactory` の統合により、gRPC クライアントを一元的に作成する方法が提供されています。 これは、[スタンドアロンの gRPC クライアント インスタンスを構成する](xref:grpc/client)ための代替手段として使用できます。 ファクトリの統合は、[Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet パッケージで提供されています。
 
@@ -73,9 +75,9 @@ public class AggregatorService : Aggregator.AggregatorBase
 }
 ```
 
-## <a name="configure-httpclient"></a>HttpClient を構成する
+## <a name="configure-httphandler"></a>HttpHandler を構成する
 
-`HttpClientFactory` では、gRPC クライアントによって使用される `HttpClient` が作成されます。 標準の `HttpClientFactory` メソッドを使用して、送信要求ミドルウェアを追加したり、`HttpClient` の基になる `HttpClientHandler` を構成したりすることができます。
+`HttpClientFactory` では、gRPC クライアントによって使用される `HttpMessageHandler` が作成されます。 標準の `HttpClientFactory` メソッドを使用して、送信要求ミドルウェアを追加したり、`HttpClient` の基になる `HttpClientHandler` を構成したりすることができます。
 
 ```csharp
 services
@@ -139,9 +141,10 @@ services
     .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
-期限と RPC のキャンセルの詳細については、「[RPC ライフサイクル](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle)」を参照してください。
+期限と RPC のキャンセルの詳細については、「<xref:grpc/deadlines-cancellation>」を参照してください。
 
-## <a name="additional-resources"></a>その他の技術情報
+## <a name="additional-resources"></a>その他のリソース
 
 * <xref:grpc/client>
+* <xref:grpc/deadlines-cancellation>
 * <xref:fundamentals/http-requests>

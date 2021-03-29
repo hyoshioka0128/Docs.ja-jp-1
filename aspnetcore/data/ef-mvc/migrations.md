@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/migrations
-ms.openlocfilehash: aebbc3f29b0356c7993abd83869ab21d3613bf61
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 237192b93c3cf21657c6053454952c2677111cd1
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589349"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105051076"
 ---
 # <a name="tutorial-part-5-apply-migrations-to-the-contoso-university-sample"></a>チュートリアル: パート 5 - Contoso University のサンプルに移行を適用する
 
@@ -100,7 +100,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 このコードは、`migrations add InitialCreate` コマンドを入力したときに作成された初期移行向けのものです。 移行の name パラメーター (この例では "InitialCreate") は、ファイル名に使用され、どのような名前でも付けることができます。 移行で行われている処理をまとめた単語または語句を選択することをお勧めします。 たとえば、後で移行に "AddDepartmentTable" という名前を付ける可能性があります。
 
-データベースが既に存在するときに、初期移行を作成した場合、データベースの作成コードが生成されますが、データベースは既にデータと一致しているため、作成コードを実行する必要はありません。 データベースがまだ存在しない別の環境にアプリを展開する場合、データベースを作成するために、このコードが実行されるため、最初にテストを行うことをお勧めします。 これが、移行で新しいデータベースを最初から作成できるように、前の接続文字列でデータベースの名前を変更した理由です。
+データベースが既に存在するときに、初期移行を作成した場合、データベースの作成コードが生成されますが、データベースは既にデータと一致しているため、作成コードを実行する必要はありません。 データベースがまだ存在しない別の環境にアプリを展開する場合、データベースを作成するために、このコードが実行されるため、最初にテストを行うことをお勧めします。 そのため、以前にデータベースを削除しました。これにより、移行によって新しいデータベースを最初から作成できるようになります。
 
 ## <a name="the-data-model-snapshot"></a>データ モデルのスナップショット
 

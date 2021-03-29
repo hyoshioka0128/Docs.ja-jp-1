@@ -4,7 +4,7 @@ author: jamesnk
 description: .NET で再試行を使用して、回復性がありフォールト トレラントな gRPC 呼び出しを行う方法について説明します。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/25/2021
+ms.date: 03/18/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/retries
-ms.openlocfilehash: 613386d1fedd8b1b04081e3240b8a3aaf7b37012
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 4fda4968102740af8d1a7f37dcc588abd24ab70e
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589788"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105050998"
 ---
 # <a name="transient-fault-handling-with-grpc-retries"></a>gRPC の再試行による一時的障害の処理
 
@@ -31,7 +31,7 @@ ms.locfileid: "102589788"
 
 gRPC 再試行の機能を使用すると、gRPC クライアントで失敗した呼び出しの再試行を自動的に行うことができます。 この記事では、.NET で再試行ポリシーを構成することにより、回復性がありフォールト トレラントな gRPC アプリを作成する方法について説明します。
 
-gRPC の再試行には、[Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) バージョン 2.36.0-pre1 以降が必要です。
+gRPC の再試行には、[Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) バージョン 2.36.0 以降が必要です。
 
 ## <a name="transient-fault-handling"></a>一時的な障害の処理
 
@@ -100,6 +100,26 @@ var response = await client.SayHelloAsync(
 
 Console.WriteLine("From server: " + response.Message);
 ```
+
+### <a name="when-retries-are-valid"></a>再試行が有効な場合
+
+失敗した状態コードが構成済みの状態コードと一致し、以前の試行回数が最大試行回数よりも少ない場合は、呼び出しが再試行されます。 場合によっては、gRPC 呼び出しを再試行することはできません。 このようなケースは、呼び出しがコミットされた場合に発生します。
+
+gRPC の呼び出しは、次の 2 つのシナリオでコミットされます。
+
+* クライアントが応答ヘッダーを受け取る場合。 応答ヘッダーは `ServerCallContext.WriteResponseHeadersAsync` が呼び出されたとき、または最初のメッセージがサーバー応答ストリームに書き込まれたときに、サーバーによって送信されます。
+* クライアントの送信メッセージ (ストリーミングの場合はメッセージ) がクライアントの最大バッファー サイズを超えている場合。 `MaxRetryBufferSize` および `MaxRetryBufferPerCallSize` は [チャネルで構成](xref:grpc/configuration#configure-client-options)されます。
+
+コミットされた呼び出しは、状態コードまたは以前の試行回数に関係なく再試行されません。
+
+### <a name="streaming-calls"></a>ストリーミング呼び出し
+
+ストリーミング呼び出しは gRPC の再試行と共に使用できますが、一緒に使用する際に重要な考慮事項があります。
+
+* **サーバー ストリーミング**、**双方向ストリーミング**: サーバーから複数のメッセージを返すストリーミング RPC は、最初のメッセージを受信した後は再試行されません。
+* **クライアント ストリーミング**、**双方向ストリーミング**: サーバーに複数のメッセージを送信するストリーミング RPC は、送信メッセージがクライアントの最大バッファー サイズを超えた場合は再試行されません。
+
+詳細については、「[再試行が有効な場合](#when-retries-are-valid)」を参照してください。
 
 ### <a name="grpc-retry-options"></a>gRPC 再試行のオプション
 

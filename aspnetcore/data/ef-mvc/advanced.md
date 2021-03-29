@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 135881bfb4137bc81bd0f7250f1ce191cab13dcd
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bfcce94f2ce25f2468cc5d1456c201e2f6bad094
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586840"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711531"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>チュートリアル: 高度なシナリオについて学習する - ASP.NET MVC と EF Core
 
@@ -288,7 +288,7 @@ Web アプリの展開方法については、「<xref:host-and-deploy/index>」
 > * EF Core のソース コードと開発計画について学習した
 > * 動的な LINQ を使ってコードを簡略化する方法を学習した
 
-これで、ASP.NET Core MVC アプリケーションでの Entity Framework Core の使用に関するチュートリアル シリーズは終了です。 このシリーズでは新しいデータベースが使用されました。別の方法としては、既存のデータベースからモデルをリバース エンジニアリングします。
+これで、ASP.NET Core MVC アプリケーションでの Entity Framework Core の使用に関するチュートリアル シリーズは終了です。 このシリーズでは新しいデータベースが使用されました。別の方法としては、[既存のデータベースからモデルをリバース エンジニアリングします](/ef/core/managing-schemas/scaffolding)。
 
 > [!div class="nextstepaction"]
 > [チュートリアル: EF Core と MVC、既存のデータベース](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

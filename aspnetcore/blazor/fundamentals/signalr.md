@@ -5,7 +5,7 @@ description: Blazor SignalR の接続を構成および管理する方法につ�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2021
+ms.date: 03/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/signalr
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 63dfd93fbc42a869211bc5cd481a8dbee6eb6c91
-ms.sourcegitcommit: 3982ff9dabb5b12aeb0a61cde2686b5253364f5d
+ms.openlocfilehash: ecac21c1f6f7cea0a221e1a78161b915ee2c755f
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102118916"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711062"
 ---
 # <a name="aspnet-core-blazor-signalr-guidance"></a>ASP.NET Core Blazor SignalR ガイダンス
 
@@ -364,6 +364,40 @@ window.addEventListener('pagehide', () => {
 ```
 
 ::: moniker-end
+
+## <a name="blazor-server-circuit-handler"></a>Blazor Server 回線ハンドラー
+
+Blazor Server を使用すると、コードで "*回線ハンドラー*" を定義できます。これにより、ユーザーの回線の状態の変更時にコードを実行できます。 回線ハンドラーは、<xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> から派生させ、そのクラスをアプリのサービス コンテナーに登録することで実装します。 次の回線ハンドラーの例では、開いている SignalR 接続を追跡します。
+
+`TrackingCircuitHandler.cs`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
+
+::: moniker-end
+
+回線ハンドラーは DI を使用して登録されます。 スコープを持つインスタンスは、回線のインスタンスごとに作成されます。 前の例の `TrackingCircuitHandler` を使用すると、すべての回線の状態を追跡する必要があるため、シングルトン サービスが作成されます。
+
+`Startup.cs`:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
+}
+```
+
+カスタム回線ハンドラーのメソッドでハンドルされない例外がスローされる場合は、その例外は Blazor Server 回線にとって致命的です。 ハンドラーのコードまたはメソッドで例外が許容されるようにするには、エラー処理とログを含む 1 つ以上の [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) ステートメントでコードをラップします。
+
+ユーザーが切断し、フレームワークで回線の状態がクリーンアップされていることが原因で回線が終了すると、フレームワークによって回線の DI スコープが破棄されます。 スコープが破棄されると、<xref:System.IDisposable?displayProperty=fullName> を実装するサーキットスコープの DI サービスはすべて破棄されます。 破棄中にいずれかの DI サービスでハンドルされない例外がスローされると、フレームワークによって例外がログに記録されます。
 
 ## <a name="additional-resources"></a>その他のリソース
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: c012658a6f48247af60c8bfd56a7d987f6aa8a68
-ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
+ms.openlocfilehash: 454f2523a44f5c1aa12b9a27c21c6a3e933ab81a
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "93061510"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711485"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>クラス ライブラリで ASP.NET Core API を使用する
 
@@ -54,15 +54,15 @@ ASP.NET Core を参照するためのこの方法は、.NET Core 3.x を対象�
 
 ## <a name="include-blazor-extensibility"></a>Blazor 拡張機能を含める
 
-Blazor は、WebAssembly (WASM) [ホスティング モデル](xref:blazor/hosting-models)と Server ホスティング モデルをサポートします。 特別な理由がない限り、[Razor コンポーネント](xref:blazor/components/index)は両方のホスティング モデルをサポートする必要があります。 Razor コンポーネント ライブラリでは、[Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk) を使用する必要があります。
+Blazor は、WebAssembly (WASM) とサーバーベースの[ホスティング モデル](xref:blazor/hosting-models)をサポートします。 両方のホスティング モデルをサポートしない特別な理由がない限り、[Razor コンポーネント](xref:blazor/components/index) ライブラリは両方のホスティング モデルをサポートする必要があります。 Razor コンポーネント ライブラリでは、[Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk) を使用する必要があります。
 
 ### <a name="support-both-hosting-models"></a>両方のホスティング モデルをサポートする
 
-[Blazor Server](xref:blazor/hosting-models#blazor-server) プロジェクトと [Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) プロジェクトの両方で Razor コンポーネントの使用をサポートするには、ご使用のエディターに応じて次の手順を使用します。
+[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) および [Blazor Server](xref:blazor/hosting-models#blazor-server) の両方のプロジェクトで Razor コンポーネントの使用をサポートするには、ご使用のエディターに応じて次の手順に従います。
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-**Razor クラス ライブラリ** プロジェクト テンプレートを使用します。 このテンプレートの **[Support pages and views]\(ページとビューのサポート\)** チェックボックスの選択を解除する必要があります。
+**Razor クラス ライブラリ** プロジェクト テンプレートを使用します。
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -78,7 +78,93 @@ dotnet new razorclasslib
 
 ---
 
-このテンプレートから生成されるプロジェクトは、次の操作を実行します。
+::: moniker range=">= aspnetcore-5.0"
+
+プロジェクト テンプレートから生成されたライブラリ:
+
+* インストールされている SDK に基づいて現在の .NET Framework をターゲットにします。
+* `browser` を `SupportedPlatform` MSBuild 項目でサポートされているプラットフォームとして含めることにより、プラットフォームの依存関係に対するブラウザーの互換性チェックを有効にします。
+* [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) の NuGet パッケージ参照を追加します。
+
+例:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+前の例の場合:
+
+* `{TARGET FRAMEWORK}` プレースホルダーは、[ターゲット フレームワーク モニカー (TFM)](/dotnet/standard/frameworks) です。
+* `{VERSION}` プレースホルダーは [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) パッケージのバージョンです。
+
+### <a name="only-support-the-blazor-server-hosting-model"></a>Blazor Server ホスティング モデルのみをサポートする
+
+クラス ライブラリが [Blazor Server](xref:blazor/hosting-models#blazor-server) アプリだけをサポートすることはほとんどありません。 クラス ライブラリで、[Blazor Server](xref:blazor/hosting-models#blazor-server) 固有の機能 (<xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> または <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage> へのアクセスなど) が必要な場合や、ASP.NET Core 固有の機能 (ミドルウェア、MVC コントローラー、Razor Pages など) を使用する場合は、次の **いずれか** の方法を使用します。
+
+* **[ページとビューのサポート]** チェックボックス (Visual Studio) を使用して、または `dotnet new` コマンドで `-s|--support-pages-and-views` オプションを指定してプロジェクトを作成するときに、ライブラリでページとビューがサポートされるように指定します。
+
+  ```dotnetcli
+  dotnet new razorclasslib -s true
+  ```
+
+* ライブラリのプロジェクト ファイル内の ASP.NET Core へのフレームワーク参照のみを提供します。
+
+  ```xml
+  <Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <ItemGroup>
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+  </Project>
+  ```
+
+### <a name="support-multiple-framework-versions"></a>複数のフレームワーク バージョンのサポート
+
+ライブラリで、現在のリリースで Blazor に追加された機能と、以前のリリースを 1 つ以上をサポートする必要がある場合は、ライブラリをマルチターゲットにします。 `TargetFrameworks` MSBuild プロパティで、[ターゲット フレームワーク モニカー (TFM)](/dotnet/standard/frameworks) のセミコロン区切りのリストを指定します。
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>{TARGET FRAMEWORKS}</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+前の例の場合:
+
+* `{TARGET FRAMEWORKS}` プレースホルダーは、セミコロン区切りの TFM リストを表します。 たとえば、「 `netcoreapp3.1;net5.0` 」のように入力します。
+* `{VERSION}` プレースホルダーは [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) パッケージのバージョンです。
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+テンプレートから生成されたプロジェクト:
 
 * .NET Standard 2.0 を対象とします。
 * `RazorLangVersion` プロパティを `3.0` に設定します。 `3.0` は、.NET Core 3.x の既定値です。
@@ -101,7 +187,9 @@ dotnet new razorclasslib
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-Razor コンポーネントを含むライブラリの詳細については、「[ASP.NET Core Razor コンポーネント クラス ライブラリ](xref:blazor/components/class-libraries)」を参照してください。
+::: moniker-end
+
+Razor コンポーネントを含むライブラリの詳細については、「<xref:blazor/components/class-libraries>」を参照してください。
 
 ## <a name="include-mvc-extensibility"></a>MVC 拡張機能を含める
 

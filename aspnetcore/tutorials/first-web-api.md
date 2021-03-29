@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: f80c574ddb85c50713e36c7a2cceb826863c7321
-ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
+ms.openlocfilehash: 99b3b4af31683feb10c01d1a7297a3489b01c797
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103557843"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711699"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>チュートリアル: ASP.NET Core で Web API を作成する
 
@@ -167,6 +167,8 @@ Swagger ページ `/swagger/index.html` が表示されます。 **[取得]**  >
 * WeatherForecast API をテストする URL。
 * 応答コード、本文、およびヘッダー。
 * メディアの種類と、値とスキーマの例を含むドロップ ダウン リスト ボックス。
+
+Swagger ページが表示されない場合は、[こちらの GitHub イシュー](https://github.com/dotnet/AspNetCore.Docs/issues/21647)を参照してください。
 
 <!-- Review: Do we care the IE generates several errors. It shows the data, but with  Unrecognized response type; displaying content as text.
 -->

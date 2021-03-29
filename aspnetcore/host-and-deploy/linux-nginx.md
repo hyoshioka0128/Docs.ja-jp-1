@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 8a593654fa31e643e7c239f361f035589c75ce98
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: 230a2dc9ddf196b69a10df1a8632bb32f280c98e
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395254"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711296"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Nginx 搭載の Linux で ASP.NET Core をホストする
 
@@ -401,16 +401,22 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 **セキュリティで保護された (HTTPS) クライアント接続用にリバース プロキシを構成する**
 
+> [!WARNING]
+> このセクションのセキュリティ構成は、さらにカスタマイズするための出発点として使用される一般的な構成です。 サードパーティ製のツール、サーバー、およびオペレーティング システムに対しては、サポートを提供できません。 "*このセクションの構成は、自己責任で使用してください。* " 詳細については、次のリソースをご覧ください。
+>
+> * [HTTPS サーバーの構成](http://nginx.org/docs/http/configuring_https_servers.html) (Nginx ドキュメント)
+> * [mozilla.org SSL 構成ジェネレーター](https://ssl-config.mozilla.org/#server=nginx)
+
 * 信頼された証明機関 (CA) が発行した、有効な証明書を指定することで、ポート 443 で HTTPS トラフィックをリッスンするようにサーバーを構成します。
 
-* 次の */etc/nginx/nginx.conf* ファイルで示されているプラクティスの一部を採用することで、セキュリティを強化します。 たとえば、強力な暗号を選択したり、HTTP 経由のすべてのトラフィックを HTTPS にリダイレクトしたりします。
+* 次の */etc/nginx/nginx.conf* ファイルで示されているプラクティスの一部を採用することで、セキュリティを強化します。
+
+* 次の例では、セキュリティで保護されていない要求をリダイレクトするようにサーバーを構成していません。 HTTPS リダイレクト ミドルウェアを使用することをお勧めします。 詳細については、 <xref:security/enforcing-ssl> を参照してください。
 
   > [!NOTE]
-  > 開発環境では、永続的なリダイレクト (301) ではなく、一時的なリダイレクト (302) を使用することをお勧めします。 リンク キャッシュを使用すると、開発環境で不安定な動作が発生する可能性があります。
+  > サーバー構成で HTTPS リダイレクト ミドルウェアではなくセキュリティで保護されたリダイレクトを処理する開発環境では、永続的なリダイレクト (301) ではなく、一時的なリダイレクト (302) を使用することをお勧めします。 リンク キャッシュを使用すると、開発環境で不安定な動作が発生する可能性があります。
 
-* `HTTP Strict-Transport-Security` (HSTS) ヘッダーを追加すると、クライアントが行う後続のすべての要求が HTTPS 経由になります。
-
-  HSTS の重要なガイダンスについては、「<xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>」を参照してください。
+* `Strict-Transport-Security` (HSTS) ヘッダーを追加すると、クライアントが行う後続のすべての要求が HTTPS 経由になります。 `Strict-Transport-Security` ヘッダーの設定に関するガイダンスについては、「<xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>」を参照してください。
 
 * 今後 HTTPS を無効にする場合は、次のいずれかの方法を使用します。
 
@@ -423,10 +429,17 @@ static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 
 */etc/nginx/nginx.conf* 構成ファイルの内容を次のファイルに **置き換えます**。 この例では、1 つの構成ファイルに `http` セクションと `server` セクションの両方が含まれています。
 
-[!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
+[!code-nginx[](linux-nginx/nginx.conf)]
 
 > [!NOTE]
 > アプリによって行われる大量の要求を受け入れる目的で、Blazor WebAssembly アプリの `burst` パラメーター値を大きくする必要があります。 詳細については、「<xref:blazor/host-and-deploy/webassembly#nginx>」を参照してください。
+
+> [メモ] 前の例では、オンライン証明書状態プロトコル (OCSP) のスタンプを無効にしています。 有効になっている場合は、証明書でその機能がサポートされていることを確認します。 OCSP を有効にする方法の詳細とガイダンスについては、[Module ngx_http_ssl_module (Nginx ドキュメント)](http://nginx.org/en/docs/http/ngx_http_ssl_module.html) の記事の次のプロパティを参照してください。
+>
+> * `ssl_stapling`
+> * `ssl_stapling_file`
+> * `ssl_stapling_responder`
+> * `ssl_stapling_verify`
 
 #### <a name="secure-nginx-from-clickjacking"></a>Nginx をクリックジャッキングから守る
 

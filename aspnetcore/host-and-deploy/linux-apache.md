@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: e81ad43e1c3b86900848671d9da377a5c04a2a82
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: f7d47e26b429f31817b5e04f3104449c9748d94f
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253008"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711283"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Apache 搭載の Linux で ASP.NET Core をホストする
 
@@ -377,6 +377,12 @@ rich rules:
 
 **セキュリティで保護された (HTTPS) クライアント接続用にリバース プロキシを構成する**
 
+> [!WARNING]
+> このセクションのセキュリティ構成は、さらにカスタマイズするための出発点として使用される一般的な構成です。 サードパーティ製のツール、サーバー、およびオペレーティング システムに対しては、サポートを提供できません。 "*このセクションの構成は、自己責任で使用してください。* " 詳細については、次のリソースをご覧ください。
+>
+* [Apache SSL/TLS 暗号化](https://httpd.apache.org/docs/trunk/ssl/) (Apache ドキュメント)
+* [mozilla.org SSL 構成ジェネレーター](https://ssl-config.mozilla.org/#server=apache)
+
 HTTPS 用に Apache を構成するには、*mod_ssl* モジュールを使います。 *httpd* モジュールがインストールされていると、*mod_ssl* モジュールもインストールされています。 インストールされていない場合は、`yum` を使って構成に追加します。
 
 ```bash
@@ -389,35 +395,45 @@ HTTPS を強制するには、`mod_rewrite` モジュールをインストール
 sudo yum install mod_rewrite
 ```
 
-*helloapp.conf* ファイルを変更して、URL の書き換えを有効にし、ポート 443 での通信をセキュリティで保護します。
+*helloapp.conf* ファイルを変更して、ポート 443 での通信をセキュリティで保護します。
+
+次の例では、セキュリティで保護されていない要求をリダイレクトするようにサーバーを構成していません。 HTTPS リダイレクト ミドルウェアを使用することをお勧めします。 詳細については、 <xref:security/enforcing-ssl> を参照してください。
+
+> [!NOTE]
+> サーバー構成で HTTPS リダイレクト ミドルウェアではなくセキュリティで保護されたリダイレクトを処理する開発環境では、永続的なリダイレクト (301) ではなく、一時的なリダイレクト (302) を使用することをお勧めします。 リンク キャッシュを使用すると、開発環境で不安定な動作が発生する可能性があります。
+
+`Strict-Transport-Security` (HSTS) ヘッダーを追加すると、クライアントが行う後続のすべての要求が HTTPS 経由になります。 `Strict-Transport-Security` ヘッダーの設定に関するガイダンスについては、「<xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>」を参照してください。
 
 ```
 <VirtualHost *:*>
     RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
 
-<VirtualHost *:80>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-</VirtualHost>
-
 <VirtualHost *:443>
-    ProxyPreserveHost On
-    ProxyPass / http://127.0.0.1:5000/
-    ProxyPassReverse / http://127.0.0.1:5000/
-    ErrorLog /var/log/httpd/helloapp-error.log
-    CustomLog /var/log/httpd/helloapp-access.log common
-    SSLEngine on
-    SSLProtocol all -SSLv2
-    SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:!RC4+RSA:+HIGH:+MEDIUM:!LOW:!RC4
-    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+    Protocols             h2 http/1.1
+    ProxyPreserveHost     On
+    ProxyPass             / http://127.0.0.1:5000/
+    ProxyPassReverse      / http://127.0.0.1:5000/
+    ErrorLog              /var/log/httpd/helloapp-error.log
+    CustomLog             /var/log/httpd/helloapp-access.log common
+    SSLEngine             on
+    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1
+    SSLHonorCipherOrder   off
+    SSLCompression        off
+    SSLSessionTickets     on
+    SSLUseStapling        off
+    SSLCertificateFile    /etc/pki/tls/certs/localhost.crt
     SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    SSLCipherSuite        ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 </VirtualHost>
 ```
 
 > [!NOTE]
 > この例では、ローカルで生成された証明書を使います。 **SSLCertificateFile** は、ドメイン名のプライマリ証明書ファイルです。 **SSLCertificateKeyFile** は、CSR の作成時に生成されるキー ファイルです。 **SSLCertificateChainFile** は、証明機関から提供された中間証明書ファイル (存在する場合) です。
+>
+> OpenSSL 1.1.1 で TLS 1.3 Web サーバーを操作するには、Apache HTTP Server バージョン 2.4.43 以降が必要です。
+
+> [メモ] 前の例では、オンライン証明書状態プロトコル (OCSP) のスタンプを無効にしています。 OCSP を有効にする方法の詳細とガイダンスについては、「[OCSP Stapling](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling)」 (Apache ドキュメント) を参照してください。
 
 ファイルを保存し、構成をテストします。
 

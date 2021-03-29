@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/netstandard
-ms.openlocfilehash: a6b066979dcdcdf648b8b0326bef47fe0e466266
-ms.sourcegitcommit: 07e7ee573fe4e12be93249a385db745d714ff6ae
+ms.openlocfilehash: b3df1d3b5565dc5c03988c29d2befbe1ea164f54
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/12/2021
-ms.locfileid: "103422485"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711486"
 ---
 # <a name="use-grpc-client-with-net-standard-20"></a>.NET Standard 2.0 での gRPC クライアントの使用
 
@@ -61,6 +61,18 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
+```
+
+クライアントは、[gRPC クライアント ファクトリ](xref:grpc/clientfactory)を使用して作成することもできます。 HTTP プロバイダーは、<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> 拡張メソッドを使用して構成されます。
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>(options =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 詳細については、「[.NET gRPC クライアントを使用して gRPC-Web を構成する](xref:grpc/browser#configure-grpc-web-with-the-net-grpc-client)」を参照してください。

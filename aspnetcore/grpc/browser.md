@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 0967a70b498156d9c4ea8818ee1c80b37d9f2d87
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: 389915e17234d9e8bf0f03e83948daf83d479d8d
+ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217480"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711270"
 ---
 # <a name="use-grpc-in-browser-apps"></a>ブラウザー アプリでの gRPC の使用
 
@@ -135,7 +135,7 @@ gRPC-Web を使用するには:
 
 ### <a name="use-grpc-client-factory-with-grpc-web"></a>gRPC-Web で gRPC クライアント ファクトリを使用する
 
-gRPC-Web と互換性のある .NET クライアントは、gRPC と [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory) の統合を使用して作成できます。
+gRPC-Web と互換性のある .NET クライアントは、[gRPC クライアント ファクトリ](xref:grpc/clientfactory)を使用して作成できます。
 
 gRPC-Web とクライアント ファクトリを使用するには:
 
@@ -147,12 +147,12 @@ gRPC-Web とクライアント ファクトリを使用するには:
 
 ```csharp
 builder.Services
-    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    .AddGrpcClient<Greet.GreeterClient>(options =>
     {
         options.Address = new Uri("https://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(
-        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 詳細については、「<xref:grpc/clientfactory>」を参照してください。

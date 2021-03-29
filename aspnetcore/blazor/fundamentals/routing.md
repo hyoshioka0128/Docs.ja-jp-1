@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: ee6de9a13a69154eef6b677663091667d391452f
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: f3bc46da8e9b9ca1fe5afab7ccc1de9eaad16e8d
+ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395059"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105051024"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor のルーティング
 
@@ -331,26 +331,13 @@ C# コード内の URI とナビゲーションを管理するには、<xref:Mic
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-クエリ文字列のパラメーターを解析するには:
+クエリ文字列のパラメーターを解析するための 1 つの方法は、[JAVASCRIPT (JS) 相互運用機能](xref:blazor/call-javascript-from-dotnet) で [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) を使用することです。
 
-* アプリでは <xref:Microsoft.AspNetCore.WebUtilities> API を使用できます。 アプリで API を使用できない場合は、[Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities) のアプリのプロジェクト ファイルにパッケージ参照を追加します。
-* <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType> を使用してクエリ文字列を解析した後に値を取得します。
+```javascript
+export createQueryString = (string queryString) => new URLSearchParams(queryString);
+```
 
-次の `ParseQueryString` コンポーネントの例では、`ship` という名前のクエリ文字列パラメーターのキーを解析します。 たとえば、URL クエリ文字列のキーと値のペアの `?ship=Tardis` の場合、`queryValue` の `Tardis` 値が取り込まれます。 次の例では、`https://localhost:5001/parse-query-string?ship=Tardis` という URL を使用してアプリに移動します。
-
-`Pages/ParseQueryString.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
+詳細については、「[Blazor JavaScript の分離とオブジェクト参照](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references)」を参照してください。
 
 ## <a name="navlink-and-navmenu-components"></a>`NavLink` および `NavMenu` コンポーネント
 

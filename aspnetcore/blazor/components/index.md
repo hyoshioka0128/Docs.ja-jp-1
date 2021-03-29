@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: f44eef1ebf98958e6e6ab78b4a50b24b32e2ad1e
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: f8bd8817a7950c8fa260febabf39a386d6b5e556
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711348"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555033"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
@@ -248,32 +248,6 @@ namespace BlazorSample
 
 ## <a name="parameters"></a>パラメーター
 
-### <a name="route-parameters"></a>ルート パラメーター
-
-コンポーネントでは、[`@page`][9] ディレクティブに指定されたルート テンプレートからルート パラメーターを受け取ることができます。 ルーターでは、ルート パラメーターを使用して、対応するコンポーネント パラメーターが設定されます。
-
-::: moniker range=">= aspnetcore-5.0"
-
-省略可能なパラメーターがサポートされています。 次の例では、省略可能なパラメーター `text` を使用して、ルート セグメントの値をコンポーネントの `Text` プロパティに割り当てます。 セグメントが存在しない場合、`Text` の値は `fantastic` に設定されます。
-
-`Pages/RouteParameter.razor`:
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=1,6-7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-`Pages/RouteParameter.razor`:
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=2,7-8)]
-
-オプションのパラメーターはサポートされていないため、前の例では 2 つの [`@page`][9] ディレクティブが適用されます。 1 つ目は、パラメーターを指定せずにコンポーネントへの移動を許可します。 2 番目の [`@page`][9] ディレクティブでは、`{text}` ルート パラメーターを受け取り、その値を `Text` プロパティに割り当てます。
-
-::: moniker-end
-
-複数のフォルダーにわたりパスをキャプチャするキャッチオール ルート パラメーター (`{*pageRoute}`) の詳細については、「<xref:blazor/fundamentals/routing#catch-all-route-parameters>」を参照してください。
-
 ### <a name="component-parameters"></a>コンポーネントのパラメーター
 
 コンポーネントには、"*コンポーネント パラメーター*" を指定できます。これは、[`[Parameter]` 属性](xref:Microsoft.AspNetCore.Components.ParameterAttribute)を指定したコンポーネント クラス上で、単純な、または複雑なパブリック プロパティを使用して定義します。 マークアップ内でコンポーネントの引数を指定するには、属性を使います。
@@ -383,7 +357,7 @@ public string Title { get; set; } = "Panel Title from Child";
   
   > 'await' 演算子は、非同期メソッド内でのみ使用できます。 このメソッドを 'async' 修飾子でマークし、その戻り値の型を 'Task' に変更することを検討してください。
 
-  上記の例で非同期的に `Title` パラメーターの値を取得するには、次の例に示すように、コンポーネントで [`OnInitializedAsync` ライフサイクル イベント](xref:blazor/components/lifecycle#component-initialization-methods)を使用できます。
+  上記の例で非同期的に `Title` パラメーターの値を取得するには、次の例に示すように、コンポーネントで [`OnInitializedAsync` ライフサイクル イベント](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)を使用できます。
   
   ```razor
   <ChildComponent Title="@title">
@@ -486,7 +460,33 @@ public DateTime StartData { get; set; }
 * パラメーター プロパティは、指定された生データを表す純粋な自動プロパティのままにしておきます。
 * パラメーター プロパティに基づいて変換されたデータを指定する、その他のプロパティまたはメソッドを作成します。
 
-新しいデータを受け取るたびに受け取ったパラメーターを変換したい場合は、`OnParametersSetAsync` をオーバーライドできます。
+新しいデータを受け取るたびに受け取ったパラメーターを変換したい場合は、[`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) をオーバーライドできます。
+
+### <a name="route-parameters"></a>ルート パラメーター
+
+コンポーネントでは、[`@page`][9] ディレクティブに指定されたルート テンプレートからルート パラメーターを受け取ることができます。 ルーターでは、ルート パラメーターを使用して、対応するコンポーネント パラメーターが設定されます。
+
+::: moniker range=">= aspnetcore-5.0"
+
+省略可能なパラメーターがサポートされています。 次の例では、省略可能なパラメーター `text` を使用して、ルート セグメントの値をコンポーネントの `Text` プロパティに割り当てます。 セグメントが存在しない場合、`Text` の値は `fantastic` に設定されます。
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=1,6-7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=2,7-8)]
+
+オプションのパラメーターはサポートされていないため、前の例では 2 つの [`@page`][9] ディレクティブが適用されます。 1 つ目は、パラメーターを指定せずにコンポーネントへの移動を許可します。 2 番目の [`@page`][9] ディレクティブでは、`{text}` ルート パラメーターを受け取り、その値を `Text` プロパティに割り当てます。
+
+::: moniker-end
+
+複数のフォルダーにわたりパスをキャプチャするキャッチオール ルート パラメーター (`{*pageRoute}`) の詳細については、「<xref:blazor/fundamentals/routing#catch-all-route-parameters>」を参照してください。
 
 ## <a name="child-content"></a>子コンテンツ
 
@@ -698,9 +698,9 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 > [!IMPORTANT]
 > `loginDialog` 変数は、コンポーネントがレンダリングされた後にのみ設定され、その出力には `MyLoginDialog` 要素が含まれます。 コンポーネントがレンダリングされるまで、参照するものはありません。
 >
-> コンポーネントのレンダリングが完了した後にコンポーネント参照を操作するには、[`OnAfterRenderAsync`メソッドまたは `OnAfterRender` メソッド](xref:blazor/components/lifecycle#after-component-render)を使用します。
+> コンポーネントのレンダリングが完了した後にコンポーネント参照を操作するには、[`OnAfterRender`メソッドまたは `OnAfterRenderAsync` メソッド](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)を使用します。
 >
-> イベント ハンドラーで参照変数を使用するには、ラムダ式を使用するか、[`OnAfterRenderAsync` または `OnAfterRender` メソッド](xref:blazor/components/lifecycle#after-component-render)でイベント ハンドラー デリゲートを割り当てます。 これにより、イベント ハンドラーが割り当てられる前に参照変数が確実に割り当てられます。
+> イベント ハンドラーで参照変数を使用するには、ラムダ式を使用するか、[`OnAfterRender` または `OnAfterRenderAsync` メソッド](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)でイベント ハンドラー デリゲートを割り当てます。 これにより、イベント ハンドラーが割り当てられる前に参照変数が確実に割り当てられます。
 >
 > ```razor
 > <button type="button" 
@@ -955,7 +955,7 @@ Blazor フレームワークでは、一般に安全な親から子へのパラ�
 次の変更された `Expander` コンポーネント:
 
 * 親から `Expanded` コンポーネント パラメーター値を受け入れます。
-* コンポーネント パラメーター値を、[OnInitialized イベント](xref:blazor/components/lifecycle#component-initialization-methods) の "*プライベート フィールド*" (`expanded`) に割り当てます。
+* コンポーネント パラメーター値を、[OnInitialized イベント](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync) の "*プライベート フィールド*" (`expanded`) に割り当てます。
 * プライベート フィールドを使用して、その内部のトグル状態を維持します。これは、パラメーターに直接書き込まれないようにする方法を示しています。
 
 ```razor
