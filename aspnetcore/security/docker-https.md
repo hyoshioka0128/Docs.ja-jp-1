@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: 3af2aff477604eb19ac211753f848d08d0c67c72
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 3201eac9128e30e63a34b2e1b8736ac69fb59d8f
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588641"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106164306"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>HTTPS 経由で Docker を使用して ASP.NET Core イメージをホストする
 
@@ -31,9 +31,7 @@ ms.locfileid: "102588641"
 
 [既定では、](./enforcing-ssl.md)ASP.NET Core で HTTPS が使用されます。 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) は、信頼、id、および暗号化のための [証明書](https://en.wikipedia.org/wiki/Public_key_certificate) に依存します。
 
-このドキュメントでは、HTTPS で事前に構築されたコンテナーイメージを実行する方法について説明します。
-
-開発シナリオについては、「 [HTTPS 経由の Docker を使用した ASP.NET Core アプリケーションの開発](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md) 」を参照してください。
+このドキュメントでは、 [.net コマンドラインインターフェイス (CLI)](/dotnet/core/tools/)を使用して、HTTPS で事前に構築されたコンテナーイメージを実行する方法について説明します。 Visual Studio を使用して開発環境で Docker を実行する方法については、「 [HTTPS 経由で docker を使用して ASP.NET Core アプリケーションを開発](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)する」を参照してください。
 
 このサンプルには、[Docker 17.06](https://docs.docker.com/release-notes/docker-ce) 以降の [Docker クライアント](https://www.docker.com/products/docker)が必要です。
 

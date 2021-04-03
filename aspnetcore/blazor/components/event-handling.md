@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: a768934bf761632803b667b32afeab686ebed6f9
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: c04ff3c2a8de6e8c9d0fa0653f09da2984dc528e
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711049"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555046"
 ---
 # <a name="aspnet-core-blazor-event-handling"></a>ASP.NET Core Blazor のイベント処理
 
@@ -36,7 +36,7 @@ ms.locfileid: "104711049"
 イベント処理の場合:
 
 * <xref:System.Threading.Tasks.Task> を返す非同期デリゲート イベント ハンドラーがサポートされています。
-* デリゲート イベント ハンドラーによって UI レンダリングが自動的にトリガーされるため、[StateHasChanged](xref:blazor/components/lifecycle#state-changes) を手動で呼び出す必要はありません。
+* デリゲート イベント ハンドラーによって UI レンダリングが自動的にトリガーされるため、[StateHasChanged](xref:blazor/components/lifecycle#state-changes-statehaschanged) を手動で呼び出す必要はありません。
 * 例外がログされます。
 
 コード例を次に示します。
@@ -384,7 +384,7 @@ Razor コンポーネントでは、カスタム ハンドラーを要素にア�
 `ChildComponent` でボタンが選択されると:
 
 * `Parent` コンポーネントの `ShowMessage` メソッドが呼び出されます。 `message` が更新されて、`Parent` コンポーネントに表示されます。
-* コールバックのメソッド (`ShowMessage`) 内に、[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) の呼び出しは必要ありません。 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、子イベントが子の中で実行されるイベント ハンドラーでコンポーネントのレンダリングをトリガーするのと同様に、`Parent` コンポーネントを再レンダリングするために自動的に呼び出されます。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
+* コールバックのメソッド (`ShowMessage`) 内に、[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) の呼び出しは必要ありません。 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> は、子イベントが子の中で実行されるイベント ハンドラーでコンポーネントのレンダリングをトリガーするのと同様に、`Parent` コンポーネントを再レンダリングするために自動的に呼び出されます。 詳細については、「<xref:blazor/components/rendering>」を参照してください。
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> と <xref:Microsoft.AspNetCore.Components.EventCallback%601> では非同期デリゲートを使用できます。 <xref:Microsoft.AspNetCore.Components.EventCallback> は弱く型指定されており、`InvokeAsync(Object)` では任意の型の引数を渡すことができます。 <xref:Microsoft.AspNetCore.Components.EventCallback%601> は厳密に型指定されており、`InvokeAsync(T)` では `TValue` に代入可能な `T` 引数を渡す必要があります。
 
