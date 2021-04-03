@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: f8bd8817a7950c8fa260febabf39a386d6b5e556
-ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
+ms.openlocfilehash: d1cfc17bb444abea99cdf6570862ed8d37810c94
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105555033"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081534"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>ASP.NET Core Razor コンポーネントの作成と使用
 
@@ -311,7 +311,46 @@ public string Title { get; set; } = "Panel Title from Child";
   * `person` オブジェクトの `Name` プロパティ。
 
   `Pages/ParentComponent.razor`:
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
   
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@title">
       Title from field.
@@ -344,6 +383,8 @@ public string Title { get; set; } = "Panel Title from Child";
       }
   }
   ```
+
+  ::: moniker-end
   
   Razor ページ (`.cshtml`) とは異なり、Blazor では、コンポーネントのレンダリング中に Razor 式で非同期処理を実行することはできません。 これは、Blazor が対話型 UI をレンダリングするように設計されているためです。 対話型 UI の場合、画面には常に何かが表示されている必要があるため、レンダリング フローをブロックしても意味はありません。 代わりに、非同期処理は、いずれかの[非同期ライフサイクル イベント](xref:blazor/components/lifecycle)中に実行されます。 非同期ライフサイクル イベントが発生するたびに、コンポーネントは再びレンダリングされる可能性があります。 次の Razor 構文はサポートされて **いません**。
   
@@ -357,7 +398,7 @@ public string Title { get; set; } = "Panel Title from Child";
   
   > 'await' 演算子は、非同期メソッド内でのみ使用できます。 このメソッドを 'async' 修飾子でマークし、その戻り値の型を 'Task' に変更することを検討してください。
 
-  上記の例で非同期的に `Title` パラメーターの値を取得するには、次の例に示すように、コンポーネントで [`OnInitializedAsync` ライフサイクル イベント](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)を使用できます。
+  上記の例で非同期的に `Title` パラメーターの値を取得するには、次の例に示すように、コンポーネントで [`OnInitializedAsync` ライフサイクル イベント](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)を使用できます。
   
   ```razor
   <ChildComponent Title="@title">
@@ -421,12 +462,35 @@ public string Title { get; set; } = "Panel Title from Child";
   > コンポーネント属性では、複合コンテンツ (C# とマークアップの混合) はサポートされていません。
   
   合成値の割り当てをサポートするには、メソッド、フィールド、またはプロパティを使用します。 次の例では、C# メソッド `GetTitle` 内で "SKU-" と製品の在庫数の連結が実行されます。
-  
+
+  ::: moniker range=">= aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@GetTitle()">
       Composed title from method.
   </ChildComponent>
-  
+
+  @code {
+      private Product product = new();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+
   @code {
       private Product product = new Product();
 
@@ -438,7 +502,9 @@ public string Title { get; set; } = "Panel Title from Child";
       }
   }
   ```
-  
+
+  ::: moniker-end
+
 詳細については、「<xref:mvc/views/razor>」を参照してください。
 
 > [!WARNING]
@@ -813,7 +879,7 @@ public class NotifierService
 
 要素またはコンポーネントのリストをレンダリングし、その後に要素またはコンポーネントが変更された場合、Blazor の比較アルゴリズムでは、前のどの要素やコンポーネントを保持できるか、およびモデル オブジェクトをそれらにどのようにマップするかを決定する必要があります。 通常、このプロセスは自動で、無視できますが、プロセスの制御が必要になる場合があります。
 
-次の例を確認してください。
+次に例を示します。
 
 ```csharp
 @foreach (var person in People)
@@ -955,7 +1021,7 @@ Blazor フレームワークでは、一般に安全な親から子へのパラ�
 次の変更された `Expander` コンポーネント:
 
 * 親から `Expanded` コンポーネント パラメーター値を受け入れます。
-* コンポーネント パラメーター値を、[OnInitialized イベント](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync) の "*プライベート フィールド*" (`expanded`) に割り当てます。
+* コンポーネント パラメーター値を、[`OnInitialized` イベント](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)の "*プライベート フィールド*" (`expanded`) に割り当てます。
 * プライベート フィールドを使用して、その内部のトグル状態を維持します。これは、パラメーターに直接書き込まれないようにする方法を示しています。
 
 ```razor
