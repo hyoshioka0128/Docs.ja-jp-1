@@ -4,7 +4,7 @@ author: juntaoluo
 description: Kestrel サーバーと ASP.NET Core の gRPC サービスについて説明します。
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 09/20/2019
+ms.date: 03/29/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/index
-ms.openlocfilehash: 5820049aba90a2fbd06a23756b12ac9656c3b2c4
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: e4648641f79961d6e3c66ecf0b7629732afd2723
+ms.sourcegitcommit: 7354c2029164702d075fd3786d96a92c6d49bc6e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057513"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106164293"
 ---
 # <a name="introduction-to-grpc-on-net"></a>.NET の gRPC の概要
 
@@ -80,7 +80,13 @@ gRPC ツール サポートについて詳しくは、「<xref:grpc/basics>」�
 
 ## <a name="grpc-services-on-aspnet-core"></a>ASP.NET Core での gRPC サービス
 
-gRPC サービスは ASP.NET Core でホストできます。 サービスは、ログ記録、依存関係の注入 (DI)、認証、承認などの一般的な ASP.NET Core 機能と完全に統合されています。
+gRPC サービスは ASP.NET Core でホストできます。 サービスは、ログ、依存関係の注入 (DI)、認証、認可などの ASP.NET Core 機能と完全に統合されています。
+
+### <a name="add-grpc-services-to-an-aspnet-core-app"></a>ASP.NET Core アプリに gRPC サービスを追加する
+
+gRPC には [Grpc. AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) パッケージが必要です。 .NET アプリでの gRPC の構成の詳細については、「[gRPC を構成する](xref:grpc/aspnetcore#configure-grpc)」を参照してください。
+
+### <a name="the-grpc-service-project-template"></a>gRPC サービス プロジェクト テンプレート
 
 gRPC サービスのプロジェクト テンプレートには、スターター サービスが用意されています。
 
