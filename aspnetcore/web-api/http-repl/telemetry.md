@@ -1,6 +1,6 @@
 ---
 title: HttpRepl テレメトリ
-author: scottaddie
+author: rick-anderson
 description: HttpRepl によって収集されたテレメトリについて説明します。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl/telemetry
-ms.openlocfilehash: 5ff22753f566c494e51dae67c8c4f6371211be78
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: 267a1233c216e823f6ffc086e94c198b4eb103bc
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550609"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563612"
 ---
 # <a name="httprepl-telemetry"></a>HttpRepl テレメトリ
 
@@ -79,7 +79,7 @@ The .NET tools collect usage data in order to help us improve your experience. I
 | >= 5.0        | コマンドの場合は `connect` 、の特殊なケースが使用されているかどうか、 `dotnet new webapi` および、優先順位によってバイパスされたかどうかを指定します。 |
 | >= 5.0        | すべての HTTP コマンド (GET、POST、PUT など) について、各オプションが指定されているかどうかを示します。 オプションの値は収集されません。 |
 
-## <a name="additional-resources"></a>その他のリソース
+## <a name="additional-resources"></a>その他の技術情報
 
 * [.NET Core SDK 製品利用統計情報](/dotnet/core/tools/telemetry)
 * [テレメトリデータを .NET Core CLI する](https://dotnet.microsoft.com/platform/telemetry)

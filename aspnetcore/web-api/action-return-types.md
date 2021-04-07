@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Web API のコントローラー アクションの戻り値の型
-author: scottaddie
+author: rick-anderson
 description: ASP.NET Core Web API でのさまざまなコントローラー アクション メソッドの戻り値の型の使用について説明します。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/action-return-types
-ms.openlocfilehash: b377025a843f82a57fd0aac4961ddcedc67ff3b9
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: b6de3efe610bbc1e948940ff11cad8dcc9ad1921
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589726"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564053"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>ASP.NET Core Web API のコントローラー アクションの戻り値の型
 
@@ -201,7 +201,7 @@ public ActionResult<IEnumerable<Product>> Get() =>
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>その他のリソース
+## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:mvc/controllers/actions>
 * <xref:mvc/models/validation>

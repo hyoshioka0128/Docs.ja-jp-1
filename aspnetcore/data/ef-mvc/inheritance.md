@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 299e00b223d287c4e2ece3d1e250581e2a7565e5
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: ece1e7160ade170c88972f6cd3ad28d545ea5678
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586372"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638771"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>チュートリアル: 継承を実装する - ASP.NET MVC と EF Core
 
@@ -56,22 +56,22 @@ School データ モデル内の `Instructor` および `Student` クラスに�
 
 ![Person クラスから派生する Student クラスと Instructor クラス](inheritance/_static/inheritance.png)
 
-データベースでこの継承構造を表すことができるいくつかの方法があります。 受講者とインストラクターの両方に関する情報を 1 つのテーブル内に含む Person テーブルを使用できます。 一部の列 (HireDate) はインストラクターのみに適用され、一部 (EnrollmentDate) は受講者のみに適用され、一部 (LastName、FirstName) は両方に適用される可能性があります。 通常、各行がどの種類を表すかを示す識別子の列があります。 たとえば、識別子列にインストラクターを示す "Instructor" と受講者を示す "Student" がある場合があります。
+データベースでこの継承構造を表すことができるいくつかの方法があります。 受講者とインストラクターの両方に関する情報を 1 つのテーブル内に含む `Person` テーブルを使用できます。 一部の列 (HireDate) はインストラクターのみに適用され、一部 (EnrollmentDate) は受講者のみに適用され、一部 (LastName、FirstName) は両方に適用される可能性があります。 通常、各行がどの種類を表すかを示す識別子の列があります。 たとえば、識別子列にインストラクターを示す "Instructor" と受講者を示す "Student" がある場合があります。
 
 ![Table-per-Hierarchy の例](inheritance/_static/tph.png)
 
-1 つのデータベース テーブルからエンティティの継承構造を生成するこのパターンは、Table-per-Hierarchy (TPH) 継承と呼ばれます。
+1 つのデータベース テーブルからエンティティの継承構造を生成するこのパターンは、*Table-per-Hierarchy (TPH)* 継承と呼ばれます。
 
-代わりに、継承構造と同じように見えるデータベースを作成することもできます。 たとえば、Person テーブルに名前フィールドのみを含め、データ フィールドが含まれる別の Instructor テーブルと Student テーブルを使用できます。
+代わりに、継承構造と同じように見えるデータベースを作成することもできます。 たとえば、`Person` テーブルに名前フィールドのみを含め、データ フィールドが含まれる別の `Instructor` テーブルと `Student` テーブルを使用できます。
 
 > [!WARNING]
-> Table Per Type (TPT) は EF Core 3.x ではサポートされていませんが、[EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan) で実装されています。
+> Table-Per-Type (TPT) は EF Core 3.x ではサポートされていませんが、[EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan) で実装されています。
 
 ![Table-Per-Type 継承](inheritance/_static/tpt.png)
 
-このエンティティ クラスごとにデータベース テーブルを作成するパターンは、Table-Per-Type (TPT) 継承と呼ばれます。
+このエンティティ クラスごとにデータベース テーブルを作成するパターンは、*Table-Per-Type (TPT)* 継承と呼ばれます。
 
-他のオプションとして、個々のテーブルにすべての非抽象型をマップすることもできます。 継承されたプロパティを含むクラスのすべてのプロパティは、対応するテーブルの列にマップされます。 このパターンは、Table-per-Concrete Class (TPC) 継承と呼ばれます。 前に示したように、Person、Student、および Instructor クラスの TPC 継承を実装した場合、Student テーブルと Instructor テーブルは、継承を実装した後がその前とまったく同じに見えます。
+他のオプションとして、個々のテーブルにすべての非抽象型をマップすることもできます。 継承されたプロパティを含むクラスのすべてのプロパティは、対応するテーブルの列にマップされます。 このパターンは、*Table-per-Concrete Class (TPC)* 継承と呼ばれます。 前に示したように、`Person`、`Student`、および `Instructor` クラスの TPC 継承を実装した場合、`Student` と `Instructor` のテーブルは、継承を実装した後がその前とまったく同じに見えます。
 
 TPC および TPH 継承パターンは、一般的に TPT 継承パターンよりも高いパフォーマンスを実現します。これは、TPT パターンの結果として複雑な結合クエリになる可能性があるためです。
 

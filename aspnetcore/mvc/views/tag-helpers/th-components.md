@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core のタグ ヘルパー コンポーネント
-author: scottaddie
+author: rick-anderson
 description: タグ ヘルパー コンポーネントについてと、ASP.NET Core でのその使用方法について説明します。
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: fb0bda0cf8d225df4c58ae43f81ed0dce10c1adc
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: e99c2c2e5c0702dc9f1b5b79a1b8e3392a4a389d
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587152"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564023"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>ASP.NET Core のタグ ヘルパー コンポーネント
 
@@ -167,7 +167,7 @@ public class AddressTagHelperComponent : TagHelperComponent
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_AddressPrintable)]
 
-## <a name="additional-resources"></a>その他のリソース
+## <a name="additional-resources"></a>その他の技術情報
 
 * <xref:fundamentals/dependency-injection>
 * <xref:mvc/views/dependency-injection>

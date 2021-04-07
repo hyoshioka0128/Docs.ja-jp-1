@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/concurrency
-ms.openlocfilehash: cc93069899953d04d1df4e79a282c349a163b06e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 013527216adb799a32370a85e048fbb06792338d
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102586775"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638810"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>チュートリアル: コンカレンシーの処理 - ASP.NET MVC と EF Core
 
 先のチュートリアルでは、データを更新する方法について学習しました。 このチュートリアルでは、複数のユーザーが同じエンティティを同時に更新するときの競合の処理方法について説明します。
 
-Department エンティティを使用する Web ページを作成し、コンカレンシー エラーを処理します。 次の図は Edit ページと Delete ページのものです。コンカレンシーで競合が発生すると、メッセージが表示されます。
+`Department` エンティティを使用する Web ページを作成し、コンカレンシー エラーを処理します。 次の図は Edit ページと Delete ページのものです。コンカレンシーで競合が発生すると、メッセージが表示されます。
 
 ![Department Edit ページ](concurrency/_static/edit-error.png)
 
@@ -148,13 +148,13 @@ dotnet ef database update
 
 ## <a name="update-index-view"></a>Index ビューを更新する
 
-スキャフォールディング エンジンによりインデックス ビューに RowVersion 列が作成されましたが、このフィールドは表示すべきではありません。
+スキャフォールディング エンジンによりインデックス ビューに `RowVersion` 列が作成されましたが、このフィールドは表示すべきではありません。
 
 *Views/Departments/Index.cshtml* のコードを次のコードに変更します。
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
-これで見出しが "Departments" に変更され、RowVersion 列が削除され、管理者の名ではなく姓名が表示されます。
+これで見出しが "Departments" に変更され、`RowVersion` 列が削除され、管理者の名ではなく姓名が表示されます。
 
 ## <a name="update-edit-methods"></a>Edit メソッドを更新する
 
@@ -166,7 +166,7 @@ HttpPost `Edit` メソッドの既存コードを次のコードに変更しま�
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EditPost)]
 
-このコードはまず、更新する部署を読み込みます。 `FirstOrDefaultAsync` が null を返した場合、部署は別のユーザーが削除しています。 その場合、このコードは送信されたフォーム値を利用して部署エンティティを作成します。編集ページはエラー メッセージと共に再表示できます。 あるいは、部署フィールドを再表示せず、エラー メッセージのみを表示するのであれば、部署エンティティを再作成する必要はないでしょう。
+このコードはまず、更新する部署を読み込みます。 `FirstOrDefaultAsync` が null を返した場合、部署は別のユーザーが削除しています。 その場合、このコードは送信されたフォーム値を利用して `Department` エンティティを作成します。編集ページはエラー メッセージと共に再表示できます。 あるいは、部署フィールドを再表示せず、エラー メッセージのみを表示するのであれば、`Department` エンティティを再作成する必要はないでしょう。
 
 ビューの非表示フィールドに元の `RowVersion` 値が保管されます。このメソッドは `rowVersion` パラメーターでその値を受け取ります。 `SaveChanges` を呼び出す前に、エンティティの `OriginalValues` コレクションにその元の `RowVersion` プロパティ値を置く必要があります。
 
@@ -234,7 +234,7 @@ Delete ページの場合、Entity Framework は、同様の方法で部署を�
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
-このメソッドは、コンカレンシー エラー後にページが再表示されたかどうかを示すオプション パラメーターを受け取ります。 このフラグが true のとき、指定の部署が現存していなければ、別のユーザーによって削除されています。 その場合、このコードは Index ページにリダイレクトされます。  このフラグが true のとき、Department が存在すれば、別のユーザーが変更しています。 その場合、このコードは `ViewData` を利用してビューにエラー メッセージを送信します。
+このメソッドは、コンカレンシー エラー後にページが再表示されたかどうかを示すオプション パラメーターを受け取ります。 このフラグが true のとき、指定の部署が現存していなければ、別のユーザーによって削除されています。 その場合、このコードは Index ページにリダイレクトされます。  このフラグが true のとき、その部署が存在すれば、別のユーザーが変更しています。 その場合、このコードは `ViewData` を利用してビューにエラー メッセージを送信します。
 
 HttpPost `Delete` メソッドのコード (名前は `DeleteConfirmed`) を次のコードで置き換えます。
 
@@ -246,7 +246,7 @@ HttpPost `Delete` メソッドのコード (名前は `DeleteConfirmed`) を次�
 public async Task<IActionResult> DeleteConfirmed(int id)
 ```
 
-このパラメーターをモデル バインダーによって作成された Department エンティティに変更しています。 それにより、レコード キーに加え、RowVersion プロパティ値に EF はアクセスできます。
+このパラメーターをモデル バインダーによって作成された `Department` エンティティ インスタンスに変更しています。 それにより、EF はレコード キーに加え、RowVers`ion プロパティ値にアクセスできます。
 
 ```csharp
 public async Task<IActionResult> Delete(Department department)

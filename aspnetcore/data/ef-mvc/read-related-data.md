@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: 9ea3bd7aaa075ae4601af51c7cc90f28a884a096
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bf6fe42ae87637d0e8b9ce17d5d0c05d28b24501
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587893"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638758"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>チュートリアル: 関連データを読み取る - ASP.NET MVC と EF Core
 
@@ -51,7 +51,7 @@ ms.locfileid: "102587893"
 
 オブジェクト リレーショナル マッピング (ORM) ソフトウェア (Entity Framework など) では、次のように関連データをエンティティのナビゲーション プロパティに読み込むことができる方法がいくつかあります。
 
-* 一括読み込み。 エンティティが読み取られるときに、関連データがエンティティと共に取得されます。 これは通常、必要なデータをすべて取得する 1 つの結合クエリになります。 `Include` メソッドと `ThenInclude` メソッドを使用して、Entity Framework Core で一括読み込みを指定します。
+* [一括読み込み:](/ef/core/querying/related-data) エンティティが読み取られるときに、関連データがエンティティと共に取得されます。 これは通常、必要なデータをすべて取得する 1 つの結合クエリになります。 `Include` メソッドと `ThenInclude` メソッドを使用して、Entity Framework Core で一括読み込みを指定します。
 
   ![一括読み込みの例](read-related-data/_static/eager-loading.png)
 
@@ -59,11 +59,11 @@ ms.locfileid: "102587893"
 
   ![分離したクエリの例](read-related-data/_static/separate-queries.png)
 
-* 明示的読み込み。 エンティティが最初に読み込まれるときに、関連データは取得されません。 必要な場合に、関連データを取得するコードを記述します。 分離したクエリによる一括読み込みのように、明示的読み込みでは、複数のクエリがデータベースに送信されます。 明示的読み込みを使用すると、コードで読み込まれるナビゲーション プロパティを指定する点が異なります。 Entity Framework Core 1.1 では、`Load` メソッドを使用して、明示的読み込みを実行できます。 次に例を示します。
+* [明示的読み込み:](/ef/core/querying/related-data) エンティティが最初に読み込まれるときに、関連データは取得されません。 必要な場合に、関連データを取得するコードを記述します。 分離したクエリによる一括読み込みのように、明示的読み込みでは、複数のクエリがデータベースに送信されます。 明示的読み込みを使用すると、コードで読み込まれるナビゲーション プロパティを指定する点が異なります。 Entity Framework Core 1.1 では、`Load` メソッドを使用して、明示的読み込みを実行できます。 次に例を示します。
 
   ![明示的読み込みの例](read-related-data/_static/explicit-loading.png)
 
-* 遅延読み込み。 エンティティが最初に読み込まれるときに、関連データは取得されません。 ただし、ナビゲーション プロパティに初めてアクセスしようとすると、そのナビゲーション プロパティに必要なデータが自動的に取得されます。 初めてナビゲーション プロパティからデータを取得しようとするたびに、クエリがデータベースに送信されます。 Entity Framework Core 1.0 では、遅延読み込みはサポートされません。
+* [遅延読み込み](/ef/core/querying/related-data): エンティティが最初に読み込まれるときに、関連データは取得されません。 ただし、ナビゲーション プロパティに初めてアクセスしようとすると、そのナビゲーション プロパティに必要なデータが自動的に取得されます。 初めてナビゲーション プロパティからデータを取得しようとするたびに、クエリがデータベースに送信されます。 Entity Framework Core 1.0 では、遅延読み込みはサポートされません。
 
 ### <a name="performance-considerations"></a>パフォーマンスに関する考慮事項
 
@@ -73,9 +73,9 @@ ms.locfileid: "102587893"
 
 ## <a name="create-a-courses-page"></a>Courses ページを作成する
 
-Course エンティティには、コースが割り当てられている部門の Dpartment エンティティを含む、ナビゲーション プロパティが含まれます。 コースのリストに割り当てられた部門の名前を表示するには、`Course.Department` ナビゲーション プロパティにある Department エンティティから Name プロパティを取得する必要があります。
+`Course` エンティティには、コースが割り当てられている部門の `Department` エンティティを含む、ナビゲーション プロパティが含まれます。 コースのリストに割り当てられた部門の名前を表示するには、`Course.Department` ナビゲーション プロパティにある `Department` エンティティから `Name` プロパティを取得する必要があります。
 
-次の図に示すように、Students コントローラーに対して前に実行した **Entity Framework のスキャフォールディング機能を使用して、ビューと共に MVC コントローラー** に同じオプションを使用して、Course エンティティ型の CoursesController という名前のコントローラーを作成します。
+次の図に示すように、`StudentsController` に対して前に実行した **Entity Framework のスキャフォールディング機能を使用して、ビューと共に MVC コントローラーに** 同じオプションを使用して、`Course` エンティティ型の `CoursesController` という名前のコントローラーを作成します。
 
 ![Courses コントローラーを追加する](read-related-data/_static/add-courses-controller.png)
 
@@ -91,11 +91,11 @@ Course エンティティには、コースが割り当てられている部門�
 
 スキャフォールディング コードに、次の変更を行いました。
 
-* 見出しが Index から Courses に変更されました。
+* 見出しが **Index** から **Courses** に変更されました。
 
 * `CourseID` プロパティ値を示す **Number** 列が追加されました。 既定では、主キーは、通常、エンド ユーザーにとって意味がないため、スキャフォールディングされません。 ただし、このケースでは、主キーは意味があり、表示する必要があります。
 
-* 部門名が表示されるように、**Department** 列を変更しました。 コードは、`Department` ナビゲーション プロパティに読み込まれる Department エンティティの `Name` プロパティを表示します。
+* 部門名が表示されるように、**Department** 列を変更しました。 コードは、`Department` ナビゲーション プロパティに読み込まれる `Department` エンティティの `Name` プロパティを表示します。
 
   ```html
   @Html.DisplayFor(modelItem => item.Department.Name)
@@ -107,17 +107,17 @@ Course エンティティには、コースが割り当てられている部門�
 
 ## <a name="create-an-instructors-page"></a>Instructors ページを作成する
 
-このセクションでは、Instructors ページを表示するために、Instructor エンティティのコントローラーとビューを作成します。
+このセクションでは、Instructors ページを表示するために、`Instructor` エンティティのコントローラーとビューを作成します。
 
 ![Instructors/Index ページ](read-related-data/_static/instructors-index.png)
 
 このページは、次の方法で関連データを読み取って表示します。
 
-* インストラクターのリストには、OfficeAssignment エンティティからの関連データが表示されます。 Instructor エンティティと OfficeAssignment エンティティは、一対ゼロまたは一対一リレーションシップです。 OfficeAssignment エンティティに一括読み込みを使用します。 前述のように、通常、一括読み込みは、主テーブルで取得したすべての行の関連データが必要なときにより効率的です。 このケースでは、割り当てられたすべてのインストラクターのオフィスの割り当てを表示する必要があります。
+* インストラクターのリストには、`OfficeAssignment` エンティティからの関連データが表示されます。 `Instructor` エンティティと `OfficeAssignment` エンティティは、一対ゼロまたは一対一のリレーションシップです。 `OfficeAssignment` エンティティに一括読み込みを使用します。 前述のように、通常、一括読み込みは、主テーブルで取得したすべての行の関連データが必要なときにより効率的です。 このケースでは、割り当てられたすべてのインストラクターのオフィスの割り当てを表示する必要があります。
 
-* ユーザーがインストラクターを選択すると、関連する Course エンティティが表示されます。 Instructor エンティティと Course エンティティは、多対多リレーションシップです。 Course エンティティとそれに関連する Department エンティティに一括読み込みを使用します。 このケースでは、選択したインストラクターのコースのみが必要なため、分離したクエリの方が効率的な可能性があります。 ただし、この例では、ナビゲーション プロパティにあるエンティティ内のナビゲーション プロパティに一括読み込みを使用する方法を示します。
+* ユーザーがインストラクターを選択すると、関連する `Course` エンティティが表示されます。 `Instructor` エンティティと `Course` エンティティは多対多リレーションシップです。 `Course` エンティティとその関連 `Department` エンティティの一括読み込みを使用します。 このケースでは、選択したインストラクターのコースのみが必要なため、分離したクエリの方が効率的な可能性があります。 ただし、この例では、ナビゲーション プロパティにあるエンティティ内のナビゲーション プロパティに一括読み込みを使用する方法を示します。
 
-* ユーザーがコースを選択すると、Enrollments エンティティ セットからの関連データが表示されます。 Course エンティティと Enrollment エンティティは、一対多リレーションシップです。 Enrollment エンティティとそれに関連する Student エンティティに分離したクエリを使用します。
+* ユーザーがコースを選択すると、`Enrollments` エンティティ セットからの関連データが表示されます。 `Course` エンティティと `Enrollment` エンティティは一対多リレーションシップです。 `Enrollment` エンティティとそれに関連する `Student` エンティティに分離したクエリを使用します。
 
 ### <a name="create-a-view-model-for-the-instructor-index-view"></a>Instructor インデックス ビューのビュー モデルを作成する
 
@@ -147,9 +147,11 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude)]
 
-ビューには常に OfficeAssignment エンティティが必要なため、同じクエリでフェッチする方が効率的です。 インストラクターが Web ページで選択されたときに、Course エンティティが必要なため、1 つのクエリが複数のクエリよりも適しているのは、ページに選択したコースを含めないよりも、含めて表示することの方が多い場合のみです。
+ビューには常に `OfficeAssignment` エンティティが必要なため、同じクエリでフェッチする方が効率的です。 インストラクターが Web ページで選択されたときに、Course エンティティが必要なため、1 つのクエリが複数のクエリよりも適しているのは、ページに選択したコースを含めないよりも、含めて表示することの方が多い場合のみです。
 
 `Course` から 2 つのプロパティが必要なため、コードでは `CourseAssignments` と `Course` を繰り返します。 `ThenInclude` 呼び出しの最初の文字列では、`CourseAssignment.Course`、`Course.Enrollments`、および `Enrollment.Student` を取得します。
+
+関連データの複数のレベルを含める方法の詳細については、[こちら](/ef/core/querying/related-data/eager#including-multiple-levels)を参照してください。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=3-6)]
 
@@ -157,13 +159,13 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=7-9)]
 
-次のコードは、インストラクターが選択されたときに実行されます。 選択されたインストラクターがビュー モデルのインストラクターのリストから取得されます。 ビュー モデルの `Courses` プロパティが Course エンティティと共にそのインストラクターの `CourseAssignments` ナビゲーション プロパティから読み込まれます。
+次のコードは、インストラクターが選択されたときに実行されます。 選択されたインストラクターがビュー モデルのインストラクターのリストから取得されます。 次に、ビュー モデルの `Courses` プロパティが `Course` エンティティと共にそのインストラクターの `CourseAssignments` ナビゲーション プロパティから読み込まれます。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=56-62)]
 
-`Where` メソッドはコレクションを返しますが、このケースでは、そのメソッドに渡された条件は、返されている Instructor エンティティの 1 つのみになります。 `Single` メソッドでは、コレクションがエンティティの `CourseAssignments` プロパティへのアクセス権を付与する、1 つの Instructor エンティティに変換されます。 `CourseAssignments` プロパティには、関連する `Course` エンティティのみを必要とする、`CourseAssignment` エンティティが含まれます。
+`Where` メソッドはコレクションを返しますが、このケースでは、そのメソッドに渡された条件は、返されている Instructor エンティティの 1 つのみになります。 `Single` メソッドを実行すると、コレクションが、エンティティの `CourseAssignments` プロパティへのアクセス権を付与する 1 つの `Instructor` エンティティに変換されます。 `CourseAssignments` プロパティには、関連する `Course` エンティティのみを必要とする、`CourseAssignment` エンティティが含まれます。
 
-コレクションに項目が 1 つのみであることがわかっている場合、コレクションで `Single` メソッドを使用します。 コレクションが空になる場合、または複数の項目がある場合、Single メソッドは例外をスローします。 代わりに、コレクションが空の場合に既定値 (この場合は null) を返す `SingleOrDefault` を使用します。 ただし、(null 参照で `Courses` プロパティを見つけようとして) 引き続き例外となる場合は、例外メッセージでは問題の原因があまり明確に示されません。 `Single` メソッドを呼び出す場合、個別に `Where` メソッドを呼び出す代わりに、Where 条件で渡すこともできます。
+コレクションに項目が 1 つのみであることがわかっている場合、コレクションで `Single` メソッドを使用します。 コレクションが空になる場合、または複数の項目がある場合、`Single` メソッドから例外がスローされます。 代わりに、コレクションが空の場合に既定値 (この場合は null) を返す `SingleOrDefault` を使用します。 ただし、(null 参照で `Courses` プロパティを見つけようとして) 引き続き例外となる場合は、例外メッセージでは問題の原因があまり明確に示されません。 `Single` メソッドを呼び出す場合、個別に `Where` メソッドを呼び出す代わりに、Where 条件で渡すこともできます。
 
 ```csharp
 .Single(i => i.ID == id.Value)
@@ -236,9 +238,9 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 追加したコード ブロックの後に、次のコードを追加します。 このコードは、コースを選択したときに、コースに登録されている受講者のリストを表示します。
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=101-125)]
 
-このコードは、コースに登録された受講生のリストを表示するために、ビュー モデルの Enrollments プロパティを読み取ります。
+このコードでは、コースに登録された受講生のリストを表示するために、ビュー モデルの `Enrollments` プロパティを読み取ります。
 
 もう一度ページを更新し、インストラクターを選択します。 次に、コースを選択して、登録済みの受講者とその成績のリストを表示します。
 
@@ -248,11 +250,11 @@ Index メソッドを次のコードに置き換えて、関連データの一�
 
 *InstructorsController.cs* でインストラクターのリストを取得したときに、`CourseAssignments` ナビゲーション プロパティに一括読み込みを指定しました。
 
-ユーザーは選択したインストラクターとコースの登録内容をほとんど表示する必要がないとします。 その場合は、要求された場合にのみ、登録データを読み取る必要がある可能性があります。 明示的読み込みを行う方法の例を表示するには、`Index` メソッドを次のコードに置き換えます。このコードは、Enrollments の一括読み込みを削除して、そのプロパティを明示的に読み込みます。 コードの変更が強調表示されています。
+ユーザーは選択したインストラクターとコースの登録内容をほとんど表示する必要がないとします。 その場合は、要求された場合にのみ、登録データを読み取る必要がある可能性があります。 明示的読み込みを行う方法の例を表示するには、`Index` メソッドを次のコードに置き換えます。このコードでは、`Enrollments` の一括読み込みを削除して、そのプロパティを明示的に読み込みます。 コードの変更が強調表示されています。
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ExplicitLoading&highlight=23-29)]
 
-新しいコードでは、インストラクター エンティティを取得するコードから登録データを呼び出す *ThenInclude* メソッドを削除します。 `AsNoTracking` も削除されます。  インストラクターとコースが選択された場合、強調表示されたコードで選択されたコードの Enrollment エンティティ、および各 Enrollment の Student エンティティを取得します。
+新しいコードでは、インストラクター エンティティを取得するコードから登録データを呼び出す `ThenInclude` メソッドを削除します。 `AsNoTracking` も削除されます。  インストラクターとコースが選択された場合、強調表示されたコードによって、選択されたコードの `Enrollment` エンティティ、および各 `Enrollment` の `Student` エンティティが取得されます。
 
 アプリを実行して、Instructors/Index ページに移動すると、データを取得する方法を変更しているにもかかわらず、ページ上で表示される内容に変わりがないことがわかります。
 

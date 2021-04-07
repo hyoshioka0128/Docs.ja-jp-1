@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: dadfceca2431ace558700ae06417f01c99751419
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: c2fcc3730fa8bb117c5547b6168afa27ee039d52
+ms.sourcegitcommit: 7b6781051d341a1daaf46c6a4368fa8a5701db81
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588283"
+ms.lasthandoff: 03/28/2021
+ms.locfileid: "105638745"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>チュートリアル: 関連データを更新する - ASP.NET MVC と EF Core
 
@@ -51,7 +51,7 @@ ms.locfileid: "102588283"
 
 ## <a name="customize-courses-pages"></a>Courses ページをカスタマイズする
 
-新しいコース エンティティが作成されると、既存の部門とのリレーションシップが必要になります。 これを容易にするため、スキャフォールディング コードには、コントローラーのメソッドと、部門を選択するためのドロップダウン リストを含む Create ビューと Edit ビューが含まれます。 ドロップダウン リストは、`Course.DepartmentID` 外部キー プロパティを設定します。これは、`Department` ナビゲーション プロパティを適切な Department エンティティとともに読み込むためにすべての Entity Framework で必要です。 このスキャフォールディング コードを使用しますが、エラー処理を追加し、ドロップダウン リストを並べ替えるために少し変更します。
+新しい `Course` エンティティが作成されると、既存の部門とのリレーションシップが必要になります。 これを容易にするため、スキャフォールディング コードには、コントローラーのメソッドと、部門を選択するためのドロップダウン リストを含む Create ビューと Edit ビューが含まれます。 ドロップダウン リストは、`Course.DepartmentID` 外部キー プロパティを設定します。これは、`Department` ナビゲーション プロパティを適切な `Department` エンティティとともに読み込むためにすべての Entity Framework で必要です。 このスキャフォールディング コードを使用しますが、エラー処理を追加し、ドロップダウン リストを並べ替えるために少し変更します。
 
 *CoursesController.cs* で、4 つの Create メソッドと Edit メソッドを削除し、次のコードに置き換えます。
 
@@ -123,13 +123,13 @@ Courses/Index ページのコースで **[Edit]** をクリックします。
 
 ## <a name="add-instructors-edit-page"></a>Instructors/Edit ページを追加する
 
-インストラクター レコードを編集するときに、インストラクターのオフィスの割り当ての更新が必要な場合があります。 Instructor エンティティには、OfficeAssignment エンティティとの一対ゼロまたは一対一のリレーションシップがあります。これは、コードで次の状況を処理する必要があることを意味します。
+インストラクター レコードを編集するときに、インストラクターのオフィスの割り当ての更新が必要な場合があります。 `Instructor` エンティティには、`OfficeAssignment` エンティティとの一対ゼロまたは一対一のリレーションシップがあります。これは、コードで次の状況を処理する必要があることを意味します。
 
-* ユーザーが元は値のあったオフィスの割り当てをクリアする場合は、OfficeAssignment エンティティを削除する。
+* ユーザーが元は値のあったオフィスの割り当てをクリアする場合は、`OfficeAssignment` エンティティを削除する。
 
-* ユーザーが元は空白だったオフィスの割り当ての値を入力する場合は、新しい OfficeAssignment エンティティを作成する。
+* ユーザーが元は空白だったオフィスの割り当ての値を入力する場合は、新しい `OfficeAssignment` エンティティを作成する。
 
-* ユーザーがオフィスの割り当ての値を変更する場合は、既存の OfficeAssignment エンティティの値を変更する。
+* ユーザーがオフィスの割り当ての値を変更する場合は、既存の `OfficeAssignment` エンティティの値を変更する。
 
 ### <a name="update-the-instructors-controller"></a>Instructors コントローラーを更新する
 
@@ -145,9 +145,9 @@ HttpPost `Edit` メソッドを次のコードで置き換え、オフィスの�
 
 * 署名が HttpGet `Edit` メソッドと同じになっているため、メソッド名を `EditPost` に変更します (`ActionName` 属性は `/Edit/` URL が引き続き使用されることを指定します)。
 
-* `OfficeAssignment` ナビゲーション プロパティの一括読み込みを使用して、現在の Instructor エンティティをデータベースから取得します。 これは、HttpGet `Edit` メソッドで行ったのと同じです。
+* `OfficeAssignment` ナビゲーション プロパティの一括読み込みを使用して、現在の `Instructor` エンティティをデータベースから取得します。 これは、HttpGet `Edit` メソッドで行ったのと同じです。
 
-* モデル バインダーからの値を使用して、取得した Instructor エンティティを更新します。 `TryUpdateModel` オーバーロードでは、含めたいプロパティを宣言できるようになります。 これにより、[2 番目のチュートリアル](crud.md)で説明したように、過剰ポスティングを防止します。
+* モデル バインダーからの値を使用して、取得した `Instructor` エンティティを更新します。 `TryUpdateModel` オーバーロードでは、含めたいプロパティを宣言できるようになります。 これにより、[2 番目のチュートリアル](crud.md)で説明したように、過剰ポスティングを防止します。
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -158,7 +158,7 @@ HttpPost `Edit` メソッドを次のコードで置き換え、オフィスの�
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
     ```
 
-* オフィスの場所が空白の場合は、OfficeAssignment テーブル内の関連する行が削除されるように、Instructor.OfficeAssignment プロパティを null に設定します。
+* オフィスの場所が空白の場合は、`OfficeAssignment` テーブル内の関連する行が削除されるように、`Instructor.OfficeAssignment` プロパティを null に設定します。
 
     <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
@@ -187,7 +187,7 @@ HttpPost `Edit` メソッドを次のコードで置き換え、オフィスの�
 
 ![コースが表示された Instructor/Edit ページ](update-related-data/_static/instructor-edit-courses.png)
 
-Course エンティティと Instructor エンティティ間には、多対多のリレーションシップがあります。 リレーションシップの追加と削除を行うには、CourseAssignments 結合エンティティ セットからエンティティを追加および削除します。
+`Course` と `Instructor` のエンティティ間のリレーションシップは、多対多です。 リレーションシップの追加と削除を行うには、`CourseAssignments` 結合エンティティ セットに対してエンティティを追加および削除します。
 
 インストラクターに割り当てられるコースを変更できるようにする UI は、チェック ボックスのグループです。 データベース内のすべてのコースのチェック ボックスが表示され、インストラクターに現在割り当てられているコースが選択されます。 ユーザーは、チェック ボックスをオンまたはオフにしてコースの割り当てを変更できます。 コースの数が非常に多い場合は、ビューにデータを表示する別のメソッドを使用したいと思うかもしれませんが、結合エンティティを操作してリレーションシップを作成または削除するのと同じメソッドを使用します。
 
@@ -205,7 +205,7 @@ Course エンティティと Instructor エンティティ間には、多対多�
 
 このコードは、`Courses` ナビゲーション プロパティに一括読み込みを追加し、新しい `PopulateAssignedCourseData` メソッドを呼び出して、`AssignedCourseData` ビュー モデル クラスを使用してチェック ボックス配列に情報を提供します。
 
-`PopulateAssignedCourseData` メソッド内のコードは、ビュー モデル クラスを使用してコースのリストを読み込むため、すべての Course エンティティを読み取ります。 各コースに対し、コードはそのコースがインストラクターの `Courses` ナビゲーション プロパティ内に存在しているかどうかをチェックします。 コースがインストラクターに割り当てられているかどうかをチェックするときに、効率的な参照を作成するため、インストラクターに割り当てられているコースが `HashSet` コレクション内に配置されます。 インストラクターが割り当てられているコースに対し、`Assigned` プロパティが true に設定されます。 ビューは、このプロパティを使用して、どのチェック ボックスを選択済みとして表示する必要があるかを判断します。 最後に、リストは `ViewData` でビューに渡されます。
+`PopulateAssignedCourseData` メソッド内のコードは、ビュー モデル クラスを使用してコースのリストを読み込むため、すべての `Course` エンティティを読み取ります。 各コースに対し、コードはそのコースがインストラクターの `Courses` ナビゲーション プロパティ内に存在しているかどうかをチェックします。 コースがインストラクターに割り当てられているかどうかをチェックするときに、効率的な参照を作成するため、インストラクターに割り当てられているコースが `HashSet` コレクション内に配置されます。 インストラクターが割り当てられているコースに対し、`Assigned` プロパティが true に設定されます。 ビューは、このプロパティを使用して、どのチェック ボックスを選択済みとして表示する必要があるかを判断します。 最後に、リストは `ViewData` でビューに渡されます。
 
 次に、ユーザーが **[Save]\(保存\)** をクリックしたときに実行されるコードを追加します。 `EditPost` メソッドを次のコードで置き換え、Instructor エンティティの `Courses` ナビゲーション プロパティを更新する新しいメソッドを追加します。
 
@@ -282,7 +282,7 @@ HttpPost `Create` メソッドは、選択した各コースを `CourseAssignmen
 instructor.CourseAssignments = new List<CourseAssignment>();
 ```
 
-コントローラー コードでこれを行うための別の方法として、Instructor モデルでこれを行うことができます。このためには、プロパティ ゲッターを変更して、コレクションが存在しない場合に自動的に作成するようにします。次の例に示します。
+コントローラー コードでこれを行うための別の方法として、`Instructor` モデルでこれを行うことができます。このためには、プロパティ ゲッターを変更して、コレクションが存在しない場合に自動的に作成するようにします。次の例に示します。
 
 ```csharp
 private ICollection<CourseAssignment> _courseAssignments;

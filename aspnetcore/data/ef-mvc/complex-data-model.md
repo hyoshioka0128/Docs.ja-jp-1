@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/complex-data-model
-ms.openlocfilehash: a881ff28d41a272ade559c60efbd884f2a3c4e3e
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: bbb783b8547ffec0cfad124f7c0e8f1a21e1e727
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102587789"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105555072"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>チュートリアル: 複合データ モデルを作成する - ASP.NET MVC と EF Core
 
@@ -230,7 +230,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 ### <a name="the-key-attribute"></a>Key 属性
 
-Instructor エンティティと OfficeAssignment エンティティの間には一対ゼロまたは一対一リレーションシップがあります。 オフィスが割り当てられている講師についてのみ、オフィス割り当てが存在します。したがって、その主キーは Instructor エンティティに対する外部キーでもあります。 ただし、名前が ID や classnameID 名前付け規則に従っていないため、Entity Framework は InstructorID をこのエンティティの主キーとして自動的に認識できません。 したがって、`Key` 属性はキーとして識別するために使用されます。
+`Instructor` エンティティと `OfficeAssignment` エンティティの間には一対ゼロまたは一対一のリレーションシップがあります。 オフィスが割り当てられている講師についてのみ、オフィス割り当てが存在します。したがって、その主キーは `Instructor` エンティティに対する外部キーでもあります。 ただし、名前が `ID` や `classnameID` 名前付け規則に従っていないため、Entity Framework では `InstructorID` をこのエンティティの主キーとして自動的に認識できません。 したがって、`Key` 属性はキーとして識別するために使用されます。
 
 ```csharp
 [Key]
@@ -257,7 +257,7 @@ Instructor ナビゲーション プロパティに `[Required]` 属性を配置
 
 Course エンティティには外部キー プロパティ `DepartmentID` (関連する Department エンティティを指す) があり、`Department` ナビゲーション プロパティがあります。
 
-Entity Framework では、関連エンティティのナビゲーション プロパティがある場合、ユーザーがデータ モデルに外部キー プロパティを追加する必要はありません。  EF は必要に応じて、データベースで外部キーを自動的に作成し、[シャドウ プロパティ](/ef/core/modeling/shadow-properties)を作成します。 ただし、データ モデルに外部キーがある場合は、更新をより簡単かつ効率的に行うことができます。 たとえば、編集する Course エンティティをフェッチするときに読み込まないと、Department エンティティは null になります。したがって、Course エンティティを更新する場合は、まず、Department エンティティをフェッチする必要があります。 外部キー プロパティ `DepartmentID` がデータ モデルに含まれている場合は、更新前に Department エンティティをフェッチする必要はありません。
+Entity Framework では、関連エンティティのナビゲーション プロパティがある場合、ユーザーがデータ モデルに外部キー プロパティを追加する必要はありません。  EF は必要に応じて、データベースで外部キーを自動的に作成し、[シャドウ プロパティ](/ef/core/modeling/shadow-properties)を作成します。 ただし、データ モデルに外部キーがある場合は、更新をより簡単かつ効率的に行うことができます。 たとえば、編集する `Course` エンティティをフェッチするときに読み込まないと、`Department` エンティティは null になります。したがって、`Course` エンティティを更新する場合は、まず、`Department` エンティティをフェッチする必要があります。 外部キー プロパティ `DepartmentID` がデータ モデルに含まれている場合は、更新前に `Department` エンティティをフェッチする必要はありません。
 
 ### <a name="the-databasegenerated-attribute"></a>DatabaseGenerated 属性
 
@@ -269,13 +269,13 @@ Entity Framework では、関連エンティティのナビゲーション プ�
 public int CourseID { get; set; }
 ```
 
-既定では、Entity Framework は、主キー値がデータベースによって生成されることを前提とします。 これはほとんどのシナリオに該当します。 ただし、Course エンティティの場合、1 つの学科に 1000 シリーズ、別の学科に 2000 シリーズといったユーザー指定のコース番号を使用します。
+既定では、Entity Framework は、主キー値がデータベースによって生成されることを前提とします。 これはほとんどのシナリオに該当します。 ただし、`Course` エンティティの場合、1 つの学科に 1000 シリーズ、別の学科に 2000 シリーズといったユーザー指定のコース番号を使用します。
 
 行の作成日または更新日を記録するために使用されるデータベース列の場合のように、`DatabaseGenerated` 属性は既定値を生成するためにも使用できます。  詳細については、「[生成される値](/ef/core/modeling/generated-properties)」を参照してください。
 
 ### <a name="foreign-key-and-navigation-properties"></a>外部キー プロパティとナビゲーション プロパティ
 
-Course エンティティの外部キー プロパティとナビゲーション プロパティには、以下のリレーションシップが反映されます。
+`Course` エンティティの外部キー プロパティとナビゲーション プロパティには、以下のリレーションシップが反映されます。
 
 コースは 1 つの学科に割り当てられます。したがって、前述の理由により、`DepartmentID` 外部キーと `Department` ナビゲーション プロパティが存在します。
 
@@ -306,7 +306,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ### <a name="the-column-attribute"></a>Column 属性
 
-これまでは、`Column` 属性を使用して、列名のマッピングを変更しました。 Department エンティティのコードでは、`Column` 属性は SQL データ型のマッピングを変更するために使用されているため、列はデータベースの SQL Server money 型を使用して定義されます。
+これまでは、`Column` 属性を使用して、列名のマッピングを変更しました。 `Department` エンティティのコードでは、`Column` 属性は SQL データ型のマッピングを変更するために使用されているため、列はデータベースの SQL Server `money` 型を使用して定義されます。
 
 ```csharp
 [Column(TypeName="money")]
@@ -333,7 +333,7 @@ public ICollection<Course> Courses { get; set; }
 ```
 
 > [!NOTE]
-> 規則により、Entity Framework では null 非許容の外部キーと多対多リレーションシップに対して連鎖削除が有効になります。 これにより、循環連鎖削除規則が適用される可能性があり、移行を追加しようとすると例外が発生します。 たとえば、Department.InstructorID プロパティを null 許容として定義しなかった場合、EF では、講師を削除したときに学科を削除するように連鎖削除規則が構成されます。これは、発生してほしくない動作です。 ビジネス ルールで `InstructorID` プロパティを null 非許容にすることが求められた場合、以下の fluent API ステートメントを使用して、リレーションシップで連鎖削除を無効にする必要がありました。
+> 規則により、Entity Framework では null 非許容の外部キーと多対多リレーションシップに対して連鎖削除が有効になります。 これにより、循環連鎖削除規則が適用される可能性があり、移行を追加しようとすると例外が発生します。 たとえば、`Department.InstructorID` プロパティを null 許容として定義しなかった場合、EF では、講師を削除したときに学科を削除するように連鎖削除規則が構成されます。これは、発生してほしくない動作です。 ビジネス ルールで `InstructorID` プロパティを null 非許容にすることが求められた場合、以下の fluent API ステートメントを使用して、リレーションシップで連鎖削除を無効にする必要がありました。
 >
 > ```csharp
 > modelBuilder.Entity<Department>()
@@ -370,7 +370,7 @@ public Student Student { get; set; }
 
 ## <a name="many-to-many-relationships"></a>多対多リレーションシップ
 
-Student エンティティと Course エンティティの間には多対多リレーションシップがあり、Enrollment エンティティはデータベースで *ペイロードがある* 多対多の結合テーブルとして機能します。 "ペイロードがある" とは、Enrollment テーブルに統合テーブルの外部キー以外に追加データが含まれていることを意味します (この例では、主キーと Grade プロパティ)。
+`Student` および `Course` エンティティの間には多対多リレーションシップがあり、`Enrollment` エンティティはデータベースで "*ペイロードがある*" 多対多の結合テーブルとして機能します。 "ペイロードがある" とは、`Enrollment` テーブルに統合テーブルの外部キー以外に追加データが含まれていることを意味します (この例では、主キーと `Grade` プロパティ)。
 
 次の図は、エンティティ図でこれらのリレーションシップがどのようになるかを示しています (この図は、EF 6.x 用の Entity Framework Power Tools を使用して生成されたものです。このチュートリアルでは図は作成しません。ここでは例として使用するだけです)。
 
@@ -378,7 +378,7 @@ Student エンティティと Course エンティティの間には多対多リ�
 
 各リレーションシップ線の一方の端に 1 が、もう一方の端にアスタリスク (*) があり、1 対多リレーションシップであることを示しています。
 
-Enrollment テーブルに成績情報が含まれていなかった場合、含める必要があるのは 2 つの外部キー (CourseID と StudentID) のみです。 その場合、データベースにはペイロードがない多対多結合テーブル (純粋結合テーブル) が存在することになります。 Instructor および Course エンティティにはその種の多対多リレーションシップがあり、次の手順では、ペイロードがない結合テーブルとして機能するエンティティ クラスを作成します
+`Enrollment` テーブルに成績情報が含まれていない場合、含める必要があるのは 2 つの外部キー `CourseID` および `StudentID` のみです。 その場合、データベースにはペイロードがない多対多結合テーブル (純粋結合テーブル) が存在することになります。 `Instructor` および `Course` エンティティにはその種の多対多リレーションシップがあり、次の手順では、ペイロードがない結合テーブルとして機能するエンティティ クラスを作成します。
 
 (EF 6.x では多対多リレーションシップの暗黙の結合テーブルがサポートされますが、EF Core ではサポートされません。 詳細については、[GitHub リポジトリの EF Core に関する記述](https://github.com/aspnet/EntityFramework/issues/1368)を参照してください)。
 
@@ -396,7 +396,7 @@ Enrollment テーブルに成績情報が含まれていなかった場合、含
 
 ### <a name="composite-key"></a>複合キー
 
-外部キーが null 許容ではなく、テーブルの各行を一意に識別するために組み合わせて使用される場合、個別の主キーは必要ありません。 *InstructorID* および *CourseID* プロパティは複合主キーとして機能する必要があります。 EF に対する複合主キーを識別する唯一の方法は、*fluent API* を使用することです (属性を使用して行うことはできません)。 次のセクションでは、複合主キーの構成方法を示します。
+外部キーが null 許容ではなく、テーブルの各行を一意に識別するために組み合わせて使用される場合、個別の主キーは必要ありません。 `InstructorID` および `CourseID` プロパティは複合主キーとして機能する必要があります。 EF に対する複合主キーを識別する唯一の方法は、*fluent API* を使用することです (属性を使用して行うことはできません)。 次のセクションでは、複合主キーの構成方法を示します。
 
 複合キーを使用すると、1 つのコースに対して複数の行を、また 1 人の講師に対して複数の行を使用できても、同じ講師とコースに対しては複数の行を使用できなくなります。 `Enrollment` 結合エンティティでは独自の主キーを定義するため、このような重複が考えられます。 このような重複を防ぐために、外部キー フィールドで一意のインデックスを追加するか、`CourseAssignment` と同様の複合主キーを使用して `Enrollment` を構成することができます。 詳細については、「[インデックス](/ef/core/modeling/indexes)」を参照してください。
 
@@ -433,7 +433,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ![エンティティ図](complex-data-model/_static/diagram.png)
 
-一対多リレーションシップの線 (1 対 \*) 以外にも、ここには Instructor および OfficeAssignment エンティティ間の一対ゼロまたは一対一リレーションシップの線 (1 対 0..1) と、Instructor および Department エンティティ間のゼロ対多また一対多リレーションシップの線 (0..1 対 *) があります。
+一対多リレーションシップの線 (1 対 \*) 以外にも、ここには`Instructor` および `OfficeAssignment` エンティティ間の一対ゼロまたは一リレーションシップの線 (1 対 0..1) と、Instructor および Department エンティティ間のゼロまたは一対多リレーションシップの線 (0..1 対 *) があります。
 
 ## <a name="seed-database-with-test-data"></a>テスト データを使ってデータベースをシードする
 
@@ -462,7 +462,7 @@ Done. To undo this action, use 'ef migrations remove'
 
 > ALTER TABLE ステートメントは FOREIGN KEY 制約 "FK_dbo.Course_dbo.Department_DepartmentID" と競合しています。 競合が発生したのは、データベース "ContosoUniversity"、テーブル "dbo.Department"、列 'DepartmentID' です。
 
-場合によっては、既存のデータで移行を実行するときに、外部キー制約を満たすためにデータベースにスタブ データを挿入する必要があります。 `Up` メソッドの生成されたコードでは、Course テーブルに null 非許容の DepartmentID 外部キーが追加されます。 コードの実行時に Course テーブルに既に行がある場合、`AddColumn` 操作は失敗します。これは、SQL Server では、null にできない列に配置される値が認識されないためです。 このチュートリアルでは、新しいデータベースで移行を実行しますが、運用アプリケーションでは、移行時に既存のデータを処理する必要があるため、以下の手順ではその方法例を示します。
+場合によっては、既存のデータで移行を実行するときに、外部キー制約を満たすためにデータベースにスタブ データを挿入する必要があります。 `Up` メソッドの生成されたコードでは、`Course` テーブルに null 非許容の `DepartmentID` 外部キーが追加されます。 コードの実行時に Course テーブルに既に行がある場合、`AddColumn` 操作は失敗します。これは、SQL Server では、null にできない列に配置される値が認識されないためです。 このチュートリアルでは、新しいデータベースで移行を実行しますが、運用アプリケーションでは、移行時に既存のデータを処理する必要があるため、以下の手順ではその方法例を示します。
 
 既存のデータでこの移行を行うには、コードを変更して、新しい列に既定値を設定し、"Temp" という名前のスタブ学科を作成して、既定の学科として機能するようにする必要があります。 その結果、既存の Course 行が、`Up` メソッドの実行後に "Temp" 学科に関連付けられます。
 
@@ -476,7 +476,7 @@ Done. To undo this action, use 'ef migrations remove'
 
   [!code-csharp[](intro/samples/cu/Migrations/20170215234014_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
-運用アプリケーションでは、コードまたはスクリプトを記述して、Department 行を追加し、Course 行を新しい Department 行に関連付けます。 これで、Course.DepartmentID 列の既定値や "Temp" 学科は不要になります。
+運用アプリケーションでは、コードまたはスクリプトを記述して、Department 行を追加し、Course 行を新しい Department 行に関連付けます。 これで、`Course.DepartmentID` 列の既定値や "Temp" 学科は不要になります。
 
 変更を保存し、プロジェクトをビルドします。
 
