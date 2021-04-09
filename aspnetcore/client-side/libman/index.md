@@ -1,6 +1,6 @@
 ---
 title: LibMan を使用した ASP.NET Core でのクライアント側ライブラリの取得
-author: scottaddie
+author: rick-anderson
 description: ライブラリ マネージャー (LibMan) を使用して、ASP.NET Core プロジェクトにクライアント側ライブラリの資産をインストールする方法について説明します。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/index
-ms.openlocfilehash: 62b6859b0a8ad0f98a2684f21c0f68dbbd67c4c1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 168390edd4fe7be353bbb0768cc7363ee45b77b5
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054659"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563814"
 ---
 # <a name="client-side-library-acquisition-in-aspnet-core-with-libman"></a>LibMan を使用した ASP.NET Core でのクライアント側ライブラリの取得
 

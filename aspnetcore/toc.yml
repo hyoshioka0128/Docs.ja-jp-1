@@ -352,7 +352,7 @@
               uid: blazor/components/css-isolation
             - name: コンポーネントのプリレンダリングと統合
               uid: blazor/components/prerendering-and-integration
-            - name: コンポーネント ライブラリ
+            - name: クラス ライブラリ
               uid: blazor/components/class-libraries
         - name: グローバリゼーションとローカリゼーション
           uid: blazor/globalization-localization

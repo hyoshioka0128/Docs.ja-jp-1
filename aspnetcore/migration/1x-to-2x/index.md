@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core 1.x から 2.0 への移行
-author: scottaddie
+author: rick-anderson
 description: この記事では、ASP.NET Core 1.x プロジェクトを ASP.NET Core 2.0 に移行する前提条件と最も一般的な手順について説明します。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/index
-ms.openlocfilehash: 6d67924d87cdbe72cb08c5305dfe45c5b22b31bc
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9a175c8a3cd960404006aad559b2ca65b5a8c1e1
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057116"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564227"
 ---
 # <a name="migrate-from-aspnet-core-1x-to-20"></a>ASP.NET Core 1.x から 2.0 への移行
 
@@ -108,11 +108,11 @@ ms.locfileid: "93057116"
 
 ## <a name="update-main-method-in-programcs"></a>Program.cs の Main メソッドの更新
 
-1\.x プロジェクトでは、 *Program.cs* の `Main` メソッドは次のようでした。
+1\.x プロジェクトでは、*Program.cs* の `Main` メソッドは次のようでした。
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCs&highlight=8-19)]
 
-2\.0 プロジェクトでは、 *Program.cs* の `Main` メソッドは次のように簡素化されました。
+2\.0 プロジェクトでは、*Program.cs* の `Main` メソッドは次のように簡素化されました。
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program.cs?highlight=8-11)]
 
@@ -136,7 +136,7 @@ Unable to create an object of type '<Context>'. Add an implementation of 'IDesig
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
-`WebHostBuilder.CreateDefaultBuilder` によって追加された既定のプロバイダーを削除するには、`ConfigureAppConfiguration` の内部の `IConfigurationBuilder.Sources` プロパティで `Clear` メソッドを呼び出します。 プロバイダーを戻すには、 *Program.cs* の `ConfigureAppConfiguration` メソッドを利用します。
+`WebHostBuilder.CreateDefaultBuilder` によって追加された既定のプロバイダーを削除するには、`ConfigureAppConfiguration` の内部の `IConfigurationBuilder.Sources` プロパティで `Clear` メソッドを呼び出します。 プロバイダーを戻すには、*Program.cs* の `ConfigureAppConfiguration` メソッドを利用します。
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders&highlight=9-14)]
 
@@ -160,7 +160,7 @@ EF Core 2.0 を使用する 2.0 プロジェクトでは、`Program.BuildWebHost
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_ConfigureSeedData&highlight=8)]
 
-2\.0 プロジェクトでは、 *Program.cs* の `Main` メソッドに `SeedData.Initialize` 呼び出しを移動します。
+2\.0 プロジェクトでは、*Program.cs* の `Main` メソッドに `SeedData.Initialize` 呼び出しを移動します。
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
@@ -168,7 +168,7 @@ EF Core 2.0 を使用する 2.0 プロジェクトでは、`Program.BuildWebHost
 
 <a name="view-compilation"></a>
 
-## <a name="review-no-locrazor-view-compilation-setting"></a>Razor ビュー コンパイル設定の確認
+## <a name="review-razor-view-compilation-setting"></a>Razor ビュー コンパイル設定の確認
 
 ユーザーに最も重要なことは、アプリケーションを高速に起動することとパブリッシュされたバンドル数を少なくすることです。 これらの理由から、ASP.NET Core 2.0 では [Razor ビュー コンパイル](xref:mvc/views/view-compilation)が既定で有効になっています。
 
@@ -190,7 +190,7 @@ Visual Studio 2017 で作成された ASP.NET Core 1.1 プロジェクトには�
 
     [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App.csproj?range=10)]
 
-2. .NET Core をターゲットにする場合、 *Program.cs* から `UseApplicationInsights` 拡張メソッド呼び出しを削除します。
+2. .NET Core をターゲットにする場合、*Program.cs* から `UseApplicationInsights` 拡張メソッド呼び出しを削除します。
 
     [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 
@@ -202,7 +202,7 @@ Application Insights SDK を直接使用している場合は、それを継続�
 
 <a name="auth-and-identity"></a>
 
-## <a name="adopt-authenticationno-locidentity-improvements"></a>認証、Identity の機能強化の採用
+## <a name="adopt-authenticationidentity-improvements"></a>認証、Identity の機能強化の採用
 
 ASP.NET Core 2.0 には、新しい認証モデルと ASP.NET Core Identity に対する大幅な変更が含まれています。 個々のユーザー アカウントを有効にしてプロジェクトを作成した場合や認証または Identity を手動で追加した場合、「IdentityASP.NET Core 2.0 への認証と [ の移行](xref:migration/1x-to-2x/identity-2x)」 を参照してください。
 

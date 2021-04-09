@@ -1,6 +1,6 @@
 ---
 title: HttpRepl を使用して Web API をテストする
-author: scottaddie
+author: rick-anderson
 description: HttpRepl .NET Core グローバル ツールを使用して、ASP.NET Core Web API を参照およびテストする方法について説明します。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: aeff3fd06719095660d1b3bb794ef74a8549f761
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: deae3e36fc659dabb1fed16c704b04fb4a70282d
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102585761"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563637"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>HttpRepl を使用して Web API をテストする
 
