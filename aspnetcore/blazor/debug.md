@@ -64,7 +64,7 @@ Visual Studio Code ユーザーには、次の拡張機能が必要です。
 * [C# for Visual Studio Code 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Blazor WASM デバッグ拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) (C# for Visual Studio Code 拡張機能のバージョン 1.23.9 以降を使用する場合)
 
-VS コードでプロジェクトを開いた後に、デバッグを有効にするために追加の設定が必要であることを示す通知が表示される場合があります。 要求された場合は、Visual Studio Marketplace から必要な拡張機能をインストールします。 インストールされている拡張機能を確認するには、メニュー バーから **[表示]**  >  **[拡張機能]** を開くか、**アクティビティ** サイド バーにある **拡張機能** アイコンを選択します。
+VS Code でプロジェクトを開いた後に、デバッグを有効にするために追加の設定が必要であることを示す通知が表示される場合があります。 要求された場合は、Visual Studio Marketplace から必要な拡張機能をインストールします。 インストールされている拡張機能を確認するには、メニュー バーから **[表示]**  >  **[拡張機能]** を開くか、**アクティビティ** サイド バーにある **拡張機能** アイコンを選択します。
 
 Visual Studio for Mac のバージョン 8.8 (ビルド 1532) 以降が必要です。
 
