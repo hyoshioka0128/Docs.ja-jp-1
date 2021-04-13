@@ -1,6 +1,6 @@
 ---
 title: Visual Studio の ASP.NET Core で LibMan を使用する
-author: scottaddie
+author: rick-anderson
 description: Visual Studio の ASP.NET Core プロジェクトで LibMan を使用する方法について説明します。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: ae2bc34edaea2df6f329e47b00c7c02cc59d03bd
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 8aabdd3fc8b4e9ebeabec482514768d23a152263
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102589271"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563877"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Visual Studio の ASP.NET Core で LibMan を使用する
 

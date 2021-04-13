@@ -3,7 +3,7 @@ title: SignalRJava クライアントの ASP.NET Core
 author: mikaelm12
 description: ASP.NET Core Java クライアントの使用方法について説明 SignalR します。
 monikerRange: '>= aspnetcore-2.2'
-ms.author: mimengis
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/java-client
-ms.openlocfilehash: bdfaf50895612e739eb5ca068a76755f97cf24c2
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 0354821694d3f3422458c1986749fb9cc25d6276
+ms.sourcegitcommit: 68df2a4d236f9f3299622ed38c75bb51cbdb4856
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588075"
+ms.lasthandoff: 04/09/2021
+ms.locfileid: "107225554"
 ---
 # <a name="aspnet-core-signalr-java-client"></a>SignalRJava クライアントの ASP.NET Core
 

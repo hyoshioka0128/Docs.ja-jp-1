@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: f3bc46da8e9b9ca1fe5afab7ccc1de9eaad16e8d
-ms.sourcegitcommit: b81327f1a62e9857d9e51fb34775f752261a88ae
+ms.openlocfilehash: cfc540e00593c9a886b342cfe5998498b6500c31
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/25/2021
-ms.locfileid: "105051024"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081417"
 ---
 # <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor のルーティング
 
@@ -162,7 +162,7 @@ ms.locfileid: "105051024"
 
 ::: moniker-end
 
-オプションのパラメーター値が異なる同じコンポーネントへのアプリの移動を許可するには、[`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) ではなく、[`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) を使用します。 前の例に基づいて、ユーザーが `/RouteParameter` から `/RouteParameter/amazing` に、または `/RouteParameter/amazing` から `/RouteParameter` に移動できる必要がある場合は、`OnParametersSet` を使用してください。
+オプションのパラメーター値が異なる同じコンポーネントへのアプリの移動を許可するには、[`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) ではなく、[`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) を使用します。 前の例に基づいて、ユーザーが `/RouteParameter` から `/RouteParameter/amazing` に、または `/RouteParameter/amazing` から `/RouteParameter` に移動できる必要がある場合は、`OnParametersSet` を使用してください。
 
 ```csharp
 protected override void OnParametersSet()

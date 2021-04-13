@@ -11,13 +11,13 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 0c4c49a506450c4236b67d2760ff38af6196f5a1
-ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.openlocfilehash: dfc058c58bde04f07f84494b76bc9d88bcb345fa
+ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100552933"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "105957465"
 ---
 Contoso 大学 Web アプリでは、EF Core と Visual Studio を使用して Razor Pages Web アプリを作成する方法を示します。 チュートリアル シリーズについては、[最初のチュートリアル](xref:data/ef-rp/intro)を参照してください。
 
-解決できない問題が発生した場合は、[完成したアプリ](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples)をダウンロードし、チュートリアルに従って作成した内容とコードを比較します。
+解決できない問題が発生した場合は、[完成したアプリ](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples)をダウンロードし、チュートリアルに従って作成した内容とコードを比較します。

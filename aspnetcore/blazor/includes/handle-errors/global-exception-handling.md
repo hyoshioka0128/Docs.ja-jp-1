@@ -11,12 +11,12 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
-ms.openlocfilehash: 1aa36c8d91dbd92485e85f223f2391303bebac42
-ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
+ms.openlocfilehash: 0ce606cc4800bcf5855b70a26272fceb3ad8e944
+ms.sourcegitcommit: 4bbc69f51c59bed1a96aa46f9f5dca2f2a2634cb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102109711"
+ms.lasthandoff: 03/25/2021
+ms.locfileid: "105554884"
 ---
 Blazor は、シングルページ アプリケーション (SPA) のクライアント側フレームワークです。 このブラウザーは、アプリのホストとして機能するため、ナビゲーションと静的アセットの URI 要求に基づいて、個々の Razor コンポーネントの処理パイプラインとして機能します。 ミドルウェア処理パイプラインを使用してサーバー上で実行される ASP.NET Core アプリとは異なり、グローバル エラー処理に利用できる Razor コンポーネントの要求を処理するミドルウェア パイプラインはありません。 ただし、アプリはエラー処理コンポーネントをカスケード値として使用して、一元的な方法でエラーを処理できます。
 
@@ -82,4 +82,4 @@ Blazor は、シングルページ アプリケーション (SPA) のクライ�
 
 > 失敗: BlazorSample.Shared.Error[0] Error:ProcessError - Type: System.NullReferenceException メッセージ: オブジェクト参照がオブジェクトのインスタンスに設定されていません。
 
-カスタム エラー メッセージ バーの表示やレンダリングされた要素の CSS スタイルの変更など、`ProcessError` メソッドがレンダリングに直接関与している場合は、`ProcessErrors` メソッドの最後で [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) を呼び出して、UI を再レンダリングします。
+カスタム エラー メッセージ バーの表示やレンダリングされた要素の CSS スタイルの変更など、`ProcessError` メソッドがレンダリングに直接関与している場合は、`ProcessErrors` メソッドの最後で [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) を呼び出して、UI を再レンダリングします。

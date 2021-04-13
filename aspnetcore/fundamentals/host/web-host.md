@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: fa9b1941d6dcda30855a4729dfa1cd78f897d9b6
-ms.sourcegitcommit: a1db01b4d3bd8c57d7a9c94ce122a6db68002d66
+ms.openlocfilehash: f619aecfa2e33046de85c2521257c48d63f8b6e0
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/04/2021
-ms.locfileid: "102109976"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081612"
 ---
 # <a name="aspnet-core-web-host"></a>ASP.NET Core の Web ホスト
 
@@ -278,9 +278,10 @@ WebHost.CreateDefaultBuilder(args)
 
 HTTPS リダイレクト ポートを設定します。 [HTTPS の適用](xref:security/enforcing-ssl)に使用されます。
 
-**キー**: https_port **型**: *文字列*
-**既定値**:既定値は設定されていません。
-**次を使用して設定**:`UseSetting`
+**キー**: https_port  
+**型**: *文字列*  
+**既定**:既定値は設定されていません。  
+**次を使用して設定**: `UseSetting`  
 **環境変数**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp

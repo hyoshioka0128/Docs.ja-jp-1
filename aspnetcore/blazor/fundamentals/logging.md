@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/logging
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: e87b1a0dd54eb03dc1bdfdc7f2189a59df272026
-ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
+ms.openlocfilehash: 3d107ea4319f8b4356b1b69b666a4a9e966c68ad
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/18/2021
-ms.locfileid: "101101029"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081391"
 ---
 # <a name="aspnet-core-blazor-logging"></a>ASP.NET Core Blazor のログ
 
@@ -66,7 +66,7 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 @inject ILoggerProvider LoggerProvider
 ```
 
-コンポーネントの [`OnInitializedAsync` メソッド](xref:blazor/components/lifecycle#component-initialization-methods)で、<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> を使用します。
+コンポーネントの [`OnInitializedAsync` メソッド](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)で、<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> を使用します。
 
 ```csharp
 var connection = new HubConnectionBuilder()

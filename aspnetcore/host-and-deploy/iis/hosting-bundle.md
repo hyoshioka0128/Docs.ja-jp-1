@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/hosting-bundle
-ms.openlocfilehash: a580c70d3141177be2508a0513f612eee56dbbf9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 044b7ef98610e504eb4887dae88c8636c7c9a8fe
+ms.sourcegitcommit: fafcf015d64aa2388bacee16ba38799daf06a4f0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93343638"
+ms.lasthandoff: 03/30/2021
+ms.locfileid: "105957666"
 ---
 # <a name="the-net-core-hosting-bundle"></a>.NET Core ホスティング バンドル
 
@@ -36,6 +36,8 @@ ms.locfileid: "93343638"
 > ホスティング バンドルが IIS の前にインストールされている場合、バンドルのインストールを修復する必要があります。 IIS をインストールした後に、ホスティング バンドル インストーラーをもう一度実行します。
 >
 > .NET Core の 64 ビット (x64) バージョンをインストールした後、ホスティング バンドルをインストールした場合は、SDK が表示されない可能性があります ([.NET Core SDK が検出されない](xref:test/troubleshoot#no-net-core-sdks-were-detected))。 この問題を解決するには、<xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle> を参照してください。
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## <a name="direct-download-current-version"></a>直接ダウンロード (現在のバージョン)
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 804ca260fd77f130499283d52a6034b9634a9c27
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: fca97179388eb9e8d3f896e9267e8e907fee55a8
+ms.sourcegitcommit: 68df2a4d236f9f3299622ed38c75bb51cbdb4856
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711127"
+ms.lasthandoff: 04/09/2021
+ms.locfileid: "107225567"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>チュートリアル: ASP.NET MVC Web アプリでの EF Core の概要
 
@@ -110,7 +110,7 @@ CTRL を押しながら F5 を押してプロジェクトを実行するか、�
 
 EF SQL Server パッケージとその依存関係 `Microsoft.EntityFrameworkCore` と `Microsoft.EntityFrameworkCore.Relational` により、EF のランタイム サポートが提供されます。
 
-[Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet パッケージと [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet パッケージを追加します。 パッケージ マネージャー コンソール (PMC) で、次のコマンドを入力して NuGet パッケージを追加します。
+[Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet パッケージを追加します。 パッケージ マネージャー コンソール (PMC) で、次のコマンドを入力して NuGet パッケージを追加します。
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore

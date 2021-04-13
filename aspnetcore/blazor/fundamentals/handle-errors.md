@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/handle-errors
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: d4c8054afc3818d58bc2a047a0aa74613ae6047b
-ms.sourcegitcommit: 1436bd4d70937d6ec3140da56d96caab33c4320b
+ms.openlocfilehash: c7eec0e8a72bac79d16ff8ed19da061de618533c
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/06/2021
-ms.locfileid: "102395098"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081404"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>ASP.NET Core Blazor アプリのエラーを処理する
 
@@ -105,7 +105,7 @@ Blazor によってコンポーネントのインスタンスが作成される�
 
 <h3 id="lifecycle-methods-webassembly">ライフサイクル メソッド</h3>
 
-コンポーネントの有効期間の間は、Blazor によって[ライフサイクル メソッド](xref:blazor/components/lifecycle#lifecycle-methods)が呼び出されます。 コンポーネントでライフサイクル メソッドのエラーに対処するには、エラー処理ロジックを追加します。
+コンポーネントの有効期間の間は、Blazor によって[ライフサイクル メソッド](xref:blazor/components/lifecycle)が呼び出されます。 コンポーネントでライフサイクル メソッドのエラーに対処するには、エラー処理ロジックを追加します。
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> によって製品を取得するメソッドを呼び出す次の例では:
 
@@ -148,6 +148,20 @@ Razor コンポーネント ファイル (`.razor`) 内の宣言マークアッ�
 
 上記のコードは、`person` が `null` でないことを前提としています。 多くの場合、コードの構造によって、コンポーネントがレンダリングされる時点でオブジェクトの存在が保証されます。 そのような場合は、レンダリング ロジックで `null` かどうかを調べる必要はありません。 前の例では、コンポーネントがインスタンス化されるときに `person` が作成されるため、`person` が存在することが保証されている可能性があります。次にその例を示します。
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -155,6 +169,8 @@ Razor コンポーネント ファイル (`.razor`) 内の宣言マークアッ�
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-webassembly">イベント ハンドラー</h3>
 
@@ -375,7 +391,7 @@ Blazor によってコンポーネントのインスタンスが作成される�
 
 <h3 id="lifecycle-methods-server">ライフサイクル メソッド</h3>
 
-コンポーネントの有効期間の間は、Blazor によって[ライフサイクル メソッド](xref:blazor/components/lifecycle#lifecycle-methods)が呼び出されます。 いずれかのライフサイクル メソッドが同期的または非同期的に例外をスローした場合、例外は Blazor Server 回線にとって致命的です。 コンポーネントでライフサイクル メソッドのエラーに対処するには、エラー処理ロジックを追加します。
+コンポーネントの有効期間の間は、Blazor によって[ライフサイクル メソッド](xref:blazor/components/lifecycle)が呼び出されます。 いずれかのライフサイクル メソッドが同期的または非同期的に例外をスローした場合、例外は Blazor Server 回線にとって致命的です。 コンポーネントでライフサイクル メソッドのエラーに対処するには、エラー処理ロジックを追加します。
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> によって製品を取得するメソッドを呼び出す次の例では:
 
@@ -418,6 +434,20 @@ Razor コンポーネント ファイル (`.razor`) 内の宣言マークアッ�
 
 上記のコードは、`person` が `null` でないことを前提としています。 多くの場合、コードの構造によって、コンポーネントがレンダリングされる時点でオブジェクトの存在が保証されます。 そのような場合は、レンダリング ロジックで `null` かどうかを調べる必要はありません。 前の例では、コンポーネントがインスタンス化されるときに `person` が作成されるため、`person` が存在することが保証されている可能性があります。次にその例を示します。
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -425,6 +455,8 @@ Razor コンポーネント ファイル (`.razor`) 内の宣言マークアッ�
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-server">イベント ハンドラー</h3>
 

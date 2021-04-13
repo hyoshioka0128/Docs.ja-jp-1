@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/razor-pages-tests
-ms.openlocfilehash: a67f51561d0a165db04418f2040ffe68e3ebe8ce
-ms.sourcegitcommit: 54fe1ae5e7d068e27376d562183ef9ddc7afc432
+ms.openlocfilehash: 7f63426bdfc3492e2d529af8cf19cc539db4371c
+ms.sourcegitcommit: 7e593abc85602429d94a20603936a4725838aeea
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/10/2021
-ms.locfileid: "102588491"
+ms.lasthandoff: 04/04/2021
+ms.locfileid: "106293428"
 ---
 # <a name="razor-pages-unit-tests-in-aspnet-core"></a>ASP.NET Core での Razor Pages の単体テスト
 
@@ -390,7 +390,7 @@ DAL の `GetMessagesAsync` メソッドでは、このメソッド呼び出し�
 * <xref:test/integration-tests>
 * [xUnit.net](https://xunit.github.io/)
 * [Visual Studio for Mac を使用した macOS での完全な .NET Core ソリューションの構築](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
-* [XUnit.net の概要:.NET SDK コマンド ラインでの .Net Core の使用](https://xunit.github.io/docs/getting-started-dotnet-core)
+* [XUnit.net の概要:.NET SDK コマンド ラインでの .Net Core の使用](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
 * [Moq クイック スタート](https://github.com/Moq/moq4/wiki/Quickstart)
 * [JustMockLite](https://github.com/telerik/JustMockLite):.NET 開発者向けのモック フレームワーク。 ("*Microsoft では保守管理もサポートも行っていません。* ")

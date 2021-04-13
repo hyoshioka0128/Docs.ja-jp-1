@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core で JavaScript サービスを使用してシングル ページ アプリケーションを作成する
-author: scottaddie
+author: rick-anderson
 description: ASP.NET Core と JavaScript サービスを使用してシングル ページ アプリケーション (SPA) を作成する利点について説明します。
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c0f18c1466bb140c82c9dfb41d773a6c68181168
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054646"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563803"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>ASP.NET Core で JavaScript サービスを使用してシングル ページ アプリケーションを作成する
 

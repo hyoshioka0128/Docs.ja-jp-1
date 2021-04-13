@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 1173113b8bb035212cb9b84e7763970b9d5092a3
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 28d1a99e57a07a8d63cbbb7f0ecc7f84d1adf446
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711619"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106564300"
 ---
 # <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>パート 2: ASP.NET Core で Razor ページ アプリにモデルを追加する
 
@@ -146,13 +146,13 @@ ms.locfileid: "104711619"
 * **Windows の場合**:次のコマンドを実行します。
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **macOS および Linux の場合**:次のコマンドを実行します。
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 <a name="codegenerator"></a> 次の表で、ASP.NET Core コード ジェネレーターのオプションについて詳しく説明します。
@@ -168,7 +168,7 @@ ms.locfileid: "104711619"
 `aspnet-codegenerator razorpage` コマンドに関するヘルプを取得するには、`-h` オプションを使用します。
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
 詳細については、「[dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator)」を参照してください。

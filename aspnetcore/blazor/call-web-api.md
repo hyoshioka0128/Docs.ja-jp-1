@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-web-api
-ms.openlocfilehash: 451b6f60a1e5f560606adb4fbaf8596d9d57ec64
-ms.sourcegitcommit: 00368bb6a5420983beaced5b62dabc1f94abdeba
+ms.openlocfilehash: 5628a7936968a87ca1ce47b0fbfe9f23404c5e9a
+ms.sourcegitcommit: 7923a9ec594690f01e0c9c6df3416c239e6745fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/16/2021
-ms.locfileid: "103557816"
+ms.lasthandoff: 03/31/2021
+ms.locfileid: "106081313"
 ---
 # <a name="call-a-web-api-from-aspnet-core-blazor"></a>ASP.NET Core Blazor から Web API を呼び出す
 
@@ -90,7 +90,7 @@ JSON のヘルパー メソッドは、要求を URI (次の例では Web API) �
 
 * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>:HTTP GET 要求を送信し、JSON 応答本文を解析してオブジェクトを作成します。
 
-  次のコードでは、コンポーネントによって `todoItems` が表示されます。 `GetTodoItems` メソッドは、コンポーネントのレンダリングが終了したとき ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-methods)) にトリガーされます。 完全な例についてはサンプル アプリを参照してください。
+  次のコードでは、コンポーネントによって `todoItems` が表示されます。 `GetTodoItems` メソッドは、コンポーネントのレンダリングが終了したとき ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)) にトリガーされます。 完全な例についてはサンプル アプリを参照してください。
 
   ```razor
   @using System.Net.Http

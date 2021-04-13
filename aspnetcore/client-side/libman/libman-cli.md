@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core で LibMan CLI を使用する
-author: scottaddie
+author: rick-anderson
 description: ASP.NET Core プロジェクトで LibMan CLI を使用する方法について説明します。
 ms.author: scaddie
 ms.custom: mvc
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-cli
-ms.openlocfilehash: dad9136439b61ad98523061d181fe44d3bf1273d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 966455ea67a880e369658c34253335521aa5c321
+ms.sourcegitcommit: 0abfe496fed8e9470037c8128efa8a50069ccd52
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93054750"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106563655"
 ---
 # <a name="use-the-libman-cli-with-aspnet-core"></a>ASP.NET Core で LibMan CLI を使用する
 

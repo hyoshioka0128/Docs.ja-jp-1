@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: 4968ac889cd3b4e0780ce73dc729d0107a416932
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 37f3b0c902d272cf8970265c8e964a1b2a7ddf00
+ms.sourcegitcommit: 7e593abc85602429d94a20603936a4725838aeea
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93061016"
+ms.lasthandoff: 04/04/2021
+ms.locfileid: "106293438"
 ---
 # <a name="grpc-services-with-c"></a>C\# を使用した gRPC サービス
 
@@ -76,7 +76,7 @@ protobuf ファイルの構文の詳細については、「<xref:grpc/protobuf>
 
 クライアント プロジェクトでは、gRPC クライアントを使用するために必要なその他のパッケージと共に、`Grpc.Tools` を直接参照する必要があります。 ツール パッケージは実行時に不要であるため、依存関係に `PrivateAssets="All"` でマークが付けられます。
 
-[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=3&range=9-11)]
+[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=3&range=9-14)]
 
 ## <a name="generated-c-assets"></a>生成された C# アセット
 

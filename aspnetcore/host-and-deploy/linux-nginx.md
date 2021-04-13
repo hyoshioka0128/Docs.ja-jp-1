@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 230a2dc9ddf196b69a10df1a8632bb32f280c98e
-ms.sourcegitcommit: 1f35de0ca9ba13ea63186c4dc387db4fb8e541e0
+ms.openlocfilehash: 732be8c878f74fc2edb1ceb81a6e50e1f4a10b09
+ms.sourcegitcommit: f67ba959d3cbfe33b32fa6a5eae1a5ae9de18167
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711296"
+ms.lasthandoff: 04/02/2021
+ms.locfileid: "106179744"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Nginx 搭載の Linux で ASP.NET Core をホストする
 
@@ -149,7 +149,7 @@ server {
     listen        80;
     server_name   example.com *.example.com;
     location / {
-        proxy_pass         http://localhost:5000;
+        proxy_pass         http://127.0.0.1:5000;
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
@@ -175,13 +175,13 @@ server {
 
 ::: moniker range=">= aspnetcore-5.0"
 
-上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://localhost:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel/endpoints)に関するセクションを参照してください。
+上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://127.0.0.1:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel/endpoints)に関するセクションを参照してください。
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://localhost:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
+上記の構成ファイルと既定のサーバーでは、Nginx は、ホスト ヘッダー `example.com` または `*.example.com` で、ポート 80 でパブリック トラフィックを受け入れます。 これらのホストと一致しない要求は、Kestrel に転送されません。 Nginx は一致する要求を Kestrel (`http://127.0.0.1:5000`) に転送します。 詳細については、「[How nginx processes a request](https://nginx.org/docs/http/request_processing.html)」(Nginx で要求を処理する方法) を参照してください。 Kestrel の IP/ポートを変更するには、[Kestrel のエンドポイントの構成](xref:fundamentals/servers/kestrel#endpoint-configuration)に関するセクションを参照してください。
 
 ::: moniker-end
 
